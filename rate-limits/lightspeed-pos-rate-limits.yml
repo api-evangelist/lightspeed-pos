@@ -1,7 +1,7 @@
 specification: API Commons Rate Limits
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: Lightspeed POS
+provider: Lightspeed
 providerId: lightspeed-pos
 created: '2026-05-08'
 modified: '2026-05-08'
@@ -10,23 +10,28 @@ tags:
 - POS
 - Retail
 - Restaurant
-- SaaS
-- Lightspeed
+- Ecommerce
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Lightspeed POS. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: Lightspeed Retail R-Series API uses a leaky-bucket rate limit, returning bucket level in
+  the X-LS-API-Bucket-Level header. Other series have their own per-minute throttles; honor 429 with Retry-After.
+notes: Inspect X-LS-API-Bucket-Level (R-Series) to pace requests.
 sources:
-- https://www.lightspeedhq.com/
+- https://developers.lightspeedhq.com/retail/introduction/rate-limiting/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
+- name: R-Series Leaky Bucket
   scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  metric: bucket level
+  limit: leaky-bucket; bucket header indicates fill
+  notes: X-LS-API-Bucket-Level reports current usage.
+- name: Other Series
+  scope: account
+  metric: requests/minute
+  limit: varies by series
+  notes: Honor 429.
 policies:
 - name: Backoff Strategy
   description: Clients should implement exponential backoff with jitter and honor any Retry-After header.

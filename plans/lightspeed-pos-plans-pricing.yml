@@ -1,7 +1,7 @@
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Lightspeed POS
+provider: Lightspeed
 providerId: lightspeed-pos
 created: '2026-05-08'
 modified: '2026-05-08'
@@ -10,32 +10,35 @@ tags:
 - POS
 - Retail
 - Restaurant
-- SaaS
-- Lightspeed
+- Ecommerce
 - Plans
-description: Placeholder plans/pricing artifact for Lightspeed POS. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled.
+description: Lightspeed Retail and Restaurant tiers (Lean, Standard, Advanced, Enterprise) are merchant
+  SaaS subscriptions; API access is included with paid plans.
+notes: Pricing varies by region and product line.
 sources:
-- https://www.lightspeedhq.com/
+- https://www.lightspeedhq.com/pricing/
+- https://developers.lightspeedhq.com/
 plans:
-- id: lightspeed-pos-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
+- id: lightspeed-retail-tiers
+  name: Lightspeed Retail Tiers
+  type: paid
+  description: Lean / Standard / Advanced / Enterprise tiers; tiers and pricing vary by region.
   entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
+  - label: Monthly SaaS
+    name: monthly_saas
+    type: tiered
+    metric: subscription
     limit: -1
-    timeFrame: usage
+    timeFrame: monthly
     geo: global
     unit: 1
-    price: see https://www.lightspeedhq.com/
+    price: see lightspeedhq.com/pricing
     userMultiplied: false
   elements:
-  - name: Pending Reconciliation
+  - name: Lean
+  - name: Standard
+  - name: Advanced
+  - name: Enterprise
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
