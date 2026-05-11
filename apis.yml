@@ -125,6 +125,109 @@ common:
   url: rate-limits/lightspeed-pos-rate-limits.yml
 - type: FinOps
   url: finops/lightspeed-pos-finops.yml
+- type: Integrations
+  url: https://www.lightspeedhq.com/integrations/
+integrations:
+  - name: NuORDER by Lightspeed
+  - name: Toolkit
+  - name: 2ACCEPT Payment Provider -USA
+  - name: 99minds Inc. Gift Card, Loyalty
+  - name: Accumula eCommerce, ERP
+  - name: AdVision eCommerce eCommerce, Marketing
+  - name: Agendrix Employee Scheduling
+  - name: Amadeus Hotel PMS
+  - name: Amaka Accounting
+  - name: AnyDay Payments, Payroll
+  - name: APICBASE Analytics, Inventory Management
+  - name: AppCard Loyalty
+  - name: Ascent360 Marketing
+  - name: Astro Loyalty Loyalty, Marketing
+  - name: Atlas Payments, Payroll, Reporting
+  - name: Avero Features / Tools, Reporting
+  - name: Beesly Reporting
+  - name: Better Chains Workforce
+  - name: BevSpot Inventory Management, Invoicing
+  - name: BigCommerce eCommerce
+  - name: Bike Index Customer Service
+  - name: bike.rent Manager Rental, Reservation
+  - name: BikeExchange eCommerce, Inventory Management, Marketing
+  - name: BirdEye Communication, Customer Service
+  - name: Bite Digital menus
+  - name: BlueCheck Age & ID Verification Analytics
+  - name: Bookingplanner by Stardekk Hotel PMS
+  - name: Boomtown Features / Tools
+  - name: BPL Digital Online Ordering Online Ordering
+  - name: BriteCo Features / Tools
+  - name: Campspot PMS, Reservation
+  - name: Capitan Membership Management, Reporting, Scheduling
+  - name: Chowly Online Ordering
+  - name: City Hive Loyalty, Online Ordering
+  - name: Clock Hotel PMS
+  - name: Cloudbeds Hotel PMS
+  - name: Como Customer-engagement, Loyalty, Marketing
+  - name: Cork Guru Digital menus
+  - name: Courserev AI, Booking
+  - name: CoverManager Reservation
+  - name: Dakis Features / Tools, Inventory Management
+  - name: DataQlick Inventory Management
+  - name: Datateer Reporting
+  - name: DAVO Sales Tax Accounting, Reporting
+  - name: Deputy Employee Scheduling
+  - name: DigiValet Customer Service, Online Ordering
+  - name: Dolce Software Scheduling
+  - name: Dor Analytics, Reporting
+  - name: DYNE Analytics, Marketing
+  - name: Eagle Eye Networks AI
+  - name: Econolease Financial Services Features / Tools
+  - name: eGolf Waiver Booking
+  - name: EventPro360 Event Management
+  - name: EzShop eCommerce
+  - name: Faire Inventory Management
+  - name: Flipdish Online Ordering
+  - name: Formitable Reservation
+  - name: Freebees Loyalty, Marketing
+  - name: Fresh Kitchen Display
+  - name: Frontdesk Anywhere Hotel PMS Hotel PMS
+  - name: Gift Up! Loyalty, Marketing
+  - name: Golf Canada Customer Service, Membership Management
+  - name: Golf Genius Membership Management, Reservation
+  - name: GolfBack Online Ordering, Reservation
+  - name: GolfNow Marketing, Reservation
+  - name: GourmetMiles Analytics, Customer Service, Loyalty, Marketing
+  - name: Gratuity Solutions Payroll
+  - name: Growzer Analytics, Inventory Management, Online Ordering
+  - name: GrubHub Online Ordering
+  - name: Gusto Payroll
+  - name: Hostme Online Ordering, Reservation
+  - name: HotSchedules Workforce
+  - name: Hubtiger Rental, Reservation, Workorders
+  - name: Hyperspace Features / Tools
+  - name: Incentivio Analytics, Customer-engagement, Online Ordering
+  - name: Infi Kiosk
+  - name: Infinity Cubed Solutions Procurement Management Services
+  - name: inKind Loyalty, Payments
+  - name: INSIGHT from Konnectryx Features / Tools
+  - name: Kangaroo Rewards eCommerce, Loyalty, Marketing
+  - name: Kimoby Communication, Customer Service
+  - name: Klaviyo Customer-engagement, Marketing
+  - name: Lendio
+  - name: Lightspeed Delivery by Deliverect Online Ordering
+  - name: LINK! Data, Migration
+  - name: Loyal2 Loyalty
+  - name: LoyalAction Loyalty, Marketing
+  - name: Loyale eCommerce, Loyalty, Marketing
+  - name: M2E Cloud eCommerce, Inventory Management, Marketplace
+  - name: Mailchimp Marketing
+  - name: MarginEdge Analytics, Inventory Management
+  - name: MarketMan Inventory Management, Invoicing, Reporting
+  - name: Marsello Loyalty, Marketing
+  - name: Maurisource eCommerce
+  - name: MDware Invoicing for Retail Invoicing
+  - name: Menufy Online Ordering
+  - name: MEWS Hotel PMS
+  - name: Mister eCommerce Marketing
+  - name: Mobi2Go Online Ordering
+  - name: Mood Media Customer-engagement
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
