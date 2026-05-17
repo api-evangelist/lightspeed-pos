@@ -1,7 +1,7 @@
 aid: lightspeed-pos
 url: https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/apis.yml
 name: Lightspeed
-x-type: company
+kind: company
 description: 'Lightspeed (Lightspeed Commerce) operates a portfolio of Retail, Restaurant, eCom, and Golf
   POS platforms via series-named product lines: X-Series (Vend), R-Series (Retail Pro/Cloud), C-Series
   (eCom), E-Series (Ecwid), K-Series (Restaurant Lightspeed), L-Series, O-Series (Kounta), G-Series (Gastrofix),
