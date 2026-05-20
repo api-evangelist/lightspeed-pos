@@ -8,125 +8,127 @@ description: 'Lightspeed (Lightspeed Commerce) operates a portfolio of Retail, R
   and the ChronoGolf Partner API.'
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- POS
-- Retail
-- Restaurant
-- Ecommerce
+  - POS
+  - Retail
+  - Restaurant
+  - Ecommerce
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-- aid: lightspeed:retail-x-series
-  name: Lightspeed Retail X-Series API (Vend)
-  description: REST API for Lightspeed Retail X-Series, formerly Vend. Covers products, customers, sales,
-    inventory, suppliers, registers, taxes, and outlets.
-  humanURL: https://x-series-api.lightspeedhq.com/
-  tags:
-  - REST
-  - Retail
-  - Vend
-  properties:
-  - type: Documentation
-    url: https://x-series-api.lightspeedhq.com/
-- aid: lightspeed:retail-r-series
-  name: Lightspeed Retail R-Series API
-  description: REST API for Lightspeed Retail R-Series (Retail Pro / Cloud). Covers items, sales, customers,
-    employees, shops, and inventory.
-  humanURL: https://developers.lightspeedhq.com/retail/introduction/introduction/
-  baseURL: https://api.lightspeedapp.com
-  tags:
-  - REST
-  - Retail
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/retail/introduction/introduction/
-- aid: lightspeed:ecom-c-series
-  name: Lightspeed eCom C-Series API
-  description: REST API for the Lightspeed eCom C-Series storefront platform.
-  humanURL: https://developers.lightspeedhq.com/ecom/introduction/introduction/
-  tags:
-  - REST
-  - Ecommerce
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/ecom/introduction/introduction/
-- aid: lightspeed:ecom-e-series
-  name: Lightspeed eCom E-Series API (Ecwid)
-  description: REST API for Ecwid-powered Lightspeed eCom E-Series stores.
-  humanURL: https://api-docs.ecwid.com/
-  tags:
-  - REST
-  - Ecommerce
-  - Ecwid
-  properties:
-  - type: Documentation
-    url: https://api-docs.ecwid.com/
-- aid: lightspeed:restaurant-k-series
-  name: Lightspeed Restaurant K-Series API
-  description: REST API for Lightspeed Restaurant K-Series (the original Lightspeed Restaurant POS).
-  humanURL: https://developers.lightspeedhq.com/restaurant/
-  tags:
-  - REST
-  - Restaurant
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/restaurant/
-- aid: lightspeed:restaurant-l-series
-  name: Lightspeed Restaurant L-Series API
-  description: REST API for the Lightspeed Restaurant L-Series cloud POS.
-  humanURL: https://developers.lightspeedhq.com/
-  tags:
-  - REST
-  - Restaurant
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/
-- aid: lightspeed:restaurant-o-series
-  name: Lightspeed Restaurant O-Series API (Kounta)
-  description: REST API for Lightspeed Restaurant O-Series (Kounta).
-  humanURL: https://developers.kounta.com/
-  tags:
-  - REST
-  - Restaurant
-  - Kounta
-  properties:
-  - type: Documentation
-    url: https://developers.kounta.com/
-- aid: lightspeed:restaurant-g-series
-  name: Lightspeed Restaurant G-Series API (Gastrofix)
-  description: REST API for Lightspeed Restaurant G-Series (Gastrofix).
-  humanURL: https://developers.lightspeedhq.com/
-  tags:
-  - REST
-  - Restaurant
-  - Gastrofix
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/
-- aid: lightspeed:chronogolf-partner
-  name: Lightspeed ChronoGolf Partner API
-  description: Partner API for ChronoGolf, Lightspeed's tee-time and course management platform.
-  humanURL: https://developers.lightspeedhq.com/
-  tags:
-  - REST
-  - Golf
-  - Partner
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/
+  - aid: lightspeed:retail-x-series
+    name: Lightspeed Retail X-Series API (Vend)
+    description: REST API for Lightspeed Retail X-Series, formerly Vend. Covers products, customers, sales,
+      inventory, suppliers, registers, taxes, and outlets.
+    humanURL: https://x-series-api.lightspeedhq.com/
+    tags:
+    - REST
+    - Retail
+    - Vend
+    properties:
+    - type: Documentation
+      url: https://x-series-api.lightspeedhq.com/
+  - aid: lightspeed:retail-r-series
+    name: Lightspeed Retail R-Series API
+    description: REST API for Lightspeed Retail R-Series (Retail Pro / Cloud). Covers items, sales, customers,
+      employees, shops, and inventory.
+    humanURL: https://developers.lightspeedhq.com/retail/introduction/introduction/
+    baseURL: https://api.lightspeedapp.com
+    tags:
+    - REST
+    - Retail
+    properties:
+    - type: Documentation
+      url: https://developers.lightspeedhq.com/retail/introduction/introduction/
+  - aid: lightspeed:ecom-c-series
+    name: Lightspeed eCom C-Series API
+    description: REST API for the Lightspeed eCom C-Series storefront platform.
+    humanURL: https://developers.lightspeedhq.com/ecom/introduction/introduction/
+    tags:
+    - REST
+    - Ecommerce
+    properties:
+    - type: Documentation
+      url: https://developers.lightspeedhq.com/ecom/introduction/introduction/
+  - aid: lightspeed:ecom-e-series
+    name: Lightspeed eCom E-Series API (Ecwid)
+    description: REST API for Ecwid-powered Lightspeed eCom E-Series stores.
+    humanURL: https://api-docs.ecwid.com/
+    tags:
+    - REST
+    - Ecommerce
+    - Ecwid
+    properties:
+    - type: Documentation
+      url: https://api-docs.ecwid.com/
+  - aid: lightspeed:restaurant-k-series
+    name: Lightspeed Restaurant K-Series API
+    description: REST API for Lightspeed Restaurant K-Series (the original Lightspeed Restaurant POS).
+    humanURL: https://developers.lightspeedhq.com/restaurant/
+    tags:
+    - REST
+    - Restaurant
+    properties:
+    - type: Documentation
+      url: https://developers.lightspeedhq.com/restaurant/
+  - aid: lightspeed:restaurant-l-series
+    name: Lightspeed Restaurant L-Series API
+    description: REST API for the Lightspeed Restaurant L-Series cloud POS.
+    humanURL: https://developers.lightspeedhq.com/
+    tags:
+    - REST
+    - Restaurant
+    properties:
+    - type: Documentation
+      url: https://developers.lightspeedhq.com/
+  - aid: lightspeed:restaurant-o-series
+    name: Lightspeed Restaurant O-Series API (Kounta)
+    description: REST API for Lightspeed Restaurant O-Series (Kounta).
+    humanURL: https://developers.kounta.com/
+    tags:
+    - REST
+    - Restaurant
+    - Kounta
+    properties:
+    - type: Documentation
+      url: https://developers.kounta.com/
+  - aid: lightspeed:restaurant-g-series
+    name: Lightspeed Restaurant G-Series API (Gastrofix)
+    description: REST API for Lightspeed Restaurant G-Series (Gastrofix).
+    humanURL: https://developers.lightspeedhq.com/
+    tags:
+    - REST
+    - Restaurant
+    - Gastrofix
+    properties:
+    - type: Documentation
+      url: https://developers.lightspeedhq.com/
+  - aid: lightspeed:chronogolf-partner
+    name: Lightspeed ChronoGolf Partner API
+    description: Partner API for ChronoGolf, Lightspeed's tee-time and course management platform.
+    humanURL: https://developers.lightspeedhq.com/
+    tags:
+    - REST
+    - Golf
+    - Partner
+    properties:
+    - type: Documentation
+      url: https://developers.lightspeedhq.com/
 common:
-- type: Website
-  url: https://www.lightspeedhq.com/
-- type: Developer
-  url: https://developers.lightspeedhq.com/
-- type: Plans
-  url: plans/lightspeed-pos-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/lightspeed-pos-rate-limits.yml
-- type: FinOps
-  url: finops/lightspeed-pos-finops.yml
-- type: Integrations
-  url: https://www.lightspeedhq.com/integrations/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/lightspeedcommerce
+  - type: Website
+    url: https://www.lightspeedhq.com/
+  - type: Developer
+    url: https://developers.lightspeedhq.com/
+  - type: Plans
+    url: plans/lightspeed-pos-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/lightspeed-pos-rate-limits.yml
+  - type: FinOps
+    url: finops/lightspeed-pos-finops.yml
+  - type: Integrations
+    url: https://www.lightspeedhq.com/integrations/
 integrations:
   - name: NuORDER by Lightspeed
   - name: Toolkit
@@ -229,5 +231,5 @@ integrations:
   - name: Mobi2Go Online Ordering
   - name: Mood Media Customer-engagement
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
