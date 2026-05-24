@@ -1,0 +1,427 @@
+openapi: 3.1.0
+info:
+  title: Lightspeed Retail X-Series API
+  description: |
+    Partial OpenAPI 3.1 representation of the Lightspeed Retail X-Series
+    (formerly Vend) REST API. The X-Series API is documented at
+    https://x-series-api.lightspeedhq.com/ and uses OAuth 2.0 with scope-based
+    access control. The base URL is per-tenant under the
+    https://x-series-api.lightspeedhq.com domain. Authentication uses Bearer
+    access tokens issued via the OAuth 2.0 authorization-code flow.
+  version: "2.0.0"
+  contact:
+    name: Lightspeed Commerce
+    url: https://x-series-api.lightspeedhq.com/
+servers:
+  - url: https://{domainPrefix}.retail.lightspeed.app/api/2.0
+    description: Per-retailer X-Series API host.
+    variables:
+      domainPrefix:
+        default: example
+        description: Retailer subdomain prefix.
+security:
+  - OAuth2: []
+paths:
+  /brands:
+    get:
+      summary: List brands
+      operationId: listBrands
+      security:
+        - OAuth2: [products.read]
+      parameters:
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: after
+          in: query
+          description: Cursor for paging.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A page of brands.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Brand'
+    post:
+      summary: Create a brand
+      operationId: createBrand
+      security:
+        - OAuth2: [products.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brand'
+      responses:
+        '201':
+          description: Brand created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+  /brands/{id}:
+    get:
+      summary: Get a brand by ID
+      operationId: getBrand
+      security:
+        - OAuth2: [products.read]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+    put:
+      summary: Update a brand
+      operationId: updateBrand
+      security:
+        - OAuth2: [products.write]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brand'
+      responses:
+        '200':
+          description: Brand updated.
+    delete:
+      summary: Delete a brand
+      operationId: deleteBrand
+      security:
+        - OAuth2: [products.write]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Brand deleted.
+  /products:
+    get:
+      summary: List products
+      operationId: listProducts
+      security:
+        - OAuth2: [products.read]
+      parameters:
+        - name: page_size
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: A page of products.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+    post:
+      summary: Create a product
+      operationId: createProduct
+      security:
+        - OAuth2: [products.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Product created.
+  /products/{id}:
+    get:
+      summary: Get a product by ID
+      operationId: getProduct
+      security:
+        - OAuth2: [products.read]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    put:
+      summary: Update a product
+      operationId: updateProduct
+      security:
+        - OAuth2: [products.write]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Product updated.
+  /sales:
+    get:
+      summary: List sales
+      operationId: listSales
+      security:
+        - OAuth2: [sales.read]
+      responses:
+        '200':
+          description: A page of sales.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sale'
+    post:
+      summary: Create a sale
+      operationId: createSale
+      security:
+        - OAuth2: [sales.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sale'
+      responses:
+        '201':
+          description: Sale created.
+  /sales/{id}:
+    get:
+      summary: Get a sale by ID
+      operationId: getSale
+      security:
+        - OAuth2: [sales.read]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The sale.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+  /customers:
+    get:
+      summary: List customers
+      operationId: listCustomers
+      security:
+        - OAuth2: [customers.read]
+      responses:
+        '200':
+          description: A page of customers.
+    post:
+      summary: Create a customer
+      operationId: createCustomer
+      security:
+        - OAuth2: [customers.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: Customer created.
+  /customers/{id}:
+    get:
+      summary: Get a customer by ID
+      operationId: getCustomer
+      security:
+        - OAuth2: [customers.read]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+  /gift_cards:
+    get:
+      summary: List gift cards
+      operationId: listGiftCards
+      security:
+        - OAuth2: [products.read]
+      responses:
+        '200':
+          description: A page of gift cards.
+    post:
+      summary: Create a gift card
+      operationId: createGiftCard
+      security:
+        - OAuth2: [products.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Gift card created.
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authorization-code flow with scope-based access.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://secure.retail.lightspeed.app/connect
+          tokenUrl: https://{domainPrefix}.retail.lightspeed.app/api/1.0/token
+          scopes:
+            products.read: Read products, brands, and inventory.
+            products.write: Create or modify products, brands, and inventory.
+            sales.read: Read sales transactions.
+            sales.write: Create or modify sales.
+            customers.read: Read customers.
+            customers.write: Create or modify customers.
+  schemas:
+    Brand:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        source_id:
+          type: string
+        handle:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price_excluding_tax:
+          type: number
+          format: float
+        brand_id:
+          type: string
+          format: uuid
+        active:
+          type: boolean
+    Sale:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        outlet_id:
+          type: string
+          format: uuid
+        register_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        customer_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [OPEN, CLOSED, ONACCOUNT, LAYBY, VOIDED]
+        total_price:
+          type: number
+          format: float
+        total_tax:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            type: object
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        customer_code:
+          type: string
