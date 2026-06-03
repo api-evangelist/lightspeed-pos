@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Customer",
+  "description": "Customer schema from Lightspeed Retail X-Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-x-series-customer-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "customer_code": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,286 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — PMS
+  description: 'Restaurant — PMS. 6 operations. Lead operation: Lightspeed Get PMS Revenue Centers. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - PMS
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-pms
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — PMS business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: pms-v1-business-locations-businesslocationid-revenue-centers
+      path: /pms/v1/business-locations/{businessLocationId}/revenue-centers
+      operations:
+      - name: pms-apiGetRevenueCenters
+        method: GET
+        description: Lightspeed Get PMS Revenue Centers
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pms-v1-providers-id
+      path: /pms/v1/providers/{id}
+      operations:
+      - name: pms-apiGetProvider
+        method: GET
+        description: Lightspeed Get a PMS Provider by ID
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: pms-apiUpdateProvider
+        method: PUT
+        description: Lightspeed Update a PMS Provider
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: pms-apiDeleteProvider
+        method: DELETE
+        description: Lightspeed Delete a PMS Provider
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: pms-v1-providers
+      path: /pms/v1/providers
+      operations:
+      - name: pms-apiGetProviders
+        method: GET
+        description: Lightspeed Get PMS Providers
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: pms-apiCreateProvider
+        method: POST
+        description: Lightspeed Create PMS Provider
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-pms-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — PMS. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/pms/v1/business-locations/{businesslocationid}/revenue-centers
+      name: v1-pms-v1-business-locations-businesslocationid-revenue-centers
+      description: REST surface for PMS.
+      operations:
+      - method: GET
+        name: pms-apiGetRevenueCenters
+        description: Lightspeed Get PMS Revenue Centers
+        call: restaurant-k-series-pms.pms-apiGetRevenueCenters
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pms/v1/providers/{id}
+      name: v1-pms-v1-providers-id
+      description: REST surface for PMS.
+      operations:
+      - method: GET
+        name: pms-apiGetProvider
+        description: Lightspeed Get a PMS Provider by ID
+        call: restaurant-k-series-pms.pms-apiGetProvider
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pms/v1/providers/{id}
+      name: v1-pms-v1-providers-id
+      description: REST surface for PMS.
+      operations:
+      - method: PUT
+        name: pms-apiUpdateProvider
+        description: Lightspeed Update a PMS Provider
+        call: restaurant-k-series-pms.pms-apiUpdateProvider
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pms/v1/providers/{id}
+      name: v1-pms-v1-providers-id
+      description: REST surface for PMS.
+      operations:
+      - method: DELETE
+        name: pms-apiDeleteProvider
+        description: Lightspeed Delete a PMS Provider
+        call: restaurant-k-series-pms.pms-apiDeleteProvider
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pms/v1/providers
+      name: v1-pms-v1-providers
+      description: REST surface for PMS.
+      operations:
+      - method: GET
+        name: pms-apiGetProviders
+        description: Lightspeed Get PMS Providers
+        call: restaurant-k-series-pms.pms-apiGetProviders
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pms/v1/providers
+      name: v1-pms-v1-providers
+      description: REST surface for PMS.
+      operations:
+      - method: POST
+        name: pms-apiCreateProvider
+        description: Lightspeed Create PMS Provider
+        call: restaurant-k-series-pms.pms-apiCreateProvider
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-pms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — PMS. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-pms-revenue-centers
+      description: Lightspeed Get PMS Revenue Centers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-pms.pms-apiGetRevenueCenters
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pms-provider-id
+      description: Lightspeed Get a PMS Provider by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-pms.pms-apiGetProvider
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-pms-provider
+      description: Lightspeed Update a PMS Provider
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-pms.pms-apiUpdateProvider
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-pms-provider
+      description: Lightspeed Delete a PMS Provider
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: restaurant-k-series-pms.pms-apiDeleteProvider
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pms-providers
+      description: Lightspeed Get PMS Providers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-pms.pms-apiGetProviders
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-pms-provider
+      description: Lightspeed Create PMS Provider
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-pms.pms-apiCreateProvider
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-teckel-link-self-structure.json",
+  "name": "teckelLinkSelf",
+  "description": "teckelLinkSelf schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "self": {
+      "properties": {
+        "href": {
+          "example": "https://api.trial.lsk.lightspeed.app/i/richItem/8262/UGG-BB-PUR-06",
+          "type": "string",
+          "description": "The URL of the item."
+        }
+      },
+      "type": "object"
+    }
+  }
+}

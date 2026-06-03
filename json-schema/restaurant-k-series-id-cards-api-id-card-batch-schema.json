@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "id-cards-apiIdCardBatch",
+  "description": "id-cards-apiIdCardBatch schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-id-cards-api-id-card-batch-schema.json",
+  "type": "object",
+  "properties": {
+    "batchId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The unique identifier for the ID card batch.",
+      "example": 12345
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the ID card batch."
+    },
+    "businessLocationId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The unique identifier for the business location this batch belongs to.",
+      "example": 67890
+    }
+  }
+}

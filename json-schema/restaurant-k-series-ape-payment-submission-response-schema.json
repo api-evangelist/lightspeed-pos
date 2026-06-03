@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apePaymentSubmissionResponse",
+  "description": "Acknowledgement that the payment was accepted for delivery to the POS.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-payment-submission-response-schema.json",
+  "type": "object",
+  "properties": {
+    "status": {
+      "description": "The response.",
+      "example": "ok",
+      "type": "string"
+    }
+  }
+}

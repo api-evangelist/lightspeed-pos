@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-reservation-service-platform-bearer-token-webhook-structure.json",
+  "name": "reservation-servicePlatformBearerTokenWebhook",
+  "description": "The bearer token that will be sent with the webhook notifications. See [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/).",
+  "type": "object",
+  "properties": {
+    "token": {
+      "description": "The bearer token.",
+      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "format": "password",
+      "type": "string"
+    },
+    "ttl": {
+      "description": "Token expiration time in UTC.",
+      "example": "2035-01-01T00:00:00",
+      "type": "datetime",
+      "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+    }
+  },
+  "required": [
+    "token"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": 3012455645,
+  "name": "Burger",
+  "docketName": "The Burger",
+  "sku": "UGG-BB-PUR-06",
+  "active": true,
+  "barcode": "00000001",
+  "barcodes": [
+    "10011101100"
+  ],
+  "accountingGroup": {
+    "id": 40570261078058,
+    "name": "Alcoholic beverages"
+  },
+  "statisticGroups": [
+    {
+      "category": "default",
+      "value": "Food"
+    }
+  ],
+  "costPrice": 5.0,
+  "prices": [
+    {
+      "amount": 10.0,
+      "name": "Tuesday Special"
+    }
+  ],
+  "sharingType": "SHARED",
+  "priceMode": "POSITIVE_OPEN_PRICE",
+  "inventorySource": "PURCHASED",
+  "disabled": false,
+  "contentDimension": "MASS",
+  "contentUom": "kg",
+  "contentValue": 1,
+  "itemType": "ITEM"
+}

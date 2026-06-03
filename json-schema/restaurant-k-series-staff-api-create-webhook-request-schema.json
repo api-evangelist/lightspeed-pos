@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "staff-apiCreateWebhookRequest",
+  "description": "staff-apiCreateWebhookRequest schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-staff-api-create-webhook-request-schema.json",
+  "type": "object",
+  "properties": {
+    "notificationType": {
+      "description": "The type of webhook notification.",
+      "type": "string",
+      "enum": [
+        "shift.created",
+        "shift.updated",
+        "shift.deleted"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL for the webhook.",
+      "format": "uri"
+    },
+    "webhookName": {
+      "type": "string",
+      "description": "The name for the webhook."
+    }
+  },
+  "required": [
+    "notificationType",
+    "url",
+    "webhookName"
+  ]
+}

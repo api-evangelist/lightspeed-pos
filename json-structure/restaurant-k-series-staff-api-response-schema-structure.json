@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-staff-api-response-schema-structure.json",
+  "name": "staff-apiResponseSchema",
+  "description": "staff-apiResponseSchema schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "items": {}
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "uri",
+              "description": "The URL for the first page of results.",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc"
+            }
+          }
+        },
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "uri",
+              "description": "The URL for the current page of results.",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc"
+            }
+          }
+        },
+        "next": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "uri",
+              "description": "The URL for the next page of results.",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc"
+            }
+          }
+        },
+        "last": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "uri",
+              "description": "The URL for the last page of results.",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc"
+            }
+          }
+        }
+      }
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "int32",
+          "example": 1,
+          "description": "The current page number."
+        },
+        "size": {
+          "type": "int32",
+          "example": 10,
+          "description": "The number of elements in the page."
+        },
+        "totalElements": {
+          "type": "int32",
+          "example": 100,
+          "description": "The total number of elements."
+        },
+        "totalPages": {
+          "type": "int32",
+          "example": 10,
+          "description": "The total number of pages of results."
+        }
+      }
+    }
+  }
+}

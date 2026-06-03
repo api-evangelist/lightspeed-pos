@@ -1,0 +1,10 @@
+{
+  "allowCourseNumberUpdates": true,
+  "inServiceTableStatuses": [
+    {
+      "statusLabel": "Appetizer",
+      "statusValue": "appetizer",
+      "sequence": 1
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-sale-structure.json",
+  "name": "Sale",
+  "description": "A point-of-sale transaction.",
+  "type": "object",
+  "properties": {
+    "saleID": {
+      "type": "string",
+      "description": "Unique sale identifier."
+    },
+    "timeStamp": {
+      "type": "datetime",
+      "description": "When the sale occurred."
+    },
+    "completed": {
+      "type": "boolean",
+      "description": "Whether the sale has been completed."
+    },
+    "total": {
+      "type": "string",
+      "description": "Sale total including tax."
+    },
+    "totalDue": {
+      "type": "string",
+      "description": "Amount still owed on the sale."
+    },
+    "displayableTotal": {
+      "type": "string",
+      "description": "Human-readable total."
+    },
+    "discountPercent": {
+      "type": "string",
+      "description": "Sale-level discount percentage."
+    },
+    "customerID": {
+      "type": "string",
+      "description": "Identifier of the customer on the sale."
+    },
+    "employeeID": {
+      "type": "string",
+      "description": "Identifier of the employee who rang the sale."
+    },
+    "shopID": {
+      "type": "string",
+      "description": "Identifier of the shop where the sale occurred."
+    },
+    "registerID": {
+      "type": "string",
+      "description": "Identifier of the register used."
+    },
+    "SaleLines": {
+      "type": "object",
+      "description": "The line items on the sale.",
+      "properties": {
+        "SaleLine": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "A single line item on a sale.",
+            "properties": {
+              "saleLineID": {
+                "type": "string",
+                "description": "Unique sale-line identifier."
+              },
+              "itemID": {
+                "type": "string",
+                "description": "Identifier of the item sold."
+              },
+              "saleID": {
+                "type": "string",
+                "description": "Identifier of the parent sale."
+              },
+              "unitQuantity": {
+                "type": "string",
+                "description": "Quantity sold."
+              },
+              "unitPrice": {
+                "type": "string",
+                "description": "Price per unit."
+              },
+              "normalUnitPrice": {
+                "type": "string",
+                "description": "List price per unit before discounts."
+              },
+              "discountID": {
+                "type": "string",
+                "description": "Identifier of any applied discount."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

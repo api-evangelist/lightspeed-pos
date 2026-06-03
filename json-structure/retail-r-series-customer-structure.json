@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-customer-structure.json",
+  "name": "Customer",
+  "description": "A customer record.",
+  "type": "object",
+  "properties": {
+    "customerID": {
+      "type": "string",
+      "description": "Unique customer identifier."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Customer first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Customer last name."
+    },
+    "company": {
+      "type": "string",
+      "description": "Customer company name."
+    },
+    "contactID": {
+      "type": "string",
+      "description": "Identifier of the related contact record."
+    },
+    "discountID": {
+      "type": "string",
+      "description": "Default discount applied to the customer."
+    },
+    "taxCategoryID": {
+      "type": "string",
+      "description": "Tax category for the customer."
+    },
+    "Contact": {
+      "type": "object",
+      "description": "Contact details associated with a customer.",
+      "properties": {
+        "contactID": {
+          "type": "string",
+          "description": "Unique contact identifier."
+        },
+        "custom": {
+          "type": "string",
+          "description": "Custom contact field."
+        },
+        "noEmail": {
+          "type": "boolean",
+          "description": "Whether the contact opted out of email."
+        },
+        "noPhone": {
+          "type": "boolean",
+          "description": "Whether the contact opted out of phone contact."
+        },
+        "noMail": {
+          "type": "boolean",
+          "description": "Whether the contact opted out of mail."
+        }
+      }
+    }
+  }
+}

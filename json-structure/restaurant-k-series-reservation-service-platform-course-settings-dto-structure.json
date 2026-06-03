@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-reservation-service-platform-course-settings-dto-structure.json",
+  "name": "reservation-servicePlatformCourseSettingsDto",
+  "description": "reservation-servicePlatformCourseSettingsDto schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "allowCourseNumberUpdates": {
+      "type": "boolean",
+      "example": true,
+      "default": false,
+      "description": "If true, table statuses can be customized using a number format."
+    },
+    "inServiceTableStatuses": {
+      "items": {
+        "properties": {
+          "statusLabel": {
+            "type": "string",
+            "example": "Appetizer",
+            "description": "The unique text which will be displayed in the back-office for users."
+          },
+          "statusValue": {
+            "type": "string",
+            "example": "appetizer",
+            "description": "The unique code which will be used for outbound communication within table status mapping."
+          },
+          "sequence": {
+            "type": "int32",
+            "example": 1,
+            "description": "This number is used to resolve collisions between statuses in order of highest priority."
+          }
+        },
+        "type": "object",
+        "required": [
+          "statusLabel",
+          "statusValue",
+          "sequence"
+        ]
+      },
+      "type": "array",
+      "description": "List of customizable table statuses that will be used to notify platforms about reservation progress with outbound API."
+    }
+  }
+}

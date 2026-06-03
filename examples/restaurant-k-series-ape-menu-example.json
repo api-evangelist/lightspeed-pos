@@ -1,0 +1,66 @@
+{
+  "menuName": "Main Menu",
+  "menuEntryGroups": [
+    {
+      "@type": "group",
+      "id": "141948669133028",
+      "name": "Mains",
+      "color": "blue",
+      "menuEntry": [
+        {
+          "@type": "menuItem",
+          "productName": "Burger",
+          "productPrice": 10.0,
+          "extraPrice": 1.99,
+          "color": "blue",
+          "sku": "25",
+          "customItemNameEnabled": false,
+          "pricingStrategy": "PRICE_CANNOT_BE_CUSTOMIZED",
+          "itemRichData": {},
+          "defaultTaxAmount": 1.5,
+          "defaultTaxPercentage": 15.0,
+          "taxIncludedInPrice": false,
+          "conditionalTaxRules": true,
+          "taxes": [],
+          "asSubItem": true,
+          "productionInstructionList": [
+            {
+              "multiSelectionPermitted": false,
+              "productionInstructionGroupName": "Meat cooking",
+              "productionIntructionGroupId": 236025632784487,
+              "productionInstructionList": [
+                {
+                  "instruction": "Bleu",
+                  "ikentooModifierId": 236025632784488
+                },
+                {
+                  "instruction": "Rare",
+                  "ikentooModifierId": 236025632784490
+                },
+                {
+                  "instruction": "Medium Rare",
+                  "ikentooModifierId": 236025632784492
+                },
+                {
+                  "instruction": "Medium",
+                  "ikentooModifierId": 236025632784494
+                },
+                {
+                  "instruction": "Medium well",
+                  "ikentooModifierId": 236025632784496
+                },
+                {
+                  "instruction": "Well done",
+                  "ikentooModifierId": 236025632784498
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "richDataMissing": false,
+  "ikentooMenuId": 141948669132851,
+  "conditionalTaxRules": true
+}

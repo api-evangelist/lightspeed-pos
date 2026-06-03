@@ -1,0 +1,26 @@
+{
+  "baseUrl": "https://my.platform/api/lsk",
+  "depositSupported": true,
+  "displayName": "My Platform",
+  "errorsWebhookUrl": "https://my.platform/api/lsk/webhook/errors",
+  "integrationWebhookUrl": "https://my.platform/api/lsk/webhook/integrations",
+  "notificationTypes": [
+    "ORDER_CLOSED"
+  ],
+  "onboardingWebhookUrl": "https://my.platform/api/lsk/webhook/onboarding",
+  "orderWebhookUrl": "https://my.platform/api/lsk/webhook/orders",
+  "posReservationUpdateWebhookUrl": "https://my.platform/api/lsk/webhook/reservation",
+  "ownNotificationsOnly": true,
+  "webhookAuthType": "OAUTH2",
+  "allowCourseNumberUpdates": true,
+  "inServiceTableStatuses": [
+    {
+      "statusLabel": "Appetizer",
+      "statusValue": "appetizer",
+      "sequence": 1
+    }
+  ],
+  "allowedPosStatuses": [
+    "SCHEDULED"
+  ]
+}

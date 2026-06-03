@@ -1,0 +1,18 @@
+{
+  "_embedded": {
+    "taxRateList": [
+      {
+        "code": "VAT20",
+        "description": "VAT 20%",
+        "rate": 1.2,
+        "taxIncluded": true,
+        "accountingReference": "example"
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://api.ikentoo.com/f/finance/141948669132802/tax-rates"
+    }
+  }
+}

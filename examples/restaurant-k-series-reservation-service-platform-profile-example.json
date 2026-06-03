@@ -1,0 +1,55 @@
+{
+  "baseUrl": "https://my.platform/api/lsk",
+  "depositSupported": true,
+  "displayName": "My Platform",
+  "errorsWebhookUrl": "https://my.platform/api/lsk/webhook/errors",
+  "integrationWebhookUrl": "https://my.platform/api/lsk/webhook/integrations",
+  "notificationTypes": [
+    "ORDER_CLOSED"
+  ],
+  "onboardingWebhookUrl": "https://my.platform/api/lsk/webhook/onboarding",
+  "orderWebhookUrl": "https://my.platform/api/lsk/webhook/orders",
+  "posReservationUpdateWebhookUrl": "https://my.platform/api/lsk/webhook/reservation",
+  "ownNotificationsOnly": true,
+  "webhookAuthDetails": {
+    "apiKeys": {
+      "headers": {
+        "X-API-ID": "Example-x-api-id",
+        "X-API-SECRET": "Example-x-api-secret"
+      },
+      "parameters": {}
+    },
+    "basic": {
+      "password": "Example-Password",
+      "username": "LightspeedKSeries"
+    },
+    "bearer": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "ttl": "2035-01-01T00:00:00"
+    },
+    "oauth2": {
+      "authorizationGrantType": "CLIENT_CREDENTIALS",
+      "clientAuthorizationMethod": "CLIENT_SECRET_BASIC",
+      "clientId": "LightspeedKSeries",
+      "clientName": "LightspeedKSeries",
+      "clientSecret": "Example-Client-Secret",
+      "providerJwkSetUri": "https://my.platform/public-keys",
+      "providerTokenUri": "https://my.platform/emitter/token",
+      "scopes": [
+        "webhooks-api"
+      ]
+    }
+  },
+  "webhookAuthType": "OAUTH2",
+  "allowCourseNumberUpdates": true,
+  "inServiceTableStatuses": [
+    {
+      "statusLabel": "Appetizer",
+      "statusValue": "appetizer",
+      "sequence": 1
+    }
+  ],
+  "allowedPosStatuses": [
+    "SCHEDULED"
+  ]
+}

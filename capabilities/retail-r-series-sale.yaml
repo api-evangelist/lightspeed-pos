@@ -1,0 +1,187 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Retail R-Series API — Sale
+  description: 'Retail — Sale. 3 operations. Lead operation: Lightspeed List Sales. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Retail
+  - Sale
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_R_SERIES_TOKEN: LIGHTSPEED_R_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: retail-r-series-sale
+    baseUri: https://api.lightspeedapp.com/API/V3
+    description: Lightspeed Retail R-Series API — Sale business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_R_SERIES_TOKEN}}'
+    resources:
+    - name: account-accountid-sale-json
+      path: /Account/{accountID}/Sale
+      operations:
+      - name: getSales
+        method: GET
+        description: Lightspeed List Sales
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: completed
+          in: query
+          type: boolean
+          required: false
+          description: Filter by completion status.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createSale
+        method: POST
+        description: Lightspeed Create Sale
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: account-accountid-sale-saleid-json
+      path: /Account/{accountID}/Sale/{saleID}
+      operations:
+      - name: getSaleById
+        method: GET
+        description: Lightspeed Get Sale by ID
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: saleID
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the sale.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: retail-r-series-sale-rest
+    port: 8080
+    description: REST adapter for Lightspeed Retail R-Series API — Sale. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/account/{accountid}/sale
+      name: v1-account-accountid-sale
+      description: REST surface for Sale.
+      operations:
+      - method: GET
+        name: getSales
+        description: Lightspeed List Sales
+        call: retail-r-series-sale.getSales
+        with:
+          accountID: rest.accountID
+          completed: rest.completed
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/sale
+      name: v1-account-accountid-sale
+      description: REST surface for Sale.
+      operations:
+      - method: POST
+        name: createSale
+        description: Lightspeed Create Sale
+        call: retail-r-series-sale.createSale
+        with:
+          accountID: rest.accountID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/sale/{saleid}
+      name: v1-account-accountid-sale-saleid
+      description: REST surface for Sale.
+      operations:
+      - method: GET
+        name: getSaleById
+        description: Lightspeed Get Sale by ID
+        call: retail-r-series-sale.getSaleById
+        with:
+          accountID: rest.accountID
+          saleID: rest.saleID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: retail-r-series-sale-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Retail R-Series API — Sale. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-sales
+      description: Lightspeed List Sales
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-sale.getSales
+      with:
+        accountID: tools.accountID
+        completed: tools.completed
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-sale
+      description: Lightspeed Create Sale
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: retail-r-series-sale.createSale
+      with:
+        accountID: tools.accountID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sale-id
+      description: Lightspeed Get Sale by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-sale.getSaleById
+      with:
+        accountID: tools.accountID
+        saleID: tools.saleID
+      outputParameters:
+      - type: object
+        mapping: $.

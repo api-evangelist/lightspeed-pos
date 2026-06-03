@@ -1,0 +1,14 @@
+{
+  "staffName": "Employee 1",
+  "timeOfAbortedOrder": "2023-03-14T19:58:48.224Z",
+  "totalAmountAborted": "33.32",
+  "abortedLineItems": [
+    {
+      "itemName": "Soda",
+      "itemSku": "9",
+      "itemQuantity": "4.000",
+      "itemAmount": "33.32",
+      "itemPrice": "8.33"
+    }
+  ]
+}

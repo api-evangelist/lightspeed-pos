@@ -1,0 +1,9 @@
+{
+  "uuid": "e95c2cc5-4489-4025-a7e2-a34faeaa5f9d",
+  "notificationType": "shift.created",
+  "url": "https://example.com/path/abc123",
+  "webhookName": "My Awesome Webhook",
+  "businessLocationId": 1234567890,
+  "createdAt": "2026-03-15T14:30:00Z",
+  "updatedAt": "2026-03-15T14:30:00Z"
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-pms-api-revenue-center-name-structure.json",
+  "name": "pms-apiRevenueCenterName",
+  "description": "The name of the revenue center.",
+  "type": "string"
+}

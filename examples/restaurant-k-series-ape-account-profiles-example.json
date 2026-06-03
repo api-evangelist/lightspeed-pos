@@ -1,0 +1,11 @@
+{
+  "businessLocationId": 45454565682155,
+  "accountProfileList": [
+    {
+      "id": 12454575601144,
+      "code": "takeaway",
+      "name": "Takeaway",
+      "deliveryMode": "TAKE_AWAY"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Retail R-Series API — Item
+  description: 'Retail — Item. 5 operations. Lead operation: Lightspeed List Items. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Retail
+  - Item
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_R_SERIES_TOKEN: LIGHTSPEED_R_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: retail-r-series-item
+    baseUri: https://api.lightspeedapp.com/API/V3
+    description: Lightspeed Retail R-Series API — Item business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_R_SERIES_TOKEN}}'
+    resources:
+    - name: account-accountid-item-json
+      path: /Account/{accountID}/Item
+      operations:
+      - name: getItems
+        method: GET
+        description: Lightspeed List Items
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Maximum number of records to return per page.
+        - name: offset
+          in: query
+          type: integer
+          required: false
+          description: Number of records to skip for pagination.
+        - name: upc
+          in: query
+          type: string
+          required: false
+          description: Filter items by Universal Product Code.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createItem
+        method: POST
+        description: Lightspeed Create Item
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: account-accountid-item-itemid-json
+      path: /Account/{accountID}/Item/{itemID}
+      operations:
+      - name: getItemById
+        method: GET
+        description: Lightspeed Get Item by ID
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: itemID
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the item.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateItem
+        method: PUT
+        description: Lightspeed Update Item
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: itemID
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the item.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteItem
+        method: DELETE
+        description: Lightspeed Delete Item
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: itemID
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the item.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: retail-r-series-item-rest
+    port: 8080
+    description: REST adapter for Lightspeed Retail R-Series API — Item. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/account/{accountid}/item
+      name: v1-account-accountid-item
+      description: REST surface for Item.
+      operations:
+      - method: GET
+        name: getItems
+        description: Lightspeed List Items
+        call: retail-r-series-item.getItems
+        with:
+          accountID: rest.accountID
+          limit: rest.limit
+          offset: rest.offset
+          upc: rest.upc
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/item
+      name: v1-account-accountid-item
+      description: REST surface for Item.
+      operations:
+      - method: POST
+        name: createItem
+        description: Lightspeed Create Item
+        call: retail-r-series-item.createItem
+        with:
+          accountID: rest.accountID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/item/{itemid}
+      name: v1-account-accountid-item-itemid
+      description: REST surface for Item.
+      operations:
+      - method: GET
+        name: getItemById
+        description: Lightspeed Get Item by ID
+        call: retail-r-series-item.getItemById
+        with:
+          accountID: rest.accountID
+          itemID: rest.itemID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/item/{itemid}
+      name: v1-account-accountid-item-itemid
+      description: REST surface for Item.
+      operations:
+      - method: PUT
+        name: updateItem
+        description: Lightspeed Update Item
+        call: retail-r-series-item.updateItem
+        with:
+          accountID: rest.accountID
+          itemID: rest.itemID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/item/{itemid}
+      name: v1-account-accountid-item-itemid
+      description: REST surface for Item.
+      operations:
+      - method: DELETE
+        name: deleteItem
+        description: Lightspeed Delete Item
+        call: retail-r-series-item.deleteItem
+        with:
+          accountID: rest.accountID
+          itemID: rest.itemID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: retail-r-series-item-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Retail R-Series API — Item. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-items
+      description: Lightspeed List Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-item.getItems
+      with:
+        accountID: tools.accountID
+        limit: tools.limit
+        offset: tools.offset
+        upc: tools.upc
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-item
+      description: Lightspeed Create Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: retail-r-series-item.createItem
+      with:
+        accountID: tools.accountID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-item-id
+      description: Lightspeed Get Item by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-item.getItemById
+      with:
+        accountID: tools.accountID
+        itemID: tools.itemID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-item
+      description: Lightspeed Update Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: retail-r-series-item.updateItem
+      with:
+        accountID: tools.accountID
+        itemID: tools.itemID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-item
+      description: Lightspeed Delete Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: retail-r-series-item.deleteItem
+      with:
+        accountID: tools.accountID
+        itemID: tools.itemID
+      outputParameters:
+      - type: object
+        mapping: $.

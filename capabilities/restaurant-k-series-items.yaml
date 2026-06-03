@@ -1,0 +1,254 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — Items
+  description: 'Restaurant — Items. 4 operations. Lead operation: Lightspeed Get Item by ID. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - Items
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-items
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — Items business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: items-v1-items-id
+      path: /items/v1/items/{id}
+      operations:
+      - name: items-apiGetItemById
+        method: GET
+        description: Lightspeed Get Item by ID
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: items-apiPut
+        method: PUT
+        description: Lightspeed Update Item by ID
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: items-v1-items
+      path: /items/v1/items
+      operations:
+      - name: items-apiGetItems
+        method: GET
+        description: Lightspeed Get All Items
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: sku
+          in: query
+          type: string
+          required: false
+          description: ''
+        - name: name
+          in: query
+          type: string
+          required: false
+          description: ''
+        - name: accountingGroupId
+          in: query
+          type: string
+          required: false
+          description: ''
+        - name: itemIds
+          in: query
+          type: array
+          required: false
+          description: Optional list of item IDs to retrieve. When provided, offset and amount are ignored; all matching items are returned.
+        - name: offset
+          in: query
+          type: string
+          required: false
+          description: ''
+        - name: amount
+          in: query
+          type: string
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: items-apiCreateItem
+        method: POST
+        description: Lightspeed Create Item
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-items-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — Items. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/items/v1/items/{id}
+      name: v1-items-v1-items-id
+      description: REST surface for Items.
+      operations:
+      - method: GET
+        name: items-apiGetItemById
+        description: Lightspeed Get Item by ID
+        call: restaurant-k-series-items.items-apiGetItemById
+        with:
+          id: rest.id
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/items/v1/items/{id}
+      name: v1-items-v1-items-id
+      description: REST surface for Items.
+      operations:
+      - method: PUT
+        name: items-apiPut
+        description: Lightspeed Update Item by ID
+        call: restaurant-k-series-items.items-apiPut
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/items/v1/items
+      name: v1-items-v1-items
+      description: REST surface for Items.
+      operations:
+      - method: GET
+        name: items-apiGetItems
+        description: Lightspeed Get All Items
+        call: restaurant-k-series-items.items-apiGetItems
+        with:
+          businessLocationId: rest.businessLocationId
+          sku: rest.sku
+          name: rest.name
+          accountingGroupId: rest.accountingGroupId
+          itemIds: rest.itemIds
+          offset: rest.offset
+          amount: rest.amount
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/items/v1/items
+      name: v1-items-v1-items
+      description: REST surface for Items.
+      operations:
+      - method: POST
+        name: items-apiCreateItem
+        description: Lightspeed Create Item
+        call: restaurant-k-series-items.items-apiCreateItem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — Items. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-item-id
+      description: Lightspeed Get Item by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-items.items-apiGetItemById
+      with:
+        id: tools.id
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-item-id
+      description: Lightspeed Update Item by ID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-items.items-apiPut
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-items
+      description: Lightspeed Get All Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-items.items-apiGetItems
+      with:
+        businessLocationId: tools.businessLocationId
+        sku: tools.sku
+        name: tools.name
+        accountingGroupId: tools.accountingGroupId
+        itemIds: tools.itemIds
+        offset: tools.offset
+        amount: tools.amount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-item
+      description: Lightspeed Create Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-items.items-apiCreateItem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

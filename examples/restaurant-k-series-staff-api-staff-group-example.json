@@ -1,0 +1,11 @@
+{
+  "id": 1234,
+  "name": "Bar Staff",
+  "roles": [
+    {
+      "id": 1234,
+      "name": "ROLE_CAN_LOGIN"
+    }
+  ],
+  "reportAccess": "STAFF_REPORT_OWN_ACCESS"
+}

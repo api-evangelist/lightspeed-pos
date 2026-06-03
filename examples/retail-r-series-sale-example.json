@@ -1,0 +1,26 @@
+{
+  "saleID": "500123",
+  "timeStamp": "2026-03-15T14:30:00Z",
+  "completed": false,
+  "total": "12.50",
+  "totalDue": "12.50",
+  "displayableTotal": "12.50",
+  "discountPercent": "example",
+  "customerID": "500123",
+  "employeeID": "500123",
+  "shopID": "500123",
+  "registerID": "500123",
+  "SaleLines": {
+    "SaleLine": [
+      {
+        "saleLineID": "500123",
+        "itemID": "500123",
+        "saleID": "500123",
+        "unitQuantity": "example",
+        "unitPrice": "12.50",
+        "normalUnitPrice": "12.50",
+        "discountID": "500123"
+      }
+    ]
+  }
+}

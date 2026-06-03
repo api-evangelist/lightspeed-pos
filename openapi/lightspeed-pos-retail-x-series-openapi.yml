@@ -1,0 +1,654 @@
+openapi: 3.1.0
+info:
+  title: Lightspeed Retail X-Series API
+  description: |
+    Partial OpenAPI 3.1 representation of the Lightspeed Retail X-Series
+    (formerly Vend) REST API. The X-Series API is documented at
+    https://x-series-api.lightspeedhq.com/ and uses OAuth 2.0 with scope-based
+    access control. The base URL is per-tenant under the
+    https://x-series-api.lightspeedhq.com domain. Authentication uses Bearer
+    access tokens issued via the OAuth 2.0 authorization-code flow.
+  version: "2.0.0"
+  contact:
+    name: Lightspeed Commerce
+    url: https://x-series-api.lightspeedhq.com/
+servers:
+- url: https://{domainPrefix}.retail.lightspeed.app/api/2.0
+  description: Per-retailer X-Series API host.
+  variables:
+    domainPrefix:
+      default: example
+      description: Retailer subdomain prefix.
+security:
+- OAuth2: []
+paths:
+  /brands:
+    get:
+      summary: Lightspeed List Brands
+      operationId: listBrands
+      security:
+      - OAuth2: [products.read]
+      parameters:
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: after
+        in: query
+        description: Cursor for paging.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A page of brands.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Brand'
+              examples:
+                ListBrands200Example:
+                  summary: Default listBrands 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      name: Sample name
+                      description: example
+                      deleted_at: '2026-03-15T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Lightspeed Create a Brand
+      operationId: createBrand
+      security:
+      - OAuth2: [products.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brand'
+            examples:
+              CreateBrandRequestExample:
+                summary: Default createBrand request
+                x-microcks-default: true
+                value:
+                  id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  name: Sample name
+                  description: example
+                  deleted_at: '2026-03-15T14:30:00Z'
+      responses:
+        '201':
+          description: Brand created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+              examples:
+                CreateBrand201Example:
+                  summary: Default createBrand 201 response
+                  x-microcks-default: true
+                  value:
+                    id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    name: Sample name
+                    description: example
+                    deleted_at: '2026-03-15T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /brands/{id}:
+    get:
+      summary: Lightspeed Get a Brand by ID
+      operationId: getBrand
+      security:
+      - OAuth2: [products.read]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+              examples:
+                GetBrand200Example:
+                  summary: Default getBrand 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    name: Sample name
+                    description: example
+                    deleted_at: '2026-03-15T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: Lightspeed Update a Brand
+      operationId: updateBrand
+      security:
+      - OAuth2: [products.write]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brand'
+            examples:
+              UpdateBrandRequestExample:
+                summary: Default updateBrand request
+                x-microcks-default: true
+                value:
+                  id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  name: Sample name
+                  description: example
+                  deleted_at: '2026-03-15T14:30:00Z'
+      responses:
+        '200':
+          description: Brand updated.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      summary: Lightspeed Delete a Brand
+      operationId: deleteBrand
+      security:
+      - OAuth2: [products.write]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: Brand deleted.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /products:
+    get:
+      summary: Lightspeed List Products
+      operationId: listProducts
+      security:
+      - OAuth2: [products.read]
+      parameters:
+      - name: page_size
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: A page of products.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+              examples:
+                ListProducts200Example:
+                  summary: Default listProducts 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      source_id: '500123'
+                      handle: example
+                      sku: SKU-1001
+                      name: Sample name
+                      description: example
+                      price_excluding_tax: 69.88
+                      brand_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      active: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Lightspeed Create a Product
+      operationId: createProduct
+      security:
+      - OAuth2: [products.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            examples:
+              CreateProductRequestExample:
+                summary: Default createProduct request
+                x-microcks-default: true
+                value:
+                  id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  source_id: '500123'
+                  handle: example
+                  sku: SKU-1001
+                  name: Sample name
+                  description: example
+                  price_excluding_tax: 48.7
+                  brand_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  active: false
+      responses:
+        '201':
+          description: Product created.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /products/{id}:
+    get:
+      summary: Lightspeed Get a Product by ID
+      operationId: getProduct
+      security:
+      - OAuth2: [products.read]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                GetProduct200Example:
+                  summary: Default getProduct 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    source_id: '500123'
+                    handle: example
+                    sku: SKU-1001
+                    name: Sample name
+                    description: example
+                    price_excluding_tax: 14.96
+                    brand_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    active: true
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      summary: Lightspeed Update a Product
+      operationId: updateProduct
+      security:
+      - OAuth2: [products.write]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            examples:
+              UpdateProductRequestExample:
+                summary: Default updateProduct request
+                x-microcks-default: true
+                value:
+                  id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  source_id: '500123'
+                  handle: example
+                  sku: SKU-1001
+                  name: Sample name
+                  description: example
+                  price_excluding_tax: 5.13
+                  brand_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  active: false
+      responses:
+        '200':
+          description: Product updated.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sales:
+    get:
+      summary: Lightspeed List Sales
+      operationId: listSales
+      security:
+      - OAuth2: [sales.read]
+      responses:
+        '200':
+          description: A page of sales.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sale'
+              examples:
+                ListSales200Example:
+                  summary: Default listSales 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      outlet_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      register_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      user_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      customer_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                      status: OPEN
+                      total_price: 49.56
+                      total_tax: 45.6
+                      line_items:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Lightspeed Create a Sale
+      operationId: createSale
+      security:
+      - OAuth2: [sales.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sale'
+            examples:
+              CreateSaleRequestExample:
+                summary: Default createSale request
+                x-microcks-default: true
+                value:
+                  id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  outlet_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  register_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  user_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  customer_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  status: CLOSED
+                  total_price: 8.96
+                  total_tax: 20.69
+                  line_items:
+                  - {}
+      responses:
+        '201':
+          description: Sale created.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sales/{id}:
+    get:
+      summary: Lightspeed Get a Sale by ID
+      operationId: getSale
+      security:
+      - OAuth2: [sales.read]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The sale.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sale'
+              examples:
+                GetSale200Example:
+                  summary: Default getSale 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    outlet_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    register_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    user_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    customer_id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    status: LAYBY
+                    total_price: 39.32
+                    total_tax: 37.15
+                    line_items:
+                    - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customers:
+    get:
+      summary: Lightspeed List Customers
+      operationId: listCustomers
+      security:
+      - OAuth2: [customers.read]
+      responses:
+        '200':
+          description: A page of customers.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Lightspeed Create a Customer
+      operationId: createCustomer
+      security:
+      - OAuth2: [customers.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+            examples:
+              CreateCustomerRequestExample:
+                summary: Default createCustomer request
+                x-microcks-default: true
+                value:
+                  id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                  first_name: Sample first_name
+                  last_name: Sample last_name
+                  email: guest@example.com
+                  phone: example
+                  customer_code: example
+      responses:
+        '201':
+          description: Customer created.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /customers/{id}:
+    get:
+      summary: Lightspeed Get a Customer by ID
+      operationId: getCustomer
+      security:
+      - OAuth2: [customers.read]
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+              examples:
+                GetCustomer200Example:
+                  summary: Default getCustomer 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 3f2504e0-4f89-41d3-9a0c-0305e82c3301
+                    first_name: Sample first_name
+                    last_name: Sample last_name
+                    email: guest@example.com
+                    phone: example
+                    customer_code: example
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /gift_cards:
+    get:
+      summary: Lightspeed List Gift Cards
+      operationId: listGiftCards
+      security:
+      - OAuth2: [products.read]
+      responses:
+        '200':
+          description: A page of gift cards.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Lightspeed Create a Gift Card
+      operationId: createGiftCard
+      security:
+      - OAuth2: [products.write]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              CreateGiftCardRequestExample:
+                summary: Default createGiftCard request
+                x-microcks-default: true
+                value: {}
+      responses:
+        '201':
+          description: Gift card created.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authorization-code flow with scope-based access.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://secure.retail.lightspeed.app/connect
+          tokenUrl: https://{domainPrefix}.retail.lightspeed.app/api/1.0/token
+          scopes:
+            products.read: Read products, brands, and inventory.
+            products.write: Create or modify products, brands, and inventory.
+            sales.read: Read sales transactions.
+            sales.write: Create or modify sales.
+            customers.read: Read customers.
+            customers.write: Create or modify customers.
+  schemas:
+    Brand:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        deleted_at:
+          type: string
+          format: date-time
+          nullable: true
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        source_id:
+          type: string
+        handle:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price_excluding_tax:
+          type: number
+          format: float
+        brand_id:
+          type: string
+          format: uuid
+        active:
+          type: boolean
+    Sale:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        outlet_id:
+          type: string
+          format: uuid
+        register_id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        customer_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [OPEN, CLOSED, ONACCOUNT, LAYBY, VOIDED]
+        total_price:
+          type: number
+          format: float
+        total_tax:
+          type: number
+          format: float
+        line_items:
+          type: array
+          items:
+            type: object
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        customer_code:
+          type: string

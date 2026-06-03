@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeSkusRequest",
+  "description": "apeSkusRequest schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-skus-request-schema.json",
+  "type": "object",
+  "properties": {
+    "skus": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "SKU1"
+      },
+      "minItems": 1,
+      "maxItems": 50,
+      "description": "List of SKUs to return."
+    }
+  },
+  "required": [
+    "skus"
+  ]
+}

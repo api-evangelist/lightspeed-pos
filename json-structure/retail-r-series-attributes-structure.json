@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-attributes-structure.json",
+  "name": "Attributes",
+  "description": "Pagination metadata returned in list responses.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "int32",
+      "description": "Total number of matching records."
+    },
+    "offset": {
+      "type": "int32",
+      "description": "Offset of the current page."
+    },
+    "limit": {
+      "type": "int32",
+      "description": "Page size limit."
+    }
+  }
+}

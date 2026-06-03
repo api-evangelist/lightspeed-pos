@@ -1,0 +1,25 @@
+{
+  "payments": [
+    {
+      "accountFiscId": "A72691.8",
+      "lightspeedPaymentId": "ad-GJ33PFSCGVG4NFH4",
+      "uuid": "bc7i2X_CTkeg8qlec66wmg==",
+      "reference": "RFOOVMIMPSDY",
+      "status": "CAPTURED",
+      "createdDate": "2022-09-21T10:11:56Z",
+      "captureDate": "2022-09-21T10:11:56Z",
+      "modificationDate": "2022-09-21T10:11:56Z",
+      "fees": {
+        "value": "0.00",
+        "currency": "CAD"
+      },
+      "surcharge": {
+        "value": "0.00",
+        "currency": "CAD"
+      }
+    }
+  ],
+  "pageSize": 100,
+  "offset": 0,
+  "nextOffset": 100
+}

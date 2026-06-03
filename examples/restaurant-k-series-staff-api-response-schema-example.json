@@ -1,0 +1,23 @@
+{
+  "data": {},
+  "links": {
+    "first": {
+      "href": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc"
+    },
+    "self": {
+      "href": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc"
+    },
+    "next": {
+      "href": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc"
+    },
+    "last": {
+      "href": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc"
+    }
+  },
+  "page": {
+    "page": 1,
+    "size": 10,
+    "totalElements": 100,
+    "totalPages": 10
+  }
+}

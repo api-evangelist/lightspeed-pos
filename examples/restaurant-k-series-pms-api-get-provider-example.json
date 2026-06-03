@@ -1,0 +1,10 @@
+{
+  "id": 3012455645,
+  "name": "Burger",
+  "apiKey": "fake-secret",
+  "businessLocationId": 45454565682155,
+  "endpoint": "http://integration.com/pms/endpoint",
+  "features": [
+    "MIRRORING"
+  ]
+}

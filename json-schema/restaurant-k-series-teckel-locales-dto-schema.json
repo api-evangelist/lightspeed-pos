@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "teckelLocalesDto",
+  "description": "A list of locales.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-teckel-locales-dto-schema.json",
+  "type": "array",
+  "items": {
+    "type": "string"
+  },
+  "example": [
+    "en",
+    "es",
+    "de",
+    "fr"
+  ]
+}

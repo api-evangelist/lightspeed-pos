@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-teckel-locales-dto-structure.json",
+  "name": "teckelLocalesDto",
+  "description": "A list of locales.",
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
+}

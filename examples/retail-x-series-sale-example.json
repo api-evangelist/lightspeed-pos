@@ -1,0 +1,13 @@
+{
+  "id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "outlet_id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "register_id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "user_id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "customer_id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "status": "ONACCOUNT",
+  "total_price": 0.4,
+  "total_tax": 38.07,
+  "line_items": [
+    {}
+  ]
+}

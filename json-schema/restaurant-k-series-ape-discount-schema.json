@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeDiscount",
+  "description": "apeDiscount schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-discount-schema.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The discount name as configured in merchant account.",
+      "example": "Staff Discount"
+    },
+    "code": {
+      "type": "string",
+      "description": "The discount code as configured in merchant account.",
+      "example": "STAFF"
+    },
+    "discountPercentage": {
+      "type": "number",
+      "description": "The discount percentage, may be fractional. A discount can be a percentage or an amount, but not both.",
+      "example": 15
+    },
+    "discountAmount": {
+      "type": "number",
+      "description": "The discount amount, may be fractional. A discount can be a percentage or an amount, but not both.",
+      "example": 5
+    }
+  }
+}

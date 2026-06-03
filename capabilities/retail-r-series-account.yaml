@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Retail R-Series API — Account
+  description: 'Retail — Account. 1 operations. Lead operation: Lightspeed List Accounts. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Retail
+  - Account
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_R_SERIES_TOKEN: LIGHTSPEED_R_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: retail-r-series-account
+    baseUri: https://api.lightspeedapp.com/API/V3
+    description: Lightspeed Retail R-Series API — Account business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_R_SERIES_TOKEN}}'
+    resources:
+    - name: account-json
+      path: /Account
+      operations:
+      - name: getAccount
+        method: GET
+        description: Lightspeed List Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: retail-r-series-account-rest
+    port: 8080
+    description: REST adapter for Lightspeed Retail R-Series API — Account. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/account
+      name: v1-account
+      description: REST surface for Account.
+      operations:
+      - method: GET
+        name: getAccount
+        description: Lightspeed List Accounts
+        call: retail-r-series-account.getAccount
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: retail-r-series-account-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Retail R-Series API — Account. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-accounts
+      description: Lightspeed List Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-account.getAccount
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.

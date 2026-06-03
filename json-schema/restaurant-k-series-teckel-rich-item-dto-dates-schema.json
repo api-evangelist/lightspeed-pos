@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "teckelRichItemDtoDates",
+  "description": "teckelRichItemDtoDates schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-teckel-rich-item-dto-dates-schema.json",
+  "type": "object",
+  "properties": {
+    "creationDate": {
+      "description": "The creation date of the item.",
+      "example": "2021-11-03T13:50:47Z",
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastUpdateDate": {
+      "description": "The last update date of the item.",
+      "example": "2021-11-11T16:29:56Z",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-employee-structure.json",
+  "name": "Employee",
+  "description": "An employee of the retail account.",
+  "type": "object",
+  "properties": {
+    "employeeID": {
+      "type": "string",
+      "description": "Unique employee identifier."
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Employee first name."
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Employee last name."
+    },
+    "shopID": {
+      "type": "string",
+      "description": "Identifier of the employee's home shop."
+    },
+    "limitToShopID": {
+      "type": "string",
+      "description": "Shop the employee is restricted to, if any."
+    }
+  }
+}

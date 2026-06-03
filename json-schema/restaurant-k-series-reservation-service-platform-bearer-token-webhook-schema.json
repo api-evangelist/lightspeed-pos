@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-servicePlatformBearerTokenWebhook",
+  "description": "The bearer token that will be sent with the webhook notifications. See [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/).",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-platform-bearer-token-webhook-schema.json",
+  "type": "object",
+  "properties": {
+    "token": {
+      "description": "The bearer token.",
+      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "format": "password",
+      "type": "string"
+    },
+    "ttl": {
+      "description": "Token expiration time in UTC.",
+      "example": "2035-01-01T00:00:00",
+      "format": "date-time",
+      "type": "string",
+      "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+    }
+  },
+  "required": [
+    "token"
+  ]
+}

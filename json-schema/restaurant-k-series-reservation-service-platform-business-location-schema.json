@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-servicePlatformBusinessLocation",
+  "description": "reservation-servicePlatformBusinessLocation schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-platform-business-location-schema.json",
+  "type": "object",
+  "properties": {
+    "businessLocationId": {
+      "description": "The unique identifier of the business location.",
+      "type": "string"
+    },
+    "city": {
+      "description": "The business location's city.",
+      "type": "string"
+    },
+    "country": {
+      "description": "The business location's country.",
+      "type": "string"
+    },
+    "name": {
+      "description": "The business location's name.",
+      "type": "string"
+    },
+    "state": {
+      "description": "The business location's state.",
+      "type": "string"
+    },
+    "street1": {
+      "description": "The first line of the business location's street address.",
+      "type": "string"
+    },
+    "street2": {
+      "description": "The second line of the business location's street address.",
+      "type": "string"
+    },
+    "zip": {
+      "description": "The business location's postal code.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "businessLocationId"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-staff-api-create-pos-staff-dto-structure.json",
+  "name": "staff-apiCreatePosStaffDto",
+  "description": "staff-apiCreatePosStaffDto schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "username": {
+      "description": "The staff username. Only used for POS staff.",
+      "type": "string",
+      "x-nonempty": true,
+      "maxLength": 128,
+      "example": "John Doe"
+    },
+    "pinCode": {
+      "type": "string",
+      "maxLength": 4,
+      "nullable": true,
+      "description": "The 4-digit pin code for the user.",
+      "example": "1234"
+    },
+    "firstName": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "The first name of the user.",
+      "default": "",
+      "example": "John"
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "The last name of the user.",
+      "default": "",
+      "example": "Doe"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Indicates if the user is active."
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "description": "Indicates if the user is visible."
+    },
+    "group": {
+      "type": "int64",
+      "description": "The unique identifier for the user group."
+    },
+    "reportAccess": {
+      "type": "string",
+      "default": "STAFF_REPORT_OWN_ACCESS",
+      "description": "User report permissions."
+    },
+    "roles": {
+      "description": "The roles assigned to the user.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "List of roles assigned to the user. Normally, these are the default POS user roles. See [Get All POS User Permissions](https://api-docs.lsk.lightspeed.app/operation/operation-staff-apigetposuserpermissions) for a list of roles."
+      },
+      "default": []
+    }
+  },
+  "required": [
+    "username"
+  ]
+}

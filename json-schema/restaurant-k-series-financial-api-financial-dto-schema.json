@@ -1,0 +1,679 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "financial-apiFinancialDto",
+  "description": "financial-apiFinancialDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-financial-api-financial-dto-schema.json",
+  "properties": {
+    "businessName": {
+      "type": "string",
+      "description": "Name of the business",
+      "example": "My Business"
+    },
+    "nextStartOfDayAsIso8601": {
+      "type": "string",
+      "description": "Start of next business day, in the merchant's local time.",
+      "example": "2023-07-28T05:30:00-05:00"
+    },
+    "businessLocationId": {
+      "type": "number",
+      "description": "The unique identifier for the business location.",
+      "example": 123456789
+    },
+    "sales": {
+      "items": {
+        "properties": {
+          "accountReference": {
+            "type": "string",
+            "description": "Unique reference code for the account.",
+            "example": "57X0j3hzTZ2oo9sdVWiUog=="
+          },
+          "accountFiscId": {
+            "type": "string",
+            "description": "The account identifier",
+            "example": "A65315.17"
+          },
+          "receiptId": {
+            "type": "string",
+            "description": "The unique identifier for the receipt associated with this account.",
+            "example": "R65315.13"
+          },
+          "source": {
+            "properties": {
+              "initialAccountId": {
+                "type": "string",
+                "description": "The `accountFiscId` of the initial transaction associated with the current account, if applicable. For example, in the case of a refund.\n\nThis will match the `accountFiscId` of the sale if there is no associated account.",
+                "example": "A65315.13"
+              },
+              "previousAccountId": {
+                "type": "string",
+                "description": "The `accountFiscId` of the previous transaction associated with the current account, if applicable. For example, in the case of a refund.\n\nThis may be different from `initialAccountId` if there is more than one associated account.\n\nIt will not be displayed if there is no associated account.",
+                "example": "A65315.15"
+              }
+            },
+            "type": "object"
+          },
+          "salesLines": {
+            "items": {
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The sale line identifier",
+                  "example": "S65315.33"
+                },
+                "parentLineId": {
+                  "type": "string",
+                  "description": "The sale line this item is associated with, if applicable.",
+                  "example": "S65315.32"
+                },
+                "totalNetAmountWithTax": {
+                  "type": "string",
+                  "description": "Total amount of sale line, including tax. **Important Note:** This field is for use with tax inclusive businesses.\nFor tax exclusive businesses, see `taxAmount` and `taxLines` for tax calculations.",
+                  "example": "11.00"
+                },
+                "totalNetAmountWithoutTax": {
+                  "type": "string",
+                  "description": "Total amount of the sale line, before tax.",
+                  "example": "8.33"
+                },
+                "menuListPrice": {
+                  "type": "string",
+                  "description": "The price listed on the menu.",
+                  "example": "10.00"
+                },
+                "unitCostPrice": {
+                  "type": "string",
+                  "description": "The unit cost price.",
+                  "example": "5.00"
+                },
+                "serviceCharge": {
+                  "type": "string",
+                  "description": "The service charge amount.",
+                  "example": "1.00"
+                },
+                "serviceChargeType": {
+                  "type": "string",
+                  "description": "The type of service charge applied to the sale line.",
+                  "example": "APPORTIONED",
+                  "enum": [
+                    "UNTAXED",
+                    "APPORTIONED",
+                    "NO_SERVICE_CHARGE"
+                  ]
+                },
+                "serviceChargeRate": {
+                  "type": "string",
+                  "description": "The service charge rate, as a percentage.",
+                  "example": "10.00"
+                },
+                "discountAmount": {
+                  "type": "string",
+                  "description": "The discount amount.",
+                  "example": "0.00"
+                },
+                "taxCode": {
+                  "type": "string",
+                  "description": "The system code for the tax rate.",
+                  "example": "VAT20"
+                },
+                "taxAmount": {
+                  "type": "string",
+                  "description": "The tax total.",
+                  "example": "1.6667"
+                },
+                "taxRatePercentage": {
+                  "type": "string",
+                  "description": "The tax rate, as a percentage.",
+                  "example": "20.00"
+                },
+                "taxLines": {
+                  "items": {
+                    "properties": {
+                      "taxId": {
+                        "type": "string",
+                        "description": "The unique identifier for the tax.",
+                        "example": "41910290874374"
+                      },
+                      "taxCode": {
+                        "type": "string",
+                        "description": "The system code for the tax rate.",
+                        "example": "VAT20"
+                      },
+                      "taxRate": {
+                        "type": "string",
+                        "description": "The tax rate, as a multiplier.",
+                        "example": "1.2"
+                      },
+                      "taxAmount": {
+                        "type": "string",
+                        "description": "The tax total.",
+                        "example": "1.666667"
+                      },
+                      "taxIncluded": {
+                        "type": "boolean",
+                        "description": "Whether or not the business is tax inclusive.",
+                        "example": true
+                      }
+                    }
+                  }
+                },
+                "discountType": {
+                  "type": "string",
+                  "description": "The type of discount.",
+                  "example": "DISCOUNT"
+                },
+                "discountCode": {
+                  "type": "string",
+                  "description": "The discount code.",
+                  "example": "10PCT"
+                },
+                "discountName": {
+                  "type": "string",
+                  "description": "The name of the discount.",
+                  "example": "10% Discount"
+                },
+                "accountDiscountAmount": {
+                  "type": "string",
+                  "description": "The account discount amount.",
+                  "example": "1.00"
+                },
+                "accountDiscountType": {
+                  "type": "string",
+                  "description": "The account discount type (if any).",
+                  "example": "DISCOUNT"
+                },
+                "accountDiscountCode": {
+                  "type": "string",
+                  "description": "The account discount code (if any).",
+                  "example": "Staff 20%"
+                },
+                "accountDiscountName": {
+                  "type": "string",
+                  "description": "The account discount name (if any).",
+                  "example": "Staff Discount"
+                },
+                "totalDiscountAmount": {
+                  "type": "string",
+                  "description": "The total discount amount.",
+                  "example": "1.00"
+                },
+                "sku": {
+                  "type": "string",
+                  "description": "The item SKU",
+                  "example": "52"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The item name.",
+                  "example": "Burger"
+                },
+                "nameOverride": {
+                  "type": "string",
+                  "description": "Item name entered manually by the POS user upon item selection.",
+                  "example": "Burger Double Cheese"
+                },
+                "statisticGroup": {
+                  "type": "string",
+                  "description": "The item's statistic group.",
+                  "example": "Food"
+                },
+                "quantity": {
+                  "type": "string",
+                  "description": "The item quantity.",
+                  "example": "1"
+                },
+                "accountingGroup": {
+                  "properties": {
+                    "accountingGroupId": {
+                      "type": "number",
+                      "description": "The unique identifier for the item's accounting group.",
+                      "example": 141948669132845
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the accounting group.",
+                      "example": "Food"
+                    },
+                    "statisticGroup": {
+                      "type": "string",
+                      "description": "The accounting group's statistic group.",
+                      "example": "Food"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "The code assigned to the accounting group.",
+                      "example": "123"
+                    }
+                  },
+                  "type": "object"
+                },
+                "currency": {
+                  "type": "string",
+                  "description": "The currency for the sale line.",
+                  "example": "GBP"
+                },
+                "tags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array",
+                  "description": "The tags attached to the line item."
+                },
+                "revenueCenter": {
+                  "type": "string",
+                  "description": "The name of the revenue center where the sale line was created.",
+                  "example": "Fixed POS"
+                },
+                "revenueCenterId": {
+                  "type": "number",
+                  "description": "The unique identifier for the revenue center where the sale line was created.",
+                  "example": 141948669132822
+                },
+                "categories": {
+                  "items": {
+                    "properties": {
+                      "category": {
+                        "type": "string",
+                        "description": "The line item's category.",
+                        "example": "default"
+                      },
+                      "value": {
+                        "type": "string",
+                        "description": "The category value.",
+                        "example": "Food"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "timeofSale": {
+                  "type": "string",
+                  "description": "The timestamp of when the line item was created.",
+                  "example": "2023-07-27T19:58:22.474Z"
+                },
+                "staffId": {
+                  "type": "number",
+                  "description": "The unique identifier for the user who created the line item.",
+                  "example": 14670
+                },
+                "staffName": {
+                  "type": "string",
+                  "description": "The name of the user who created the line item.",
+                  "example": "Manager"
+                },
+                "deviceId": {
+                  "type": "number",
+                  "description": "The unique identifier for the device where the sale line was created.",
+                  "example": 75125
+                },
+                "deviceName": {
+                  "type": "string",
+                  "description": "The name of the device where the sale line was created.",
+                  "example": "iPad9"
+                },
+                "voidReason": {
+                  "type": "string",
+                  "enum": [
+                    "Broken",
+                    "Cooking",
+                    "Other",
+                    "Taste",
+                    "Unhappy Client",
+                    "User Mistake",
+                    "Waited too long"
+                  ],
+                  "description": "The void reason, if applicable.",
+                  "example": "Unhappy Client"
+                },
+                "accountProfileCode": {
+                  "type": "string",
+                  "description": "The code of the account profile used.",
+                  "example": "AAP"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "payments": {
+            "items": {
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "The code of the payment method.",
+                  "example": "CASH"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The name of the payment method.",
+                  "example": "Cash"
+                },
+                "paymentMethodId": {
+                  "type": "number",
+                  "description": "The unique identifier for the payment method.",
+                  "example": 141948669132824
+                },
+                "netAmountWithTax": {
+                  "type": "string",
+                  "description": "The net payment amount, including tax.",
+                  "example": "11.00"
+                },
+                "currency": {
+                  "type": "string",
+                  "description": "The payment currency.",
+                  "example": "GBP"
+                },
+                "tip": {
+                  "type": "string",
+                  "description": "The tip amount.",
+                  "example": "0.00"
+                },
+                "consumer": {
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The UUID of the customer associated with the payment, if applicable.",
+                      "example": "ec021fb0-4c12-425e-b30f-320ab720448b"
+                    },
+                    "customerId": {
+                      "type": "number",
+                      "description": "The unique identifier for the customer.",
+                      "example": 120913
+                    },
+                    "title": {
+                      "description": "The title of the customer.",
+                      "type": "string",
+                      "example": "Mr"
+                    },
+                    "firstName": {
+                      "description": "The first name of the customer.",
+                      "type": "string",
+                      "example": "John"
+                    },
+                    "lastName": {
+                      "description": "The last name of the customer.",
+                      "type": "string",
+                      "example": "Doe"
+                    },
+                    "phoneNumber1": {
+                      "description": "The primary phone number of the customer.",
+                      "type": "string",
+                      "example": "555-555-5555"
+                    },
+                    "phoneNumber2": {
+                      "description": "The secondary phone number of the customer.",
+                      "type": "string",
+                      "example": "555-555-5556"
+                    },
+                    "companyName": {
+                      "description": "The company name of the customer.",
+                      "type": "string",
+                      "example": "Company Name"
+                    },
+                    "addressLine1": {
+                      "description": "The first line of the customer's address.",
+                      "type": "string",
+                      "example": "123 Street st."
+                    },
+                    "addressLine2": {
+                      "description": "The second line of the customer's address.",
+                      "type": "string",
+                      "example": "Unit 123"
+                    },
+                    "zipCode": {
+                      "description": "The postal code of the customer's address.",
+                      "type": "string",
+                      "example": "12345"
+                    },
+                    "city": {
+                      "description": "The city of the customer's address.",
+                      "type": "string",
+                      "example": "Some City"
+                    },
+                    "state": {
+                      "description": "The state of the customer's address.",
+                      "type": "string",
+                      "example": "Some State"
+                    },
+                    "email": {
+                      "description": "The email address of the customer.",
+                      "type": "string",
+                      "example": "customer@email.com"
+                    },
+                    "taxIdentifier": {
+                      "description": "The tax identifier of the customer.",
+                      "type": "string",
+                      "example": "123456789"
+                    },
+                    "fiscalCode": {
+                      "description": "The fiscal code of the customer.",
+                      "type": "string",
+                      "example": "123456789"
+                    },
+                    "destinationCode": {
+                      "description": "The destination code of the customer.",
+                      "type": "string",
+                      "example": "123456789"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": {
+                  "example": "NORMAL",
+                  "description": "The type of payment.",
+                  "enum": [
+                    "NORMAL",
+                    "ACCOUNTS_RECEIVABLE"
+                  ],
+                  "type": "string"
+                },
+                "deviceId": {
+                  "type": "string",
+                  "description": "The unique identifier for the device where the payment was processed.",
+                  "example": "72676"
+                },
+                "deviceName": {
+                  "type": "string",
+                  "description": "The name of the device where the payment was processed.",
+                  "example": "ipad9"
+                },
+                "staffId": {
+                  "type": "number",
+                  "description": "The unique identifier for the user who processed the payment.",
+                  "example": 180480
+                },
+                "staffName": {
+                  "type": "string",
+                  "description": "The name of the user who processed the payment.",
+                  "example": "Manager"
+                },
+                "authorization": {
+                  "type": "string",
+                  "description": "The authorization code for the payment.",
+                  "example": "001"
+                },
+                "externalReference": {
+                  "type": "string",
+                  "description": "The external reference code for the payment.",
+                  "example": "1000"
+                },
+                "revenueCenter": {
+                  "type": "string",
+                  "description": "The name of the revenue center where the payment was processed.",
+                  "example": "Fixed POS"
+                },
+                "revenueCenterId": {
+                  "type": "number",
+                  "description": "The unique identifier for the revenue center where the payment was processed.",
+                  "example": 141948669132822
+                },
+                "fiscId": {
+                  "type": "string",
+                  "description": "The unique identifier for the payment.",
+                  "example": "T72691.8"
+                },
+                "uuid": {
+                  "type": "string",
+                  "description": "The base64url encoded UUID of the payment.",
+                  "example": "bc7i2X_CTkeg8qlec66wmg=="
+                },
+                "fiscDate": {
+                  "type": "string",
+                  "description": "The time stamp of the payment.",
+                  "example": "2023-02-14T20:04:08.665Z"
+                },
+                "surcharge": {
+                  "type": "string",
+                  "description": "The surcharge amount.",
+                  "example": "0.00"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "timeofOpening": {
+            "type": "string",
+            "description": "The account creation timestamp.",
+            "example": "2023-02-14T19:58:48.224Z"
+          },
+          "timeofCloseAndPaid": {
+            "type": "string",
+            "description": "The account close timestamp.",
+            "example": "2023-02-14T20:04:08.734Z"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "externalFiscalNumber": {
+            "type": "string"
+          },
+          "tableNumber": {
+            "type": "string",
+            "description": "The table number.",
+            "example": "1"
+          },
+          "tableName": {
+            "type": "string",
+            "description": "The name of the table.",
+            "example": "Dining Room, Table 1"
+          },
+          "accountProfileCode": {
+            "type": "string",
+            "description": "The account profile associated with the account.",
+            "example": "AAP"
+          },
+          "ownerName": {
+            "type": "string",
+            "description": "The name of the user associated with the account.",
+            "example": "Manager"
+          },
+          "ownerId": {
+            "type": "number",
+            "description": "The unique identifier for the user associated with the account.",
+            "example": 14670
+          },
+          "type": {
+            "example": "SALE",
+            "enum": [
+              "SALE",
+              "VOID",
+              "RECALL",
+              "REFUND",
+              "SPLIT",
+              "UPDATE",
+              "TRANSFER",
+              "FLOAT",
+              "TRANSITORY",
+              "CROSS_BL",
+              "CANCEL"
+            ],
+            "type": "string",
+            "description": "The sale type."
+          },
+          "externalReferences": {
+            "items": {
+              "type": "string",
+              "description": "List of external references for online orders. Includes the TASK prefix, `businessLocationId`, and the unique reference code provided in the [`thirdPartyReference`](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-thirdpartyreference) field of an online order.",
+              "example": "\"TASK:OO-{businessLocationId}-{unique-reference-code}\", \"TASK:OO-{businessLocationId}-(another-unique-reference-code)\""
+            },
+            "type": "array"
+          },
+          "nbCovers": {
+            "type": "number",
+            "description": "The number of covers.",
+            "example": 2.0
+          },
+          "dineIn": {
+            "type": "boolean",
+            "description": "Whether the order is dine-in.",
+            "example": true
+          },
+          "deviceId": {
+            "description": "The unique identifier for the device where the account was created.",
+            "type": "number",
+            "example": 75125
+          },
+          "deviceName": {
+            "description": "The name of the device where the account was created.",
+            "type": "string",
+            "example": "ipad9"
+          },
+          "voidReason": {
+            "type": "string",
+            "enum": [
+              "Broken",
+              "Cooking",
+              "Other",
+              "Taste",
+              "Unhappy Client",
+              "User Mistake",
+              "Waited too long"
+            ],
+            "description": "The void reason, if applicable.",
+            "example": "Unhappy Client"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "dataComplete": {
+      "type": "boolean",
+      "example": false
+    },
+    "_links": {
+      "properties": {
+        "self": {
+          "properties": {
+            "href": {
+              "example": "https://api.ikentoo.com/f/finance/141948669132802/financials/2021-08-30T14:00:00Z/2023-09-03T15:30:00Z?pageSize=10&include=payments",
+              "type": "string"
+            },
+            "templated": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
+        "nextPage": {
+          "properties": {
+            "href": {
+              "example": "https://api.ikentoo.com/f/finance/141948669132802/financials/2021-08-30T14:00:00Z/2023-09-03T15:30:00Z?pageSize=10&include=payments&nextPageToken=A65315.18",
+              "description": "The URL for the next set of results.",
+              "type": "string"
+            },
+            "templated": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

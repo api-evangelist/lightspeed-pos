@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-servicePlatformAPIKeysWebhook",
+  "description": "The API keys that will be sent with the webhook notifications. See [API Keys](https://swagger.io/docs/specification/authentication/api-keys/).",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-platform-apikeys-webhook-schema.json",
+  "type": "object",
+  "properties": {
+    "headers": {
+      "additionalProperties": {
+        "description": "Key-value pairs of arbitrary static headers to send with the webhook request.",
+        "type": "string"
+      },
+      "example": {
+        "X-API-ID": "Example-x-api-id",
+        "X-API-SECRET": "Example-x-api-secret"
+      },
+      "type": "object"
+    },
+    "parameters": {
+      "additionalProperties": {
+        "description": "Key-value pairs of arbitrary static query parameters to send with the webhook request.",
+        "type": "string"
+      },
+      "example": {},
+      "type": "object"
+    }
+  }
+}

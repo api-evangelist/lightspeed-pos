@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "teckelPictureSpecDto",
+  "description": "Contains picture requirements.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-teckel-picture-spec-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "additionalProperties": {
+        "properties": {
+          "deprecation": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          },
+          "hreflang": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "templated": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "minHeight": {
+      "description": "The minimum image height.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "minWidth": {
+      "description": "The minimum image width.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "requiredAspectRatio": {
+      "description": "The image aspect ratio (width divided by length). If not set, there is no aspect ratio check.",
+      "format": "float",
+      "type": "number"
+    }
+  }
+}

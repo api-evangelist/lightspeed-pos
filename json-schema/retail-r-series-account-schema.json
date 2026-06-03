@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Account",
+  "description": "A Lightspeed Retail R-Series account.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-r-series-account-schema.json",
+  "type": "object",
+  "properties": {
+    "accountID": {
+      "type": "string",
+      "description": "Unique numeric account identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Account / business name."
+    },
+    "link": {
+      "type": "string",
+      "description": "API self-link for the account."
+    }
+  }
+}

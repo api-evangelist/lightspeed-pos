@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "teckelRichItemDtoLinks",
+  "description": "teckelRichItemDtoLinks schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-teckel-rich-item-dto-links-schema.json",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "self": {
+              "properties": {
+                "href": {
+                  "example": "https://api.trial.lsk.lightspeed.app/i/richItem/8262/UGG-BB-PUR-06",
+                  "type": "string",
+                  "description": "The URL of the item."
+                }
+              },
+              "type": "object"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "items": {
+              "properties": {
+                "href": {
+                  "example": "https://api.trial.lsk.lightspeed.app/i/richItem/8262/",
+                  "type": "string",
+                  "description": "The URL for all items."
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

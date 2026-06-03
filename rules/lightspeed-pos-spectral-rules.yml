@@ -1,0 +1,297 @@
+# Spectral ruleset for the Lightspeed Commerce POS APIs (Restaurant K-Series,
+# Retail R-Series, Retail X-Series). Derived from the conventions observed
+# across the OpenAPI specs in openapi/. Opinionated: enforces the dominant
+# pattern even where individual specs deviate.
+#
+# Run: spectral lint openapi/*.yml --ruleset rules/lightspeed-pos-spectral-rules.yml
+
+extends: [[spectral:oas, off]]
+
+rules:
+
+  # ─────────────────────────────────────────────────────────────
+  # INFO / METADATA
+  # ─────────────────────────────────────────────────────────────
+  info-title-lightspeed-prefix:
+    description: API title should start with "Lightspeed".
+    severity: warn
+    given: $.info
+    then:
+      field: title
+      function: pattern
+      functionOptions:
+        match: "^Lightspeed"
+
+  info-description-required:
+    description: Info object must have a non-trivial description.
+    severity: warn
+    given: $.info
+    then:
+      field: description
+      function: length
+      functionOptions:
+        min: 40
+
+  info-version-required:
+    description: Info object must declare a version.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: Info object should include a contact.
+    severity: info
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────
+  # OPENAPI VERSION
+  # ─────────────────────────────────────────────────────────────
+  openapi-version-3-1:
+    description: Lightspeed specs target OpenAPI 3.1.x.
+    severity: warn
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.1\\."
+
+  # ─────────────────────────────────────────────────────────────
+  # SERVERS
+  # ─────────────────────────────────────────────────────────────
+  servers-defined:
+    description: At least one server must be defined.
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-lightspeed-host:
+    description: Server URLs should point at a lightspeed host.
+    severity: info
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "lightspeed"
+
+  # ─────────────────────────────────────────────────────────────
+  # PATHS
+  # ─────────────────────────────────────────────────────────────
+  paths-no-trailing-slash:
+    description: Paths must not end with a trailing slash.
+    severity: warn
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: ".+/$"
+
+  paths-no-query-string:
+    description: Path keys must not contain query strings.
+    severity: error
+    given: $.paths
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  # ─────────────────────────────────────────────────────────────
+  # OPERATIONS
+  # ─────────────────────────────────────────────────────────────
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-lightspeed-prefix:
+    description: Operation summaries should be prefixed with "Lightspeed".
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^Lightspeed"
+
+  operation-description-required:
+    description: Every operation should have a description.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  operation-operationid-required:
+    description: Every operation must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-operationid-camelcase:
+    description: operationId should be camelCase (Lightspeed convention).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  operation-tags-required:
+    description: Every operation must be tagged.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────
+  # TAGS
+  # ─────────────────────────────────────────────────────────────
+  tag-title-case:
+    description: Global tag names should use Title Case.
+    severity: info
+    given: $.tags[*]
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^[A-Z0-9]"
+
+  # ─────────────────────────────────────────────────────────────
+  # PARAMETERS
+  # ─────────────────────────────────────────────────────────────
+  parameter-description-required:
+    description: Parameters should have descriptions.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.name)]
+    then:
+      field: description
+      function: truthy
+
+  parameter-schema-typed:
+    description: Parameters must define a typed schema.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.name && @.schema)]
+    then:
+      field: schema.type
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────
+  # REQUEST BODIES
+  # ─────────────────────────────────────────────────────────────
+  request-body-json:
+    description: Request bodies should offer application/json.
+    severity: info
+    given: $.paths[*][post,put,patch].requestBody.content
+    then:
+      field: application/json
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────
+  # RESPONSES
+  # ─────────────────────────────────────────────────────────────
+  response-success-defined:
+    description: Operations must define at least one 2xx response.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "2[0-9][0-9]"
+
+  response-description-required:
+    description: Every response must have a description.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────
+  # SCHEMAS
+  # ─────────────────────────────────────────────────────────────
+  schema-type-defined:
+    description: Component schemas should declare a type.
+    severity: info
+    given: $.components.schemas[*]
+    then:
+      field: type
+      function: truthy
+
+  # ─────────────────────────────────────────────────────────────
+  # SECURITY
+  # ─────────────────────────────────────────────────────────────
+  security-global-defined:
+    description: A global security requirement should be declared.
+    severity: warn
+    given: $
+    then:
+      field: security
+      function: truthy
+
+  security-schemes-oauth2:
+    description: Lightspeed POS APIs authenticate with OAuth 2.0.
+    severity: info
+    given: $.components.securitySchemes[*]
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        match: "oauth2"
+
+  # ─────────────────────────────────────────────────────────────
+  # HTTP METHOD CONVENTIONS
+  # ─────────────────────────────────────────────────────────────
+  get-no-request-body:
+    description: GET operations must not declare a request body.
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  delete-no-request-body:
+    description: DELETE operations must not declare a request body.
+    severity: warn
+    given: $.paths[*].delete
+    then:
+      field: requestBody
+      function: falsy
+
+  # ─────────────────────────────────────────────────────────────
+  # MICROCKS / MOCKING
+  # ─────────────────────────────────────────────────────────────
+  operation-microcks-extension:
+    description: Operations should carry an x-microcks-operation extension for mocking.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy

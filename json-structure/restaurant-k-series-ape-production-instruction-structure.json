@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-production-instruction-structure.json",
+  "name": "apeProductionInstruction",
+  "description": "apeProductionInstruction schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "multiSelectionPermitted": {
+      "type": "boolean",
+      "description": "Specifies if more than one production instruction can be selected for this group."
+    },
+    "productionInstructionGroupName": {
+      "type": "string",
+      "description": "The group name for this production instruction."
+    },
+    "productionIntructionGroupId": {
+      "type": "int64",
+      "description": "The unique identifier for this production instruction group."
+    },
+    "productionInstructionList": {
+      "type": "array",
+      "description": "Array of production instructions for this group.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "instruction": {
+            "type": "string",
+            "description": "The name of the production instruction."
+          },
+          "ikentooModifierId": {
+            "description": "The unique identifier of this production instruction.",
+            "type": "int64"
+          }
+        },
+        "description": "Array of production instructions for this group"
+      }
+    }
+  }
+}

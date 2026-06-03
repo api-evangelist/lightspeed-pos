@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-pms-api-provider-api-key-structure.json",
+  "name": "pms-apiProviderApiKey",
+  "description": "The API key for the PMS provider.",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255
+}

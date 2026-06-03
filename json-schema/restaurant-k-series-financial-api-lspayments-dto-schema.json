@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "financial-apiLSPaymentsDto",
+  "description": "financial-apiLSPaymentsDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-financial-api-lspayments-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "payments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "accountFiscId": {
+            "type": "string",
+            "description": "The account identifier.",
+            "example": "A72691.8"
+          },
+          "lightspeedPaymentId": {
+            "type": "string",
+            "description": "Unique identifier assigned by Lightspeed to the payment, derived from Adyen's PSP reference. \nThis alphanumeric code uniquely identifies each payment or modification request, \nincluding refunds. For more information, see Adyen's documentation: \nhttps://help.adyen.com/knowledge/payments/payment-basics/what-is-a-psp-reference-number",
+            "example": "ad-GJ33PFSCGVG4NFH4"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The internal UUID of the payment. This value may not be unique in scenarios involving Pay-at-Table, partial, or split payments, \nwhere multiple payment transactions can share the same reference and/or POS Order Id\nFor a guaranteed unique identifier for each Lightspeed Payments transaction, use the `lightspeedPaymentId` field which is based off Adyen PSP ID.",
+            "example": "bc7i2X_CTkeg8qlec66wmg=="
+          },
+          "reference": {
+            "type": "string",
+            "description": "The alphanumeric reference of the payment.",
+            "example": "RFOOVMIMPSDY"
+          },
+          "status": {
+            "type": "string",
+            "description": "The statuses for a Lightspeed Payments transaction.",
+            "enum": [
+              "CAPTURED",
+              "DISPUTED",
+              "PARTIALLY_REFUNDED",
+              "REFUNDED"
+            ]
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the payment was created.",
+            "example": "2022-09-21T10:11:56Z"
+          },
+          "captureDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date and time the payment was captured.",
+            "example": "2022-09-21T10:11:56Z"
+          },
+          "modificationDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-09-21T10:11:56Z"
+          },
+          "fees": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "The amount in dollars.",
+                "example": "0.00"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency code.",
+                "example": "CAD"
+              }
+            }
+          },
+          "surcharge": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "The amount in dollars.",
+                "example": "0.00"
+              },
+              "currency": {
+                "type": "string",
+                "description": "The currency code.",
+                "example": "CAD"
+              }
+            }
+          }
+        }
+      },
+      "description": "List of requested payments.",
+      "nullable": false
+    },
+    "pageSize": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Size of the returned collection.",
+      "example": 100
+    },
+    "offset": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Offset of the first item returned in the collection.",
+      "example": 0
+    },
+    "nextOffset": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Next offset to get next page of data based off current pageSize and offset, if available.",
+      "example": 100
+    }
+  }
+}

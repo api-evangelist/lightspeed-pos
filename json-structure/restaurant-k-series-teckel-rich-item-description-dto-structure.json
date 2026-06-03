@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-teckel-rich-item-description-dto-structure.json",
+  "name": "teckelRichItemDescriptionDto",
+  "description": "Stores an item description with its locale code.",
+  "type": "object",
+  "properties": {
+    "localeCode": {
+      "description": "The language code (ISO 639) of the description.",
+      "minLength": 2,
+      "maxLength": 7,
+      "nullable": false,
+      "type": "string"
+    },
+    "description": {
+      "description": "The item description in the language of the locale.",
+      "maxLength": 4000,
+      "type": "string"
+    },
+    "displayName": {
+      "description": "The display name of the item in the language of the locale.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "localeCode"
+  ]
+}

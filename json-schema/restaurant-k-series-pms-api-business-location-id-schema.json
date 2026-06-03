@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pms-apiBusinessLocationId",
+  "description": "The unique identifier for the business location.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-pms-api-business-location-id-schema.json",
+  "type": "integer",
+  "format": "int64",
+  "example": 45454565682155
+}

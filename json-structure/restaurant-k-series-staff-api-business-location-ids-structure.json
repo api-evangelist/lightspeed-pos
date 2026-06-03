@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-staff-api-business-location-ids-structure.json",
+  "name": "staff-apiBusinessLocationIds",
+  "description": "staff-apiBusinessLocationIds schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "businessLocationIds": {
+      "type": "array",
+      "items": {
+        "type": "int64"
+      },
+      "description": "List of all `businessLocationIds` to be added.",
+      "example": [
+        123456789,
+        987654321
+      ]
+    }
+  }
+}

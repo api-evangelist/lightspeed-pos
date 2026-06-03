@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Attributes",
+  "description": "Pagination metadata returned in list responses.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-r-series-attributes-schema.json",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total number of matching records."
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Offset of the current page."
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Page size limit."
+    }
+  }
+}

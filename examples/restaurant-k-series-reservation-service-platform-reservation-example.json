@@ -1,0 +1,58 @@
+{
+  "guest": {
+    "email": "john.smith@email.com",
+    "firstName": "John",
+    "lastName": "Smith",
+    "phone": "+13453455555",
+    "platformGuestId": "ABC-123",
+    "walkIn": true,
+    "foodAndDrinkNotes": "Only milk and cookies!",
+    "notes": "Put the ring in the champagne!",
+    "language": "en",
+    "allergens": [
+      "almonds",
+      "egg"
+    ],
+    "dietaryRestrictions": [
+      "no alcohol",
+      "vegan"
+    ]
+  },
+  "liability": {
+    "currency": "EUR",
+    "deposits": [
+      {
+        "amount": "100.00",
+        "platformDepositId": "1",
+        "utcCreatedAt": "2024-01-01T20:00:00",
+        "utcVoidedAt": "2024-01-01T20:00:00",
+        "voided": false
+      }
+    ],
+    "refunds": [
+      {
+        "amount": "100.00",
+        "platformRefundId": "1",
+        "utcCreatedAt": "2024-01-01T20:00:00",
+        "utcVoidedAt": "2024-01-01T20:00:00",
+        "voided": false
+      }
+    ]
+  },
+  "notes": "More balloons!",
+  "specialOffer": "Free dessert",
+  "tags": [
+    "romantic meal",
+    "special occasion"
+  ],
+  "partySize": 2,
+  "sequenceId": 145789499819,
+  "status": "SCHEDULED",
+  "tableNumbers": [
+    "1"
+  ],
+  "utcScheduledAt": "2024-01-01T20:00:00",
+  "utcUpdatedAt": "2024-01-01T20:10:00",
+  "guestRequest": "I would need two baby chairs.",
+  "expectedDuration": "PT30M"
+}

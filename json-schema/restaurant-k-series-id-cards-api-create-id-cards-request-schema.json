@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "id-cards-apiCreateIdCardsRequest",
+  "description": "id-cards-apiCreateIdCardsRequest schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-id-cards-api-create-id-cards-request-schema.json",
+  "type": "object",
+  "properties": {
+    "cardCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of ID cards to create.",
+      "example": 1,
+      "minimum": 1,
+      "maximum": 100
+    }
+  },
+  "required": [
+    "cardCount"
+  ]
+}

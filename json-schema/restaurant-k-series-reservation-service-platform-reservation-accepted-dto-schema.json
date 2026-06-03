@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-servicePlatformReservationAcceptedDto",
+  "description": "reservation-servicePlatformReservationAcceptedDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-platform-reservation-accepted-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "platformCode": {
+      "description": "The unique code assigned to the reservation platform.",
+      "example": "MyPlatform",
+      "maxLength": 11,
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "platformRestaurantId": {
+      "description": "The external platform's unique identifier for the restaurant.",
+      "example": "Restaurant-123",
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "platformReservationId": {
+      "description": "The external platform's unique identifier for the reservation.",
+      "example": "Reservation-123",
+      "maxLength": 36,
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    },
+    "accepted": {
+      "description": "Whether the reservation request was accepted.",
+      "example": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "accepted",
+    "platformCode",
+    "platformReservationId",
+    "platformRestaurantId"
+  ]
+}

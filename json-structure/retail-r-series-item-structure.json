@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-item-structure.json",
+  "name": "Item",
+  "description": "An inventory item sold and tracked in Lightspeed Retail.",
+  "type": "object",
+  "properties": {
+    "itemID": {
+      "type": "string",
+      "description": "Unique item identifier."
+    },
+    "systemSku": {
+      "type": "string",
+      "description": "System-assigned SKU."
+    },
+    "defaultCost": {
+      "type": "string",
+      "description": "Default cost of the item."
+    },
+    "avgCost": {
+      "type": "string",
+      "description": "Weighted average cost."
+    },
+    "description": {
+      "type": "string",
+      "description": "Item description / name."
+    },
+    "upc": {
+      "type": "string",
+      "description": "Universal Product Code."
+    },
+    "ean": {
+      "type": "string",
+      "description": "International Article Number."
+    },
+    "customSku": {
+      "type": "string",
+      "description": "Merchant-defined SKU."
+    },
+    "manufacturerSku": {
+      "type": "string",
+      "description": "Manufacturer SKU."
+    },
+    "categoryID": {
+      "type": "string",
+      "description": "Identifier of the owning category."
+    },
+    "manufacturerID": {
+      "type": "string",
+      "description": "Identifier of the manufacturer."
+    },
+    "archived": {
+      "type": "boolean",
+      "description": "Whether the item has been archived."
+    },
+    "Prices": {
+      "type": "object",
+      "description": "Item pricing levels."
+    }
+  }
+}

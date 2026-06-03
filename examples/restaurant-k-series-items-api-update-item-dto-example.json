@@ -1,0 +1,15 @@
+{
+  "name": "Burger",
+  "businessLocationId": 45454565682155,
+  "docketName": "The Burger",
+  "sku": "UGG-BB-PUR-06",
+  "active": true,
+  "barcode": "10011101100",
+  "barcodes": [
+    "10011101100"
+  ],
+  "accountingGroupId": 462478248241,
+  "costPrice": 5.0,
+  "defaultPrice": 10,
+  "priceMode": "PERCENT"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-shop-structure.json",
+  "name": "Shop",
+  "description": "A store location.",
+  "type": "object",
+  "properties": {
+    "shopID": {
+      "type": "string",
+      "description": "Unique shop identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Shop name."
+    },
+    "taxCategoryID": {
+      "type": "string",
+      "description": "Default tax category for the shop."
+    },
+    "timeZone": {
+      "type": "string",
+      "description": "IANA timezone of the shop."
+    }
+  }
+}

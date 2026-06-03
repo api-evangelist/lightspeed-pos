@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-webhook-endpoint-business-location-dto-structure.json",
+  "name": "apeWebhookEndpointBusinessLocationDto",
+  "description": "apeWebhookEndpointBusinessLocationDto schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "businessLocationId": {
+      "type": "int64",
+      "description": "The unique identifier for the business location.",
+      "example": 45454565682155
+    },
+    "createdAt": {
+      "type": "datetime",
+      "description": "Timestamp when this association was created.",
+      "example": "2023-11-07T19:15:05.043+0000"
+    },
+    "updatedAt": {
+      "type": "datetime",
+      "description": "Timestamp when this association was last updated.",
+      "example": "2023-11-07T19:15:05.043+0000"
+    },
+    "warnings": {
+      "description": "A list of warnings that occurred during the request, but which did not prevent a successful response.  For instance, if the Business Location does not have the required POS app version to support item availability.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "information": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "businessLocationId"
+  ]
+}

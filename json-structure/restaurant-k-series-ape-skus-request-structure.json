@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-skus-request-structure.json",
+  "name": "apeSkusRequest",
+  "description": "apeSkusRequest schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "skus": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "SKU1"
+      },
+      "minItems": 1,
+      "maxItems": 50,
+      "description": "List of SKUs to return."
+    }
+  },
+  "required": [
+    "skus"
+  ]
+}

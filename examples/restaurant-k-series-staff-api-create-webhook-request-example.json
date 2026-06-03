@@ -1,0 +1,5 @@
+{
+  "notificationType": "shift.deleted",
+  "url": "https://example.com/path/abc123",
+  "webhookName": "Burger"
+}

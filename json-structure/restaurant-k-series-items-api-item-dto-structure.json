@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-items-api-item-dto-structure.json",
+  "name": "items-apiItemDTO",
+  "description": "items-apiItemDTO schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int64",
+      "description": "The unique identifier for the item.",
+      "example": 3012455645
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the item.",
+      "example": "Burger"
+    },
+    "docketName": {
+      "example": "The Burger",
+      "maxLength": 64,
+      "type": "string",
+      "description": "The name used in the docket for the item."
+    },
+    "sku": {
+      "example": "UGG-BB-PUR-06",
+      "maxLength": 32,
+      "minLength": 1,
+      "description": "A stock keeping unit.",
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Indicates whether or not the item is archived from the menu.",
+      "example": true
+    },
+    "barcode": {
+      "type": "string",
+      "description": "The item barcode.",
+      "example": "00000001"
+    },
+    "barcodes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "example": "10011101100"
+      },
+      "description": "A list of barcodes associated with the item."
+    },
+    "accountingGroup": {
+      "description": "The accounting group associated with the item.",
+      "properties": {
+        "id": {
+          "type": "int64",
+          "description": "The unique identifier for the accounting group.",
+          "example": 40570261078058
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the accounting group.",
+          "example": "Alcoholic beverages"
+        }
+      },
+      "type": "object"
+    },
+    "statisticGroups": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "The name of the statistic group category.",
+            "example": "default"
+          },
+          "value": {
+            "type": "string",
+            "description": "The statistic group value.",
+            "example": "Food"
+          }
+        },
+        "type": "object"
+      },
+      "description": "List of statistic groups associated with the item."
+    },
+    "costPrice": {
+      "type": "double",
+      "description": "The cost price of the item.",
+      "example": 5.0
+    },
+    "prices": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "amount": {
+            "type": "double",
+            "example": 10.0,
+            "description": "The item price."
+          },
+          "name": {
+            "type": "string",
+            "example": "Tuesday Special",
+            "description": "The name for this item price."
+          }
+        },
+        "type": "object"
+      },
+      "description": "List of prices associated with the item."
+    },
+    "sharingType": {
+      "type": "string",
+      "enum": [
+        "GLOBAL_NO_BL",
+        "GLOBAL",
+        "LOCAL",
+        "SHARED"
+      ],
+      "description": "How the item is shared.",
+      "example": "SHARED"
+    },
+    "priceMode": {
+      "type": "string",
+      "enum": [
+        "AMOUNT",
+        "PERCENT",
+        "POSITIVE_OPEN_PRICE",
+        "NEGATIVE_OPEN_PRICE"
+      ],
+      "default": "AMOUNT",
+      "description": "The type of price for the item.",
+      "example": "POSITIVE_OPEN_PRICE"
+    },
+    "inventorySource": {
+      "type": "string",
+      "enum": [
+        "PURCHASED",
+        "PRODUCED"
+      ],
+      "description": "Source of inventory for the item.",
+      "example": "PURCHASED"
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether or not stock management is disabled for the item.",
+      "example": false
+    },
+    "contentDimension": {
+      "description": "How the item is measured for stock management.",
+      "type": "string",
+      "enum": [
+        "DIMENSION_LESS",
+        "VOLUME",
+        "MASS"
+      ],
+      "example": "MASS"
+    },
+    "contentUom": {
+      "type": "string",
+      "description": "The unit of measure of the item for stock management.",
+      "example": "kg"
+    },
+    "contentValue": {
+      "type": "double",
+      "example": 1,
+      "description": "The measurement value."
+    },
+    "itemType": {
+      "type": "string",
+      "enum": [
+        "ITEM",
+        "SEQUENCE",
+        "GROUP",
+        "SUB_ITEM"
+      ],
+      "description": "Type of the item.",
+      "example": "ITEM"
+    }
+  }
+}

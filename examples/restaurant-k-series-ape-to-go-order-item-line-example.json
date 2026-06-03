@@ -1,0 +1,37 @@
+{
+  "quantity": 1,
+  "sku": "UGG-BB-PUR-06",
+  "customItemName": "My Custom Item Name",
+  "customItemPrice": 10.0,
+  "discountAmountOverride": 5.0,
+  "discountPercentOverride": 10.0,
+  "modifiers": [
+    {
+      "modifierId": "236025632784492"
+    }
+  ],
+  "discountCode": "FIVEPERCENT",
+  "subItems": [
+    {
+      "quantity": 1,
+      "sku": "ABC-123",
+      "customItemName": "My Custom Sub-Item Name",
+      "customItemPrice": 2.0,
+      "modifiers": [
+        {
+          "modifierId": "236025632784492"
+        }
+      ],
+      "subItems": [
+        {
+          "quantity": 1,
+          "sku": "ABC-123",
+          "customItemName": "My Custom Sub-Item Name",
+          "customItemPrice": 2.0,
+          "modifiers": [],
+          "subItems": []
+        }
+      ]
+    }
+  ]
+}

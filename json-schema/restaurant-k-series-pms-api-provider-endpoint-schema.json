@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pms-apiProviderEndpoint",
+  "description": "The endpoint of the PMS provider. This is where Lightspeed will send PMS requests.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-pms-api-provider-endpoint-schema.json",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "example": "http://integration.com/pms/endpoint"
+}

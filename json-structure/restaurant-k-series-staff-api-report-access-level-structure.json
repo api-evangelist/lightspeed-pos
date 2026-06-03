@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-staff-api-report-access-level-structure.json",
+  "name": "staff-apiReportAccessLevel",
+  "description": "staff-apiReportAccessLevel schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "The value of the report access level.",
+      "example": "STAFF_REPORT_OWN_ACCESS"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the report access level.",
+      "example": "The POS user can see their own reports"
+    }
+  }
+}

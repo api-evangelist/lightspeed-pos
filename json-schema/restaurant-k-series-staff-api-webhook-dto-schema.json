@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "staff-apiWebhookDto",
+  "description": "staff-apiWebhookDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-staff-api-webhook-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "The unique identifier for the webhook.",
+      "example": "e95c2cc5-4489-4025-a7e2-a34faeaa5f9d"
+    },
+    "notificationType": {
+      "description": "The type of webhook notification.",
+      "type": "string",
+      "enum": [
+        "shift.created",
+        "shift.updated",
+        "shift.deleted"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL for the webhook."
+    },
+    "webhookName": {
+      "type": "string",
+      "description": "The name for the webhook.",
+      "example": "My Awesome Webhook"
+    },
+    "businessLocationId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The unique identifier for the business location.",
+      "example": 1234567890
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The creation time of the webhook."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The last update time of the webhook."
+    }
+  }
+}

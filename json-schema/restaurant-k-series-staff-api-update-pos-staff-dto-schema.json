@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "staff-apiUpdatePosStaffDto",
+  "description": "staff-apiUpdatePosStaffDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-staff-api-update-pos-staff-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "username": {
+      "description": "The staff username. Only used for POS staff.",
+      "type": "string",
+      "x-nonempty": true,
+      "maxLength": 128,
+      "example": "John Doe"
+    },
+    "pinCode": {
+      "type": "string",
+      "maxLength": 4,
+      "description": "The 4-digit pin code for the user.",
+      "example": "1234"
+    },
+    "firstName": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "The first name of the user.",
+      "example": "John"
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "The last name of the user.",
+      "example": "Doe"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Indicates if the user is active."
+    },
+    "visible": {
+      "type": "boolean",
+      "description": "Indicates if the user is visible."
+    },
+    "group": {
+      "type": "integer",
+      "format": "int64",
+      "default": -1,
+      "x-positive-number-required": true,
+      "description": "The unique identifier for the user group."
+    },
+    "reportAccess": {
+      "type": "string",
+      "description": "User report permissions."
+    },
+    "roles": {
+      "type": "array",
+      "x-default-null": true,
+      "description": "The roles assigned to the user.",
+      "items": {
+        "type": "string",
+        "description": "List of roles assigned to the user. Normally, these are the default POS user roles. See [Get All POS User Permissions](https://api-docs.lsk.lightspeed.app/operation/operation-staff-apigetposuserpermissions) for a list of roles."
+      }
+    }
+  },
+  "required": [
+    "username",
+    "pinCode",
+    "firstName",
+    "lastName",
+    "active",
+    "visible",
+    "reportAccess",
+    "roles"
+  ]
+}

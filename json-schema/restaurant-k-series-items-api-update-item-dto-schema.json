@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "items-apiUpdateItemDTO",
+  "description": "items-apiUpdateItemDTO schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-items-api-update-item-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "example": "Burger",
+      "maxLength": 180,
+      "minLength": 1,
+      "description": "The name of the item.",
+      "type": "string"
+    },
+    "businessLocationId": {
+      "description": "The unique identifier for the business location.",
+      "type": "integer",
+      "format": "int64",
+      "example": 45454565682155
+    },
+    "docketName": {
+      "example": "The Burger",
+      "maxLength": 64,
+      "type": "string",
+      "description": "The name used in the docket for the item."
+    },
+    "sku": {
+      "example": "UGG-BB-PUR-06",
+      "maxLength": 32,
+      "minLength": 1,
+      "description": "A stock keeping unit.",
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Indicates whether or not the item is archived from the menu.",
+      "example": true
+    },
+    "barcode": {
+      "example": "10011101100",
+      "maxLength": 64,
+      "type": "string",
+      "description": "The item barcode."
+    },
+    "barcodes": {
+      "type": "array",
+      "description": "A list of barcodes associated with the item.",
+      "items": {
+        "type": "string",
+        "maxLength": 64,
+        "minLength": 1,
+        "example": "10011101100"
+      }
+    },
+    "accountingGroupId": {
+      "example": 462478248241,
+      "description": "The unique identifier for the accounting group. Must be an existing `accountingGroupId`.",
+      "type": "integer",
+      "format": "int64"
+    },
+    "costPrice": {
+      "type": "number",
+      "description": "The cost price of the item.",
+      "example": 5.0
+    },
+    "defaultPrice": {
+      "example": 10,
+      "type": "number",
+      "description": "The default price of the item."
+    },
+    "priceMode": {
+      "description": "The type of price for the item.",
+      "example": "PERCENT",
+      "enum": [
+        "AMOUNT",
+        "PERCENT",
+        "POSITIVE_OPEN_PRICE",
+        "NEGATIVE_OPEN_PRICE"
+      ],
+      "default": "AMOUNT",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "businessLocationId",
+    "sku",
+    "defaultPrice",
+    "accountingGroupId"
+  ]
+}

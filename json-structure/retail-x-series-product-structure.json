@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-x-series-product-structure.json",
+  "name": "Product",
+  "description": "Product schema from Lightspeed Retail X-Series API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "uuid"
+    },
+    "source_id": {
+      "type": "string"
+    },
+    "handle": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "price_excluding_tax": {
+      "type": "float"
+    },
+    "brand_id": {
+      "type": "uuid"
+    },
+    "active": {
+      "type": "boolean"
+    }
+  }
+}

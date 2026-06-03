@@ -1,0 +1,85 @@
+{
+  "sales": [
+    {
+      "accountReference": "57X0j3hzTZ2oo9sdVWiUog==",
+      "accountFiscId": "A65315.17",
+      "receiptId": "R65315.13",
+      "source": {
+        "initialAccountId": "A65315.13",
+        "previousAccountId": "A65315.15"
+      },
+      "salesLines": [
+        {
+          "id": "S65315.33",
+          "parentLineId": "S65315.32",
+          "totalNetAmountWithTax": "11.00",
+          "totalNetAmountWithoutTax": "8.33",
+          "menuListPrice": "10.00",
+          "unitCostPrice": "5.00",
+          "serviceCharge": "1.00",
+          "serviceChargeType": "APPORTIONED",
+          "serviceChargeRate": "10.00",
+          "discountAmount": "0.00",
+          "taxCode": "VAT20",
+          "taxAmount": "1.6667",
+          "taxRatePercentage": "20.00",
+          "taxLines": [],
+          "discountType": "DISCOUNT",
+          "discountCode": "10PCT",
+          "discountName": "10% Discount",
+          "accountDiscountAmount": "1.00",
+          "accountDiscountType": "DISCOUNT",
+          "accountDiscountCode": "Staff 20%",
+          "accountDiscountName": "Staff Discount",
+          "totalDiscountAmount": "1.00",
+          "sku": "52",
+          "name": "Burger",
+          "nameOverride": "Burger Double Cheese"
+        }
+      ],
+      "payments": [
+        {
+          "code": "CASH",
+          "description": "Cash",
+          "paymentMethodId": 141948669132824,
+          "netAmountWithTax": "11.00",
+          "currency": "GBP",
+          "tip": "0.00",
+          "consumer": {},
+          "type": "NORMAL",
+          "deviceId": "72676",
+          "deviceName": "ipad9",
+          "staffId": 180480,
+          "staffName": "Manager",
+          "authorization": "001",
+          "externalReference": "1000",
+          "revenueCenter": "Fixed POS",
+          "revenueCenterId": 141948669132822,
+          "fiscId": "T72691.8",
+          "uuid": "bc7i2X_CTkeg8qlec66wmg==",
+          "fiscDate": "2023-02-14T20:04:08.665Z",
+          "surcharge": "0.00"
+        }
+      ],
+      "timeOfOpening": "2023-02-14T19:58:48.224Z",
+      "timeClosed": "2023-02-14T20:04:08.734Z",
+      "cancelled": false,
+      "externalFiscalNumber": "IntegratorReferenceId",
+      "tableNumber": "1",
+      "tableName": "Dining Room, Table 1",
+      "accountProfileCode": "AAP",
+      "ownerName": "Manager",
+      "ownerId": 14670,
+      "type": "SALE",
+      "externalReferences": [
+        "\"TASK:OO-{businessLocationId}-{unique-reference-code}\", \"TASK:OO-{businessLocationId}-(another-unique-reference-code)\""
+      ],
+      "nbCovers": 2.0,
+      "dineIn": true,
+      "deviceId": 75125,
+      "deviceName": "ipad9",
+      "voidReason": "Unhappy Client"
+    }
+  ],
+  "nextPageToken": "example"
+}

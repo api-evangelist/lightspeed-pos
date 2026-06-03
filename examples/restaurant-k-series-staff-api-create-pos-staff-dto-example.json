@@ -1,0 +1,11 @@
+{
+  "username": "John Doe",
+  "pinCode": "1234",
+  "firstName": "John",
+  "lastName": "Doe",
+  "active": true,
+  "visible": true,
+  "group": 945,
+  "reportAccess": "STAFF_REPORT_OWN_ACCESS",
+  "roles": []
+}

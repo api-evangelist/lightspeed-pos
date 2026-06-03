@@ -1,0 +1,505 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — Financial
+  description: 'Restaurant — Financial. 8 operations. Lead operation: Lightspeed Get Businesses. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - Financial
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-financial
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — Financial business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: f-data-businesses
+      path: /f/data/businesses
+      operations:
+      - name: financial-apiGetBusinesses
+        method: GET
+        description: Lightspeed Get Businesses
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Starting page of results, when paginating.
+        - name: size
+          in: query
+          type: integer
+          required: false
+          description: Number of results to return, when paginating.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-tax-rates
+      path: /f/finance/{businessLocationId}/tax-rates
+      operations:
+      - name: financial-apiGetTaxRates
+        method: GET
+        description: Lightspeed Get Tax Rates
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-paymentmethods
+      path: /f/finance/{businessLocationId}/paymentMethods
+      operations:
+      - name: financial-apiGetPaymentMethods
+        method: GET
+        description: Lightspeed Get Payment Methods
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-accountinggroups
+      path: /f/finance/{businessLocationId}/accountingGroups
+      operations:
+      - name: financial-apiGetAccountingGroups
+        method: GET
+        description: Lightspeed Get Accounting Groups
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-financials-from-to
+      path: /f/finance/{businessLocationId}/financials/{from}/{to}
+      operations:
+      - name: financial-apiGetFinancials
+        method: GET
+        description: Lightspeed Get Financials
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        - name: from
+          in: path
+          type: string
+          required: true
+          description: 'Start of requested results, in ISO 8601 format.
+
+
+            The date range between ''from'' and ''to'' cannot exceed 365 days (1 year).
+
+
+            Example:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`'
+        - name: to
+          in: path
+          type: string
+          required: true
+          description: 'End of requested results, in ISO 8601 format.
+
+
+            Example:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`'
+        - name: include
+          in: query
+          type: string
+          required: false
+          description: 'Objects to be included in the response.
+
+
+            The allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`.'
+        - name: pageSize
+          in: query
+          type: integer
+          required: false
+          description: Number of entries to return.
+        - name: nextPageToken
+          in: query
+          type: string
+          required: false
+          description: 'The `accountId` where the results should begin.
+
+
+            Example: `A65315.18`'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-dailyfinancials
+      path: /f/finance/{businessLocationId}/dailyFinancials
+      operations:
+      - name: financial-apiGetDailyFinancials
+        method: GET
+        description: Lightspeed Get Daily Financials
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        - name: include
+          in: query
+          type: string
+          required: false
+          description: 'Objects to be included in the response.
+
+
+            The allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`.'
+        - name: date
+          in: query
+          type: string
+          required: false
+          description: The date in YYYY-MM-DD format.
+        - name: includeConsumers
+          in: query
+          type: boolean
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-salebyexternalreference
+      path: /f/finance/{businessLocationId}/saleByExternalReference
+      operations:
+      - name: financial-apiGetReceiptByExternalReference
+        method: GET
+        description: Lightspeed Get Receipt by External Reference
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        - name: externalReferenceId
+          in: query
+          type: string
+          required: true
+          description: The external reference of the receipt. See [externalReferences](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: f-finance-businesslocationid-aggregatedsales
+      path: /f/finance/{businessLocationId}/aggregatedSales
+      operations:
+      - name: financial-apiGetAggregatedSales
+        method: GET
+        description: Lightspeed Get Aggregated Sales
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        - name: date
+          in: query
+          type: string
+          required: false
+          description: 'Specify a single date for which to retrieve aggregated sales data. Cannot be combined with `from` and `to`. Use either `date`, or both `from` and `to`.
+
+            '
+        - name: from
+          in: query
+          type: string
+          required: false
+          description: 'Specify the start datetime for the aggregation range. Must be used together with `to`. Cannot be combined with `date`.
+
+            '
+        - name: to
+          in: query
+          type: string
+          required: false
+          description: 'Specify the end datetime for the aggregation range. Must be used together with `from`. Cannot be combined with `date`.
+
+            '
+        - name: flattened
+          in: query
+          type: boolean
+          required: false
+          description: ''
+        - name: groupBy
+          in: query
+          type: string
+          required: true
+          description: 'Comma-separated list of parameters to group the results by.
+
+            The allowed values are: `staff`, `device`, `deviceId`, `tag`, `accountingGroup`, and `statisticGroup`.
+
+            For example, `groupBy` can be set to `staff,device`.'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-financial-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — Financial. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/f/data/businesses
+      name: v1-f-data-businesses
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetBusinesses
+        description: Lightspeed Get Businesses
+        call: restaurant-k-series-financial.financial-apiGetBusinesses
+        with:
+          page: rest.page
+          size: rest.size
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/tax-rates
+      name: v1-f-finance-businesslocationid-tax-rates
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetTaxRates
+        description: Lightspeed Get Tax Rates
+        call: restaurant-k-series-financial.financial-apiGetTaxRates
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/paymentmethods
+      name: v1-f-finance-businesslocationid-paymentmethods
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetPaymentMethods
+        description: Lightspeed Get Payment Methods
+        call: restaurant-k-series-financial.financial-apiGetPaymentMethods
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/accountinggroups
+      name: v1-f-finance-businesslocationid-accountinggroups
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetAccountingGroups
+        description: Lightspeed Get Accounting Groups
+        call: restaurant-k-series-financial.financial-apiGetAccountingGroups
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/financials/{from}/{to}
+      name: v1-f-finance-businesslocationid-financials-from-to
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetFinancials
+        description: Lightspeed Get Financials
+        call: restaurant-k-series-financial.financial-apiGetFinancials
+        with:
+          businessLocationId: rest.businessLocationId
+          from: rest.from
+          to: rest.to
+          include: rest.include
+          pageSize: rest.pageSize
+          nextPageToken: rest.nextPageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/dailyfinancials
+      name: v1-f-finance-businesslocationid-dailyfinancials
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetDailyFinancials
+        description: Lightspeed Get Daily Financials
+        call: restaurant-k-series-financial.financial-apiGetDailyFinancials
+        with:
+          businessLocationId: rest.businessLocationId
+          include: rest.include
+          date: rest.date
+          includeConsumers: rest.includeConsumers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/salebyexternalreference
+      name: v1-f-finance-businesslocationid-salebyexternalreference
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetReceiptByExternalReference
+        description: Lightspeed Get Receipt by External Reference
+        call: restaurant-k-series-financial.financial-apiGetReceiptByExternalReference
+        with:
+          businessLocationId: rest.businessLocationId
+          externalReferenceId: rest.externalReferenceId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/f/finance/{businesslocationid}/aggregatedsales
+      name: v1-f-finance-businesslocationid-aggregatedsales
+      description: REST surface for Financial.
+      operations:
+      - method: GET
+        name: financial-apiGetAggregatedSales
+        description: Lightspeed Get Aggregated Sales
+        call: restaurant-k-series-financial.financial-apiGetAggregatedSales
+        with:
+          businessLocationId: rest.businessLocationId
+          date: rest.date
+          from: rest.from
+          to: rest.to
+          flattened: rest.flattened
+          groupBy: rest.groupBy
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-financial-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — Financial. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-businesses
+      description: Lightspeed Get Businesses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetBusinesses
+      with:
+        page: tools.page
+        size: tools.size
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-tax-rates
+      description: Lightspeed Get Tax Rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetTaxRates
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-payment-methods
+      description: Lightspeed Get Payment Methods
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetPaymentMethods
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-accounting-groups
+      description: Lightspeed Get Accounting Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetAccountingGroups
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-financials
+      description: Lightspeed Get Financials
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetFinancials
+      with:
+        businessLocationId: tools.businessLocationId
+        from: tools.from
+        to: tools.to
+        include: tools.include
+        pageSize: tools.pageSize
+        nextPageToken: tools.nextPageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-daily-financials
+      description: Lightspeed Get Daily Financials
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetDailyFinancials
+      with:
+        businessLocationId: tools.businessLocationId
+        include: tools.include
+        date: tools.date
+        includeConsumers: tools.includeConsumers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-receipt-external-reference
+      description: Lightspeed Get Receipt by External Reference
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetReceiptByExternalReference
+      with:
+        businessLocationId: tools.businessLocationId
+        externalReferenceId: tools.externalReferenceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-aggregated-sales
+      description: Lightspeed Get Aggregated Sales
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-financial.financial-apiGetAggregatedSales
+      with:
+        businessLocationId: tools.businessLocationId
+        date: tools.date
+        from: tools.from
+        to: tools.to
+        flattened: tools.flattened
+        groupBy: tools.groupBy
+      outputParameters:
+      - type: object
+        mapping: $.

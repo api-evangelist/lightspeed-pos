@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-serviceOnboardingCallbackRequest",
+  "description": "reservation-serviceOnboardingCallbackRequest schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-onboarding-callback-request-schema.json",
+  "type": "object",
+  "properties": {
+    "businessLocationId": {
+      "description": "The unique identifier of the business location.",
+      "example": 9765040300495493,
+      "format": "int64",
+      "type": "integer"
+    },
+    "onboardingCode": {
+      "description": "The machine code to interact with the external platform during the onboarding process.",
+      "enum": [
+        "ACCEPTED",
+        "DONE",
+        "ONBOARDING_EXPIRED",
+        "ONBOARDING_ID_NOT_VALID",
+        "PLATFORM_CODE_NOT_VALID",
+        "BUSINESS_LOCATION_NOT_VALID",
+        "PLATFORM_RESTAURANT_NOT_VALID",
+        "PLATFORM_RESTAURANT_NOT_FOUND",
+        "UNEXPECTED_ERROR"
+      ],
+      "example": "DONE",
+      "type": "string"
+    },
+    "onboardingId": {
+      "description": "The unique identifier of the integration process that has started onboarding.",
+      "example": "84f16177-98c5-4010-a7ab-d00144d1dede",
+      "type": "string"
+    },
+    "platformRestaurantId": {
+      "description": "The external platform's unique identifier for the restaurant.",
+      "example": "Restaurant-123",
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    }
+  },
+  "required": [
+    "onboardingId",
+    "onboardingCode",
+    "platformRestaurantId",
+    "businessLocationId"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-account-structure.json",
+  "name": "Account",
+  "description": "A Lightspeed Retail R-Series account.",
+  "type": "object",
+  "properties": {
+    "accountID": {
+      "type": "string",
+      "description": "Unique numeric account identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Account / business name."
+    },
+    "link": {
+      "type": "string",
+      "description": "API self-link for the account."
+    }
+  }
+}

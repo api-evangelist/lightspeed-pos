@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "financial-apiAbortedOrderDto",
+  "description": "Represents an unpaid, non-committed order that has been fully aborted.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-financial-api-aborted-order-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "staffName": {
+      "type": "string",
+      "description": "The name of the staff member who aborted the order.",
+      "example": "Employee 1"
+    },
+    "timeOfAbortedOrder": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the order was aborted and all line items fully cleared.",
+      "example": "2023-03-14T19:58:48.224Z"
+    },
+    "totalAmountAborted": {
+      "type": "string",
+      "description": "The total value of the aborted order.",
+      "example": "33.32"
+    },
+    "abortedLineItems": {
+      "type": "array",
+      "description": "A list of all line items that were removed from the aborted order.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "itemName": {
+            "type": "string",
+            "description": "The name of the item that was removed from the order.",
+            "example": "Soda"
+          },
+          "itemSku": {
+            "type": "string",
+            "description": "The SKU of the item that was removed from the order.",
+            "example": "9"
+          },
+          "itemQuantity": {
+            "type": "string",
+            "description": "The quantity of the item removed from the order.",
+            "example": "4.000"
+          },
+          "itemAmount": {
+            "type": "string",
+            "description": "The total price for this item (itemPrice * itemQuantity).",
+            "example": "33.32"
+          },
+          "itemPrice": {
+            "type": "string",
+            "description": "The unit price of the item removed from the order.",
+            "example": "8.33"
+          }
+        }
+      }
+    }
+  }
+}

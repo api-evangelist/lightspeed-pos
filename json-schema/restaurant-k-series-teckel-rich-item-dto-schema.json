@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "teckelRichItemDto",
+  "description": "teckelRichItemDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-teckel-rich-item-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "businessId": {
+      "example": 454335871,
+      "description": "The unique identifier for the business.",
+      "type": "integer",
+      "format": "int64"
+    },
+    "sku": {
+      "example": "UGG-BB-PUR-06",
+      "maxLength": 25,
+      "description": "The SKU of the item.",
+      "type": "string"
+    },
+    "descriptions": {
+      "description": "List of localized descriptions",
+      "example": [
+        {
+          "localeCode": "de",
+          "description": "Das ist ein Test",
+          "displayName": "Rich Item 1 DE"
+        },
+        {
+          "localeCode": "en",
+          "description": "This is a test for a rich item",
+          "displayName": "Rich Item 1"
+        }
+      ],
+      "items": {
+        "description": "Stores an item description with its locale code.",
+        "example": {
+          "localeCode": "fr",
+          "description": "Ceci est un caf\u00e9. L'apostrophe.",
+          "displayName": "Super expresso"
+        },
+        "properties": {
+          "localeCode": {
+            "description": "The language code (ISO 639) of the description.",
+            "minLength": 2,
+            "maxLength": 7,
+            "nullable": false,
+            "type": "string"
+          },
+          "description": {
+            "description": "The item description in the language of the locale.",
+            "maxLength": 4000,
+            "type": "string"
+          },
+          "displayName": {
+            "description": "The display name of the item in the language of the locale.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "localeCode"
+        ],
+        "type": "object"
+      },
+      "uniqueItems": true,
+      "type": "array"
+    },
+    "allergenCodes": {
+      "description": "List of allergen codes.",
+      "example": [
+        "milk",
+        "cereals"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "type": "array"
+    }
+  }
+}

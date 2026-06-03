@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeBusinessLocationId",
+  "description": "The unique identifier for the business location.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-business-location-id-schema.json",
+  "type": "integer",
+  "format": "int64",
+  "example": 45454565682155
+}

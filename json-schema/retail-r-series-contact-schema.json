@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact",
+  "description": "Contact details associated with a customer.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-r-series-contact-schema.json",
+  "type": "object",
+  "properties": {
+    "contactID": {
+      "type": "string",
+      "description": "Unique contact identifier."
+    },
+    "custom": {
+      "type": "string",
+      "description": "Custom contact field."
+    },
+    "noEmail": {
+      "type": "boolean",
+      "description": "Whether the contact opted out of email."
+    },
+    "noPhone": {
+      "type": "boolean",
+      "description": "Whether the contact opted out of phone contact."
+    },
+    "noMail": {
+      "type": "boolean",
+      "description": "Whether the contact opted out of mail."
+    }
+  }
+}

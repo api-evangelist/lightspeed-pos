@@ -1,0 +1,592 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-account-snapshot-structure.json",
+  "name": "apeAccountSnapshot",
+  "description": "apeAccountSnapshot schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "clientCount": {
+      "type": "int32",
+      "description": "The number of guests at the table.",
+      "example": 4
+    },
+    "identifier": {
+      "type": "string",
+      "deprecated": true
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The account uuid.",
+      "example": "a3bb189e-8f29-4cce-b0e9-f29b123dfe3d"
+    },
+    "openDate": {
+      "type": "datetime",
+      "description": "The date this account was opened in UTC.",
+      "example": "2021-06-21T14:20:00Z"
+    },
+    "closeDate": {
+      "type": "datetime",
+      "description": "The date this account was closed in UTC.",
+      "example": "2021-06-22T10:15:00Z"
+    },
+    "paidAmount": {
+      "type": "double",
+      "description": "The total of all payments on the check.",
+      "example": 100.0
+    },
+    "serviceCharge": {
+      "type": "double",
+      "description": "The service charge applied to the check.",
+      "example": 10.0
+    },
+    "name": {
+      "type": "string",
+      "description": "The check name.",
+      "example": "ORDER A1C2E"
+    },
+    "currentAmount": {
+      "type": "double",
+      "description": "The current total amount on the check.",
+      "example": 110.0
+    },
+    "staffName": {
+      "type": "string",
+      "description": "The name of the staff member assigned to the check.",
+      "example": "Jane Smith"
+    },
+    "staffId": {
+      "type": "int64",
+      "description": "The unique ID of the staff member assigned to the check.",
+      "example": 7701234
+    },
+    "salesEntries": {
+      "type": "array",
+      "description": "Collection of check items.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "int64",
+            "description": "The unique ID assigned to the sale line.",
+            "example": 1341648999023061
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The UUID assigned to the sale line.",
+            "example": "2c83b049-a2c1-4bc5-8479-eb152e5a54be"
+          },
+          "itemName": {
+            "type": "string",
+            "description": "The name given to the item.",
+            "example": "Burger"
+          },
+          "itemSku": {
+            "type": "string",
+            "description": "The SKU assigned to the item.",
+            "example": "14"
+          },
+          "unitAmount": {
+            "type": "double",
+            "description": "The price per unit.",
+            "example": 10.0
+          },
+          "quantity": {
+            "type": "double",
+            "description": "The quantity of the item for this sale line.",
+            "example": 1.0
+          },
+          "modifiers": {
+            "type": "array",
+            "description": "The modifiers of the item for this sale line.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "Rare",
+                  "description": "The name of the modifier.",
+                  "type": "string"
+                },
+                "quantity": {
+                  "example": 1,
+                  "description": "The quantity of the modifier.",
+                  "type": "int32"
+                }
+              },
+              "description": "The modifiers of the item for this sale line"
+            }
+          },
+          "amountWithTax": {
+            "type": "double",
+            "description": "The total price of the item including tax.",
+            "example": 11.5
+          },
+          "amountLessTax": {
+            "type": "double",
+            "description": "The total price of the item without tax.",
+            "example": 10.0
+          },
+          "discountedAmount": {
+            "type": "double",
+            "description": "The amount the item was discounted.",
+            "example": 0.0
+          },
+          "timeOfTransactionUtc": {
+            "type": "datetime",
+            "description": "The date and time in UTC when the transaction occurred.",
+            "example": "2023-11-07T21:24:44.741+0000"
+          },
+          "active": {
+            "type": "boolean",
+            "deprecated": true,
+            "example": true
+          },
+          "parentId": {
+            "type": "int64",
+            "writeOnly": true
+          },
+          "subLineItems": {
+            "type": "array",
+            "description": "Collection of sub-line items associated with this sale line.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "int64",
+                  "description": "The unique ID assigned to the sale line.",
+                  "example": 1341648999023061
+                },
+                "uuid": {
+                  "type": "string",
+                  "description": "The UUID assigned to the sale line.",
+                  "example": "2c83b049-a2c1-4bc5-8479-eb152e5a54be"
+                },
+                "itemName": {
+                  "type": "string",
+                  "description": "The name given to the item.",
+                  "example": "Burger"
+                },
+                "itemSku": {
+                  "type": "string",
+                  "description": "The SKU assigned to the item.",
+                  "example": "14"
+                },
+                "unitAmount": {
+                  "type": "double",
+                  "description": "The price per unit.",
+                  "example": 10.0
+                },
+                "quantity": {
+                  "type": "double",
+                  "description": "The quantity of the item for this sale line.",
+                  "example": 1.0
+                },
+                "modifiers": {
+                  "type": "array",
+                  "description": "The modifiers of the item for this sale line.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "example": "Rare",
+                        "description": "The name of the modifier.",
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "example": 1,
+                        "description": "The quantity of the modifier.",
+                        "type": "int32"
+                      }
+                    },
+                    "description": "The modifiers of the item for this sale line"
+                  }
+                },
+                "amountWithTax": {
+                  "type": "double",
+                  "description": "The total price of the item including tax.",
+                  "example": 11.5
+                },
+                "amountLessTax": {
+                  "type": "double",
+                  "description": "The total price of the item without tax.",
+                  "example": 10.0
+                },
+                "discountedAmount": {
+                  "type": "double",
+                  "description": "The amount the item was discounted.",
+                  "example": 0.0
+                },
+                "timeOfTransactionUtc": {
+                  "type": "datetime",
+                  "description": "The date and time in UTC when the transaction occurred.",
+                  "example": "2023-11-07T21:24:44.741+0000"
+                },
+                "active": {
+                  "type": "boolean",
+                  "deprecated": true,
+                  "example": true
+                },
+                "parentId": {
+                  "type": "int64",
+                  "writeOnly": true
+                },
+                "subLineItems": {
+                  "type": "array",
+                  "description": "Collection of sub-line items associated with this sale line.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "int64",
+                        "description": "The unique ID assigned to the sale line.",
+                        "example": 1341648999023061
+                      },
+                      "uuid": {
+                        "type": "string",
+                        "description": "The UUID assigned to the sale line.",
+                        "example": "2c83b049-a2c1-4bc5-8479-eb152e5a54be"
+                      },
+                      "itemName": {
+                        "type": "string",
+                        "description": "The name given to the item.",
+                        "example": "Burger"
+                      },
+                      "itemSku": {
+                        "type": "string",
+                        "description": "The SKU assigned to the item.",
+                        "example": "14"
+                      },
+                      "unitAmount": {
+                        "type": "double",
+                        "description": "The price per unit.",
+                        "example": 10.0
+                      },
+                      "quantity": {
+                        "type": "double",
+                        "description": "The quantity of the item for this sale line.",
+                        "example": 1.0
+                      },
+                      "modifiers": {
+                        "type": "array",
+                        "description": "The modifiers of the item for this sale line.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "example": "Rare",
+                              "description": "The name of the modifier.",
+                              "type": "string"
+                            },
+                            "quantity": {
+                              "example": 1,
+                              "description": "The quantity of the modifier.",
+                              "type": "int32"
+                            }
+                          },
+                          "description": "The modifiers of the item for this sale line"
+                        }
+                      },
+                      "amountWithTax": {
+                        "type": "double",
+                        "description": "The total price of the item including tax.",
+                        "example": 11.5
+                      },
+                      "amountLessTax": {
+                        "type": "double",
+                        "description": "The total price of the item without tax.",
+                        "example": 10.0
+                      },
+                      "discountedAmount": {
+                        "type": "double",
+                        "description": "The amount the item was discounted.",
+                        "example": 0.0
+                      },
+                      "timeOfTransactionUtc": {
+                        "type": "datetime",
+                        "description": "The date and time in UTC when the transaction occurred.",
+                        "example": "2023-11-07T21:24:44.741+0000"
+                      },
+                      "active": {
+                        "type": "boolean",
+                        "deprecated": true,
+                        "example": true
+                      },
+                      "parentId": {
+                        "type": "int64",
+                        "writeOnly": true
+                      },
+                      "subLineItems": {
+                        "type": "array",
+                        "description": "Collection of sub-line items associated with this sale line.",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "int64",
+                              "description": "The unique ID assigned to the sale line.",
+                              "example": 1341648999023061
+                            },
+                            "uuid": {
+                              "type": "string",
+                              "description": "The UUID assigned to the sale line.",
+                              "example": "2c83b049-a2c1-4bc5-8479-eb152e5a54be"
+                            },
+                            "itemName": {
+                              "type": "string",
+                              "description": "The name given to the item.",
+                              "example": "Burger"
+                            },
+                            "itemSku": {
+                              "type": "string",
+                              "description": "The SKU assigned to the item.",
+                              "example": "14"
+                            },
+                            "unitAmount": {
+                              "type": "double",
+                              "description": "The price per unit.",
+                              "example": 10.0
+                            },
+                            "quantity": {
+                              "type": "double",
+                              "description": "The quantity of the item for this sale line.",
+                              "example": 1.0
+                            },
+                            "modifiers": {
+                              "type": "array",
+                              "description": "The modifiers of the item for this sale line.",
+                              "items": {
+                                "type": "object"
+                              }
+                            },
+                            "amountWithTax": {
+                              "type": "double",
+                              "description": "The total price of the item including tax.",
+                              "example": 11.5
+                            },
+                            "amountLessTax": {
+                              "type": "double",
+                              "description": "The total price of the item without tax.",
+                              "example": 10.0
+                            },
+                            "discountedAmount": {
+                              "type": "double",
+                              "description": "The amount the item was discounted.",
+                              "example": 0.0
+                            },
+                            "timeOfTransactionUtc": {
+                              "type": "datetime",
+                              "description": "The date and time in UTC when the transaction occurred.",
+                              "example": "2023-11-07T21:24:44.741+0000"
+                            },
+                            "active": {
+                              "type": "boolean",
+                              "deprecated": true,
+                              "example": true
+                            },
+                            "parentId": {
+                              "type": "int64",
+                              "writeOnly": true
+                            },
+                            "subLineItems": {
+                              "type": "array",
+                              "description": "Collection of sub-line items associated with this sale line.",
+                              "items": {
+                                "type": "object"
+                              },
+                              "example": [
+                                {
+                                  "id": 1341648999023062,
+                                  "uuid": "2c83b049-a2c1-4bc5-8479-eb152e5a54be",
+                                  "itemName": "Extra Cheese",
+                                  "itemSku": "35",
+                                  "unitAmount": 1.0,
+                                  "quantity": 1.0,
+                                  "modifiers": [],
+                                  "amountWithTax": 1.15,
+                                  "amountLessTax": 1.0,
+                                  "discountedAmount": 0.0,
+                                  "grossUnitAmount": 1.0,
+                                  "timeOfTransactionUtc": "2023-11-07T21:24:44.755+0000",
+                                  "active": true,
+                                  "subLineItems": [],
+                                  "taxIncluded": false
+                                }
+                              ]
+                            },
+                            "isTaxIncluded": {
+                              "type": "boolean",
+                              "writeOnly": true
+                            },
+                            "taxIncluded": {
+                              "type": "boolean",
+                              "description": "Indicates whether tax is included in the unit amount.",
+                              "example": false
+                            }
+                          }
+                        },
+                        "example": [
+                          {
+                            "id": 1341648999023062,
+                            "uuid": "2c83b049-a2c1-4bc5-8479-eb152e5a54be",
+                            "itemName": "Extra Cheese",
+                            "itemSku": "35",
+                            "unitAmount": 1.0,
+                            "quantity": 1.0,
+                            "modifiers": [],
+                            "amountWithTax": 1.15,
+                            "amountLessTax": 1.0,
+                            "discountedAmount": 0.0,
+                            "grossUnitAmount": 1.0,
+                            "timeOfTransactionUtc": "2023-11-07T21:24:44.755+0000",
+                            "active": true,
+                            "subLineItems": [],
+                            "taxIncluded": false
+                          }
+                        ]
+                      },
+                      "isTaxIncluded": {
+                        "type": "boolean",
+                        "writeOnly": true
+                      },
+                      "taxIncluded": {
+                        "type": "boolean",
+                        "description": "Indicates whether tax is included in the unit amount.",
+                        "example": false
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1341648999023062,
+                      "uuid": "2c83b049-a2c1-4bc5-8479-eb152e5a54be",
+                      "itemName": "Extra Cheese",
+                      "itemSku": "35",
+                      "unitAmount": 1.0,
+                      "quantity": 1.0,
+                      "modifiers": [],
+                      "amountWithTax": 1.15,
+                      "amountLessTax": 1.0,
+                      "discountedAmount": 0.0,
+                      "grossUnitAmount": 1.0,
+                      "timeOfTransactionUtc": "2023-11-07T21:24:44.755+0000",
+                      "active": true,
+                      "subLineItems": [],
+                      "taxIncluded": false
+                    }
+                  ]
+                },
+                "isTaxIncluded": {
+                  "type": "boolean",
+                  "writeOnly": true
+                },
+                "taxIncluded": {
+                  "type": "boolean",
+                  "description": "Indicates whether tax is included in the unit amount.",
+                  "example": false
+                }
+              }
+            },
+            "example": [
+              {
+                "id": 1341648999023062,
+                "uuid": "2c83b049-a2c1-4bc5-8479-eb152e5a54be",
+                "itemName": "Extra Cheese",
+                "itemSku": "35",
+                "unitAmount": 1.0,
+                "quantity": 1.0,
+                "modifiers": [],
+                "amountWithTax": 1.15,
+                "amountLessTax": 1.0,
+                "discountedAmount": 0.0,
+                "grossUnitAmount": 1.0,
+                "timeOfTransactionUtc": "2023-11-07T21:24:44.755+0000",
+                "active": true,
+                "subLineItems": [],
+                "taxIncluded": false
+              }
+            ]
+          },
+          "isTaxIncluded": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "taxIncluded": {
+            "type": "boolean",
+            "description": "Indicates whether tax is included in the unit amount.",
+            "example": false
+          }
+        }
+      }
+    },
+    "paymentEntries": {
+      "type": "array",
+      "description": "Collection of payment entries to the check.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "paymentMethodDescription": {
+            "type": "string",
+            "description": "Payment method for this payment line.",
+            "example": "API Payment"
+          },
+          "externalReference": {
+            "type": "string",
+            "description": "Payment external reference.",
+            "example": "12345678901234"
+          },
+          "paymentMethodCode": {
+            "type": "string",
+            "description": "Payment method code for this payment line.",
+            "example": "APM"
+          },
+          "amountPaid": {
+            "type": "double",
+            "description": "Amount paid for this payment line.",
+            "example": 12.65
+          },
+          "paymentDate": {
+            "type": "datetime",
+            "description": "Date/Time in UTC of this payment.",
+            "example": "2023-11-07T22:05:16.127+0000"
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether this payment line is active or not.",
+            "example": true
+          },
+          "accountCancelled": {
+            "type": "boolean",
+            "writeOnly": true
+          }
+        },
+        "description": "Payments associated with this check."
+      }
+    },
+    "id": {
+      "type": "string",
+      "deprecated": true
+    },
+    "ikaccountId": {
+      "type": "string",
+      "description": "The system-generated account identifier for this check.(Applies to iKentoo V3+).",
+      "example": "A78094.48"
+    },
+    "number": {
+      "type": "int32",
+      "deprecated": true
+    },
+    "tableNumber": {
+      "type": "int32",
+      "description": "The table number assigned to the check.",
+      "example": 2
+    },
+    "posId": {
+      "type": "int64",
+      "description": "The unique ID of the POS station that processed the check.",
+      "example": 54321
+    },
+    "deviceId": {
+      "type": "int64",
+      "deprecated": true
+    }
+  }
+}

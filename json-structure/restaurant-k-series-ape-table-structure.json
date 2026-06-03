@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-table-structure.json",
+  "name": "apeTable",
+  "description": "The tables under this floorplan.",
+  "type": "object",
+  "properties": {
+    "number": {
+      "description": "The table number.",
+      "type": "int32",
+      "example": 1
+    },
+    "reference": {
+      "description": "The table reference.",
+      "type": "string",
+      "example": "abcdefg123456"
+    },
+    "id": {
+      "description": "The unique identifier for this table.",
+      "type": "string",
+      "example": "141948669132977"
+    },
+    "active": {
+      "description": "If the table is active.",
+      "type": "boolean",
+      "example": true
+    },
+    "description": {
+      "description": "The table description.",
+      "type": "string",
+      "example": "Table 1"
+    },
+    "defaultClientCount": {
+      "description": "The default client count for this table.",
+      "type": "int32",
+      "example": 4
+    }
+  }
+}

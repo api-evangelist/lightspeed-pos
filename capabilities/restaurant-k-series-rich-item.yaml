@@ -1,0 +1,513 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — Rich Item
+  description: 'Restaurant — Rich Item. 10 operations. Lead operation: Lightspeed Get Allergens. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - Rich Item
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-rich-item
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — Rich Item business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: i-allergens
+      path: /i/allergens
+      operations:
+      - name: teckelGetAllergens
+        method: GET
+        description: Lightspeed Get Allergens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: i-locales-businessid
+      path: /i/locales/{businessId}
+      operations:
+      - name: teckelGetLocales
+        method: GET
+        description: Lightspeed Get Locales
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: teckelUpdateLocales
+        method: PUT
+        description: Lightspeed Update Locales
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: i-richitem-businessid
+      path: /i/richItem/{businessId}
+      operations:
+      - name: teckelGetRichItems
+        method: GET
+        description: Lightspeed Get Rich Items
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: ''
+        - name: size
+          in: query
+          type: integer
+          required: false
+          description: ''
+        - name: sort
+          in: query
+          type: array
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: i-richitem-businessid-sku
+      path: /i/richItem/{businessId}/{sku}
+      operations:
+      - name: teckelGetRichItem
+        method: GET
+        description: Lightspeed Get Rich Item by Sku
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: sku
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: teckelUpdateRichItemPicture
+        method: PATCH
+        description: Lightspeed Update Picture
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: sku
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: teckelCreateOrUpdateRichItem
+        method: PUT
+        description: Lightspeed Create or Update Rich Item
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: sku
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: teckelDeleteRichItem
+        method: DELETE
+        description: Lightspeed Delete Rich Item
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: sku
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: i-richitem-businessid-itemsbyskus
+      path: /i/richItem/{businessId}/itemsBySkus
+      operations:
+      - name: teckelGetRichItemBySKUs
+        method: POST
+        description: Lightspeed Get Rich Items by SKUs
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: i-richitem-businessid-picturespec
+      path: /i/richItem/{businessId}/pictureSpec
+      operations:
+      - name: teckelGetRichItemPictureSpec
+        method: GET
+        description: Lightspeed Get Picture Specifications
+        inputParameters:
+        - name: businessId
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-rich-item-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — Rich Item. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/i/allergens
+      name: v1-i-allergens
+      description: REST surface for Rich Item.
+      operations:
+      - method: GET
+        name: teckelGetAllergens
+        description: Lightspeed Get Allergens
+        call: restaurant-k-series-rich-item.teckelGetAllergens
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/locales/{businessid}
+      name: v1-i-locales-businessid
+      description: REST surface for Rich Item.
+      operations:
+      - method: GET
+        name: teckelGetLocales
+        description: Lightspeed Get Locales
+        call: restaurant-k-series-rich-item.teckelGetLocales
+        with:
+          businessId: rest.businessId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/locales/{businessid}
+      name: v1-i-locales-businessid
+      description: REST surface for Rich Item.
+      operations:
+      - method: PUT
+        name: teckelUpdateLocales
+        description: Lightspeed Update Locales
+        call: restaurant-k-series-rich-item.teckelUpdateLocales
+        with:
+          businessId: rest.businessId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}
+      name: v1-i-richitem-businessid
+      description: REST surface for Rich Item.
+      operations:
+      - method: GET
+        name: teckelGetRichItems
+        description: Lightspeed Get Rich Items
+        call: restaurant-k-series-rich-item.teckelGetRichItems
+        with:
+          businessId: rest.businessId
+          page: rest.page
+          size: rest.size
+          sort: rest.sort
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}/{sku}
+      name: v1-i-richitem-businessid-sku
+      description: REST surface for Rich Item.
+      operations:
+      - method: GET
+        name: teckelGetRichItem
+        description: Lightspeed Get Rich Item by Sku
+        call: restaurant-k-series-rich-item.teckelGetRichItem
+        with:
+          businessId: rest.businessId
+          sku: rest.sku
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}/{sku}
+      name: v1-i-richitem-businessid-sku
+      description: REST surface for Rich Item.
+      operations:
+      - method: PATCH
+        name: teckelUpdateRichItemPicture
+        description: Lightspeed Update Picture
+        call: restaurant-k-series-rich-item.teckelUpdateRichItemPicture
+        with:
+          businessId: rest.businessId
+          sku: rest.sku
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}/{sku}
+      name: v1-i-richitem-businessid-sku
+      description: REST surface for Rich Item.
+      operations:
+      - method: PUT
+        name: teckelCreateOrUpdateRichItem
+        description: Lightspeed Create or Update Rich Item
+        call: restaurant-k-series-rich-item.teckelCreateOrUpdateRichItem
+        with:
+          businessId: rest.businessId
+          sku: rest.sku
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}/{sku}
+      name: v1-i-richitem-businessid-sku
+      description: REST surface for Rich Item.
+      operations:
+      - method: DELETE
+        name: teckelDeleteRichItem
+        description: Lightspeed Delete Rich Item
+        call: restaurant-k-series-rich-item.teckelDeleteRichItem
+        with:
+          businessId: rest.businessId
+          sku: rest.sku
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}/itemsbyskus
+      name: v1-i-richitem-businessid-itemsbyskus
+      description: REST surface for Rich Item.
+      operations:
+      - method: POST
+        name: teckelGetRichItemBySKUs
+        description: Lightspeed Get Rich Items by SKUs
+        call: restaurant-k-series-rich-item.teckelGetRichItemBySKUs
+        with:
+          businessId: rest.businessId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/i/richitem/{businessid}/picturespec
+      name: v1-i-richitem-businessid-picturespec
+      description: REST surface for Rich Item.
+      operations:
+      - method: GET
+        name: teckelGetRichItemPictureSpec
+        description: Lightspeed Get Picture Specifications
+        call: restaurant-k-series-rich-item.teckelGetRichItemPictureSpec
+        with:
+          businessId: rest.businessId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-rich-item-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — Rich Item. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-allergens
+      description: Lightspeed Get Allergens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelGetAllergens
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-locales
+      description: Lightspeed Get Locales
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelGetLocales
+      with:
+        businessId: tools.businessId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-locales
+      description: Lightspeed Update Locales
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelUpdateLocales
+      with:
+        businessId: tools.businessId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rich-items
+      description: Lightspeed Get Rich Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelGetRichItems
+      with:
+        businessId: tools.businessId
+        page: tools.page
+        size: tools.size
+        sort: tools.sort
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rich-item-sku
+      description: Lightspeed Get Rich Item by Sku
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelGetRichItem
+      with:
+        businessId: tools.businessId
+        sku: tools.sku
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-picture
+      description: Lightspeed Update Picture
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelUpdateRichItemPicture
+      with:
+        businessId: tools.businessId
+        sku: tools.sku
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-rich-item
+      description: Lightspeed Create or Update Rich Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelCreateOrUpdateRichItem
+      with:
+        businessId: tools.businessId
+        sku: tools.sku
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-rich-item
+      description: Lightspeed Delete Rich Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelDeleteRichItem
+      with:
+        businessId: tools.businessId
+        sku: tools.sku
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rich-items-skus
+      description: Lightspeed Get Rich Items by SKUs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-rich-item.teckelGetRichItemBySKUs
+      with:
+        businessId: tools.businessId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-picture-specifications
+      description: Lightspeed Get Picture Specifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-rich-item.teckelGetRichItemPictureSpec
+      with:
+        businessId: tools.businessId
+      outputParameters:
+      - type: object
+        mapping: $.

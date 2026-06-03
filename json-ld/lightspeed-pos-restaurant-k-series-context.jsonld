@@ -1,0 +1,1478 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ls": "https://developers.lightspeedhq.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "apeAccountProfile": "ls:apeAccountProfile",
+    "apeAccountProfiles": "ls:apeAccountProfiles",
+    "apeAccountSnapshot": "ls:apeAccountSnapshot",
+    "apeCustomerInfo": "ls:apeCustomerInfo",
+    "apeDiscount": "ls:apeDiscount",
+    "apeLocalOrderItemLine": "ls:apeLocalOrderItemLine",
+    "apeMenu": "ls:apeMenu",
+    "apeMenuV2": "ls:apeMenuV2",
+    "apeOrderPayment": "ls:apeOrderPayment",
+    "apePaymentBadRequestError": "ls:apePaymentBadRequestError",
+    "apePaymentSubmissionResponse": "ls:apePaymentSubmissionResponse",
+    "apeProductionInstruction": "ls:apeProductionInstruction",
+    "apeRestrictedItemPaginatedResponse": "ls:apeRestrictedItemPaginatedResponse",
+    "apeSkusRequest": "ls:apeSkusRequest",
+    "apeStandalonePayment": "ls:apeStandalonePayment",
+    "apeTable": "ls:apeTable",
+    "apeToGoOrderItemLine": "ls:apeToGoOrderItemLine",
+    "apeWebhookEndpointBusinessLocationDto": "ls:apeWebhookEndpointBusinessLocationDto",
+    "apeWebhookEndpoint": "ls:apeWebhookEndpoint",
+    "financial-apiAbortedOrderDto": "ls:financial-apiAbortedOrderDto",
+    "financial-apiFinancialDto": "ls:financial-apiFinancialDto",
+    "financial-apiLSPaymentsDto": "ls:financial-apiLSPaymentsDto",
+    "financial-apiResourcesTaxRate": "ls:financial-apiResourcesTaxRate",
+    "financial-apiSaleDto": "ls:financial-apiSaleDto",
+    "financial-apiSalesDailyExportDto": "ls:financial-apiSalesDailyExportDto",
+    "financial-apiSalesExportDto": "ls:financial-apiSalesExportDto",
+    "id-cards-apiCreateIdCardBatchRequest": "ls:id-cards-apiCreateIdCardBatchRequest",
+    "id-cards-apiCreateIdCardsRequest": "ls:id-cards-apiCreateIdCardsRequest",
+    "id-cards-apiCreateIdCardsResponse": "ls:id-cards-apiCreateIdCardsResponse",
+    "id-cards-apiIdCardBatch": "ls:id-cards-apiIdCardBatch",
+    "items-apiCreateItemDTO": "ls:items-apiCreateItemDTO",
+    "items-apiItemDTO": "ls:items-apiItemDTO",
+    "items-apiUpdateItemDTO": "ls:items-apiUpdateItemDTO",
+    "pms-apiGetProvider": "ls:pms-apiGetProvider",
+    "reservation-serviceOnboardingCallbackRequest": "ls:reservation-serviceOnboardingCallbackRequest",
+    "reservation-serviceOnboardingCallbackResponse": "ls:reservation-serviceOnboardingCallbackResponse",
+    "reservation-servicePlatformAPIKeysWebhook": "ls:reservation-servicePlatformAPIKeysWebhook",
+    "reservation-servicePlatformBasicAuthWebhook": "ls:reservation-servicePlatformBasicAuthWebhook",
+    "reservation-servicePlatformBearerTokenWebhook": "ls:reservation-servicePlatformBearerTokenWebhook",
+    "reservation-servicePlatformBusinessLocation": "ls:reservation-servicePlatformBusinessLocation",
+    "reservation-servicePlatformCourseSettingsDto": "ls:reservation-servicePlatformCourseSettingsDto",
+    "reservation-servicePlatformIntegrationDto": "ls:reservation-servicePlatformIntegrationDto",
+    "reservation-servicePlatformOAuth2Webhook": "ls:reservation-servicePlatformOAuth2Webhook",
+    "reservation-servicePlatformProfileResponse": "ls:reservation-servicePlatformProfileResponse",
+    "reservation-servicePlatformProfile": "ls:reservation-servicePlatformProfile",
+    "reservation-servicePlatformReservationAcceptedDto": "ls:reservation-servicePlatformReservationAcceptedDto",
+    "reservation-servicePlatformReservation": "ls:reservation-servicePlatformReservation",
+    "reservation-servicePlatformWebhookResponseDto": "ls:reservation-servicePlatformWebhookResponseDto",
+    "staff-apiBOStaff": "ls:staff-apiBOStaff",
+    "staff-apiBusinessLocationIds": "ls:staff-apiBusinessLocationIds",
+    "staff-apiCreatePosStaffDto": "ls:staff-apiCreatePosStaffDto",
+    "staff-apiCreateWebhookRequest": "ls:staff-apiCreateWebhookRequest",
+    "staff-apiPOSStaff": "ls:staff-apiPOSStaff",
+    "staff-apiReportAccessLevel": "ls:staff-apiReportAccessLevel",
+    "staff-apiResponseSchema": "ls:staff-apiResponseSchema",
+    "staff-apiShift": "ls:staff-apiShift",
+    "staff-apiStaffGroup": "ls:staff-apiStaffGroup",
+    "staff-apiStaff": "ls:staff-apiStaff",
+    "staff-apiUpdatePosStaffDto": "ls:staff-apiUpdatePosStaffDto",
+    "staff-apiUserPermission": "ls:staff-apiUserPermission",
+    "staff-apiWebhookDto": "ls:staff-apiWebhookDto",
+    "teckelLinkSelfPage": "ls:teckelLinkSelfPage",
+    "teckelLinkSelf": "ls:teckelLinkSelf",
+    "teckelPictureSpecDto": "ls:teckelPictureSpecDto",
+    "teckelRichItemDescriptionDto": "ls:teckelRichItemDescriptionDto",
+    "teckelRichItemDtoDates": "ls:teckelRichItemDtoDates",
+    "teckelRichItemDtoLinks": "ls:teckelRichItemDtoLinks",
+    "teckelRichItemDtoPictures": "ls:teckelRichItemDtoPictures",
+    "teckelRichItemDto": "ls:teckelRichItemDto",
+    "id": {
+      "@id": "ls:id",
+      "@type": "xsd:integer"
+    },
+    "code": {
+      "@id": "ls:code",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "deliveryMode": {
+      "@id": "ls:deliveryMode",
+      "@type": "xsd:string"
+    },
+    "businessLocationId": {
+      "@id": "ls:businessLocationId",
+      "@type": "xsd:integer"
+    },
+    "accountProfileList": {
+      "@id": "ls:accountProfileList",
+      "@container": "@set"
+    },
+    "clientCount": {
+      "@id": "ls:clientCount",
+      "@type": "xsd:integer"
+    },
+    "identifier": {
+      "@id": "ls:identifier",
+      "@type": "xsd:string"
+    },
+    "uuid": {
+      "@id": "ls:uuid",
+      "@type": "xsd:string"
+    },
+    "openDate": {
+      "@id": "ls:openDate",
+      "@type": "xsd:dateTime"
+    },
+    "closeDate": {
+      "@id": "ls:closeDate",
+      "@type": "xsd:dateTime"
+    },
+    "paidAmount": {
+      "@id": "ls:paidAmount",
+      "@type": "xsd:decimal"
+    },
+    "serviceCharge": {
+      "@id": "ls:serviceCharge",
+      "@type": "xsd:decimal"
+    },
+    "currentAmount": {
+      "@id": "ls:currentAmount",
+      "@type": "xsd:decimal"
+    },
+    "staffName": {
+      "@id": "ls:staffName",
+      "@type": "xsd:string"
+    },
+    "staffId": {
+      "@id": "ls:staffId",
+      "@type": "xsd:integer"
+    },
+    "salesEntries": {
+      "@id": "ls:salesEntries",
+      "@container": "@set"
+    },
+    "itemName": {
+      "@id": "ls:itemName",
+      "@type": "xsd:string"
+    },
+    "itemSku": {
+      "@id": "ls:itemSku",
+      "@type": "xsd:string"
+    },
+    "unitAmount": {
+      "@id": "ls:unitAmount",
+      "@type": "xsd:decimal"
+    },
+    "quantity": {
+      "@id": "ls:quantity",
+      "@type": "xsd:double"
+    },
+    "modifiers": {
+      "@id": "ls:modifiers",
+      "@container": "@set"
+    },
+    "amountWithTax": {
+      "@id": "ls:amountWithTax",
+      "@type": "xsd:decimal"
+    },
+    "amountLessTax": {
+      "@id": "ls:amountLessTax",
+      "@type": "xsd:decimal"
+    },
+    "discountedAmount": {
+      "@id": "ls:discountedAmount",
+      "@type": "xsd:decimal"
+    },
+    "timeOfTransactionUtc": {
+      "@id": "ls:timeOfTransactionUtc",
+      "@type": "xsd:dateTime"
+    },
+    "active": {
+      "@id": "ls:active",
+      "@type": "xsd:boolean"
+    },
+    "parentId": {
+      "@id": "ls:parentId",
+      "@type": "xsd:integer"
+    },
+    "subLineItems": {
+      "@id": "ls:subLineItems",
+      "@container": "@set"
+    },
+    "isTaxIncluded": {
+      "@id": "ls:isTaxIncluded",
+      "@type": "xsd:boolean"
+    },
+    "taxIncluded": {
+      "@id": "ls:taxIncluded",
+      "@type": "xsd:boolean"
+    },
+    "paymentEntries": {
+      "@id": "ls:paymentEntries",
+      "@container": "@set"
+    },
+    "paymentMethodDescription": {
+      "@id": "ls:paymentMethodDescription",
+      "@type": "xsd:string"
+    },
+    "externalReference": {
+      "@id": "ls:externalReference",
+      "@type": "xsd:string"
+    },
+    "paymentMethodCode": {
+      "@id": "ls:paymentMethodCode",
+      "@type": "xsd:string"
+    },
+    "amountPaid": {
+      "@id": "ls:amountPaid",
+      "@type": "xsd:decimal"
+    },
+    "paymentDate": {
+      "@id": "ls:paymentDate",
+      "@type": "xsd:dateTime"
+    },
+    "accountCancelled": {
+      "@id": "ls:accountCancelled",
+      "@type": "xsd:boolean"
+    },
+    "ikaccountId": {
+      "@id": "ls:ikaccountId",
+      "@type": "xsd:string"
+    },
+    "number": {
+      "@id": "ls:number",
+      "@type": "xsd:integer"
+    },
+    "tableNumber": {
+      "@id": "ls:tableNumber",
+      "@type": "xsd:integer"
+    },
+    "posId": {
+      "@id": "ls:posId",
+      "@type": "xsd:integer"
+    },
+    "deviceId": {
+      "@id": "ls:deviceId",
+      "@type": "xsd:integer"
+    },
+    "firstName": {
+      "@id": "ls:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "ls:lastName",
+      "@type": "xsd:string"
+    },
+    "thirdPartyReference": {
+      "@id": "ls:thirdPartyReference",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "contactNumberAsE164": {
+      "@id": "ls:contactNumberAsE164",
+      "@type": "xsd:string"
+    },
+    "notes": {
+      "@id": "ls:notes",
+      "@type": "xsd:string"
+    },
+    "salutation": {
+      "@id": "ls:salutation",
+      "@type": "xsd:string"
+    },
+    "sendEmailReceipts": {
+      "@id": "ls:sendEmailReceipts",
+      "@type": "xsd:boolean"
+    },
+    "emailNotification": {
+      "@id": "ls:emailNotification",
+      "@type": "xsd:string"
+    },
+    "discountPercentage": {
+      "@id": "ls:discountPercentage",
+      "@type": "xsd:decimal"
+    },
+    "discountAmount": {
+      "@id": "ls:discountAmount",
+      "@type": "xsd:decimal"
+    },
+    "sku": {
+      "@id": "ls:sku",
+      "@type": "xsd:string"
+    },
+    "customItemName": {
+      "@id": "ls:customItemName",
+      "@type": "xsd:string"
+    },
+    "customItemPrice": {
+      "@id": "ls:customItemPrice",
+      "@type": "xsd:decimal"
+    },
+    "discountAmountOverride": {
+      "@id": "ls:discountAmountOverride",
+      "@type": "xsd:decimal"
+    },
+    "discountPercentOverride": {
+      "@id": "ls:discountPercentOverride",
+      "@type": "xsd:decimal"
+    },
+    "modifierId": {
+      "@id": "ls:modifierId",
+      "@type": "xsd:string"
+    },
+    "discountCode": {
+      "@id": "ls:discountCode",
+      "@type": "xsd:string"
+    },
+    "course": {
+      "@id": "ls:course",
+      "@type": "xsd:integer"
+    },
+    "subItems": {
+      "@id": "ls:subItems",
+      "@container": "@set"
+    },
+    "menuName": {
+      "@id": "ls:menuName",
+      "@type": "xsd:string"
+    },
+    "menuEntryGroups": {
+      "@id": "ls:menuEntryGroups",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "richDataMissing": {
+      "@id": "ls:richDataMissing",
+      "@type": "xsd:boolean"
+    },
+    "ikentooMenuId": {
+      "@id": "ls:ikentooMenuId",
+      "@type": "xsd:integer"
+    },
+    "conditionalTaxRules": {
+      "@id": "ls:conditionalTaxRules",
+      "@type": "xsd:boolean"
+    },
+    "paymentMethod": {
+      "@id": "ls:paymentMethod",
+      "@type": "xsd:string"
+    },
+    "paymentAmount": {
+      "@id": "ls:paymentAmount",
+      "@type": "xsd:decimal"
+    },
+    "tipAmount": {
+      "@id": "ls:tipAmount",
+      "@type": "xsd:decimal"
+    },
+    "timestamp": {
+      "@id": "ls:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "ls:status",
+      "@type": "xsd:integer"
+    },
+    "error": {
+      "@id": "ls:error",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "ls:message",
+      "@type": "xsd:string"
+    },
+    "path": {
+      "@id": "ls:path",
+      "@type": "xsd:string"
+    },
+    "multiSelectionPermitted": {
+      "@id": "ls:multiSelectionPermitted",
+      "@type": "xsd:boolean"
+    },
+    "productionInstructionGroupName": {
+      "@id": "ls:productionInstructionGroupName",
+      "@type": "xsd:string"
+    },
+    "productionIntructionGroupId": {
+      "@id": "ls:productionIntructionGroupId",
+      "@type": "xsd:integer"
+    },
+    "productionInstructionList": {
+      "@id": "ls:productionInstructionList",
+      "@container": "@set"
+    },
+    "instruction": {
+      "@id": "ls:instruction",
+      "@type": "xsd:string"
+    },
+    "ikentooModifierId": {
+      "@id": "ls:ikentooModifierId",
+      "@type": "xsd:integer"
+    },
+    "data": {
+      "@id": "ls:data",
+      "@container": "@set"
+    },
+    "count": {
+      "@id": "ls:count",
+      "@type": "xsd:integer"
+    },
+    "updatedAt": {
+      "@id": "ls:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "metadata": {
+      "@id": "ls:metadata",
+      "@type": "@id"
+    },
+    "warnings": {
+      "@id": "ls:warnings",
+      "@container": "@set"
+    },
+    "information": {
+      "@id": "ls:information",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "ls:type",
+      "@type": "xsd:string"
+    },
+    "current": {
+      "@id": "ls:current",
+      "@type": "@id"
+    },
+    "page": {
+      "@id": "ls:page",
+      "@type": "xsd:integer"
+    },
+    "pageSize": {
+      "@id": "ls:pageSize",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "ls:total",
+      "@type": "xsd:integer"
+    },
+    "totalPages": {
+      "@id": "ls:totalPages",
+      "@type": "xsd:integer"
+    },
+    "skus": {
+      "@id": "ls:skus",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "iKaccountId": {
+      "@id": "ls:iKaccountId",
+      "@type": "xsd:integer"
+    },
+    "iKaccountIdentifier": {
+      "@id": "ls:iKaccountIdentifier",
+      "@type": "xsd:string"
+    },
+    "thirdPartyPaymentReference": {
+      "@id": "ls:thirdPartyPaymentReference",
+      "@type": "xsd:string"
+    },
+    "endpointId": {
+      "@id": "ls:endpointId",
+      "@type": "xsd:string"
+    },
+    "taskTtlInMs": {
+      "@id": "ls:taskTtlInMs",
+      "@type": "xsd:integer"
+    },
+    "targetPrinterProfileId": {
+      "@id": "ls:targetPrinterProfileId",
+      "@type": "xsd:integer"
+    },
+    "reference": {
+      "@id": "ls:reference",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "defaultClientCount": {
+      "@id": "ls:defaultClientCount",
+      "@type": "xsd:integer"
+    },
+    "createdAt": {
+      "@id": "ls:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "withBasicAuth": {
+      "@id": "ls:withBasicAuth",
+      "@type": "xsd:boolean"
+    },
+    "username": {
+      "@id": "ls:username",
+      "@type": "xsd:string"
+    },
+    "password": {
+      "@id": "ls:password",
+      "@type": "xsd:string"
+    },
+    "provideAccount": {
+      "@id": "ls:provideAccount",
+      "@type": "xsd:boolean"
+    },
+    "expandTransactions": {
+      "@id": "ls:expandTransactions",
+      "@type": "xsd:boolean"
+    },
+    "expandPayments": {
+      "@id": "ls:expandPayments",
+      "@type": "xsd:boolean"
+    },
+    "subscribeTo": {
+      "@id": "ls:subscribeTo",
+      "@container": "@set"
+    },
+    "resource": {
+      "@id": "ls:resource",
+      "@type": "xsd:string"
+    },
+    "timeOfAbortedOrder": {
+      "@id": "ls:timeOfAbortedOrder",
+      "@type": "xsd:dateTime"
+    },
+    "totalAmountAborted": {
+      "@id": "ls:totalAmountAborted",
+      "@type": "xsd:string"
+    },
+    "abortedLineItems": {
+      "@id": "ls:abortedLineItems",
+      "@container": "@set"
+    },
+    "itemQuantity": {
+      "@id": "ls:itemQuantity",
+      "@type": "xsd:string"
+    },
+    "itemAmount": {
+      "@id": "ls:itemAmount",
+      "@type": "xsd:string"
+    },
+    "itemPrice": {
+      "@id": "ls:itemPrice",
+      "@type": "xsd:string"
+    },
+    "businessName": {
+      "@id": "ls:businessName",
+      "@type": "xsd:string"
+    },
+    "nextStartOfDayAsIso8601": {
+      "@id": "ls:nextStartOfDayAsIso8601",
+      "@type": "xsd:string"
+    },
+    "sales": {
+      "@id": "ls:sales",
+      "@container": "@set"
+    },
+    "accountReference": {
+      "@id": "ls:accountReference",
+      "@type": "xsd:string"
+    },
+    "accountFiscId": {
+      "@id": "ls:accountFiscId",
+      "@type": "xsd:string"
+    },
+    "receiptId": {
+      "@id": "ls:receiptId",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "ls:source",
+      "@type": "@id"
+    },
+    "initialAccountId": {
+      "@id": "ls:initialAccountId",
+      "@type": "xsd:string"
+    },
+    "previousAccountId": {
+      "@id": "ls:previousAccountId",
+      "@type": "xsd:string"
+    },
+    "salesLines": {
+      "@id": "ls:salesLines",
+      "@container": "@set"
+    },
+    "parentLineId": {
+      "@id": "ls:parentLineId",
+      "@type": "xsd:string"
+    },
+    "totalNetAmountWithTax": {
+      "@id": "ls:totalNetAmountWithTax",
+      "@type": "xsd:string"
+    },
+    "totalNetAmountWithoutTax": {
+      "@id": "ls:totalNetAmountWithoutTax",
+      "@type": "xsd:string"
+    },
+    "menuListPrice": {
+      "@id": "ls:menuListPrice",
+      "@type": "xsd:string"
+    },
+    "unitCostPrice": {
+      "@id": "ls:unitCostPrice",
+      "@type": "xsd:string"
+    },
+    "serviceChargeType": {
+      "@id": "ls:serviceChargeType",
+      "@type": "xsd:string"
+    },
+    "serviceChargeRate": {
+      "@id": "ls:serviceChargeRate",
+      "@type": "xsd:string"
+    },
+    "taxCode": {
+      "@id": "ls:taxCode",
+      "@type": "xsd:string"
+    },
+    "taxAmount": {
+      "@id": "ls:taxAmount",
+      "@type": "xsd:string"
+    },
+    "taxRatePercentage": {
+      "@id": "ls:taxRatePercentage",
+      "@type": "xsd:string"
+    },
+    "taxLines": {
+      "@id": "ls:taxLines",
+      "@type": "xsd:string"
+    },
+    "discountType": {
+      "@id": "ls:discountType",
+      "@type": "xsd:string"
+    },
+    "discountName": {
+      "@id": "ls:discountName",
+      "@type": "xsd:string"
+    },
+    "accountDiscountAmount": {
+      "@id": "ls:accountDiscountAmount",
+      "@type": "xsd:string"
+    },
+    "accountDiscountType": {
+      "@id": "ls:accountDiscountType",
+      "@type": "xsd:string"
+    },
+    "accountDiscountCode": {
+      "@id": "ls:accountDiscountCode",
+      "@type": "xsd:string"
+    },
+    "accountDiscountName": {
+      "@id": "ls:accountDiscountName",
+      "@type": "xsd:string"
+    },
+    "totalDiscountAmount": {
+      "@id": "ls:totalDiscountAmount",
+      "@type": "xsd:string"
+    },
+    "nameOverride": {
+      "@id": "ls:nameOverride",
+      "@type": "xsd:string"
+    },
+    "statisticGroup": {
+      "@id": "ls:statisticGroup",
+      "@type": "xsd:string"
+    },
+    "accountingGroup": {
+      "@id": "ls:accountingGroup",
+      "@type": "@id"
+    },
+    "accountingGroupId": {
+      "@id": "ls:accountingGroupId",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "ls:currency",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "ls:tags",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "revenueCenter": {
+      "@id": "ls:revenueCenter",
+      "@type": "xsd:string"
+    },
+    "revenueCenterId": {
+      "@id": "ls:revenueCenterId",
+      "@type": "xsd:decimal"
+    },
+    "categories": {
+      "@id": "ls:categories",
+      "@container": "@set"
+    },
+    "category": {
+      "@id": "ls:category",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "ls:value",
+      "@type": "xsd:string"
+    },
+    "timeofSale": {
+      "@id": "ls:timeofSale",
+      "@type": "xsd:string"
+    },
+    "deviceName": {
+      "@id": "ls:deviceName",
+      "@type": "xsd:string"
+    },
+    "voidReason": {
+      "@id": "ls:voidReason",
+      "@type": "xsd:string"
+    },
+    "accountProfileCode": {
+      "@id": "ls:accountProfileCode",
+      "@type": "xsd:string"
+    },
+    "payments": {
+      "@id": "ls:payments",
+      "@container": "@set"
+    },
+    "paymentMethodId": {
+      "@id": "ls:paymentMethodId",
+      "@type": "xsd:decimal"
+    },
+    "netAmountWithTax": {
+      "@id": "ls:netAmountWithTax",
+      "@type": "xsd:string"
+    },
+    "tip": {
+      "@id": "ls:tip",
+      "@type": "xsd:string"
+    },
+    "consumer": {
+      "@id": "ls:consumer",
+      "@type": "@id"
+    },
+    "customerId": {
+      "@id": "ls:customerId",
+      "@type": "xsd:decimal"
+    },
+    "title": {
+      "@id": "ls:title",
+      "@type": "xsd:string"
+    },
+    "phoneNumber1": {
+      "@id": "ls:phoneNumber1",
+      "@type": "xsd:string"
+    },
+    "phoneNumber2": {
+      "@id": "ls:phoneNumber2",
+      "@type": "xsd:string"
+    },
+    "companyName": {
+      "@id": "ls:companyName",
+      "@type": "xsd:string"
+    },
+    "addressLine1": {
+      "@id": "ls:addressLine1",
+      "@type": "xsd:string"
+    },
+    "addressLine2": {
+      "@id": "ls:addressLine2",
+      "@type": "xsd:string"
+    },
+    "zipCode": {
+      "@id": "ls:zipCode",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "ls:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "ls:state",
+      "@type": "xsd:string"
+    },
+    "taxIdentifier": {
+      "@id": "ls:taxIdentifier",
+      "@type": "xsd:string"
+    },
+    "fiscalCode": {
+      "@id": "ls:fiscalCode",
+      "@type": "xsd:string"
+    },
+    "destinationCode": {
+      "@id": "ls:destinationCode",
+      "@type": "xsd:string"
+    },
+    "authorization": {
+      "@id": "ls:authorization",
+      "@type": "xsd:string"
+    },
+    "fiscId": {
+      "@id": "ls:fiscId",
+      "@type": "xsd:string"
+    },
+    "fiscDate": {
+      "@id": "ls:fiscDate",
+      "@type": "xsd:string"
+    },
+    "surcharge": {
+      "@id": "ls:surcharge",
+      "@type": "xsd:string"
+    },
+    "timeofOpening": {
+      "@id": "ls:timeofOpening",
+      "@type": "xsd:string"
+    },
+    "timeofCloseAndPaid": {
+      "@id": "ls:timeofCloseAndPaid",
+      "@type": "xsd:string"
+    },
+    "cancelled": {
+      "@id": "ls:cancelled",
+      "@type": "xsd:boolean"
+    },
+    "externalFiscalNumber": {
+      "@id": "ls:externalFiscalNumber",
+      "@type": "xsd:string"
+    },
+    "tableName": {
+      "@id": "ls:tableName",
+      "@type": "xsd:string"
+    },
+    "ownerName": {
+      "@id": "ls:ownerName",
+      "@type": "xsd:string"
+    },
+    "ownerId": {
+      "@id": "ls:ownerId",
+      "@type": "xsd:decimal"
+    },
+    "externalReferences": {
+      "@id": "ls:externalReferences",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "nbCovers": {
+      "@id": "ls:nbCovers",
+      "@type": "xsd:decimal"
+    },
+    "dineIn": {
+      "@id": "ls:dineIn",
+      "@type": "xsd:boolean"
+    },
+    "dataComplete": {
+      "@id": "ls:dataComplete",
+      "@type": "xsd:boolean"
+    },
+    "Links": {
+      "@id": "ls:_links",
+      "@type": "@id"
+    },
+    "self": {
+      "@id": "ls:self",
+      "@type": "@id"
+    },
+    "href": {
+      "@id": "ls:href",
+      "@type": "xsd:string"
+    },
+    "templated": {
+      "@id": "ls:templated",
+      "@type": "xsd:boolean"
+    },
+    "nextPage": {
+      "@id": "ls:nextPage",
+      "@type": "@id"
+    },
+    "lightspeedPaymentId": {
+      "@id": "ls:lightspeedPaymentId",
+      "@type": "xsd:string"
+    },
+    "createdDate": {
+      "@id": "ls:createdDate",
+      "@type": "xsd:dateTime"
+    },
+    "captureDate": {
+      "@id": "ls:captureDate",
+      "@type": "xsd:dateTime"
+    },
+    "modificationDate": {
+      "@id": "ls:modificationDate",
+      "@type": "xsd:dateTime"
+    },
+    "fees": {
+      "@id": "ls:fees",
+      "@type": "@id"
+    },
+    "offset": {
+      "@id": "ls:offset",
+      "@type": "xsd:integer"
+    },
+    "nextOffset": {
+      "@id": "ls:nextOffset",
+      "@type": "xsd:integer"
+    },
+    "Embedded": {
+      "@id": "ls:_embedded",
+      "@type": "@id"
+    },
+    "taxRateList": {
+      "@id": "ls:taxRateList",
+      "@container": "@set"
+    },
+    "rate": {
+      "@id": "ls:rate",
+      "@type": "xsd:decimal"
+    },
+    "accountingReference": {
+      "@id": "ls:accountingReference",
+      "@type": "xsd:string"
+    },
+    "taxId": {
+      "@id": "ls:taxId",
+      "@type": "xsd:string"
+    },
+    "taxRate": {
+      "@id": "ls:taxRate",
+      "@type": "xsd:string"
+    },
+    "timeOfSale": {
+      "@id": "ls:timeOfSale",
+      "@type": "xsd:dateTime"
+    },
+    "timeOfOpening": {
+      "@id": "ls:timeOfOpening",
+      "@type": "xsd:dateTime"
+    },
+    "timeClosed": {
+      "@id": "ls:timeClosed",
+      "@type": "xsd:dateTime"
+    },
+    "nextPageToken": {
+      "@id": "ls:nextPageToken",
+      "@type": "xsd:string"
+    },
+    "cardCount": {
+      "@id": "ls:cardCount",
+      "@type": "xsd:integer"
+    },
+    "batchId": {
+      "@id": "ls:batchId",
+      "@type": "xsd:integer"
+    },
+    "cards": {
+      "@id": "ls:cards",
+      "@container": "@set"
+    },
+    "consumerRecordId": {
+      "@id": "ls:consumerRecordId",
+      "@type": "xsd:integer"
+    },
+    "consumerId": {
+      "@id": "ls:consumerId",
+      "@type": "xsd:integer"
+    },
+    "docketName": {
+      "@id": "ls:docketName",
+      "@type": "xsd:string"
+    },
+    "barcode": {
+      "@id": "ls:barcode",
+      "@type": "xsd:string"
+    },
+    "barcodes": {
+      "@id": "ls:barcodes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "costPrice": {
+      "@id": "ls:costPrice",
+      "@type": "xsd:decimal"
+    },
+    "defaultPrice": {
+      "@id": "ls:defaultPrice",
+      "@type": "xsd:decimal"
+    },
+    "priceMode": {
+      "@id": "ls:priceMode",
+      "@type": "xsd:string"
+    },
+    "statisticGroups": {
+      "@id": "ls:statisticGroups",
+      "@container": "@set"
+    },
+    "prices": {
+      "@id": "ls:prices",
+      "@container": "@set"
+    },
+    "amount": {
+      "@id": "ls:amount",
+      "@type": "xsd:decimal"
+    },
+    "sharingType": {
+      "@id": "ls:sharingType",
+      "@type": "xsd:string"
+    },
+    "inventorySource": {
+      "@id": "ls:inventorySource",
+      "@type": "xsd:string"
+    },
+    "disabled": {
+      "@id": "ls:disabled",
+      "@type": "xsd:boolean"
+    },
+    "contentDimension": {
+      "@id": "ls:contentDimension",
+      "@type": "xsd:string"
+    },
+    "contentUom": {
+      "@id": "ls:contentUom",
+      "@type": "xsd:string"
+    },
+    "contentValue": {
+      "@id": "ls:contentValue",
+      "@type": "xsd:decimal"
+    },
+    "itemType": {
+      "@id": "ls:itemType",
+      "@type": "xsd:string"
+    },
+    "apiKey": {
+      "@id": "ls:apiKey",
+      "@type": "xsd:string"
+    },
+    "endpoint": {
+      "@id": "ls:endpoint",
+      "@type": "xsd:string"
+    },
+    "features": {
+      "@id": "ls:features",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "onboardingCode": {
+      "@id": "ls:onboardingCode",
+      "@type": "xsd:string"
+    },
+    "onboardingId": {
+      "@id": "ls:onboardingId",
+      "@type": "xsd:string"
+    },
+    "platformRestaurantId": {
+      "@id": "ls:platformRestaurantId",
+      "@type": "xsd:string"
+    },
+    "headers": {
+      "@id": "ls:headers",
+      "@type": "@id"
+    },
+    "parameters": {
+      "@id": "ls:parameters",
+      "@type": "@id"
+    },
+    "token": {
+      "@id": "ls:token",
+      "@type": "xsd:string"
+    },
+    "ttl": {
+      "@id": "ls:ttl",
+      "@type": "xsd:dateTime"
+    },
+    "country": {
+      "@id": "ls:country",
+      "@type": "xsd:string"
+    },
+    "street1": {
+      "@id": "ls:street1",
+      "@type": "xsd:string"
+    },
+    "street2": {
+      "@id": "ls:street2",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "ls:zip",
+      "@type": "xsd:string"
+    },
+    "allowCourseNumberUpdates": {
+      "@id": "ls:allowCourseNumberUpdates",
+      "@type": "xsd:boolean"
+    },
+    "inServiceTableStatuses": {
+      "@id": "ls:inServiceTableStatuses",
+      "@container": "@set"
+    },
+    "statusLabel": {
+      "@id": "ls:statusLabel",
+      "@type": "xsd:string"
+    },
+    "statusValue": {
+      "@id": "ls:statusValue",
+      "@type": "xsd:string"
+    },
+    "sequence": {
+      "@id": "ls:sequence",
+      "@type": "xsd:integer"
+    },
+    "authorizationGrantType": {
+      "@id": "ls:authorizationGrantType",
+      "@type": "xsd:string"
+    },
+    "clientAuthorizationMethod": {
+      "@id": "ls:clientAuthorizationMethod",
+      "@type": "xsd:string"
+    },
+    "clientId": {
+      "@id": "ls:clientId",
+      "@type": "xsd:string"
+    },
+    "clientName": {
+      "@id": "ls:clientName",
+      "@type": "xsd:string"
+    },
+    "clientSecret": {
+      "@id": "ls:clientSecret",
+      "@type": "xsd:string"
+    },
+    "providerJwkSetUri": {
+      "@id": "ls:providerJwkSetUri",
+      "@type": "@id"
+    },
+    "providerTokenUri": {
+      "@id": "ls:providerTokenUri",
+      "@type": "@id"
+    },
+    "scopes": {
+      "@id": "ls:scopes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "baseUrl": {
+      "@id": "ls:baseUrl",
+      "@type": "@id"
+    },
+    "depositSupported": {
+      "@id": "ls:depositSupported",
+      "@type": "xsd:boolean"
+    },
+    "displayName": {
+      "@id": "ls:displayName",
+      "@type": "xsd:string"
+    },
+    "errorsWebhookUrl": {
+      "@id": "ls:errorsWebhookUrl",
+      "@type": "@id"
+    },
+    "integrationWebhookUrl": {
+      "@id": "ls:integrationWebhookUrl",
+      "@type": "@id"
+    },
+    "notificationTypes": {
+      "@id": "ls:notificationTypes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "onboardingWebhookUrl": {
+      "@id": "ls:onboardingWebhookUrl",
+      "@type": "@id"
+    },
+    "orderWebhookUrl": {
+      "@id": "ls:orderWebhookUrl",
+      "@type": "@id"
+    },
+    "posReservationUpdateWebhookUrl": {
+      "@id": "ls:posReservationUpdateWebhookUrl",
+      "@type": "@id"
+    },
+    "ownNotificationsOnly": {
+      "@id": "ls:ownNotificationsOnly",
+      "@type": "xsd:boolean"
+    },
+    "webhookAuthType": {
+      "@id": "ls:webhookAuthType",
+      "@type": "xsd:string"
+    },
+    "allowedPosStatuses": {
+      "@id": "ls:allowedPosStatuses",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "webhookAuthDetails": {
+      "@id": "ls:webhookAuthDetails",
+      "@type": "@id"
+    },
+    "apiKeys": {
+      "@id": "ls:apiKeys",
+      "@type": "@id"
+    },
+    "basic": {
+      "@id": "ls:basic",
+      "@type": "@id"
+    },
+    "bearer": {
+      "@id": "ls:bearer",
+      "@type": "@id"
+    },
+    "oauth2": {
+      "@id": "ls:oauth2",
+      "@type": "@id"
+    },
+    "platformCode": {
+      "@id": "ls:platformCode",
+      "@type": "xsd:string"
+    },
+    "platformReservationId": {
+      "@id": "ls:platformReservationId",
+      "@type": "xsd:string"
+    },
+    "accepted": {
+      "@id": "ls:accepted",
+      "@type": "xsd:boolean"
+    },
+    "guest": {
+      "@id": "ls:guest",
+      "@type": "@id"
+    },
+    "phone": {
+      "@id": "ls:phone",
+      "@type": "xsd:string"
+    },
+    "platformGuestId": {
+      "@id": "ls:platformGuestId",
+      "@type": "xsd:string"
+    },
+    "walkIn": {
+      "@id": "ls:walkIn",
+      "@type": "xsd:boolean"
+    },
+    "foodAndDrinkNotes": {
+      "@id": "ls:foodAndDrinkNotes",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "ls:language",
+      "@type": "xsd:string"
+    },
+    "allergens": {
+      "@id": "ls:allergens",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "dietaryRestrictions": {
+      "@id": "ls:dietaryRestrictions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "liability": {
+      "@id": "ls:liability",
+      "@type": "@id"
+    },
+    "deposits": {
+      "@id": "ls:deposits",
+      "@container": "@set"
+    },
+    "platformDepositId": {
+      "@id": "ls:platformDepositId",
+      "@type": "xsd:string"
+    },
+    "utcCreatedAt": {
+      "@id": "ls:utcCreatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "utcVoidedAt": {
+      "@id": "ls:utcVoidedAt",
+      "@type": "xsd:dateTime"
+    },
+    "voided": {
+      "@id": "ls:voided",
+      "@type": "xsd:boolean"
+    },
+    "refunds": {
+      "@id": "ls:refunds",
+      "@container": "@set"
+    },
+    "platformRefundId": {
+      "@id": "ls:platformRefundId",
+      "@type": "xsd:string"
+    },
+    "specialOffer": {
+      "@id": "ls:specialOffer",
+      "@type": "xsd:string"
+    },
+    "partySize": {
+      "@id": "ls:partySize",
+      "@type": "xsd:integer"
+    },
+    "sequenceId": {
+      "@id": "ls:sequenceId",
+      "@type": "xsd:integer"
+    },
+    "tableNumbers": {
+      "@id": "ls:tableNumbers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "utcScheduledAt": {
+      "@id": "ls:utcScheduledAt",
+      "@type": "xsd:dateTime"
+    },
+    "utcUpdatedAt": {
+      "@id": "ls:utcUpdatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "guestRequest": {
+      "@id": "ls:guestRequest",
+      "@type": "xsd:string"
+    },
+    "expectedDuration": {
+      "@id": "ls:expectedDuration",
+      "@type": "xsd:duration"
+    },
+    "currentAuthType": {
+      "@id": "ls:currentAuthType",
+      "@type": "xsd:string"
+    },
+    "userTypes": {
+      "@id": "ls:userTypes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "createdOn": {
+      "@id": "ls:createdOn",
+      "@type": "xsd:dateTime"
+    },
+    "modifiedOn": {
+      "@id": "ls:modifiedOn",
+      "@type": "xsd:dateTime"
+    },
+    "businessId": {
+      "@id": "ls:businessId",
+      "@type": "xsd:integer"
+    },
+    "groups": {
+      "@id": "ls:groups",
+      "@container": "@set"
+    },
+    "reportAccess": {
+      "@id": "ls:reportAccess",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "roles": {
+      "@id": "ls:roles",
+      "@container": "@set"
+    },
+    "businessLocationIds": {
+      "@id": "ls:businessLocationIds",
+      "@container": "@set",
+      "@type": "xsd:integer"
+    },
+    "pinCode": {
+      "@id": "ls:pinCode",
+      "@type": "xsd:string"
+    },
+    "visible": {
+      "@id": "ls:visible",
+      "@type": "xsd:boolean"
+    },
+    "group": {
+      "@id": "ls:group",
+      "@type": "xsd:integer"
+    },
+    "notificationType": {
+      "@id": "ls:notificationType",
+      "@type": "xsd:string"
+    },
+    "webhookName": {
+      "@id": "ls:webhookName",
+      "@type": "xsd:string"
+    },
+    "pinCodeSet": {
+      "@id": "ls:pinCodeSet",
+      "@type": "xsd:boolean"
+    },
+    "links": {
+      "@id": "ls:links",
+      "@type": "@id"
+    },
+    "first": {
+      "@id": "ls:first",
+      "@type": "@id"
+    },
+    "next": {
+      "@id": "ls:next",
+      "@type": "@id"
+    },
+    "last": {
+      "@id": "ls:last",
+      "@type": "@id"
+    },
+    "size": {
+      "@id": "ls:size",
+      "@type": "xsd:integer"
+    },
+    "totalElements": {
+      "@id": "ls:totalElements",
+      "@type": "xsd:integer"
+    },
+    "declaredCashTips": {
+      "@id": "ls:declaredCashTips",
+      "@type": "xsd:string"
+    },
+    "dateInUTC": {
+      "@id": "ls:dateInUTC",
+      "@type": "xsd:dateTime"
+    },
+    "events": {
+      "@id": "ls:events",
+      "@container": "@set"
+    },
+    "eventType": {
+      "@id": "ls:eventType",
+      "@type": "xsd:string"
+    },
+    "minHeight": {
+      "@id": "ls:minHeight",
+      "@type": "xsd:integer"
+    },
+    "minWidth": {
+      "@id": "ls:minWidth",
+      "@type": "xsd:integer"
+    },
+    "requiredAspectRatio": {
+      "@id": "ls:requiredAspectRatio",
+      "@type": "xsd:float"
+    },
+    "localeCode": {
+      "@id": "ls:localeCode",
+      "@type": "xsd:string"
+    },
+    "creationDate": {
+      "@id": "ls:creationDate",
+      "@type": "xsd:dateTime"
+    },
+    "lastUpdateDate": {
+      "@id": "ls:lastUpdateDate",
+      "@type": "xsd:dateTime"
+    },
+    "pictureUrl": {
+      "@id": "ls:pictureUrl",
+      "@type": "xsd:string"
+    },
+    "previewPictureUrl": {
+      "@id": "ls:previewPictureUrl",
+      "@type": "xsd:string"
+    },
+    "rawPictureUrl": {
+      "@id": "ls:rawPictureUrl",
+      "@type": "xsd:string"
+    },
+    "descriptions": {
+      "@id": "ls:descriptions",
+      "@container": "@set"
+    },
+    "allergenCodes": {
+      "@id": "ls:allergenCodes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

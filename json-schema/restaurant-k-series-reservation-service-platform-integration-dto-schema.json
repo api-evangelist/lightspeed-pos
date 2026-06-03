@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-servicePlatformIntegrationDto",
+  "description": "reservation-servicePlatformIntegrationDto schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-platform-integration-dto-schema.json",
+  "type": "object",
+  "properties": {
+    "businessLocationId": {
+      "description": "The unique identifier of the business location.",
+      "example": 9765040300495493,
+      "format": "int64",
+      "type": "integer"
+    },
+    "platformRestaurantId": {
+      "description": "The external platform's unique identifier for the restaurant.",
+      "example": "Restaurant-123",
+      "pattern": "[a-zA-Z0-9_-]+",
+      "type": "string"
+    }
+  },
+  "required": [
+    "businessLocationId",
+    "platformRestaurantId"
+  ]
+}

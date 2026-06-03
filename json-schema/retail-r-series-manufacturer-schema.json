@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Manufacturer",
+  "description": "A manufacturer of inventory items.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-r-series-manufacturer-schema.json",
+  "type": "object",
+  "properties": {
+    "manufacturerID": {
+      "type": "string",
+      "description": "Unique manufacturer identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Manufacturer name."
+    }
+  }
+}

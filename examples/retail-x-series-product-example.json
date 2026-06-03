@@ -1,0 +1,11 @@
+{
+  "id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "source_id": "500123",
+  "handle": "example",
+  "sku": "SKU-1001",
+  "name": "Burger",
+  "description": "example",
+  "price_excluding_tax": 13.66,
+  "brand_id": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+  "active": true
+}

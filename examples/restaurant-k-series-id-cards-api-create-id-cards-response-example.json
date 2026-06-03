@@ -1,0 +1,11 @@
+{
+  "batchId": 12345,
+  "cards": [
+    {
+      "id": 98765,
+      "consumerRecordId": 54321,
+      "consumerId": 13579,
+      "url": "https://example.com/id-cards/98765/qr-code"
+    }
+  ]
+}

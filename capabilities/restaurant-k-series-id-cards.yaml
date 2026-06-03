@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — ID Cards
+  description: 'Restaurant — ID Cards. 2 operations. Lead operation: Lightspeed Create an ID Card Batch. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - ID Cards
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-id-cards
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — ID Cards business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: id-cards-v1-business-locations-businesslocationid-batches
+      path: /id-cards/v1/business-locations/{businessLocationId}/batches
+      operations:
+      - name: id-cards-apiCreateIdCardBatch
+        method: POST
+        description: Lightspeed Create an ID Card Batch
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: id-cards-v1-business-locations-businesslocationid-batches-batchid-cards
+      path: /id-cards/v1/business-locations/{businessLocationId}/batches/{batchId}/cards
+      operations:
+      - name: id-cards-apiCreateIdCards
+        method: POST
+        description: Lightspeed Create ID Cards
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the business location.
+        - name: batchId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the ID card batch.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-id-cards-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — ID Cards. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/id-cards/v1/business-locations/{businesslocationid}/batches
+      name: v1-id-cards-v1-business-locations-businesslocationid-batches
+      description: REST surface for ID Cards.
+      operations:
+      - method: POST
+        name: id-cards-apiCreateIdCardBatch
+        description: Lightspeed Create an ID Card Batch
+        call: restaurant-k-series-id-cards.id-cards-apiCreateIdCardBatch
+        with:
+          businessLocationId: rest.businessLocationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/id-cards/v1/business-locations/{businesslocationid}/batches/{batchid}/cards
+      name: v1-id-cards-v1-business-locations-businesslocationid-batches-batchid-cards
+      description: REST surface for ID Cards.
+      operations:
+      - method: POST
+        name: id-cards-apiCreateIdCards
+        description: Lightspeed Create ID Cards
+        call: restaurant-k-series-id-cards.id-cards-apiCreateIdCards
+        with:
+          businessLocationId: rest.businessLocationId
+          batchId: rest.batchId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-id-cards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — ID Cards. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: create-id-card-batch
+      description: Lightspeed Create an ID Card Batch
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-id-cards.id-cards-apiCreateIdCardBatch
+      with:
+        businessLocationId: tools.businessLocationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-id-cards
+      description: Lightspeed Create ID Cards
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-id-cards.id-cards-apiCreateIdCards
+      with:
+        businessLocationId: tools.businessLocationId
+        batchId: tools.batchId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

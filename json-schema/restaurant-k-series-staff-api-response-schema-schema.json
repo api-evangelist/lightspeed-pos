@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "staff-apiResponseSchema",
+  "description": "staff-apiResponseSchema schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-staff-api-response-schema-schema.json",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "items": {}
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "first": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "description": "The URL for the first page of results.",
+              "format": "uri",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc"
+            }
+          }
+        },
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "description": "The URL for the current page of results.",
+              "format": "uri",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc"
+            }
+          }
+        },
+        "next": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "description": "The URL for the next page of results.",
+              "format": "uri",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc"
+            }
+          }
+        },
+        "last": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "description": "The URL for the last page of results.",
+              "format": "uri",
+              "example": "https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc"
+            }
+          }
+        }
+      }
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "example": 1,
+          "description": "The current page number."
+        },
+        "size": {
+          "type": "integer",
+          "example": 10,
+          "description": "The number of elements in the page."
+        },
+        "totalElements": {
+          "type": "integer",
+          "example": 100,
+          "description": "The total number of elements."
+        },
+        "totalPages": {
+          "type": "integer",
+          "example": 10,
+          "description": "The total number of pages of results."
+        }
+      }
+    }
+  }
+}

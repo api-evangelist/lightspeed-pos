@@ -1,0 +1,11 @@
+{
+  "businessLocationId": 45454565682155,
+  "createdAt": "2023-11-07T19:15:05.043+0000",
+  "updatedAt": "2023-11-07T19:15:05.043+0000",
+  "warnings": [
+    {
+      "information": "example",
+      "type": "example"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-servicePlatformOAuth2Webhook",
+  "description": "The OAuth2 credentials that will be sent with the webhook notifications. See [OAuth 2.0](https://oauth.net/2/).",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-platform-oauth2-webhook-schema.json",
+  "type": "object",
+  "properties": {
+    "authorizationGrantType": {
+      "default": "CLIENT_CREDENTIALS",
+      "description": "The authorization grant type. See [OAuth2 Grant Types](https://oauth.net/2/grant-types/).",
+      "enum": [
+        "CLIENT_CREDENTIALS"
+      ],
+      "example": "CLIENT_CREDENTIALS",
+      "type": "string"
+    },
+    "clientAuthorizationMethod": {
+      "default": "CLIENT_SECRET_BASIC",
+      "description": "The client authorization method. See [OAuth2 Client Authentication](https://oauth.net/2/client-authentication/).",
+      "enum": [
+        "CLIENT_SECRET_BASIC",
+        "CLIENT_SECRET_JWT",
+        "CLIENT_SECRET_POST"
+      ],
+      "example": "CLIENT_SECRET_BASIC",
+      "type": "string"
+    },
+    "clientId": {
+      "description": "The OAuth2 client ID.",
+      "example": "LightspeedKSeries",
+      "type": "string"
+    },
+    "clientName": {
+      "description": "The OAuth2 client name.",
+      "example": "LightspeedKSeries",
+      "type": "string"
+    },
+    "clientSecret": {
+      "description": "The OAuth2 client secret.",
+      "example": "Example-Client-Secret",
+      "format": "password",
+      "type": "string"
+    },
+    "providerJwkSetUri": {
+      "description": "The external platform URL for getting public keys to verify given access tokens on the K-Series side.",
+      "example": "https://my.platform/public-keys",
+      "format": "uri",
+      "type": "string"
+    },
+    "providerTokenUri": {
+      "description": "The external platform URL for getting access tokens by private credentials.",
+      "example": "https://my.platform/emitter/token",
+      "format": "uri",
+      "type": "string"
+    },
+    "scopes": {
+      "description": "The scopes being granted to the API client.",
+      "example": [
+        "webhooks-api"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "clientId",
+    "clientSecret",
+    "providerTokenUri"
+  ]
+}

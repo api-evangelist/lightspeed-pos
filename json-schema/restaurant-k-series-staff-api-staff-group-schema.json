@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "staff-apiStaffGroup",
+  "description": "staff-apiStaffGroup schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-staff-api-staff-group-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The unique identifier for the user group.",
+      "example": 1234
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the user group.",
+      "example": "Bar Staff"
+    },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The unique identifier for the role.",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the role.",
+            "example": "ROLE_CAN_LOGIN"
+          }
+        }
+      }
+    },
+    "reportAccess": {
+      "type": "string",
+      "default": "STAFF_REPORT_OWN_ACCESS",
+      "description": "User report permissions."
+    }
+  }
+}

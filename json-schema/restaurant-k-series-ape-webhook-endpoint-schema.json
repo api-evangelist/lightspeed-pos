@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeWebhookEndpoint",
+  "description": "apeWebhookEndpoint schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-webhook-endpoint-schema.json",
+  "type": "object",
+  "properties": {
+    "endpointId": {
+      "example": "MY-AWESOME-ENDPOINT-ID",
+      "description": "The unique endpoint ID, for example the integration name. Case sensitive.",
+      "type": "string"
+    },
+    "url": {
+      "example": "https://webhook.site/1dc40b86-3d0d",
+      "description": "The URL which this endpoint points to.",
+      "type": "string"
+    },
+    "withBasicAuth": {
+      "default": false,
+      "description": "If basic auth should be used, defaults to false.",
+      "type": "boolean",
+      "example": true
+    },
+    "username": {
+      "example": "username",
+      "description": "The username for basic auth.",
+      "type": "string"
+    },
+    "password": {
+      "example": "password",
+      "description": "The password for basic auth.",
+      "type": "string"
+    },
+    "provideAccount": {
+      "description": "Whether or not to include account info in the notification.",
+      "example": true,
+      "default": false,
+      "type": "boolean"
+    },
+    "expandTransactions": {
+      "example": true,
+      "description": "Whether or not to include transaction lines in the notification.",
+      "default": false,
+      "type": "boolean"
+    },
+    "expandPayments": {
+      "example": true,
+      "description": "Whether or not to include payment lines in the notification.",
+      "default": false,
+      "type": "boolean"
+    },
+    "subscribeTo": {
+      "items": {
+        "description": "Event to listen to by resource",
+        "example": {
+          "name": "DELIVERED",
+          "resource": "order"
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Events to subscribe to.\n* order: `DELIVERED`\n* item: `SALES_RESTRICTION_UPDATED` - Business locations for this webhook must be specified [here](https://api-docs.lsk.lightspeed.app/operation/operation-apegetwebhookbusinesslocations).\n\nThe following are always sent:\n* Account: `CLOSED` and `CHECK_WAS_UPDATED`.\n* Order: `FAILURE`, `READY_FOR_PICKUP` and `CANCELLED`.\n* Payment: `SUCCESS` and `FAILURE`."
+          },
+          "resource": {
+            "enum": [
+              "order",
+              "payment",
+              "item",
+              "order_api"
+            ],
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "endpointId",
+    "url"
+  ]
+}

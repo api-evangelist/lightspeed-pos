@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Retail R-Series API — Customer
+  description: 'Retail — Customer. 3 operations. Lead operation: Lightspeed List Customers. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Retail
+  - Customer
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_R_SERIES_TOKEN: LIGHTSPEED_R_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: retail-r-series-customer
+    baseUri: https://api.lightspeedapp.com/API/V3
+    description: Lightspeed Retail R-Series API — Customer business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_R_SERIES_TOKEN}}'
+    resources:
+    - name: account-accountid-customer-json
+      path: /Account/{accountID}/Customer
+      operations:
+      - name: getCustomers
+        method: GET
+        description: Lightspeed List Customers
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createCustomer
+        method: POST
+        description: Lightspeed Create Customer
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: account-accountid-customer-customerid-json
+      path: /Account/{accountID}/Customer/{customerID}
+      operations:
+      - name: getCustomerById
+        method: GET
+        description: Lightspeed Get Customer by ID
+        inputParameters:
+        - name: accountID
+          in: path
+          type: string
+          required: true
+          description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+        - name: customerID
+          in: path
+          type: string
+          required: true
+          description: The unique identifier of the customer.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: retail-r-series-customer-rest
+    port: 8080
+    description: REST adapter for Lightspeed Retail R-Series API — Customer. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/account/{accountid}/customer
+      name: v1-account-accountid-customer
+      description: REST surface for Customer.
+      operations:
+      - method: GET
+        name: getCustomers
+        description: Lightspeed List Customers
+        call: retail-r-series-customer.getCustomers
+        with:
+          accountID: rest.accountID
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/customer
+      name: v1-account-accountid-customer
+      description: REST surface for Customer.
+      operations:
+      - method: POST
+        name: createCustomer
+        description: Lightspeed Create Customer
+        call: retail-r-series-customer.createCustomer
+        with:
+          accountID: rest.accountID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account/{accountid}/customer/{customerid}
+      name: v1-account-accountid-customer-customerid
+      description: REST surface for Customer.
+      operations:
+      - method: GET
+        name: getCustomerById
+        description: Lightspeed Get Customer by ID
+        call: retail-r-series-customer.getCustomerById
+        with:
+          accountID: rest.accountID
+          customerID: rest.customerID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: retail-r-series-customer-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Retail R-Series API — Customer. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: list-customers
+      description: Lightspeed List Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-customer.getCustomers
+      with:
+        accountID: tools.accountID
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-customer
+      description: Lightspeed Create Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: retail-r-series-customer.createCustomer
+      with:
+        accountID: tools.accountID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-customer-id
+      description: Lightspeed Get Customer by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: retail-r-series-customer.getCustomerById
+      with:
+        accountID: tools.accountID
+        customerID: tools.customerID
+      outputParameters:
+      - type: object
+        mapping: $.

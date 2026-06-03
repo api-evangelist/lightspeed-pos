@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pms-apiProviderFeatures",
+  "description": "The optional features that the PMS provider supports. See the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/property-management-systems) for more details.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-pms-api-provider-features-schema.json",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "enum": [
+      "SEARCH_BY_NAME",
+      "MIRRORING",
+      "PARTIAL_PAYMENTS",
+      "MULTI_PAYMENTS",
+      "SERVICE_CHARGE",
+      "ENRICHED_PAYLOAD"
+    ],
+    "example": "MIRRORING"
+  }
+}

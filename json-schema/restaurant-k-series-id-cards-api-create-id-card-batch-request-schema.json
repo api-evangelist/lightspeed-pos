@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "id-cards-apiCreateIdCardBatchRequest",
+  "description": "id-cards-apiCreateIdCardBatchRequest schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-id-cards-api-create-id-card-batch-request-schema.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the ID card batch.",
+      "example": "Sample Batch Name",
+      "pattern": ".*\\S.*",
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

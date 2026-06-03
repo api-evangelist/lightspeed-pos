@@ -1,0 +1,6 @@
+{
+  "platformCode": "MyPlatform",
+  "platformRestaurantId": "Restaurant-123",
+  "platformReservationId": "Reservation-123",
+  "accepted": true
+}

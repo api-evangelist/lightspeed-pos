@@ -4,8 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Lightspeed
 providerId: lightspeed-pos
 created: '2026-05-08'
-modified: '2026-05-08'
-reconciled: false
+modified: '2026-06-02'
+reconciled: true
 tags:
 - POS
 - Retail
@@ -14,27 +14,61 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Lightspeed Retail R-Series API uses a leaky-bucket rate limit, returning bucket level in
-  the X-LS-API-Bucket-Level header. Other series have their own per-minute throttles; honor 429 with Retry-After.
-notes: Inspect X-LS-API-Bucket-Level (R-Series) to pace requests.
+description: >-
+  The Lightspeed Retail R-Series API enforces a per-account leaky-bucket rate limit. Each request adds
+  a variable cost (X-LS-Api-Request-Cost drips) to a bucket that drains at one drip per second
+  (X-LS-Api-Drip-Rate); the account's bucket size scales with the number of registers on the
+  subscription. The X-LS-Api-Bucket-Level header reports current fill as level/size. Exceeding the
+  bucket returns HTTP 429. The Retail X-Series (Vend) API and Restaurant K-Series API apply their own
+  per-key request throttling and likewise signal back-pressure with 429 plus Retry-After. Limits are
+  per-account / per-API-key rather than per-IP.
+notes: Inspect X-LS-Api-Bucket-Level and X-LS-Api-Request-Cost (R-Series) to pace requests; add registers to raise the R-Series ceiling.
 sources:
-- https://developers.lightspeedhq.com/retail/introduction/rate-limiting/
+- https://developers.lightspeedhq.com/retail/introduction/ratelimits/
+- https://x-series-api.lightspeedhq.com/docs/rate_limiting
+headers:
+  bucketLevel: X-LS-Api-Bucket-Level
+  burstLevel: X-LS-Api-Burst-Level
+  dripRate: X-LS-Api-Drip-Rate
+  requestCost: X-LS-Api-Request-Cost
+  rateLimitType: X-LS-API-RateLimit-Type
+  retryAfter: Retry-After
 responseCodes:
   throttled: 429
 limits:
-- name: R-Series Leaky Bucket
+- name: R-Series leaky bucket (per account)
   scope: account
-  metric: bucket level
-  limit: leaky-bucket; bucket header indicates fill
-  notes: X-LS-API-Bucket-Level reports current usage.
-- name: Other Series
+  metric: leaky_bucket_drips
+  limit: 'bucket size scales with register count; drains at 1 drip/second'
+  notes: >-
+    Each request adds X-LS-Api-Request-Cost drips; the bucket leaks one drip per second
+    (X-LS-Api-Drip-Rate). Current fill is reported as X-LS-Api-Bucket-Level (level/size). 429 once full.
+- name: R-Series request cost
   scope: account
-  metric: requests/minute
-  limit: varies by series
-  notes: Honor 429.
+  metric: varies
+  limit: 'per-operation drip cost (read operations cheaper than writes/bulk)'
+  notes: Expensive operations consume more bucket capacity per call.
+- name: X-Series (Vend) request throttle
+  scope: key
+  metric: requests_per_second
+  limit: 'see x-series-api.lightspeedhq.com/docs/rate_limiting'
+  notes: Per-API-key throttling; honor 429 and Retry-After.
+- name: K-Series (Restaurant) request throttle
+  scope: key
+  metric: varies
+  limit: 'per-client throttling; honor 429'
+  notes: Restaurant K-Series applies per-client back-pressure on the Order & Pay and data endpoints.
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+- name: Leaky-bucket pacing
+  description: >-
+    On R-Series, read X-LS-Api-Bucket-Level before issuing bursts; keep level well below size and let the
+    bucket drain at 1 drip/second. Batch or cache reads to lower aggregate request cost.
+- name: Backoff strategy
+  description: Implement exponential backoff with jitter on 429 responses and honor any Retry-After header.
+- name: Scope awareness
+  description: >-
+    Limits are bound to the account (R-Series, scaling with registers) or the API key (X-Series, K-Series),
+    not the client IP. Provisioning more registers raises the R-Series ceiling.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

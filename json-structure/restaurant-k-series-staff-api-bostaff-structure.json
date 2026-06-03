@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-staff-api-bostaff-structure.json",
+  "name": "staff-apiBOStaff",
+  "description": "staff-apiBOStaff schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "staffId": {
+      "type": "int64",
+      "description": "The unique identifier for the user.",
+      "example": 1234
+    },
+    "userTypes": {
+      "type": "array",
+      "items": {
+        "description": "The user type.",
+        "type": "string",
+        "enum": [
+          "POS",
+          "BACK_OFFICE",
+          "API"
+        ]
+      }
+    },
+    "firstName": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "The first name of the user.",
+      "default": "",
+      "example": "John"
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 128,
+      "description": "The last name of the user.",
+      "default": "",
+      "example": "Doe"
+    },
+    "email": {
+      "description": "The email associated with the user. Only used for Back Office staff.",
+      "type": "string",
+      "maxLength": 128
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Indicates if the user is active."
+    },
+    "createdOn": {
+      "type": "datetime",
+      "description": "The timestamp of the creation of the user."
+    },
+    "modifiedOn": {
+      "type": "datetime",
+      "description": "The timestamp of the last update to the user."
+    },
+    "businessId": {
+      "type": "int64",
+      "description": "The unique identifier for the business.",
+      "example": 12345
+    },
+    "businessLocationId": {
+      "type": "int64",
+      "description": "The unique identifier for the business location.",
+      "example": 1234567890
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "int64",
+            "description": "The unique identifier for the user group.",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the user group.",
+            "example": "Bar Staff"
+          }
+        }
+      }
+    },
+    "reportAccess": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "default": "STAFF_REPORT_OWN_ACCESS",
+        "description": "User report permissions."
+      }
+    },
+    "roles": {
+      "type": "array",
+      "description": "The roles assigned to the user.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "int64",
+            "description": "The unique identifier for the role.",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the role.",
+            "example": "ROLE_CAN_LOGIN"
+          }
+        }
+      }
+    }
+  }
+}

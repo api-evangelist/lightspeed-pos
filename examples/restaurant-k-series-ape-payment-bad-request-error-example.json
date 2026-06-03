@@ -1,0 +1,7 @@
+{
+  "timestamp": "2023-11-07T23:00:20.075+0000",
+  "status": 400,
+  "error": "Bad Request",
+  "message": "reference has already been used 12345678901234",
+  "path": "/o/op/1/pay"
+}

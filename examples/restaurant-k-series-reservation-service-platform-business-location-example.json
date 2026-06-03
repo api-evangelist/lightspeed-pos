@@ -1,0 +1,10 @@
+{
+  "businessLocationId": "500123",
+  "city": "example",
+  "country": "example",
+  "name": "Burger",
+  "state": "example",
+  "street1": "example",
+  "street2": "example",
+  "zip": "example"
+}

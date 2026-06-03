@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-vendor-structure.json",
+  "name": "Vendor",
+  "description": "A vendor (supplier) of inventory items.",
+  "type": "object",
+  "properties": {
+    "vendorID": {
+      "type": "string",
+      "description": "Unique vendor identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Vendor name."
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "Merchant account number with the vendor."
+    },
+    "contactID": {
+      "type": "string",
+      "description": "Identifier of the related contact record."
+    }
+  }
+}

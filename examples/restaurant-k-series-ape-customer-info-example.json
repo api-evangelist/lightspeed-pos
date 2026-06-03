@@ -1,0 +1,11 @@
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "thirdPartyReference": "ZEN-7074522d-c71d-403f",
+  "email": "jane.doe@example.com",
+  "contactNumberAsE164": "+14155552671",
+  "notes": "Notes about the customer.",
+  "salutation": "Mr.",
+  "sendEmailReceipts": true,
+  "emailNotification": "DONT_CHANGE"
+}

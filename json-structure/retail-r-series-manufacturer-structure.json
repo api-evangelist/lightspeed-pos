@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-manufacturer-structure.json",
+  "name": "Manufacturer",
+  "description": "A manufacturer of inventory items.",
+  "type": "object",
+  "properties": {
+    "manufacturerID": {
+      "type": "string",
+      "description": "Unique manufacturer identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Manufacturer name."
+    }
+  }
+}

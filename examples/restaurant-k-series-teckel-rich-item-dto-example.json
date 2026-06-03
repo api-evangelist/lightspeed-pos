@@ -1,0 +1,20 @@
+{
+  "businessId": 454335871,
+  "sku": "UGG-BB-PUR-06",
+  "descriptions": [
+    {
+      "localeCode": "de",
+      "description": "Das ist ein Test",
+      "displayName": "Rich Item 1 DE"
+    },
+    {
+      "localeCode": "en",
+      "description": "This is a test for a rich item",
+      "displayName": "Rich Item 1"
+    }
+  ],
+  "allergenCodes": [
+    "milk",
+    "cereals"
+  ]
+}

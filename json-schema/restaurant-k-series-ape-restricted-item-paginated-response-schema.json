@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeRestrictedItemPaginatedResponse",
+  "description": "apeRestrictedItemPaginatedResponse schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-restricted-item-paginated-response-schema.json",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "The SKU assigned to the item.",
+            "example": "SKU1"
+          },
+          "count": {
+            "type": "integer",
+            "description": "The count of available items.",
+            "format": "int64",
+            "example": 50
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The last update of the item count.",
+            "example": "2025-07-08T14:20:00Z"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "warnings": {
+          "description": "A list of warnings that occurred during the request, but which did not prevent a successful response.  For instance, if the Business Location does not have the required POS app version to support item availability.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "information": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "current": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Current page number.",
+              "example": 0
+            },
+            "pageSize": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Number of items per page.",
+              "example": 50
+            }
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32",
+          "example": 1,
+          "description": "Total number of items requested."
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int32",
+          "example": 10,
+          "description": "Total number of pages of items."
+        }
+      }
+    }
+  }
+}

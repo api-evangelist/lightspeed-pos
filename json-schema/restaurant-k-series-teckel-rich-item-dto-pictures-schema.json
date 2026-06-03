@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "teckelRichItemDtoPictures",
+  "description": "teckelRichItemDtoPictures schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-teckel-rich-item-dto-pictures-schema.json",
+  "type": "object",
+  "properties": {
+    "pictureUrl": {
+      "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png",
+      "description": "The URL of the picture.",
+      "type": "string"
+    },
+    "previewPictureUrl": {
+      "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png",
+      "description": "The URL of the preview picture.",
+      "type": "string"
+    },
+    "rawPictureUrl": {
+      "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png",
+      "description": "The URL of the raw picture.",
+      "type": "string"
+    }
+  }
+}

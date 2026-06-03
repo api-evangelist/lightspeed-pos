@@ -1,0 +1,6 @@
+{
+  "name": "Staff Discount",
+  "code": "STAFF",
+  "discountPercentage": 15,
+  "discountAmount": 5
+}

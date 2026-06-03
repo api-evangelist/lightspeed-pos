@@ -1,0 +1,9 @@
+{
+  "saleLineID": "500123",
+  "itemID": "500123",
+  "saleID": "500123",
+  "unitQuantity": "example",
+  "unitPrice": "12.50",
+  "normalUnitPrice": "12.50",
+  "discountID": "500123"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-x-series-customer-structure.json",
+  "name": "Customer",
+  "description": "Customer schema from Lightspeed Retail X-Series API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "uuid"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "customer_code": {
+      "type": "string"
+    }
+  }
+}

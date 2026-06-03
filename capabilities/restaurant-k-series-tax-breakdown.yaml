@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — Tax Breakdown
+  description: 'Restaurant — Tax Breakdown. 1 operations. Lead operation: Lightspeed Post Proposed Order. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - Tax Breakdown
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-tax-breakdown
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — Tax Breakdown business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: tp-v1-business-locations-businesslocationid-tax-breakdown
+      path: /tp/v1/business-locations/{businessLocationId}/tax-breakdown
+      operations:
+      - name: tax-preview-apiTaxBreakdown
+        method: POST
+        description: Lightspeed Post Proposed Order
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: integer
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-tax-breakdown-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — Tax Breakdown. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/tp/v1/business-locations/{businesslocationid}/tax-breakdown
+      name: v1-tp-v1-business-locations-businesslocationid-tax-breakdown
+      description: REST surface for Tax Breakdown.
+      operations:
+      - method: POST
+        name: tax-preview-apiTaxBreakdown
+        description: Lightspeed Post Proposed Order
+        call: restaurant-k-series-tax-breakdown.tax-preview-apiTaxBreakdown
+        with:
+          businessLocationId: rest.businessLocationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-tax-breakdown-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — Tax Breakdown. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: post-proposed-order
+      description: Lightspeed Post Proposed Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-tax-breakdown.tax-preview-apiTaxBreakdown
+      with:
+        businessLocationId: tools.businessLocationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

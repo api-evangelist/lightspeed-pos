@@ -1,0 +1,16 @@
+{
+  "customerID": "500123",
+  "firstName": "Burger",
+  "lastName": "Burger",
+  "company": "example",
+  "contactID": "500123",
+  "discountID": "500123",
+  "taxCategoryID": "500123",
+  "Contact": {
+    "contactID": "500123",
+    "custom": "example",
+    "noEmail": true,
+    "noPhone": false,
+    "noMail": false
+  }
+}

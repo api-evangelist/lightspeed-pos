@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-reservation-service-platform-webhook-response-dto-structure.json",
+  "name": "reservation-servicePlatformWebhookResponseDto",
+  "description": "Updated webhook authorization details.",
+  "type": "object",
+  "properties": {
+    "accepted": {
+      "description": "Whether the webhook request was accepted.",
+      "example": true,
+      "type": "boolean"
+    },
+    "currentAuthType": {
+      "description": "The current authentication type.",
+      "enum": [
+        "BASIC_AUTH",
+        "BEARER_TOKEN",
+        "API_KEYS",
+        "OAUTH2"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "accepted",
+    "currentAuthType"
+  ]
+}

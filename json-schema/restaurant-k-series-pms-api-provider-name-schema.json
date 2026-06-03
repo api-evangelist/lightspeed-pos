@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pms-apiProviderName",
+  "description": "The name of the PMS provider.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-pms-api-provider-name-schema.json",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "example": "My PMS Provider"
+}

@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-to-go-order-item-line-structure.json",
+  "name": "apeToGoOrderItemLine",
+  "description": "apeToGoOrderItemLine schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "quantity": {
+      "example": 1,
+      "description": "Quantity of item to be ordered.",
+      "type": "int32"
+    },
+    "sku": {
+      "example": "UGG-BB-PUR-06",
+      "maxLength": 25,
+      "description": "The SKU of the item to be ordered.",
+      "type": "string"
+    },
+    "customItemName": {
+      "example": "My Custom Item Name",
+      "description": "The custom name to be used, if overwriting is permitted for this item.",
+      "type": "string"
+    },
+    "customItemPrice": {
+      "example": 10.0,
+      "description": "The custom price to be used, if custom pricing is permitted for this item.",
+      "type": "double"
+    },
+    "discountAmountOverride": {
+      "description": "The custom discount amount applied to this item. Only one of `discountAmountOverride` or `discountPercentOverride` can be set.",
+      "type": "double",
+      "example": 5.0
+    },
+    "discountPercentOverride": {
+      "description": "The custom percentage discount applied to this item. Only one of `discountAmountOverride` or `discountPercentOverride` can be set.",
+      "type": "double",
+      "example": 10.0
+    },
+    "modifiers": {
+      "description": "Collection of [modifiers](https://api-docs.lsk.lightspeed.app/operation/operation-apeloadallmodifiers) to be applied to this item.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "modifierId": {
+            "example": "236025632784492",
+            "description": "Modifier ID to be applied to this item.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "discountCode": {
+      "example": "FIVEPERCENT",
+      "description": "The discount code being applied to this item, if applicable.",
+      "type": "string"
+    },
+    "subItems": {
+      "type": "array",
+      "items": {
+        "required": [
+          "quantity",
+          "sku"
+        ],
+        "properties": {
+          "quantity": {
+            "example": 1,
+            "description": "Quantity of sub-item to be ordered.",
+            "type": "int32"
+          },
+          "sku": {
+            "example": "ABC-123",
+            "maxLength": 25,
+            "description": "The SKU of the sub-item to be ordered.",
+            "type": "string"
+          },
+          "customItemName": {
+            "example": "My Custom Sub-Item Name",
+            "description": "The custom name to be used if overwriting is supported for this sub-item.",
+            "type": "string"
+          },
+          "customItemPrice": {
+            "example": 2.0,
+            "description": "The custom price to be used if overwriting is supported for this sub-item.",
+            "type": "double"
+          },
+          "modifiers": {
+            "description": "Collection of modifiers to be applied to this sub-item.",
+            "items": {
+              "properties": {
+                "modifierId": {
+                  "example": "236025632784492",
+                  "description": "Modifier ID to be applied to this item.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "subItems": {
+            "description": "Product modifiers applied to this item.",
+            "items": {
+              "required": [
+                "quantity",
+                "sku"
+              ],
+              "properties": {
+                "quantity": {
+                  "example": 1,
+                  "description": "Quantity of sub-item to be ordered.",
+                  "type": "int32"
+                },
+                "sku": {
+                  "example": "ABC-123",
+                  "maxLength": 25,
+                  "description": "The SKU of the sub-item to be ordered.",
+                  "type": "string"
+                },
+                "customItemName": {
+                  "example": "My Custom Sub-Item Name",
+                  "description": "The custom name to be used if overwriting is supported for this sub-item.",
+                  "type": "string"
+                },
+                "customItemPrice": {
+                  "example": 2.0,
+                  "description": "The custom price to be used if overwriting is supported for this sub-item.",
+                  "type": "double"
+                },
+                "modifiers": {
+                  "description": "Collection of modifiers to be applied to this sub-item.",
+                  "items": {
+                    "properties": {
+                      "modifierId": {
+                        "example": "236025632784492",
+                        "description": "Modifier ID to be applied to this item.",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "subItems": {
+                  "description": "Product modifiers applied to this item.",
+                  "items": {
+                    "required": [
+                      "quantity",
+                      "sku"
+                    ],
+                    "properties": {
+                      "quantity": {
+                        "example": 1,
+                        "description": "Quantity of sub-item to be ordered.",
+                        "type": "int32"
+                      },
+                      "sku": {
+                        "example": "ABC-123",
+                        "maxLength": 25,
+                        "description": "The SKU of the sub-item to be ordered.",
+                        "type": "string"
+                      },
+                      "customItemName": {
+                        "example": "My Custom Sub-Item Name",
+                        "description": "The custom name to be used if overwriting is supported for this sub-item.",
+                        "type": "string"
+                      },
+                      "customItemPrice": {
+                        "example": 2.0,
+                        "description": "The custom price to be used if overwriting is supported for this sub-item.",
+                        "type": "double"
+                      },
+                      "modifiers": {
+                        "description": "Collection of modifiers to be applied to this sub-item.",
+                        "items": {
+                          "properties": {
+                            "modifierId": {
+                              "example": "236025632784492",
+                              "description": "Modifier ID to be applied to this item.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "subItems": {
+                        "description": "Product modifiers applied to this item.",
+                        "items": {
+                          "required": [
+                            "quantity",
+                            "sku"
+                          ],
+                          "properties": {
+                            "quantity": {
+                              "example": 1,
+                              "description": "Quantity of sub-item to be ordered.",
+                              "type": "int32"
+                            },
+                            "sku": {
+                              "example": "ABC-123",
+                              "maxLength": 25,
+                              "description": "The SKU of the sub-item to be ordered.",
+                              "type": "string"
+                            },
+                            "customItemName": {
+                              "example": "My Custom Sub-Item Name",
+                              "description": "The custom name to be used if overwriting is supported for this sub-item.",
+                              "type": "string"
+                            },
+                            "customItemPrice": {
+                              "example": 2.0,
+                              "description": "The custom price to be used if overwriting is supported for this sub-item.",
+                              "type": "double"
+                            },
+                            "modifiers": {
+                              "description": "Collection of modifiers to be applied to this sub-item.",
+                              "items": {
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "subItems": {
+                              "description": "Product modifiers applied to this item.",
+                              "items": {
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "quantity",
+    "sku"
+  ]
+}

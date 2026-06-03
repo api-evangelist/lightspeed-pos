@@ -1,0 +1,231 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ls": "https://developers.lightspeedhq.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Account": "ls:Account",
+    "Attributes": "ls:Attributes",
+    "Category": "ls:Category",
+    "Contact": {
+      "@id": "ls:Contact",
+      "@type": "@id"
+    },
+    "Customer": "ls:Customer",
+    "Employee": "ls:Employee",
+    "Item": "ls:Item",
+    "Manufacturer": "ls:Manufacturer",
+    "SaleLine": {
+      "@id": "ls:SaleLine",
+      "@container": "@set"
+    },
+    "Sale": "ls:Sale",
+    "Shop": "ls:Shop",
+    "Vendor": "ls:Vendor",
+    "accountID": {
+      "@id": "ls:accountID",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "link": {
+      "@id": "ls:link",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "ls:count",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "ls:offset",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "ls:limit",
+      "@type": "xsd:integer"
+    },
+    "categoryID": {
+      "@id": "ls:categoryID",
+      "@type": "xsd:string"
+    },
+    "parentID": {
+      "@id": "ls:parentID",
+      "@type": "xsd:string"
+    },
+    "fullPathName": {
+      "@id": "ls:fullPathName",
+      "@type": "xsd:string"
+    },
+    "contactID": {
+      "@id": "ls:contactID",
+      "@type": "xsd:string"
+    },
+    "custom": {
+      "@id": "ls:custom",
+      "@type": "xsd:string"
+    },
+    "noEmail": {
+      "@id": "ls:noEmail",
+      "@type": "xsd:boolean"
+    },
+    "noPhone": {
+      "@id": "ls:noPhone",
+      "@type": "xsd:boolean"
+    },
+    "noMail": {
+      "@id": "ls:noMail",
+      "@type": "xsd:boolean"
+    },
+    "customerID": {
+      "@id": "ls:customerID",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "ls:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "ls:lastName",
+      "@type": "xsd:string"
+    },
+    "company": {
+      "@id": "ls:company",
+      "@type": "xsd:string"
+    },
+    "discountID": {
+      "@id": "ls:discountID",
+      "@type": "xsd:string"
+    },
+    "taxCategoryID": {
+      "@id": "ls:taxCategoryID",
+      "@type": "xsd:string"
+    },
+    "employeeID": {
+      "@id": "ls:employeeID",
+      "@type": "xsd:string"
+    },
+    "shopID": {
+      "@id": "ls:shopID",
+      "@type": "xsd:string"
+    },
+    "limitToShopID": {
+      "@id": "ls:limitToShopID",
+      "@type": "xsd:string"
+    },
+    "itemID": {
+      "@id": "ls:itemID",
+      "@type": "xsd:string"
+    },
+    "systemSku": {
+      "@id": "ls:systemSku",
+      "@type": "xsd:string"
+    },
+    "defaultCost": {
+      "@id": "ls:defaultCost",
+      "@type": "xsd:string"
+    },
+    "avgCost": {
+      "@id": "ls:avgCost",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "upc": {
+      "@id": "ls:upc",
+      "@type": "xsd:string"
+    },
+    "ean": {
+      "@id": "ls:ean",
+      "@type": "xsd:string"
+    },
+    "customSku": {
+      "@id": "ls:customSku",
+      "@type": "xsd:string"
+    },
+    "manufacturerSku": {
+      "@id": "ls:manufacturerSku",
+      "@type": "xsd:string"
+    },
+    "manufacturerID": {
+      "@id": "ls:manufacturerID",
+      "@type": "xsd:string"
+    },
+    "archived": {
+      "@id": "ls:archived",
+      "@type": "xsd:boolean"
+    },
+    "Prices": {
+      "@id": "ls:Prices",
+      "@type": "@id"
+    },
+    "saleLineID": {
+      "@id": "ls:saleLineID",
+      "@type": "xsd:string"
+    },
+    "saleID": {
+      "@id": "ls:saleID",
+      "@type": "xsd:string"
+    },
+    "unitQuantity": {
+      "@id": "ls:unitQuantity",
+      "@type": "xsd:string"
+    },
+    "unitPrice": {
+      "@id": "ls:unitPrice",
+      "@type": "xsd:string"
+    },
+    "normalUnitPrice": {
+      "@id": "ls:normalUnitPrice",
+      "@type": "xsd:string"
+    },
+    "timeStamp": {
+      "@id": "ls:timeStamp",
+      "@type": "xsd:dateTime"
+    },
+    "completed": {
+      "@id": "ls:completed",
+      "@type": "xsd:boolean"
+    },
+    "total": {
+      "@id": "ls:total",
+      "@type": "xsd:string"
+    },
+    "totalDue": {
+      "@id": "ls:totalDue",
+      "@type": "xsd:string"
+    },
+    "displayableTotal": {
+      "@id": "ls:displayableTotal",
+      "@type": "xsd:string"
+    },
+    "discountPercent": {
+      "@id": "ls:discountPercent",
+      "@type": "xsd:string"
+    },
+    "registerID": {
+      "@id": "ls:registerID",
+      "@type": "xsd:string"
+    },
+    "SaleLines": {
+      "@id": "ls:SaleLines",
+      "@type": "@id"
+    },
+    "timeZone": {
+      "@id": "ls:timeZone",
+      "@type": "xsd:string"
+    },
+    "vendorID": {
+      "@id": "ls:vendorID",
+      "@type": "xsd:string"
+    },
+    "accountNumber": {
+      "@id": "ls:accountNumber",
+      "@type": "xsd:string"
+    }
+  }
+}

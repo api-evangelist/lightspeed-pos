@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-staff-api-shift-structure.json",
+  "name": "staff-apiShift",
+  "description": "Shift details.",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "description": "The unique identifier for the shift.",
+      "type": "string",
+      "example": "REcdfpCwQJKUR53gdzIk5Q=="
+    },
+    "businessId": {
+      "description": "The unique identifier for the business.",
+      "type": "int64",
+      "example": 12345
+    },
+    "businessLocationId": {
+      "description": "The unique identifier for the business location.",
+      "type": "int64",
+      "example": 1234567890
+    },
+    "deviceId": {
+      "description": "The unique identifier for the device.",
+      "type": "int64",
+      "example": 54321
+    },
+    "staffId": {
+      "description": "The unique identifier for the user.",
+      "type": "int64",
+      "example": 1234
+    },
+    "declaredCashTips": {
+      "description": "The declared tips for the shift.",
+      "type": "string",
+      "example": "10.00",
+      "multipleOf": 0.01
+    },
+    "dateInUTC": {
+      "description": "The timestamp of the last update to the shift.",
+      "type": "datetime",
+      "example": "2020-01-01T00:00:00Z"
+    },
+    "events": {
+      "description": "List of events during the shift.",
+      "type": "array",
+      "items": {
+        "description": "Shift event such as clock in/out, please use the newest one when multiple events existing with same event type.",
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "description": "The unique identifier for the event.",
+            "type": "string",
+            "example": "REcdfpCwQJKUR53gdzIk5Q=="
+          },
+          "timestamp": {
+            "description": "The time of the event.",
+            "type": "datetime",
+            "example": "2020-01-01T00:00:00Z"
+          },
+          "createdOn": {
+            "description": "The creation time of the event.",
+            "type": "datetime",
+            "example": "2020-01-01T00:00:00Z"
+          },
+          "eventType": {
+            "description": "The type of event.",
+            "type": "string",
+            "enum": [
+              "CLOCK_IN",
+              "CLOCK_OUT"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

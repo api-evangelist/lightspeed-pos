@@ -1,0 +1,1469 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeMenu",
+  "description": "apeMenu schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-menu-schema.json",
+  "type": "object",
+  "properties": {
+    "menuName": {
+      "description": "The name of the menu.",
+      "type": "string",
+      "example": "Main Menu"
+    },
+    "menuEntryGroups": {
+      "description": "Menu groups of this menu. The top-level entry will always be of type \"group\", representing a menu screen. Beneath each `menuEntryGroup` will be a `menuEntry` array containing any combination of one or more menu entries:\n* A `menuItemEntry` represents an individual item.\n* A `menuGroupEntry` represents a menu sub-screen.\n* A `menuDealEntry` represents a combo.",
+      "items": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "@type": {
+                "type": "string",
+                "description": "Indicates this is a menu group, which represents a menu screen in the POS.",
+                "example": "group",
+                "enum": [
+                  "group"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The menu group ID.",
+                "example": "141948669133028"
+              },
+              "name": {
+                "type": "string",
+                "description": "The menu group name.",
+                "example": "Mains"
+              },
+              "color": {
+                "type": "string",
+                "description": "The color of the button in the POS.",
+                "example": "blue"
+              },
+              "menuEntry": {
+                "type": "array",
+                "description": "Array of menu entry objects.",
+                "items": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "title": "menuItem",
+                      "allOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "@type": {
+                              "type": "string",
+                              "description": "Indicates this is an individual item.",
+                              "example": "menuItem",
+                              "enum": [
+                                "menuItem"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "properties": {
+                            "productName": {
+                              "type": "string",
+                              "description": "The name of the item.",
+                              "example": "Burger"
+                            },
+                            "productPrice": {
+                              "type": "number",
+                              "description": "The price of the item.",
+                              "example": 10.0
+                            },
+                            "extraPrice": {
+                              "type": "number",
+                              "description": "Additional item price when selected in a combo group.",
+                              "example": 1.99
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "The color of the menu button for this item.",
+                              "example": "blue"
+                            },
+                            "sku": {
+                              "type": "string",
+                              "description": "The SKU of the item.",
+                              "example": "25"
+                            },
+                            "customItemNameEnabled": {
+                              "type": "boolean",
+                              "description": "Whether the name of the item can be customized.",
+                              "example": false
+                            },
+                            "pricingStrategy": {
+                              "type": "string",
+                              "description": "The pricing type of the item.",
+                              "example": "PRICE_CANNOT_BE_CUSTOMIZED",
+                              "enum": [
+                                "CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE",
+                                "CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE",
+                                "CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL",
+                                "PRICE_CANNOT_BE_CUSTOMIZED"
+                              ]
+                            },
+                            "itemRichData": {
+                              "type": "object",
+                              "properties": {
+                                "squareImageUrl": {
+                                  "description": "A download link for the image associated with this item, as formatted for display in the POS.",
+                                  "type": "string",
+                                  "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb.image/png"
+                                },
+                                "rawImageUrl": {
+                                  "description": "A download link for the image associated with this item.",
+                                  "type": "string",
+                                  "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_raw.image/png"
+                                },
+                                "previewImageUrl": {
+                                  "description": "A download link for the preview image associated with this item.",
+                                  "type": "string",
+                                  "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_preview.image/png"
+                                },
+                                "containsAlcohol": {
+                                  "description": "Flag to indicate if the item contains alcohol.",
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "alcoholPercentage": {
+                                  "description": "The percentage of alcohol in the item.",
+                                  "type": "number",
+                                  "example": 13.0
+                                },
+                                "texts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "allergenCodes": {
+                                  "description": "The allergen codes associated with this item.",
+                                  "example": [
+                                    "mustard",
+                                    "cereals"
+                                  ],
+                                  "uniqueItems": true,
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "defaultTaxAmount": {
+                              "description": "The tax amount as calculated at the default tax rate (a sum for multiple taxes).",
+                              "type": "number",
+                              "example": 1.5
+                            },
+                            "defaultTaxPercentage": {
+                              "description": "The default tax percentage for this item (a sum for multiple taxes).",
+                              "type": "number",
+                              "example": 15.0
+                            },
+                            "taxIncludedInPrice": {
+                              "description": "Whether or not tax is included in the price of the item.",
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "conditionalTaxRules": {
+                              "description": "Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.",
+                              "type": "boolean"
+                            },
+                            "taxes": {
+                              "description": "Detailed tax info",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Tax description as it appears on a POS and receipt.",
+                                    "example": "5% GST"
+                                  },
+                                  "amount": {
+                                    "type": "number",
+                                    "description": "The amount of Tax applied by default by this Tax, this can change dynamically at time of sale.",
+                                    "example": 12.55
+                                  },
+                                  "percentage": {
+                                    "type": "number",
+                                    "description": "The percentage of Tax applied by default by this Tax, this can change dynamically at time of sale.",
+                                    "example": 5.0
+                                  }
+                                }
+                              },
+                              "type": "array"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "asSubItem": {
+                              "type": "boolean",
+                              "description": "Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false."
+                            },
+                            "productionInstructionList": {
+                              "type": "array",
+                              "description": "Array of production instructions for this product",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "multiSelectionPermitted": {
+                                    "type": "boolean",
+                                    "description": "Specifies if more than one production instruction can be selected for this group."
+                                  },
+                                  "productionInstructionGroupName": {
+                                    "type": "string",
+                                    "description": "The group name for this production instruction."
+                                  },
+                                  "productionIntructionGroupId": {
+                                    "type": "integer",
+                                    "description": "The unique identifier for this production instruction group.",
+                                    "format": "int64"
+                                  },
+                                  "productionInstructionList": {
+                                    "type": "array",
+                                    "description": "Array of production instructions for this group.",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "instruction": {
+                                          "type": "string",
+                                          "description": "The name of the production instruction."
+                                        },
+                                        "ikentooModifierId": {
+                                          "description": "The unique identifier of this production instruction.",
+                                          "type": "integer",
+                                          "format": "int64"
+                                        }
+                                      },
+                                      "description": "Array of production instructions for this group"
+                                    }
+                                  }
+                                }
+                              },
+                              "example": [
+                                {
+                                  "multiSelectionPermitted": false,
+                                  "productionInstructionGroupName": "Meat cooking",
+                                  "productionIntructionGroupId": 236025632784487,
+                                  "productionInstructionList": [
+                                    {
+                                      "instruction": "Bleu",
+                                      "ikentooModifierId": 236025632784488
+                                    },
+                                    {
+                                      "instruction": "Rare",
+                                      "ikentooModifierId": 236025632784490
+                                    },
+                                    {
+                                      "instruction": "Medium Rare",
+                                      "ikentooModifierId": 236025632784492
+                                    },
+                                    {
+                                      "instruction": "Medium",
+                                      "ikentooModifierId": 236025632784494
+                                    },
+                                    {
+                                      "instruction": "Medium well",
+                                      "ikentooModifierId": 236025632784496
+                                    },
+                                    {
+                                      "instruction": "Well done",
+                                      "ikentooModifierId": 236025632784498
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "title": "menuDeal",
+                      "allOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "@type": {
+                              "type": "string",
+                              "description": "Indicates the item is a Combo.",
+                              "example": "menuDeal",
+                              "enum": [
+                                "menuDeal"
+                              ]
+                            },
+                            "items": {
+                              "description": "List of items to select from.",
+                              "type": "array",
+                              "items": {
+                                "title": "menuItem",
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "@type": {
+                                        "type": "string",
+                                        "description": "Indicates this is an individual item.",
+                                        "example": "menuItem",
+                                        "enum": [
+                                          "menuItem"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "properties": {
+                                      "productName": {
+                                        "type": "string",
+                                        "description": "The name of the item.",
+                                        "example": "Burger"
+                                      },
+                                      "productPrice": {
+                                        "type": "number",
+                                        "description": "The price of the item.",
+                                        "example": 10.0
+                                      },
+                                      "extraPrice": {
+                                        "type": "number",
+                                        "description": "Additional item price when selected in a combo group.",
+                                        "example": 1.99
+                                      },
+                                      "color": {
+                                        "type": "string",
+                                        "description": "The color of the menu button for this item.",
+                                        "example": "blue"
+                                      },
+                                      "sku": {
+                                        "type": "string",
+                                        "description": "The SKU of the item.",
+                                        "example": "25"
+                                      },
+                                      "customItemNameEnabled": {
+                                        "type": "boolean",
+                                        "description": "Whether the name of the item can be customized.",
+                                        "example": false
+                                      },
+                                      "pricingStrategy": {
+                                        "type": "string",
+                                        "description": "The pricing type of the item.",
+                                        "example": "PRICE_CANNOT_BE_CUSTOMIZED",
+                                        "enum": [
+                                          "CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE",
+                                          "CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE",
+                                          "CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL",
+                                          "PRICE_CANNOT_BE_CUSTOMIZED"
+                                        ]
+                                      },
+                                      "itemRichData": {
+                                        "type": "object"
+                                      },
+                                      "defaultTaxAmount": {
+                                        "description": "The tax amount as calculated at the default tax rate (a sum for multiple taxes).",
+                                        "type": "number",
+                                        "example": 1.5
+                                      },
+                                      "defaultTaxPercentage": {
+                                        "description": "The default tax percentage for this item (a sum for multiple taxes).",
+                                        "type": "number",
+                                        "example": 15.0
+                                      },
+                                      "taxIncludedInPrice": {
+                                        "description": "Whether or not tax is included in the price of the item.",
+                                        "type": "boolean",
+                                        "example": false
+                                      },
+                                      "conditionalTaxRules": {
+                                        "description": "Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.",
+                                        "type": "boolean"
+                                      },
+                                      "taxes": {
+                                        "description": "Detailed tax info",
+                                        "items": {
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "asSubItem": {
+                                        "type": "boolean",
+                                        "description": "Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false."
+                                      },
+                                      "productionInstructionList": {
+                                        "type": "array",
+                                        "description": "Array of production instructions for this product",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "multiSelectionPermitted": {
+                                              "type": "boolean",
+                                              "description": "Specifies if more than one production instruction can be selected for this group."
+                                            },
+                                            "productionInstructionGroupName": {
+                                              "type": "string",
+                                              "description": "The group name for this production instruction."
+                                            },
+                                            "productionIntructionGroupId": {
+                                              "type": "integer",
+                                              "description": "The unique identifier for this production instruction group.",
+                                              "format": "int64"
+                                            },
+                                            "productionInstructionList": {
+                                              "type": "array",
+                                              "description": "Array of production instructions for this group.",
+                                              "items": {
+                                                "type": "object"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "example": [
+                                          {
+                                            "multiSelectionPermitted": false,
+                                            "productionInstructionGroupName": "Meat cooking",
+                                            "productionIntructionGroupId": 236025632784487,
+                                            "productionInstructionList": [
+                                              {
+                                                "instruction": "Bleu",
+                                                "ikentooModifierId": 236025632784488
+                                              },
+                                              {
+                                                "instruction": "Rare",
+                                                "ikentooModifierId": 236025632784490
+                                              },
+                                              {
+                                                "instruction": "Medium Rare",
+                                                "ikentooModifierId": 236025632784492
+                                              },
+                                              {
+                                                "instruction": "Medium",
+                                                "ikentooModifierId": 236025632784494
+                                              },
+                                              {
+                                                "instruction": "Medium well",
+                                                "ikentooModifierId": 236025632784496
+                                              },
+                                              {
+                                                "instruction": "Well done",
+                                                "ikentooModifierId": 236025632784498
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "menuDealGroups": {
+                              "type": "array",
+                              "description": "Array of Items in the Combo",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Description of the combo item grouping.",
+                                    "example": "Side Dishes"
+                                  },
+                                  "sku": {
+                                    "type": "string",
+                                    "description": "The SKU of the combo item grouping.",
+                                    "example": "25"
+                                  },
+                                  "mustSelectAnItem": {
+                                    "type": "boolean",
+                                    "description": "Whether or not this is a required selection.",
+                                    "example": true
+                                  },
+                                  "multiSelectionPermitted": {
+                                    "type": "boolean",
+                                    "description": "Whether or not multiple items can be selected from this item grouping.",
+                                    "example": true
+                                  },
+                                  "minimumSelection": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "description": "The minimum number of items that must be selected from this item grouping. If null then no minimum is set.",
+                                    "example": 1
+                                  },
+                                  "maximumSelection": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "description": "The maximum number of items that can be selected from this item grouping. If null then no maximum is set.",
+                                    "example": 3
+                                  },
+                                  "itemRichData": {
+                                    "type": "object",
+                                    "properties": {
+                                      "squareImageUrl": {
+                                        "description": "A download link for the image associated with this item, as formatted for display in the POS.",
+                                        "type": "string",
+                                        "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb.image/png"
+                                      },
+                                      "rawImageUrl": {
+                                        "description": "A download link for the image associated with this item.",
+                                        "type": "string",
+                                        "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_raw.image/png"
+                                      },
+                                      "previewImageUrl": {
+                                        "description": "A download link for the preview image associated with this item.",
+                                        "type": "string",
+                                        "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_preview.image/png"
+                                      },
+                                      "containsAlcohol": {
+                                        "description": "Flag to indicate if the item contains alcohol.",
+                                        "type": "boolean",
+                                        "example": true
+                                      },
+                                      "alcoholPercentage": {
+                                        "description": "The percentage of alcohol in the item.",
+                                        "type": "number",
+                                        "example": 13.0
+                                      },
+                                      "texts": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object"
+                                        }
+                                      },
+                                      "allergenCodes": {
+                                        "description": "The allergen codes associated with this item.",
+                                        "example": [
+                                          "mustard",
+                                          "cereals"
+                                        ],
+                                        "uniqueItems": true,
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "items": {
+                                    "description": "List of items to select from.",
+                                    "type": "array",
+                                    "items": {
+                                      "title": "menuItem",
+                                      "allOf": [
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "@type": {
+                                              "type": "string",
+                                              "description": "Indicates this is an individual item.",
+                                              "example": "menuItem",
+                                              "enum": [
+                                                "menuItem"
+                                              ]
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "object"
+                                        },
+                                        {
+                                          "type": "object",
+                                          "properties": {
+                                            "asSubItem": {
+                                              "type": "boolean",
+                                              "description": "Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false."
+                                            },
+                                            "productionInstructionList": {
+                                              "type": "array",
+                                              "description": "Array of production instructions for this product",
+                                              "items": {
+                                                "type": "object"
+                                              },
+                                              "example": [
+                                                {
+                                                  "multiSelectionPermitted": false,
+                                                  "productionInstructionGroupName": "Meat cooking",
+                                                  "productionIntructionGroupId": 236025632784487,
+                                                  "productionInstructionList": [
+                                                    {
+                                                      "instruction": "Bleu",
+                                                      "ikentooModifierId": 236025632784488
+                                                    },
+                                                    {
+                                                      "instruction": "Rare",
+                                                      "ikentooModifierId": 236025632784490
+                                                    },
+                                                    {
+                                                      "instruction": "Medium Rare",
+                                                      "ikentooModifierId": 236025632784492
+                                                    },
+                                                    {
+                                                      "instruction": "Medium",
+                                                      "ikentooModifierId": 236025632784494
+                                                    },
+                                                    {
+                                                      "instruction": "Medium well",
+                                                      "ikentooModifierId": 236025632784496
+                                                    },
+                                                    {
+                                                      "instruction": "Well done",
+                                                      "ikentooModifierId": 236025632784498
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "description": "Collections of item groups within the combo to select from."
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "properties": {
+                            "productName": {
+                              "type": "string",
+                              "description": "The name of the item.",
+                              "example": "Burger"
+                            },
+                            "productPrice": {
+                              "type": "number",
+                              "description": "The price of the item.",
+                              "example": 10.0
+                            },
+                            "extraPrice": {
+                              "type": "number",
+                              "description": "Additional item price when selected in a combo group.",
+                              "example": 1.99
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "The color of the menu button for this item.",
+                              "example": "blue"
+                            },
+                            "sku": {
+                              "type": "string",
+                              "description": "The SKU of the item.",
+                              "example": "25"
+                            },
+                            "customItemNameEnabled": {
+                              "type": "boolean",
+                              "description": "Whether the name of the item can be customized.",
+                              "example": false
+                            },
+                            "pricingStrategy": {
+                              "type": "string",
+                              "description": "The pricing type of the item.",
+                              "example": "PRICE_CANNOT_BE_CUSTOMIZED",
+                              "enum": [
+                                "CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE",
+                                "CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE",
+                                "CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL",
+                                "PRICE_CANNOT_BE_CUSTOMIZED"
+                              ]
+                            },
+                            "itemRichData": {
+                              "type": "object",
+                              "properties": {
+                                "squareImageUrl": {
+                                  "description": "A download link for the image associated with this item, as formatted for display in the POS.",
+                                  "type": "string",
+                                  "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb.image/png"
+                                },
+                                "rawImageUrl": {
+                                  "description": "A download link for the image associated with this item.",
+                                  "type": "string",
+                                  "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_raw.image/png"
+                                },
+                                "previewImageUrl": {
+                                  "description": "A download link for the preview image associated with this item.",
+                                  "type": "string",
+                                  "example": "http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_preview.image/png"
+                                },
+                                "containsAlcohol": {
+                                  "description": "Flag to indicate if the item contains alcohol.",
+                                  "type": "boolean",
+                                  "example": true
+                                },
+                                "alcoholPercentage": {
+                                  "description": "The percentage of alcohol in the item.",
+                                  "type": "number",
+                                  "example": 13.0
+                                },
+                                "texts": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "allergenCodes": {
+                                  "description": "The allergen codes associated with this item.",
+                                  "example": [
+                                    "mustard",
+                                    "cereals"
+                                  ],
+                                  "uniqueItems": true,
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "defaultTaxAmount": {
+                              "description": "The tax amount as calculated at the default tax rate (a sum for multiple taxes).",
+                              "type": "number",
+                              "example": 1.5
+                            },
+                            "defaultTaxPercentage": {
+                              "description": "The default tax percentage for this item (a sum for multiple taxes).",
+                              "type": "number",
+                              "example": 15.0
+                            },
+                            "taxIncludedInPrice": {
+                              "description": "Whether or not tax is included in the price of the item.",
+                              "type": "boolean",
+                              "example": false
+                            },
+                            "conditionalTaxRules": {
+                              "description": "Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.",
+                              "type": "boolean"
+                            },
+                            "taxes": {
+                              "description": "Detailed tax info",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "description": {
+                                    "type": "string",
+                                    "description": "Tax description as it appears on a POS and receipt.",
+                                    "example": "5% GST"
+                                  },
+                                  "amount": {
+                                    "type": "number",
+                                    "description": "The amount of Tax applied by default by this Tax, this can change dynamically at time of sale.",
+                                    "example": 12.55
+                                  },
+                                  "percentage": {
+                                    "type": "number",
+                                    "description": "The percentage of Tax applied by default by this Tax, this can change dynamically at time of sale.",
+                                    "example": 5.0
+                                  }
+                                }
+                              },
+                              "type": "array"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "title": "group",
+                      "allOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "@type": {
+                              "type": "string",
+                              "description": "Indicates this is a sub-screen of the menu in the POS. The object will have the same structure as the `menuEntryGroups` object and may contain any of the three `menuEntry` types.",
+                              "example": "group",
+                              "enum": [
+                                "group"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "The menu group ID.",
+                              "example": "141948669133028"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "The menu group name.",
+                              "example": "Mains"
+                            },
+                            "color": {
+                              "type": "string",
+                              "description": "The color of the button in the POS.",
+                              "example": "blue"
+                            },
+                            "menuEntry": {
+                              "type": "array",
+                              "description": "Array of menu entry objects.",
+                              "items": {
+                                "type": "object",
+                                "oneOf": [
+                                  {
+                                    "title": "menuItem",
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "@type": {
+                                            "type": "string",
+                                            "description": "Indicates this is an individual item.",
+                                            "example": "menuItem",
+                                            "enum": [
+                                              "menuItem"
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "properties": {
+                                          "productName": {
+                                            "type": "string",
+                                            "description": "The name of the item.",
+                                            "example": "Burger"
+                                          },
+                                          "productPrice": {
+                                            "type": "number",
+                                            "description": "The price of the item.",
+                                            "example": 10.0
+                                          },
+                                          "extraPrice": {
+                                            "type": "number",
+                                            "description": "Additional item price when selected in a combo group.",
+                                            "example": 1.99
+                                          },
+                                          "color": {
+                                            "type": "string",
+                                            "description": "The color of the menu button for this item.",
+                                            "example": "blue"
+                                          },
+                                          "sku": {
+                                            "type": "string",
+                                            "description": "The SKU of the item.",
+                                            "example": "25"
+                                          },
+                                          "customItemNameEnabled": {
+                                            "type": "boolean",
+                                            "description": "Whether the name of the item can be customized.",
+                                            "example": false
+                                          },
+                                          "pricingStrategy": {
+                                            "type": "string",
+                                            "description": "The pricing type of the item.",
+                                            "example": "PRICE_CANNOT_BE_CUSTOMIZED",
+                                            "enum": [
+                                              "CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE",
+                                              "CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE",
+                                              "CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL",
+                                              "PRICE_CANNOT_BE_CUSTOMIZED"
+                                            ]
+                                          },
+                                          "itemRichData": {
+                                            "type": "object"
+                                          },
+                                          "defaultTaxAmount": {
+                                            "description": "The tax amount as calculated at the default tax rate (a sum for multiple taxes).",
+                                            "type": "number",
+                                            "example": 1.5
+                                          },
+                                          "defaultTaxPercentage": {
+                                            "description": "The default tax percentage for this item (a sum for multiple taxes).",
+                                            "type": "number",
+                                            "example": 15.0
+                                          },
+                                          "taxIncludedInPrice": {
+                                            "description": "Whether or not tax is included in the price of the item.",
+                                            "type": "boolean",
+                                            "example": false
+                                          },
+                                          "conditionalTaxRules": {
+                                            "description": "Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.",
+                                            "type": "boolean"
+                                          },
+                                          "taxes": {
+                                            "description": "Detailed tax info",
+                                            "items": {
+                                              "type": "object"
+                                            },
+                                            "type": "array"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "asSubItem": {
+                                            "type": "boolean",
+                                            "description": "Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false."
+                                          },
+                                          "productionInstructionList": {
+                                            "type": "array",
+                                            "description": "Array of production instructions for this product",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "multiSelectionPermitted": {
+                                                  "type": "boolean",
+                                                  "description": "Specifies if more than one production instruction can be selected for this group."
+                                                },
+                                                "productionInstructionGroupName": {
+                                                  "type": "string",
+                                                  "description": "The group name for this production instruction."
+                                                },
+                                                "productionIntructionGroupId": {
+                                                  "type": "integer",
+                                                  "description": "The unique identifier for this production instruction group.",
+                                                  "format": "int64"
+                                                },
+                                                "productionInstructionList": {
+                                                  "type": "array",
+                                                  "description": "Array of production instructions for this group.",
+                                                  "items": {
+                                                    "type": "object"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "example": [
+                                              {
+                                                "multiSelectionPermitted": false,
+                                                "productionInstructionGroupName": "Meat cooking",
+                                                "productionIntructionGroupId": 236025632784487,
+                                                "productionInstructionList": [
+                                                  {
+                                                    "instruction": "Bleu",
+                                                    "ikentooModifierId": 236025632784488
+                                                  },
+                                                  {
+                                                    "instruction": "Rare",
+                                                    "ikentooModifierId": 236025632784490
+                                                  },
+                                                  {
+                                                    "instruction": "Medium Rare",
+                                                    "ikentooModifierId": 236025632784492
+                                                  },
+                                                  {
+                                                    "instruction": "Medium",
+                                                    "ikentooModifierId": 236025632784494
+                                                  },
+                                                  {
+                                                    "instruction": "Medium well",
+                                                    "ikentooModifierId": 236025632784496
+                                                  },
+                                                  {
+                                                    "instruction": "Well done",
+                                                    "ikentooModifierId": 236025632784498
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "title": "menuDeal",
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "@type": {
+                                            "type": "string",
+                                            "description": "Indicates the item is a Combo.",
+                                            "example": "menuDeal",
+                                            "enum": [
+                                              "menuDeal"
+                                            ]
+                                          },
+                                          "items": {
+                                            "description": "List of items to select from.",
+                                            "type": "array",
+                                            "items": {
+                                              "title": "menuItem",
+                                              "allOf": [
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "@type": {
+                                                      "type": "string",
+                                                      "description": "Indicates this is an individual item.",
+                                                      "example": "menuItem",
+                                                      "enum": [
+                                                        "menuItem"
+                                                      ]
+                                                    }
+                                                  }
+                                                },
+                                                {
+                                                  "type": "object"
+                                                },
+                                                {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "asSubItem": {
+                                                      "type": "boolean",
+                                                      "description": "Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false."
+                                                    },
+                                                    "productionInstructionList": {
+                                                      "type": "array",
+                                                      "description": "Array of production instructions for this product",
+                                                      "items": {
+                                                        "type": "object"
+                                                      },
+                                                      "example": [
+                                                        {
+                                                          "multiSelectionPermitted": false,
+                                                          "productionInstructionGroupName": "Meat cooking",
+                                                          "productionIntructionGroupId": 236025632784487,
+                                                          "productionInstructionList": [
+                                                            {
+                                                              "instruction": "Bleu",
+                                                              "ikentooModifierId": 236025632784488
+                                                            },
+                                                            {
+                                                              "instruction": "Rare",
+                                                              "ikentooModifierId": 236025632784490
+                                                            },
+                                                            {
+                                                              "instruction": "Medium Rare",
+                                                              "ikentooModifierId": 236025632784492
+                                                            },
+                                                            {
+                                                              "instruction": "Medium",
+                                                              "ikentooModifierId": 236025632784494
+                                                            },
+                                                            {
+                                                              "instruction": "Medium well",
+                                                              "ikentooModifierId": 236025632784496
+                                                            },
+                                                            {
+                                                              "instruction": "Well done",
+                                                              "ikentooModifierId": 236025632784498
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "menuDealGroups": {
+                                            "type": "array",
+                                            "description": "Array of Items in the Combo",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "description": {
+                                                  "type": "string",
+                                                  "description": "Description of the combo item grouping.",
+                                                  "example": "Side Dishes"
+                                                },
+                                                "sku": {
+                                                  "type": "string",
+                                                  "description": "The SKU of the combo item grouping.",
+                                                  "example": "25"
+                                                },
+                                                "mustSelectAnItem": {
+                                                  "type": "boolean",
+                                                  "description": "Whether or not this is a required selection.",
+                                                  "example": true
+                                                },
+                                                "multiSelectionPermitted": {
+                                                  "type": "boolean",
+                                                  "description": "Whether or not multiple items can be selected from this item grouping.",
+                                                  "example": true
+                                                },
+                                                "minimumSelection": {
+                                                  "type": "integer",
+                                                  "format": "int32",
+                                                  "description": "The minimum number of items that must be selected from this item grouping. If null then no minimum is set.",
+                                                  "example": 1
+                                                },
+                                                "maximumSelection": {
+                                                  "type": "integer",
+                                                  "format": "int32",
+                                                  "description": "The maximum number of items that can be selected from this item grouping. If null then no maximum is set.",
+                                                  "example": 3
+                                                },
+                                                "itemRichData": {
+                                                  "type": "object"
+                                                },
+                                                "items": {
+                                                  "description": "List of items to select from.",
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "object"
+                                                  }
+                                                }
+                                              },
+                                              "description": "Collections of item groups within the combo to select from."
+                                            }
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "properties": {
+                                          "productName": {
+                                            "type": "string",
+                                            "description": "The name of the item.",
+                                            "example": "Burger"
+                                          },
+                                          "productPrice": {
+                                            "type": "number",
+                                            "description": "The price of the item.",
+                                            "example": 10.0
+                                          },
+                                          "extraPrice": {
+                                            "type": "number",
+                                            "description": "Additional item price when selected in a combo group.",
+                                            "example": 1.99
+                                          },
+                                          "color": {
+                                            "type": "string",
+                                            "description": "The color of the menu button for this item.",
+                                            "example": "blue"
+                                          },
+                                          "sku": {
+                                            "type": "string",
+                                            "description": "The SKU of the item.",
+                                            "example": "25"
+                                          },
+                                          "customItemNameEnabled": {
+                                            "type": "boolean",
+                                            "description": "Whether the name of the item can be customized.",
+                                            "example": false
+                                          },
+                                          "pricingStrategy": {
+                                            "type": "string",
+                                            "description": "The pricing type of the item.",
+                                            "example": "PRICE_CANNOT_BE_CUSTOMIZED",
+                                            "enum": [
+                                              "CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE",
+                                              "CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE",
+                                              "CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL",
+                                              "PRICE_CANNOT_BE_CUSTOMIZED"
+                                            ]
+                                          },
+                                          "itemRichData": {
+                                            "type": "object"
+                                          },
+                                          "defaultTaxAmount": {
+                                            "description": "The tax amount as calculated at the default tax rate (a sum for multiple taxes).",
+                                            "type": "number",
+                                            "example": 1.5
+                                          },
+                                          "defaultTaxPercentage": {
+                                            "description": "The default tax percentage for this item (a sum for multiple taxes).",
+                                            "type": "number",
+                                            "example": 15.0
+                                          },
+                                          "taxIncludedInPrice": {
+                                            "description": "Whether or not tax is included in the price of the item.",
+                                            "type": "boolean",
+                                            "example": false
+                                          },
+                                          "conditionalTaxRules": {
+                                            "description": "Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.",
+                                            "type": "boolean"
+                                          },
+                                          "taxes": {
+                                            "description": "Detailed tax info",
+                                            "items": {
+                                              "type": "object"
+                                            },
+                                            "type": "array"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "title": "group",
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "@type": {
+                                            "type": "string",
+                                            "description": "Indicates this is a sub-screen of the menu in the POS. The object will have the same structure as the `menuEntryGroups` object and may contain any of the three `menuEntry` types.",
+                                            "example": "group",
+                                            "enum": [
+                                              "group"
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string",
+                                            "description": "The menu group ID.",
+                                            "example": "141948669133028"
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "description": "The menu group name.",
+                                            "example": "Mains"
+                                          },
+                                          "color": {
+                                            "type": "string",
+                                            "description": "The color of the button in the POS.",
+                                            "example": "blue"
+                                          },
+                                          "menuEntry": {
+                                            "type": "array",
+                                            "description": "Array of menu entry objects.",
+                                            "items": {
+                                              "type": "object",
+                                              "oneOf": [
+                                                {
+                                                  "title": "menuItem",
+                                                  "allOf": [
+                                                    {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "@type": {
+                                                          "type": "string",
+                                                          "description": "Indicates this is an individual item.",
+                                                          "example": "menuItem",
+                                                          "enum": [
+                                                            "menuItem"
+                                                          ]
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "type": "object"
+                                                    },
+                                                    {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "asSubItem": {
+                                                          "type": "boolean",
+                                                          "description": "Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false."
+                                                        },
+                                                        "productionInstructionList": {
+                                                          "type": "array",
+                                                          "description": "Array of production instructions for this product",
+                                                          "items": {
+                                                            "type": "object"
+                                                          },
+                                                          "example": [
+                                                            {
+                                                              "multiSelectionPermitted": false,
+                                                              "productionInstructionGroupName": "Meat cooking",
+                                                              "productionIntructionGroupId": 236025632784487,
+                                                              "productionInstructionList": [
+                                                                {
+                                                                  "instruction": "Bleu",
+                                                                  "ikentooModifierId": 236025632784488
+                                                                },
+                                                                {
+                                                                  "instruction": "Rare",
+                                                                  "ikentooModifierId": 236025632784490
+                                                                },
+                                                                {
+                                                                  "instruction": "Medium Rare",
+                                                                  "ikentooModifierId": 236025632784492
+                                                                },
+                                                                {
+                                                                  "instruction": "Medium",
+                                                                  "ikentooModifierId": 236025632784494
+                                                                },
+                                                                {
+                                                                  "instruction": "Medium well",
+                                                                  "ikentooModifierId": 236025632784496
+                                                                },
+                                                                {
+                                                                  "instruction": "Well done",
+                                                                  "ikentooModifierId": 236025632784498
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "title": "menuDeal",
+                                                  "allOf": [
+                                                    {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "@type": {
+                                                          "type": "string",
+                                                          "description": "Indicates the item is a Combo.",
+                                                          "example": "menuDeal",
+                                                          "enum": [
+                                                            "menuDeal"
+                                                          ]
+                                                        },
+                                                        "items": {
+                                                          "description": "List of items to select from.",
+                                                          "type": "array",
+                                                          "items": {
+                                                            "type": "object"
+                                                          }
+                                                        },
+                                                        "menuDealGroups": {
+                                                          "type": "array",
+                                                          "description": "Array of Items in the Combo",
+                                                          "items": {
+                                                            "type": "object"
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "type": "object"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "title": "group",
+                                                  "allOf": [
+                                                    {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "@type": {
+                                                          "type": "string",
+                                                          "description": "Indicates this is a sub-screen of the menu in the POS. The object will have the same structure as the `menuEntryGroups` object and may contain any of the three `menuEntry` types.",
+                                                          "example": "group",
+                                                          "enum": [
+                                                            "group"
+                                                          ]
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "type": "object",
+                                                      "properties": {
+                                                        "id": {
+                                                          "type": "string",
+                                                          "description": "The menu group ID.",
+                                                          "example": "141948669133028"
+                                                        },
+                                                        "name": {
+                                                          "type": "string",
+                                                          "description": "The menu group name.",
+                                                          "example": "Mains"
+                                                        },
+                                                        "color": {
+                                                          "type": "string",
+                                                          "description": "The color of the button in the POS.",
+                                                          "example": "blue"
+                                                        },
+                                                        "menuEntry": {
+                                                          "type": "array",
+                                                          "description": "Array of menu entry objects.",
+                                                          "items": {
+                                                            "type": "object",
+                                                            "oneOf": [
+                                                              {
+                                                                "type": "object"
+                                                              },
+                                                              {
+                                                                "type": "object"
+                                                              },
+                                                              {
+                                                                "type": "object"
+                                                              }
+                                                            ],
+                                                            "discriminator": {
+                                                              "propertyName": "@type",
+                                                              "mapping": {
+                                                                "menuItem": "#/components/schemas/apeMenuItemEntry",
+                                                                "menuDeal": "#/components/schemas/apeMenuDealEntry",
+                                                                "group": "#/components/schemas/apeMenuGroupEntry"
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ],
+                                              "discriminator": {
+                                                "propertyName": "@type",
+                                                "mapping": {
+                                                  "menuItem": "#/components/schemas/apeMenuItemEntry",
+                                                  "menuDeal": "#/components/schemas/apeMenuDealEntry",
+                                                  "group": "#/components/schemas/apeMenuGroupEntry"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "discriminator": {
+                                  "propertyName": "@type",
+                                  "mapping": {
+                                    "menuItem": "#/components/schemas/apeMenuItemEntry",
+                                    "menuDeal": "#/components/schemas/apeMenuDealEntry",
+                                    "group": "#/components/schemas/apeMenuGroupEntry"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "discriminator": {
+                    "propertyName": "@type",
+                    "mapping": {
+                      "menuItem": "#/components/schemas/apeMenuItemEntry",
+                      "menuDeal": "#/components/schemas/apeMenuDealEntry",
+                      "group": "#/components/schemas/apeMenuGroupEntry"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "richDataMissing": {
+      "description": "Indicates whether or not rich item data is missing, if requested.",
+      "type": "boolean",
+      "example": false
+    },
+    "ikentooMenuId": {
+      "type": "integer",
+      "description": "The unique identifier for the menu.",
+      "example": 141948669132851,
+      "format": "int64"
+    },
+    "conditionalTaxRules": {
+      "description": "Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.",
+      "type": "boolean"
+    }
+  }
+}

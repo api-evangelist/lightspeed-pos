@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "staff-apiUserPermission",
+  "description": "staff-apiUserPermission schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-staff-api-user-permission-schema.json",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "string",
+      "description": "The value of the user permission.",
+      "example": "ROLE_MANAGER"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description of the user permission.",
+      "example": "POS user is a manager"
+    }
+  }
+}

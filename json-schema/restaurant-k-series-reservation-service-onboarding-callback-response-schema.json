@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "reservation-serviceOnboardingCallbackResponse",
+  "description": "reservation-serviceOnboardingCallbackResponse schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-reservation-service-onboarding-callback-response-schema.json",
+  "type": "object",
+  "properties": {
+    "onboardingCode": {
+      "description": "The machine code to interact with the external platform during the onboarding process.",
+      "enum": [
+        "ACCEPTED",
+        "DONE",
+        "ONBOARDING_EXPIRED",
+        "ONBOARDING_ID_NOT_VALID",
+        "PLATFORM_CODE_NOT_VALID",
+        "BUSINESS_LOCATION_NOT_VALID",
+        "PLATFORM_RESTAURANT_NOT_VALID",
+        "PLATFORM_RESTAURANT_NOT_FOUND",
+        "UNEXPECTED_ERROR"
+      ],
+      "example": "DONE",
+      "type": "string"
+    }
+  },
+  "required": [
+    "onboardingCode"
+  ]
+}

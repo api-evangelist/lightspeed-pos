@@ -1,0 +1,31 @@
+{
+  "staffId": 1234,
+  "username": "John Doe",
+  "userTypes": [
+    "POS"
+  ],
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "guest@example.com",
+  "active": true,
+  "pinCodeSet": true,
+  "createdOn": "2026-03-15T14:30:00Z",
+  "modifiedOn": "2026-03-15T14:30:00Z",
+  "businessId": 12345,
+  "businessLocationId": 1234567890,
+  "groups": [
+    {
+      "id": 1234,
+      "name": "Bar Staff"
+    }
+  ],
+  "reportAccess": [
+    "STAFF_REPORT_OWN_ACCESS"
+  ],
+  "roles": [
+    {
+      "id": 1234,
+      "name": "ROLE_CAN_LOGIN"
+    }
+  ]
+}

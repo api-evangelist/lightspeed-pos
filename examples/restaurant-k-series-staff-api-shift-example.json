@@ -1,0 +1,17 @@
+{
+  "uuid": "REcdfpCwQJKUR53gdzIk5Q==",
+  "businessId": 12345,
+  "businessLocationId": 1234567890,
+  "deviceId": 54321,
+  "staffId": 1234,
+  "declaredCashTips": "10.00",
+  "dateInUTC": "2020-01-01T00:00:00Z",
+  "events": [
+    {
+      "uuid": "REcdfpCwQJKUR53gdzIk5Q==",
+      "timestamp": "2020-01-01T00:00:00Z",
+      "createdOn": "2020-01-01T00:00:00Z",
+      "eventType": "CLOCK_IN"
+    }
+  ]
+}

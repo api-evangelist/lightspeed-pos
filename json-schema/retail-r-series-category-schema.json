@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Category",
+  "description": "An item category used to classify inventory.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-r-series-category-schema.json",
+  "type": "object",
+  "properties": {
+    "categoryID": {
+      "type": "string",
+      "description": "Unique category identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Category name."
+    },
+    "parentID": {
+      "type": "string",
+      "description": "Identifier of the parent category."
+    },
+    "fullPathName": {
+      "type": "string",
+      "description": "Fully qualified category path."
+    }
+  }
+}

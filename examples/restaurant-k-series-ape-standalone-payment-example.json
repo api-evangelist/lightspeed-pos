@@ -1,0 +1,14 @@
+{
+  "iKaccountId": 0,
+  "iKaccountIdentifier": "A1234.56",
+  "thirdPartyPaymentReference": "12345678901234",
+  "endpointId": "MY-AWESOME-ENDPOINT-ID",
+  "businessLocationId": 45454565682155,
+  "taskTtlInMs": 60000,
+  "staffId": 37,
+  "deviceId": 12345678980,
+  "paymentMethod": "OOPAYMENT",
+  "paymentAmount": 20.06,
+  "tipAmount": 2.5,
+  "targetPrinterProfileId": 1773881235
+}

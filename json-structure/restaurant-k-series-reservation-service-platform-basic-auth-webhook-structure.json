@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-reservation-service-platform-basic-auth-webhook-structure.json",
+  "name": "reservation-servicePlatformBasicAuthWebhook",
+  "description": "The basic authentication credentials that will be sent with the webhook notifications. See [Basic Authentication](https://swagger.io/docs/specification/authentication/basic-authentication/).",
+  "type": "object",
+  "properties": {
+    "password": {
+      "description": "The basic auth password.",
+      "example": "Example-Password",
+      "format": "password",
+      "type": "string"
+    },
+    "username": {
+      "description": "The basic auth username.",
+      "example": "LightspeedKSeries",
+      "type": "string"
+    }
+  },
+  "required": [
+    "username",
+    "password"
+  ]
+}

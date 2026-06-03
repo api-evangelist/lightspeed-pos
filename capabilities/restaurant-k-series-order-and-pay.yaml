@@ -1,0 +1,951 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lightspeed Restaurant K-Series API — Order and Pay
+  description: 'Restaurant — Order and Pay. 19 operations. Lead operation: Lightspeed Get Businesses. Self-contained Naftiko capability covering one Lightspeed business surface.'
+  tags:
+  - Lightspeed
+  - Restaurant
+  - Order and Pay
+  created: '2026-06-02'
+  modified: '2026-06-02'
+binds:
+- namespace: env
+  keys:
+    LIGHTSPEED_K_SERIES_TOKEN: LIGHTSPEED_K_SERIES_TOKEN
+capability:
+  consumes:
+  - type: http
+    namespace: restaurant-k-series-order-and-pay
+    baseUri: https://api.lsk.lightspeed.app
+    description: Lightspeed Restaurant K-Series API — Order and Pay business capability. Self-contained, no shared references.
+    authentication:
+      type: bearer
+      token: '{{env.LIGHTSPEED_K_SERIES_TOKEN}}'
+    resources:
+    - name: o-op-data-businesses
+      path: /o/op/data/businesses
+      operations:
+      - name: apeLookupBusinesses
+        method: GET
+        description: Lightspeed Get Businesses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-data-businesslocationid-floorplans
+      path: /o/op/data/{businessLocationId}/floorplans
+      operations:
+      - name: apeLookupFloorPlans
+        method: GET
+        description: Lightspeed Get All Floorplans
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: expandTables
+          in: query
+          type: boolean
+          required: false
+          description: 'If true, the response will include the table details for each floorplan.
+
+            If false, the response will only include the [`name`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-name) and [`id`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-id) for the floorplans.'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-data-businesslocationid-floorplans-floorplanid-tables
+      path: /o/op/data/{businessLocationId}/floorplans/{floorPlanId}/tables
+      operations:
+      - name: apeGetTables
+        method: GET
+        description: Lightspeed Get Floorplan Tables
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: floorPlanId
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-data-account-profiles
+      path: /o/op/data/account-profiles
+      operations:
+      - name: apeAccountProfiles
+        method: GET
+        description: Lightspeed Get All Order Profiles
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-data-businesslocationid-account-profiles-tagcode-tagcode
+      path: /o/op/data/{businessLocationId}/account-profiles/tagcode/{tagCode}
+      operations:
+      - name: apeGetAccountProfile
+        method: GET
+        description: Lightspeed Get Single Order Profile
+        inputParameters:
+        - name: businessLocationId
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: tagCode
+          in: path
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-menu-list
+      path: /o/op/1/menu/list
+      operations:
+      - name: apeLoadMenus
+        method: GET
+        description: Lightspeed Get All Menus
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-menu-load-menuid
+      path: /o/op/1/menu/load/{menuId}
+      operations:
+      - name: apeGetMenuById
+        method: GET
+        description: Lightspeed Get Single Menu
+        inputParameters:
+        - name: menuId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the menu.
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: accountProfile
+          in: query
+          type: string
+          required: false
+          description: ''
+        - name: richContent
+          in: query
+          type: boolean
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-2-menu-load-menuid
+      path: /o/op/2/menu/load/{menuId}
+      operations:
+      - name: apeGetMenuByIdV2
+        method: GET
+        description: Lightspeed Get Single Menu V2
+        inputParameters:
+        - name: menuId
+          in: path
+          type: integer
+          required: true
+          description: The unique identifier for the menu.
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: accountProfile
+          in: query
+          type: string
+          required: false
+          description: ''
+        - name: richContent
+          in: query
+          type: boolean
+          required: false
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-menu-modifiers
+      path: /o/op/1/menu/modifiers
+      operations:
+      - name: apeLoadAllModifiers
+        method: GET
+        description: Lightspeed Get Modifiers
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-menu-discounts
+      path: /o/op/1/menu/discounts
+      operations:
+      - name: apeLoadAllDiscounts
+        method: GET
+        description: Lightspeed Get Discounts
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-order-local
+      path: /o/op/1/order/local
+      operations:
+      - name: apeLocalOrder
+        method: POST
+        description: Lightspeed Create Local Order
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-order-togo
+      path: /o/op/1/order/toGo
+      operations:
+      - name: apePlaceToGoOrder
+        method: POST
+        description: Lightspeed Create to Go Order
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-order-table-getcheck
+      path: /o/op/1/order/table/getCheck
+      operations:
+      - name: apeGetCheck
+        method: GET
+        description: Lightspeed Get All Open Checks
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-order-table-tablenumber-getcheck
+      path: /o/op/1/order/table/{tableNumber}/getCheck
+      operations:
+      - name: apeCheckLookup
+        method: GET
+        description: Lightspeed Get Open Check by Table
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: tableNumber
+          in: path
+          type: integer
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-order-accounts-accountidentifier
+      path: /o/op/1/order/accounts/{accountIdentifier}
+      operations:
+      - name: apeCheckLookupWithaccountIdentifier
+        method: GET
+        description: Lightspeed Get Single Check
+        inputParameters:
+        - name: accountIdentifier
+          in: path
+          type: string
+          required: true
+          description: ''
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-pay
+      path: /o/op/1/pay
+      operations:
+      - name: apeMakePayment
+        method: POST
+        description: Lightspeed Apply a Payment
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-printmsg
+      path: /o/op/1/printMsg
+      operations:
+      - name: apePrintMsg
+        method: POST
+        description: Lightspeed Print Message
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: o-op-1-itemavailability
+      path: /o/op/1/itemAvailability
+      operations:
+      - name: apeGetRestrictedItems
+        method: GET
+        description: Lightspeed Get Item Availability Information
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: skus
+          in: query
+          type: array
+          required: true
+          description: List of SKUs to return.
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Starting page of results, when paginating. Starts at 0.
+        - name: size
+          in: query
+          type: integer
+          required: false
+          description: Number of results to return, when paginating.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: apeGetRestrictedItemsByPost
+        method: POST
+        description: Lightspeed Get Item Availability Information by POST
+        inputParameters:
+        - name: businessLocationId
+          in: query
+          type: string
+          required: true
+          description: ''
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Starting page of results, when paginating. Starts at 0.
+        - name: size
+          in: query
+          type: integer
+          required: false
+          description: Number of results to return, when paginating.
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: Request body payload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: restaurant-k-series-order-and-pay-rest
+    port: 8080
+    description: REST adapter for Lightspeed Restaurant K-Series API — Order and Pay. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/o/op/data/businesses
+      name: v1-o-op-data-businesses
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeLookupBusinesses
+        description: Lightspeed Get Businesses
+        call: restaurant-k-series-order-and-pay.apeLookupBusinesses
+        with: {}
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/data/{businesslocationid}/floorplans
+      name: v1-o-op-data-businesslocationid-floorplans
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeLookupFloorPlans
+        description: Lightspeed Get All Floorplans
+        call: restaurant-k-series-order-and-pay.apeLookupFloorPlans
+        with:
+          businessLocationId: rest.businessLocationId
+          expandTables: rest.expandTables
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/data/{businesslocationid}/floorplans/{floorplanid}/tables
+      name: v1-o-op-data-businesslocationid-floorplans-floorplanid-tables
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeGetTables
+        description: Lightspeed Get Floorplan Tables
+        call: restaurant-k-series-order-and-pay.apeGetTables
+        with:
+          businessLocationId: rest.businessLocationId
+          floorPlanId: rest.floorPlanId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/data/account-profiles
+      name: v1-o-op-data-account-profiles
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeAccountProfiles
+        description: Lightspeed Get All Order Profiles
+        call: restaurant-k-series-order-and-pay.apeAccountProfiles
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/data/{businesslocationid}/account-profiles/tagcode/{tagcode}
+      name: v1-o-op-data-businesslocationid-account-profiles-tagcode-tagcode
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeGetAccountProfile
+        description: Lightspeed Get Single Order Profile
+        call: restaurant-k-series-order-and-pay.apeGetAccountProfile
+        with:
+          businessLocationId: rest.businessLocationId
+          tagCode: rest.tagCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/menu/list
+      name: v1-o-op-1-menu-list
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeLoadMenus
+        description: Lightspeed Get All Menus
+        call: restaurant-k-series-order-and-pay.apeLoadMenus
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/menu/load/{menuid}
+      name: v1-o-op-1-menu-load-menuid
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeGetMenuById
+        description: Lightspeed Get Single Menu
+        call: restaurant-k-series-order-and-pay.apeGetMenuById
+        with:
+          menuId: rest.menuId
+          businessLocationId: rest.businessLocationId
+          accountProfile: rest.accountProfile
+          richContent: rest.richContent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/2/menu/load/{menuid}
+      name: v1-o-op-2-menu-load-menuid
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeGetMenuByIdV2
+        description: Lightspeed Get Single Menu V2
+        call: restaurant-k-series-order-and-pay.apeGetMenuByIdV2
+        with:
+          menuId: rest.menuId
+          businessLocationId: rest.businessLocationId
+          accountProfile: rest.accountProfile
+          richContent: rest.richContent
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/menu/modifiers
+      name: v1-o-op-1-menu-modifiers
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeLoadAllModifiers
+        description: Lightspeed Get Modifiers
+        call: restaurant-k-series-order-and-pay.apeLoadAllModifiers
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/menu/discounts
+      name: v1-o-op-1-menu-discounts
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeLoadAllDiscounts
+        description: Lightspeed Get Discounts
+        call: restaurant-k-series-order-and-pay.apeLoadAllDiscounts
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/order/local
+      name: v1-o-op-1-order-local
+      description: REST surface for Order and Pay.
+      operations:
+      - method: POST
+        name: apeLocalOrder
+        description: Lightspeed Create Local Order
+        call: restaurant-k-series-order-and-pay.apeLocalOrder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/order/togo
+      name: v1-o-op-1-order-togo
+      description: REST surface for Order and Pay.
+      operations:
+      - method: POST
+        name: apePlaceToGoOrder
+        description: Lightspeed Create to Go Order
+        call: restaurant-k-series-order-and-pay.apePlaceToGoOrder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/order/table/getcheck
+      name: v1-o-op-1-order-table-getcheck
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeGetCheck
+        description: Lightspeed Get All Open Checks
+        call: restaurant-k-series-order-and-pay.apeGetCheck
+        with:
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/order/table/{tablenumber}/getcheck
+      name: v1-o-op-1-order-table-tablenumber-getcheck
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeCheckLookup
+        description: Lightspeed Get Open Check by Table
+        call: restaurant-k-series-order-and-pay.apeCheckLookup
+        with:
+          businessLocationId: rest.businessLocationId
+          tableNumber: rest.tableNumber
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/order/accounts/{accountidentifier}
+      name: v1-o-op-1-order-accounts-accountidentifier
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeCheckLookupWithaccountIdentifier
+        description: Lightspeed Get Single Check
+        call: restaurant-k-series-order-and-pay.apeCheckLookupWithaccountIdentifier
+        with:
+          accountIdentifier: rest.accountIdentifier
+          businessLocationId: rest.businessLocationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/pay
+      name: v1-o-op-1-pay
+      description: REST surface for Order and Pay.
+      operations:
+      - method: POST
+        name: apeMakePayment
+        description: Lightspeed Apply a Payment
+        call: restaurant-k-series-order-and-pay.apeMakePayment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/printmsg
+      name: v1-o-op-1-printmsg
+      description: REST surface for Order and Pay.
+      operations:
+      - method: POST
+        name: apePrintMsg
+        description: Lightspeed Print Message
+        call: restaurant-k-series-order-and-pay.apePrintMsg
+        with:
+          businessLocationId: rest.businessLocationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/itemavailability
+      name: v1-o-op-1-itemavailability
+      description: REST surface for Order and Pay.
+      operations:
+      - method: GET
+        name: apeGetRestrictedItems
+        description: Lightspeed Get Item Availability Information
+        call: restaurant-k-series-order-and-pay.apeGetRestrictedItems
+        with:
+          businessLocationId: rest.businessLocationId
+          skus: rest.skus
+          page: rest.page
+          size: rest.size
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/o/op/1/itemavailability
+      name: v1-o-op-1-itemavailability
+      description: REST surface for Order and Pay.
+      operations:
+      - method: POST
+        name: apeGetRestrictedItemsByPost
+        description: Lightspeed Get Item Availability Information by POST
+        call: restaurant-k-series-order-and-pay.apeGetRestrictedItemsByPost
+        with:
+          businessLocationId: rest.businessLocationId
+          page: rest.page
+          size: rest.size
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: restaurant-k-series-order-and-pay-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Lightspeed Restaurant K-Series API — Order and Pay. One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: get-businesses
+      description: Lightspeed Get Businesses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeLookupBusinesses
+      with: {}
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-floorplans
+      description: Lightspeed Get All Floorplans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeLookupFloorPlans
+      with:
+        businessLocationId: tools.businessLocationId
+        expandTables: tools.expandTables
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-floorplan-tables
+      description: Lightspeed Get Floorplan Tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeGetTables
+      with:
+        businessLocationId: tools.businessLocationId
+        floorPlanId: tools.floorPlanId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-order-profiles
+      description: Lightspeed Get All Order Profiles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeAccountProfiles
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-order-profile
+      description: Lightspeed Get Single Order Profile
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeGetAccountProfile
+      with:
+        businessLocationId: tools.businessLocationId
+        tagCode: tools.tagCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-menus
+      description: Lightspeed Get All Menus
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeLoadMenus
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-menu
+      description: Lightspeed Get Single Menu
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeGetMenuById
+      with:
+        menuId: tools.menuId
+        businessLocationId: tools.businessLocationId
+        accountProfile: tools.accountProfile
+        richContent: tools.richContent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-menu-v2
+      description: Lightspeed Get Single Menu V2
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeGetMenuByIdV2
+      with:
+        menuId: tools.menuId
+        businessLocationId: tools.businessLocationId
+        accountProfile: tools.accountProfile
+        richContent: tools.richContent
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-modifiers
+      description: Lightspeed Get Modifiers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeLoadAllModifiers
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-discounts
+      description: Lightspeed Get Discounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeLoadAllDiscounts
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-local-order
+      description: Lightspeed Create Local Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-order-and-pay.apeLocalOrder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-go-order
+      description: Lightspeed Create to Go Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-order-and-pay.apePlaceToGoOrder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-open-checks
+      description: Lightspeed Get All Open Checks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeGetCheck
+      with:
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-open-check-table
+      description: Lightspeed Get Open Check by Table
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeCheckLookup
+      with:
+        businessLocationId: tools.businessLocationId
+        tableNumber: tools.tableNumber
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-check
+      description: Lightspeed Get Single Check
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeCheckLookupWithaccountIdentifier
+      with:
+        accountIdentifier: tools.accountIdentifier
+        businessLocationId: tools.businessLocationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apply-payment
+      description: Lightspeed Apply a Payment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-order-and-pay.apeMakePayment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: print-message
+      description: Lightspeed Print Message
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-order-and-pay.apePrintMsg
+      with:
+        businessLocationId: tools.businessLocationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-item-availability-information
+      description: Lightspeed Get Item Availability Information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: restaurant-k-series-order-and-pay.apeGetRestrictedItems
+      with:
+        businessLocationId: tools.businessLocationId
+        skus: tools.skus
+        page: tools.page
+        size: tools.size
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-item-availability-information-post
+      description: Lightspeed Get Item Availability Information by POST
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: restaurant-k-series-order-and-pay.apeGetRestrictedItemsByPost
+      with:
+        businessLocationId: tools.businessLocationId
+        page: tools.page
+        size: tools.size
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,73 @@
+{
+  "clientCount": 4,
+  "identifier": "500123",
+  "uuid": "a3bb189e-8f29-4cce-b0e9-f29b123dfe3d",
+  "openDate": "2021-06-21T14:20:00Z",
+  "closeDate": "2021-06-22T10:15:00Z",
+  "paidAmount": 100.0,
+  "serviceCharge": 10.0,
+  "name": "ORDER A1C2E",
+  "currentAmount": 110.0,
+  "staffName": "Jane Smith",
+  "staffId": 7701234,
+  "salesEntries": [
+    {
+      "id": 1341648999023061,
+      "uuid": "2c83b049-a2c1-4bc5-8479-eb152e5a54be",
+      "itemName": "Burger",
+      "itemSku": "14",
+      "unitAmount": 10.0,
+      "quantity": 1.0,
+      "modifiers": [
+        {
+          "name": "Rare",
+          "quantity": 1
+        }
+      ],
+      "amountWithTax": 11.5,
+      "amountLessTax": 10.0,
+      "discountedAmount": 0.0,
+      "timeOfTransactionUtc": "2023-11-07T21:24:44.741+0000",
+      "active": true,
+      "parentId": 443,
+      "subLineItems": [
+        {
+          "id": 1341648999023062,
+          "uuid": "2c83b049-a2c1-4bc5-8479-eb152e5a54be",
+          "itemName": "Extra Cheese",
+          "itemSku": "35",
+          "unitAmount": 1.0,
+          "quantity": 1.0,
+          "modifiers": [],
+          "amountWithTax": 1.15,
+          "amountLessTax": 1.0,
+          "discountedAmount": 0.0,
+          "grossUnitAmount": 1.0,
+          "timeOfTransactionUtc": "2023-11-07T21:24:44.755+0000",
+          "active": true,
+          "subLineItems": [],
+          "taxIncluded": false
+        }
+      ],
+      "isTaxIncluded": false,
+      "taxIncluded": false
+    }
+  ],
+  "paymentEntries": [
+    {
+      "paymentMethodDescription": "API Payment",
+      "externalReference": "12345678901234",
+      "paymentMethodCode": "APM",
+      "amountPaid": 12.65,
+      "paymentDate": "2023-11-07T22:05:16.127+0000",
+      "active": true,
+      "accountCancelled": false
+    }
+  ],
+  "id": "500123",
+  "ikaccountId": "A78094.48",
+  "number": 823,
+  "tableNumber": 2,
+  "posId": 54321,
+  "deviceId": 54
+}

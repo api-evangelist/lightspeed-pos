@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-order-payment-structure.json",
+  "name": "apeOrderPayment",
+  "description": "apeOrderPayment schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "paymentMethod": {
+      "example": "OOPAYMENT",
+      "description": "Payment method code as configured by the merchant.",
+      "type": "string"
+    },
+    "paymentAmount": {
+      "example": 14.0,
+      "description": "The total amount of the payment including tips if any.",
+      "type": "double"
+    },
+    "tipAmount": {
+      "example": 2.0,
+      "description": "The tip amount, if any.",
+      "type": "double"
+    }
+  },
+  "required": [
+    "paymentAmount"
+  ]
+}

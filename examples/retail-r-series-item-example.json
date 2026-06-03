@@ -1,0 +1,15 @@
+{
+  "itemID": "500123",
+  "systemSku": "SKU-1001",
+  "defaultCost": "12.50",
+  "avgCost": "12.50",
+  "description": "example",
+  "upc": "example",
+  "ean": "example",
+  "customSku": "SKU-1001",
+  "manufacturerSku": "SKU-1001",
+  "categoryID": "500123",
+  "manufacturerID": "500123",
+  "archived": false,
+  "Prices": {}
+}

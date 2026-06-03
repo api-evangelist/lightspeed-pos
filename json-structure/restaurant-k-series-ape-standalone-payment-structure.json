@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-standalone-payment-structure.json",
+  "name": "apeStandalonePayment",
+  "description": "Payment to apply to an existing order.",
+  "type": "object",
+  "properties": {
+    "iKaccountId": {
+      "example": 0,
+      "type": "int64",
+      "deprecated": true
+    },
+    "iKaccountIdentifier": {
+      "example": "A1234.56",
+      "description": "The ID of the account to apply this payment to.",
+      "type": "string"
+    },
+    "thirdPartyPaymentReference": {
+      "description": "A unique external reference provided for this order. This value will be sent back in the webhook.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "example": "12345678901234"
+    },
+    "endpointId": {
+      "description": "Endpoint ID for a unique webhook that has been created using [the webhook endpoint](https://api-docs.lsk.lightspeed.app/operation/operation-apecreatewebhookoo).",
+      "type": "string",
+      "example": "MY-AWESOME-ENDPOINT-ID"
+    },
+    "businessLocationId": {
+      "description": "The unique identifier for the business location.",
+      "type": "int64",
+      "example": 45454565682155
+    },
+    "taskTtlInMs": {
+      "example": 60000,
+      "description": "Maximum time to attempt delivery of this payment to the POS. In milliseconds. The minimum value is 60000ms (1 minute).",
+      "type": "int32"
+    },
+    "staffId": {
+      "type": "int64",
+      "description": "The ID of the employee responsible for this payment."
+    },
+    "deviceId": {
+      "description": "POS device to specifically receive this payment. If left null then all POS devices may receive the payment but only one will process it.",
+      "type": "int64",
+      "example": 12345678980
+    },
+    "paymentMethod": {
+      "example": "OOPAYMENT",
+      "description": "Payment method code as configured by the merchant.",
+      "type": "string"
+    },
+    "paymentAmount": {
+      "example": 20.06,
+      "description": "The total amount of the payment without tips.",
+      "type": "double"
+    },
+    "tipAmount": {
+      "example": 2.5,
+      "description": "The tip amount, if any.",
+      "type": "double"
+    },
+    "targetPrinterProfileId": {
+      "example": 1773881235,
+      "description": "The printer profile id to use for printing the receipt for this payment. If not provided, the default active printer profile for the business location will be used.",
+      "type": "int64"
+    }
+  },
+  "required": [
+    "businessLocationId",
+    "endpointId",
+    "paymentAmount",
+    "thirdPartyPaymentReference"
+  ]
+}

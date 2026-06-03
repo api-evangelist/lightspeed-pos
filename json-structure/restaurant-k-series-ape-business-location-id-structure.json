@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-business-location-id-structure.json",
+  "name": "apeBusinessLocationId",
+  "description": "The unique identifier for the business location.",
+  "type": "integer"
+}

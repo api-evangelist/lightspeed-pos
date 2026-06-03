@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/retail-r-series-sale-line-structure.json",
+  "name": "SaleLine",
+  "description": "A single line item on a sale.",
+  "type": "object",
+  "properties": {
+    "saleLineID": {
+      "type": "string",
+      "description": "Unique sale-line identifier."
+    },
+    "itemID": {
+      "type": "string",
+      "description": "Identifier of the item sold."
+    },
+    "saleID": {
+      "type": "string",
+      "description": "Identifier of the parent sale."
+    },
+    "unitQuantity": {
+      "type": "string",
+      "description": "Quantity sold."
+    },
+    "unitPrice": {
+      "type": "string",
+      "description": "Price per unit."
+    },
+    "normalUnitPrice": {
+      "type": "string",
+      "description": "List price per unit before discounts."
+    },
+    "discountID": {
+      "type": "string",
+      "description": "Identifier of any applied discount."
+    }
+  }
+}

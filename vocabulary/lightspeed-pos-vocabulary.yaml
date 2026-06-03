@@ -1,0 +1,412 @@
+vocabulary: 1.0.0
+info:
+  provider: Lightspeed
+  description: Unified taxonomy of the Lightspeed Commerce POS APIs (Restaurant K-Series, Retail R-Series, Retail X-Series) spanning the operational (OpenAPI) and capability (Naftiko) dimensions.
+  created: '2026-06-02'
+  modified: '2026-06-02'
+operational:
+  apis:
+  - name: Lightspeed Restaurant K Series API
+    namespace: restaurant-k-series
+    version: 1.0.0
+    baseUrl: https://api.lsk.lightspeed.app
+    status: active
+    operations: 90
+  - name: Lightspeed Retail R-Series API
+    namespace: retail-r-series
+    version: 3.0.0
+    baseUrl: https://api.lightspeedapp.com/API/V3
+    status: active
+    operations: 17
+  - name: Lightspeed Retail X-Series API
+    namespace: retail-x-series
+    version: 2.0.0
+    baseUrl: https://x-series-api.lightspeedhq.com/api/2.0
+    status: active
+    operations: 17
+  resources:
+  - name: Financial
+    api: restaurant-k-series
+    actions:
+    - get
+  - name: FinancialV2
+    api: restaurant-k-series
+    actions:
+    - get
+  - name: ID Cards
+    api: restaurant-k-series
+    actions:
+    - create
+  - name: Items
+    api: restaurant-k-series
+    actions:
+    - create
+    - get
+    - update
+  - name: Order and Pay
+    api: restaurant-k-series
+    actions:
+    - create
+    - get
+  - name: 'Order and Pay: Webhook'
+    api: restaurant-k-series
+    actions:
+    - create
+    - delete
+    - get
+    - update
+  - name: PMS
+    api: restaurant-k-series
+    actions:
+    - create
+    - delete
+    - get
+    - update
+  - name: Reservations for Platforms
+    api: restaurant-k-series
+    actions:
+    - create
+    - get
+    - update
+  - name: Rich Item
+    api: restaurant-k-series
+    actions:
+    - create
+    - delete
+    - get
+    - update
+  - name: Staff
+    api: restaurant-k-series
+    actions:
+    - create
+    - delete
+    - get
+    - update
+  - name: Tax Breakdown
+    api: restaurant-k-series
+    actions:
+    - create
+  - name: Account
+    api: retail-r-series
+    actions:
+    - get
+  - name: Catalog
+    api: retail-r-series
+    actions:
+    - get
+  - name: Customer
+    api: retail-r-series
+    actions:
+    - create
+    - get
+  - name: Item
+    api: retail-r-series
+    actions:
+    - create
+    - delete
+    - get
+    - update
+  - name: Sale
+    api: retail-r-series
+    actions:
+    - create
+    - get
+  - name: Staff
+    api: retail-r-series
+    actions:
+    - get
+  - name: General
+    api: retail-x-series
+    actions:
+    - create
+    - delete
+    - get
+    - list
+    - update
+  actions:
+  - verb: create
+    httpMethods:
+    - POST
+    pattern: write
+  - verb: delete
+    httpMethods:
+    - DELETE
+    pattern: destructive
+  - verb: get
+    httpMethods:
+    - GET
+    pattern: read
+  - verb: list
+    httpMethods:
+    - GET
+    pattern: read
+  - verb: update
+    httpMethods:
+    - PATCH
+    - PUT
+    pattern: write
+  schemas:
+    restaurant:
+    - items-apiItemDTO
+    - apeMenu
+    - apeMenuV2
+    - apeOrderPayment
+    - apeStandalonePayment
+    - apeTable
+    - apeDiscount
+    - apeAccountSnapshot
+    retail:
+    - Item
+    - Sale
+    - SaleLine
+    - Customer
+    - Category
+    - Manufacturer
+    - Vendor
+    - Employee
+    - Shop
+    - Product
+    - Brand
+  parameters:
+    pagination:
+    - limit
+    - offset
+    - page_size
+    - after
+    identifiers:
+    - accountID
+    - itemID
+    - saleID
+    - customerID
+    - businessLocationId
+    - floorPlanId
+    - tableNumber
+    - sku
+    filters:
+    - upc
+    - completed
+  authentication:
+    scheme: OAuth2
+    flow: authorizationCode
+    scopes:
+    - customers.read
+    - customers.write
+    - employee:admin
+    - employee:all
+    - employee:customers
+    - employee:customers_read
+    - employee:inventory
+    - employee:inventory_read
+    - employee:register
+    - employee:reports
+    - financial-api
+    - id-cards
+    - items
+    - orders-api
+    - products.read
+    - products.write
+    - propertymanagement
+    - reservation-platform-code
+    - sales.read
+    - sales.write
+    - staff-api
+    - user-token-by-authorization-code
+capability:
+  workflows:
+  - name: Lightspeed Restaurant K-Series API — Financial
+    file: capabilities/restaurant-k-series-financial.yaml
+    description: 'Restaurant — Financial. 8 operations. Lead operation: Lightspeed Get Businesses. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 8
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Financial
+  - name: Lightspeed Restaurant K-Series API — FinancialV2
+    file: capabilities/restaurant-k-series-financialv2.yaml
+    description: 'Restaurant — FinancialV2. 4 operations. Lead operation: Lightspeed Get Sales. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 4
+    tags:
+    - Lightspeed
+    - Restaurant
+    - FinancialV2
+  - name: Lightspeed Restaurant K-Series API — ID Cards
+    file: capabilities/restaurant-k-series-id-cards.yaml
+    description: 'Restaurant — ID Cards. 2 operations. Lead operation: Lightspeed Create an ID Card Batch. Self-contained Naftiko capability covering one Lightspeed business surf'
+    tools: 2
+    tags:
+    - Lightspeed
+    - Restaurant
+    - ID Cards
+  - name: Lightspeed Restaurant K-Series API — Items
+    file: capabilities/restaurant-k-series-items.yaml
+    description: 'Restaurant — Items. 4 operations. Lead operation: Lightspeed Get Item by ID. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 4
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Items
+  - name: 'Lightspeed Restaurant K-Series API — Order and Pay: Webhook'
+    file: capabilities/restaurant-k-series-order-and-pay-webhook.yaml
+    description: 'Restaurant — Order and Pay: Webhook. 7 operations. Lead operation: Lightspeed Create a Webhook. Self-contained Naftiko capability covering one Lightspeed busine'
+    tools: 7
+    tags:
+    - Lightspeed
+    - Restaurant
+    - 'Order and Pay: Webhook'
+  - name: Lightspeed Restaurant K-Series API — Order and Pay
+    file: capabilities/restaurant-k-series-order-and-pay.yaml
+    description: 'Restaurant — Order and Pay. 19 operations. Lead operation: Lightspeed Get Businesses. Self-contained Naftiko capability covering one Lightspeed business surface'
+    tools: 19
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Order and Pay
+  - name: Lightspeed Restaurant K-Series API — PMS
+    file: capabilities/restaurant-k-series-pms.yaml
+    description: 'Restaurant — PMS. 6 operations. Lead operation: Lightspeed Get PMS Revenue Centers. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 6
+    tags:
+    - Lightspeed
+    - Restaurant
+    - PMS
+  - name: Lightspeed Restaurant K-Series API — Reservations for Platforms
+    file: capabilities/restaurant-k-series-reservations-for-platforms.yaml
+    description: 'Restaurant — Reservations for Platforms. 12 operations. Lead operation: Lightspeed Callback to Complete Onboarding. Self-contained Naftiko capability covering o'
+    tools: 12
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Reservations for Platforms
+  - name: Lightspeed Restaurant K-Series API — Rich Item
+    file: capabilities/restaurant-k-series-rich-item.yaml
+    description: 'Restaurant — Rich Item. 10 operations. Lead operation: Lightspeed Get Allergens. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 10
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Rich Item
+  - name: Lightspeed Restaurant K-Series API — Staff
+    file: capabilities/restaurant-k-series-staff.yaml
+    description: 'Restaurant — Staff. 17 operations. Lead operation: Lightspeed Get Shifts. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 17
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Staff
+  - name: Lightspeed Restaurant K-Series API — Tax Breakdown
+    file: capabilities/restaurant-k-series-tax-breakdown.yaml
+    description: 'Restaurant — Tax Breakdown. 1 operations. Lead operation: Lightspeed Post Proposed Order. Self-contained Naftiko capability covering one Lightspeed business sur'
+    tools: 1
+    tags:
+    - Lightspeed
+    - Restaurant
+    - Tax Breakdown
+  - name: Lightspeed Retail R-Series API — Account
+    file: capabilities/retail-r-series-account.yaml
+    description: 'Retail — Account. 1 operations. Lead operation: Lightspeed List Accounts. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 1
+    tags:
+    - Lightspeed
+    - Retail
+    - Account
+  - name: Lightspeed Retail R-Series API — Catalog
+    file: capabilities/retail-r-series-catalog.yaml
+    description: 'Retail — Catalog. 3 operations. Lead operation: Lightspeed List Categories. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 3
+    tags:
+    - Lightspeed
+    - Retail
+    - Catalog
+  - name: Lightspeed Retail R-Series API — Customer
+    file: capabilities/retail-r-series-customer.yaml
+    description: 'Retail — Customer. 3 operations. Lead operation: Lightspeed List Customers. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 3
+    tags:
+    - Lightspeed
+    - Retail
+    - Customer
+  - name: Lightspeed Retail R-Series API — Item
+    file: capabilities/retail-r-series-item.yaml
+    description: 'Retail — Item. 5 operations. Lead operation: Lightspeed List Items. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 5
+    tags:
+    - Lightspeed
+    - Retail
+    - Item
+  - name: Lightspeed Retail R-Series API — Sale
+    file: capabilities/retail-r-series-sale.yaml
+    description: 'Retail — Sale. 3 operations. Lead operation: Lightspeed List Sales. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 3
+    tags:
+    - Lightspeed
+    - Retail
+    - Sale
+  - name: Lightspeed Retail R-Series API — Staff
+    file: capabilities/retail-r-series-staff.yaml
+    description: 'Retail — Staff. 2 operations. Lead operation: Lightspeed List Employees. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 2
+    tags:
+    - Lightspeed
+    - Retail
+    - Staff
+  - name: Lightspeed Retail X-Series API — General
+    file: capabilities/retail-x-series-general.yaml
+    description: 'Retail — General. 17 operations. Lead operation: Lightspeed List Brands. Self-contained Naftiko capability covering one Lightspeed business surface.'
+    tools: 17
+    tags:
+    - Lightspeed
+    - Retail
+    - General
+  personas:
+  - id: restaurant-operator
+    name: Restaurant Operator
+    description: Runs front-of-house Order & Pay, checks, menus and tables on K-Series.
+    workflows:
+    - Lightspeed Restaurant K-Series API — Order and Pay
+    - Lightspeed Restaurant K-Series API — Items
+  - id: retail-merchandiser
+    name: Retail Merchandiser
+    description: Manages catalog, items and inventory across R-Series and X-Series.
+    workflows:
+    - Lightspeed Retail R-Series API — Item
+    - Lightspeed Retail R-Series API — Catalog
+  - id: finance-analyst
+    name: Finance Analyst
+    description: Reads financials, aggregated sales and tax data for reporting.
+    workflows:
+    - Lightspeed Restaurant K-Series API — Financial
+    - Lightspeed Restaurant K-Series API — FinancialV2
+  - id: integration-developer
+    name: Integration Developer
+    description: Wires webhooks, PMS providers and reservation platforms into Lightspeed.
+    workflows:
+    - 'Lightspeed Restaurant K-Series API — Order and Pay: Webhook'
+    - Lightspeed Restaurant K-Series API — PMS
+  domains:
+  - Menu & Items
+  - Orders & Payments
+  - Tables & Floorplans
+  - Catalog & Inventory
+  - Sales & Customers
+  - Financials & Tax
+  - Staff & Access
+  - Integrations & Webhooks
+  namespaces:
+  - consumed: restaurant-k-series-financial
+  - consumed: restaurant-k-series-financialv2
+  - consumed: restaurant-k-series-id-cards
+  - consumed: restaurant-k-series-items
+  - consumed: restaurant-k-series-order-and-pay-webhook
+  - consumed: restaurant-k-series-order-and-pay
+  - consumed: restaurant-k-series-pms
+  - consumed: restaurant-k-series-reservations-for-platforms
+  - consumed: restaurant-k-series-rich-item
+  - consumed: restaurant-k-series-staff
+  - consumed: restaurant-k-series-tax-breakdown
+  - consumed: retail-r-series-account
+  - consumed: retail-r-series-catalog
+  - consumed: retail-r-series-customer
+  - consumed: retail-r-series-item
+  - consumed: retail-r-series-sale
+  - consumed: retail-r-series-staff
+  - consumed: retail-x-series-general

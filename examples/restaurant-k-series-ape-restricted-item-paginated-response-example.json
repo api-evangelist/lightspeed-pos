@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "sku": "SKU1",
+      "count": 50,
+      "updatedAt": "2025-07-08T14:20:00Z"
+    }
+  ],
+  "metadata": {
+    "warnings": [
+      {
+        "information": "example",
+        "type": "example"
+      }
+    ],
+    "current": {
+      "page": 0,
+      "pageSize": 50
+    },
+    "total": 1,
+    "totalPages": 10
+  }
+}

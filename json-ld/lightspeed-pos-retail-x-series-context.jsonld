@@ -1,0 +1,105 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ls": "https://developers.lightspeedhq.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Brand": "ls:Brand",
+    "Customer": "ls:Customer",
+    "Product": "ls:Product",
+    "Sale": "ls:Sale",
+    "id": {
+      "@id": "ls:id",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "deletedAt": {
+      "@id": "ls:deleted_at",
+      "@type": "xsd:dateTime"
+    },
+    "firstName": {
+      "@id": "ls:first_name",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "ls:last_name",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "ls:phone",
+      "@type": "xsd:string"
+    },
+    "customerCode": {
+      "@id": "ls:customer_code",
+      "@type": "xsd:string"
+    },
+    "sourceId": {
+      "@id": "ls:source_id",
+      "@type": "xsd:string"
+    },
+    "handle": {
+      "@id": "ls:handle",
+      "@type": "xsd:string"
+    },
+    "sku": {
+      "@id": "ls:sku",
+      "@type": "xsd:string"
+    },
+    "priceExcludingTax": {
+      "@id": "ls:price_excluding_tax",
+      "@type": "xsd:float"
+    },
+    "brandId": {
+      "@id": "ls:brand_id",
+      "@type": "xsd:string"
+    },
+    "active": {
+      "@id": "ls:active",
+      "@type": "xsd:boolean"
+    },
+    "outletId": {
+      "@id": "ls:outlet_id",
+      "@type": "xsd:string"
+    },
+    "registerId": {
+      "@id": "ls:register_id",
+      "@type": "xsd:string"
+    },
+    "userId": {
+      "@id": "ls:user_id",
+      "@type": "xsd:string"
+    },
+    "customerId": {
+      "@id": "ls:customer_id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "ls:status",
+      "@type": "xsd:string"
+    },
+    "totalPrice": {
+      "@id": "ls:total_price",
+      "@type": "xsd:float"
+    },
+    "totalTax": {
+      "@id": "ls:total_tax",
+      "@type": "xsd:float"
+    },
+    "lineItems": {
+      "@id": "ls:line_items",
+      "@container": "@set"
+    }
+  }
+}

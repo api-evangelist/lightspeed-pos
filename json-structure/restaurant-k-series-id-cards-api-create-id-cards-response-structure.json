@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-id-cards-api-create-id-cards-response-structure.json",
+  "name": "id-cards-apiCreateIdCardsResponse",
+  "description": "id-cards-apiCreateIdCardsResponse schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "batchId": {
+      "type": "int64",
+      "description": "The unique identifier for the batch the cards were added to.",
+      "example": 12345
+    },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "int64",
+            "description": "The unique identifier for the ID card.",
+            "example": 98765
+          },
+          "consumerRecordId": {
+            "type": "int64",
+            "description": "The unique identifier for the associated consumer record.",
+            "example": 54321
+          },
+          "consumerId": {
+            "type": "int64",
+            "description": "The unique identifier for the associated consumer.",
+            "example": 13579
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL for the QR code associated with the ID card.",
+            "example": "https://example.com/id-cards/98765/qr-code"
+          }
+        }
+      }
+    }
+  }
+}

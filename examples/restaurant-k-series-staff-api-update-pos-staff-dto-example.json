@@ -1,0 +1,13 @@
+{
+  "username": "John Doe",
+  "pinCode": "1234",
+  "firstName": "John",
+  "lastName": "Doe",
+  "active": true,
+  "visible": false,
+  "group": -1,
+  "reportAccess": "example",
+  "roles": [
+    "example"
+  ]
+}

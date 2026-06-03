@@ -1,0 +1,7 @@
+{
+  "headers": {
+    "X-API-ID": "Example-x-api-id",
+    "X-API-SECRET": "Example-x-api-secret"
+  },
+  "parameters": {}
+}

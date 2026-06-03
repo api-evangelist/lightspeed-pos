@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-reservation-service-platform-reservation-structure.json",
+  "name": "reservation-servicePlatformReservation",
+  "description": "reservation-servicePlatformReservation schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "guest": {
+      "description": "Guest information associated with the reservation.",
+      "properties": {
+        "email": {
+          "description": "The guest's email address.",
+          "example": "john.smith@email.com",
+          "type": "string"
+        },
+        "firstName": {
+          "description": "The guest's first name.",
+          "example": "John",
+          "type": "string"
+        },
+        "lastName": {
+          "description": "The guest's last name.",
+          "example": "Smith",
+          "type": "string"
+        },
+        "phone": {
+          "description": "The guest's phone number.",
+          "example": "+13453455555",
+          "format": "phone",
+          "type": "string"
+        },
+        "platformGuestId": {
+          "description": "The external platform's unique identifier for the guest.",
+          "example": "ABC-123",
+          "pattern": "[a-zA-Z0-9_-]+",
+          "type": "string"
+        },
+        "walkIn": {
+          "default": false,
+          "description": "When `true`, indicates this is a walk-in reservation.",
+          "example": true,
+          "type": "boolean"
+        },
+        "foodAndDrinkNotes": {
+          "example": "Only milk and cookies!",
+          "type": "string",
+          "description": "Any details about guest's food and drink preferences."
+        },
+        "notes": {
+          "example": "Put the ring in the champagne!",
+          "type": "string",
+          "description": "Other notes about the guest."
+        },
+        "language": {
+          "example": "en",
+          "type": "string",
+          "description": "Guest's language; use [two-symbol ISO-639](https://www.loc.gov/standards/iso639-2/php/code_list.php) for best results on POS."
+        },
+        "allergens": {
+          "example": [
+            "almonds",
+            "egg"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true,
+          "description": "Any allergens linked to this guest. See [Allergens](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/allergens) table for a list of allergen names with available translations. Any other text will be displayed as provided in the request body."
+        },
+        "dietaryRestrictions": {
+          "example": [
+            "no alcohol",
+            "vegan"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true,
+          "description": "Any dietary restrictions linked to this guest. See [Dietary Restrictions](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/dietary-restrictions) table for a list of restrictions with available translations. Any other text will be displayed as provided in the request body."
+        }
+      },
+      "required": [
+        "platformGuestId",
+        "firstName"
+      ],
+      "type": "object"
+    },
+    "liability": {
+      "description": "The guest's obligation for the reservation.",
+      "properties": {
+        "currency": {
+          "description": "ISO-4217",
+          "example": "EUR",
+          "pattern": "[A-Z]{3}",
+          "type": "string"
+        },
+        "deposits": {
+          "description": "List of all prepaid deposits made through the external platform.",
+          "items": {
+            "properties": {
+              "amount": {
+                "description": "The amount of the deposit made through the external platform.",
+                "example": "100.00",
+                "pattern": "^[0-9]+.[0-9]{2}$",
+                "type": "string"
+              },
+              "platformDepositId": {
+                "description": "The external platform's unique identifier for the deposit.",
+                "example": "1",
+                "pattern": "[a-zA-Z0-9_-]+",
+                "type": "string"
+              },
+              "utcCreatedAt": {
+                "description": "Deposit creation time.",
+                "example": "2024-01-01T20:00:00",
+                "type": "datetime",
+                "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+              },
+              "utcVoidedAt": {
+                "description": "Deposit void time, if applicable.",
+                "example": "2024-01-01T20:00:00",
+                "type": "datetime",
+                "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+              },
+              "voided": {
+                "description": "Whether or not the deposit was voided.",
+                "example": false,
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "amount",
+              "utcCreatedAt"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "refunds": {
+          "description": "List of all deposits refunded to the guest.",
+          "items": {
+            "properties": {
+              "amount": {
+                "description": "The amount which was refunded by the external platform.",
+                "example": "100.00",
+                "pattern": "^[0-9]+.[0-9]{2}$",
+                "type": "string"
+              },
+              "platformRefundId": {
+                "description": "The external platform's unique identifier for the refund.",
+                "example": "1",
+                "pattern": "[a-zA-Z0-9_-]+",
+                "type": "string"
+              },
+              "utcCreatedAt": {
+                "description": "Refund creation time.",
+                "example": "2024-01-01T20:00:00",
+                "type": "datetime",
+                "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+              },
+              "utcVoidedAt": {
+                "description": "Refund void time, if applicable.",
+                "example": "2024-01-01T20:00:00",
+                "type": "datetime",
+                "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+              },
+              "voided": {
+                "description": "Whether or not the refund was voided.",
+                "example": false,
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "amount",
+              "utcCreatedAt"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "currency",
+        "deposits"
+      ],
+      "type": "object"
+    },
+    "notes": {
+      "example": "More balloons!",
+      "type": "string",
+      "description": "Venue-entered notes specific to the reservation."
+    },
+    "specialOffer": {
+      "example": "Free dessert",
+      "type": "string",
+      "description": "Any special offer linked to the reservation."
+    },
+    "tags": {
+      "example": [
+        "romantic meal",
+        "special occasion"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true,
+      "description": "Tags linked to this reservation. See [Reservation Tags](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/reservation-tags) table for a list of tags with available translations. All others will be displayed as provided in the request body."
+    },
+    "partySize": {
+      "description": "The number of expected guests.",
+      "example": 2,
+      "type": "int32"
+    },
+    "sequenceId": {
+      "description": "An optional sequence number assigned by the external platform. If provided, it will be used to determine the order of updates of a reservation. It is the responsibility of the external platform to provide a monotonically increasing sequence number.\nIf omitted, the utcUpdatedAt field will be used to determine the order of updates. That can be imprecise when dealing with events that happen in short timeframes in a distributed system.\nThe value SHOULD NOT be set to null or zero or any special value, but instead omitted from the JSON object entirely if it is not used.\n",
+      "example": 145789499819,
+      "type": "int64"
+    },
+    "status": {
+      "description": "External reservation statuses for platforms.",
+      "enum": [
+        "ON_HOLD",
+        "SCHEDULED",
+        "PARTIALLY_ARRIVED",
+        "ARRIVED",
+        "PARTIALLY_SEATED",
+        "SEATED",
+        "DEPARTED",
+        "CANCELLED",
+        "NO_SHOW",
+        "ERROR"
+      ],
+      "example": "SCHEDULED",
+      "type": "string"
+    },
+    "tableNumbers": {
+      "description": "The list of table numbers associated with this reservation.\nIf no valid table is provided, POS order is not created.\n",
+      "example": [
+        "1"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "utcScheduledAt": {
+      "description": "The scheduled reservation time.",
+      "example": "2024-01-01T20:00:00",
+      "type": "datetime",
+      "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+    },
+    "utcUpdatedAt": {
+      "description": "The timestamp of the most recent change to the reservation.\n",
+      "example": "2024-01-01T20:10:00",
+      "type": "datetime",
+      "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+    },
+    "guestRequest": {
+      "description": "Notes added to the reservation by the guest.",
+      "example": "I would need two baby chairs.",
+      "type": "string"
+    },
+    "expectedDuration": {
+      "description": "Expected duration of the meal. ISO-8601 format.",
+      "example": "PT30M",
+      "type": "duration",
+      "x-field-extra-annotation": "@com.fasterxml.jackson.annotation.JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss\", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = \"UTC\")"
+    }
+  },
+  "required": [
+    "utcUpdatedAt",
+    "utcScheduledAt",
+    "partySize",
+    "guest",
+    "status"
+  ]
+}

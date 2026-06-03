@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "apeAccountProfile",
+  "description": "apeAccountProfile schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-ape-account-profile-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "format": "int64",
+      "type": "integer",
+      "description": "The unique identifier for the order profile.",
+      "example": 12454575601144
+    },
+    "code": {
+      "type": "string",
+      "description": "A short code representing the order profile.",
+      "example": "takeaway"
+    },
+    "name": {
+      "type": "string",
+      "example": "Takeaway",
+      "description": "The system display name for the order profile."
+    },
+    "deliveryMode": {
+      "enum": [
+        "NONE",
+        "TAKE_AWAY",
+        "DELIVERY"
+      ],
+      "type": "string",
+      "example": "TAKE_AWAY",
+      "description": "Specifies the delivery mode for the order profile."
+    }
+  }
+}

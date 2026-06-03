@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sale",
+  "description": "Sale schema from Lightspeed Retail X-Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/retail-x-series-sale-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "outlet_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "register_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "customer_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "CLOSED",
+        "ONACCOUNT",
+        "LAYBY",
+        "VOIDED"
+      ]
+    },
+    "total_price": {
+      "type": "number",
+      "format": "float"
+    },
+    "total_tax": {
+      "type": "number",
+      "format": "float"
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

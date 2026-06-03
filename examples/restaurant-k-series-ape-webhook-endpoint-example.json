@@ -1,0 +1,16 @@
+{
+  "endpointId": "MY-AWESOME-ENDPOINT-ID",
+  "url": "https://webhook.site/1dc40b86-3d0d",
+  "withBasicAuth": true,
+  "username": "username",
+  "password": "password",
+  "provideAccount": true,
+  "expandTransactions": true,
+  "expandPayments": true,
+  "subscribeTo": [
+    {
+      "name": "DELIVERED",
+      "resource": "order"
+    }
+  ]
+}

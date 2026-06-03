@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-ape-payment-bad-request-error-structure.json",
+  "name": "apePaymentBadRequestError",
+  "description": "Standard error payload returned for a rejected payment request.",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "datetime",
+      "description": "The date and time at which the error occurred, in UTC.",
+      "example": "2023-11-07T23:00:20.075+0000"
+    },
+    "status": {
+      "type": "int32",
+      "description": "The HTTP status code indicating the type of error.",
+      "example": 400
+    },
+    "error": {
+      "type": "string",
+      "description": "A short description of the HTTP status code meaning.",
+      "example": "Bad Request"
+    },
+    "message": {
+      "type": "string",
+      "description": "A detailed message describing the error, including any specific details about the request that led to the error.",
+      "example": "reference has already been used 12345678901234"
+    },
+    "path": {
+      "type": "string",
+      "description": "The request path where the error occurred.",
+      "example": "/o/op/1/pay"
+    }
+  }
+}

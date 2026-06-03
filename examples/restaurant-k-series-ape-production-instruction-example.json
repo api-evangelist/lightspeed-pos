@@ -1,0 +1,11 @@
+{
+  "multiSelectionPermitted": true,
+  "productionInstructionGroupName": "Burger",
+  "productionIntructionGroupId": 463,
+  "productionInstructionList": [
+    {
+      "instruction": "example",
+      "ikentooModifierId": 466
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-structure/restaurant-k-series-financial-api-resources-tax-rate-structure.json",
+  "name": "financial-apiResourcesTaxRate",
+  "description": "financial-apiResourcesTaxRate schema from Lightspeed Restaurant K Series API",
+  "type": "object",
+  "properties": {
+    "_embedded": {
+      "type": "object",
+      "properties": {
+        "taxRateList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "VAT20",
+                "description": "System code for the tax rate."
+              },
+              "description": {
+                "type": "string",
+                "example": "VAT 20%",
+                "description": "Name of the tax rate."
+              },
+              "rate": {
+                "type": "double",
+                "example": 1.2,
+                "description": "Multiplier for the tax rate."
+              },
+              "taxIncluded": {
+                "type": "boolean",
+                "description": "Whether or not the tax is included."
+              },
+              "accountingReference": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "_links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string",
+              "example": "https://api.ikentoo.com/f/finance/141948669132802/tax-rates"
+            }
+          }
+        }
+      }
+    }
+  }
+}

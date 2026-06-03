@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pms-apiGetProvider",
+  "description": "pms-apiGetProvider schema from Lightspeed Restaurant K Series API",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/json-schema/restaurant-k-series-pms-api-get-provider-schema.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique identifier for the provider.",
+      "type": "integer",
+      "format": "int64",
+      "example": 3012455645
+    },
+    "name": {
+      "description": "The name of the PMS provider.",
+      "type": "string"
+    },
+    "apiKey": {
+      "description": "The API key for the PMS provider.",
+      "type": "string",
+      "example": "fake-secret"
+    },
+    "businessLocationId": {
+      "description": "The unique identifier for the business location.",
+      "type": "integer",
+      "format": "int64",
+      "example": 45454565682155
+    },
+    "endpoint": {
+      "description": "The endpoint of the PMS provider. This is where Lightspeed will send PMS requests.",
+      "type": "string",
+      "example": "http://integration.com/pms/endpoint"
+    },
+    "features": {
+      "description": "The optional features that the PMS provider supports. See the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/property-management-systems) for more details.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "SEARCH_BY_NAME",
+          "MIRRORING",
+          "PARTIAL_PAYMENTS",
+          "MULTI_PAYMENTS",
+          "SERVICE_CHARGE",
+          "ENRICHED_PAYLOAD"
+        ],
+        "example": "MIRRORING"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  }
+}
