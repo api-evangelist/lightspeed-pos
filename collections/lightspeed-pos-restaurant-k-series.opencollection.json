@@ -1,0 +1,3277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order and Pay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Businesses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/businesses",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of all businesses and business locations associated with the access token."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Floorplans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/:businessLocationId/floorplans",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expandTables",
+                "value": "",
+                "type": "query",
+                "description": "If true, the response will include the table details for each floorplan.\nIf false, the response will only include the [`name`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-name) and [`id`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-id) for the floorplans."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the floorplans for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Floorplan Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/:businessLocationId/floorplans/:floorPlanId/tables",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "floorPlanId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the tables for a specific floorplan of a business location"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Order Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/account-profiles",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of active [order profiles](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) for a specific business location.\n\nThe order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code) can be used to retrieve a specific price list when [loading a menu](https://api-docs.lsk.lightspeed.app/operation/operation-apegetmenubyid).\n\nNote:"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Order Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/:businessLocationId/account-profiles/tagcode/:tagCode",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details of an active [order profile](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) based on its [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code).\n\nNote: Order Profiles were previously called Account Profiles, and may still be referred to in this way in the API, in some cases."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/list",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of menus for a given business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/load/:menuId",
+            "params": [
+              {
+                "name": "menuId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the menu."
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountProfile",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "richContent",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**Deprecated:** Use [/o/op/2/menu/load/{menuId}](#/Order%20and%20Pay/getMenuByIdV2) instead. V2 includes product modifier groups and product modifiers on menu items and deal items. Returns details of a particular menu based on its unique identifier and other query parameters."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Menu V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/2/menu/load/:menuId",
+            "params": [
+              {
+                "name": "menuId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the menu."
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountProfile",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "richContent",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details of a particular menu based on its unique identifier and other query parameters. Product modifier groups and product modifiers are always included in the response.\n\n**Migration from V1:** The response includes `menuModifierGroups` on each menu item and deal item, containing product modifier details (name, price, extraPrice, sku, rich data). Items with product modifier groups are no longer marked as `asSubItem`."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Modifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/modifiers",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of production instructions for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/discounts",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of discounts for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Local Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/local",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new dine-in order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details.\n\nIf the [accountIdentifier](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-accountidentifier) of an existing order is provided in the body of the request, the request will update the existing order."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create to Go Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/toGo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new takeaway or delivery order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Open Checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/table/getCheck",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all open orders for the current day."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Open Check by Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/table/:tableNumber/getCheck",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tableNumber",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns an open order for a specific table.\nNote: If more than one order is assigned to the table, the oldest order will be returned."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/accounts/:accountIdentifier",
+            "params": [
+              {
+                "name": "accountIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a check based on the Account Identifier."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Apply a Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/pay",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a payment to an existing order."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Print Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/printMsg",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Send a message to the POS. Generates a notification on the register screen. Can also be sent to the printer. <br> If the POS is offline, the message will be stored for up to 24h and sent when the POS comes online."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Item Availability Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/itemAvailability",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skus",
+                "value": "",
+                "type": "query",
+                "description": "List of SKUs to return."
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Starting page of results, when paginating. Starts at 0."
+              },
+              {
+                "name": "size",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results to return, when paginating."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns item availability information, by business location and SKUs."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Item Availability Information by POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/itemAvailability",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Starting page of results, when paginating. Starts at 0."
+              },
+              {
+                "name": "size",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results to return, when paginating."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns item availability information filtered by business location and SKUs. The list of SKUs must be provided in the request body."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Order and Pay: Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing webhook entry.\n\nImportant Note: if `provideAccount`, `expandTransactions`, or `expandPayments` are excluded from the update request, they will be reset to their default values."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Configures a new webhook to be used for order status updates."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Retrieve a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Webhook Business Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook/:endpointId/business-locations",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get all business locations added to a webhook endpoint via the API."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add a Business Location to a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook/:endpointId/business-locations/:businessLocationId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Enables a webhook for the specified business location.\nRequired to receive item availability notifications (type 'item').\nNot required for 'order' and 'payment' webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Remove Business Location from a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trial.lsk.lightspeed.app/o/wh/1/webhook/:endpointId/business-locations/:businessLocationId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove a business location ID from a webhook endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Financial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Businesses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/data/businesses",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Starting page of results, when paginating."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return, when paginating."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all businesses the token has access to. Pagination is supported by providing the `page` and `size` query parameters. The maximum number of business locations per business returned is 500."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Tax Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/tax-rates",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns tax rates for a business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/paymentMethods",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all payment methods for a business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Accounting Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/accountingGroups",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all accounting groups for a business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Financials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/financials/:from/:to",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "path",
+                "description": "Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "path",
+                "description": "End of requested results, in ISO 8601 format.\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return."
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "The `accountId` where the results should begin.\n\nExample: `A65315.18`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns financial data for a business location for a specified date range.\n\nNote: Will only return sales created after migration from iKentoo 2.0 to Lightspeed K-Series."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Daily Financials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/dailyFinancials",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The date in YYYY-MM-DD format."
+              },
+              {
+                "name": "includeConsumers",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the financial data for the current business day or for the specified date."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Receipt by External Reference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/saleByExternalReference",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "externalReferenceId",
+                "value": "",
+                "type": "query",
+                "description": "The external reference of the receipt. See [externalReferences](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a single receipt matching the external reference supplied in the request. See [`externalReferences`](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences) for examples."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Aggregated Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/aggregatedSales",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Specify a single date for which to retrieve aggregated sales data. Cannot be combined with `from` and `to`. Use either `date`, or both `from` and `to`.\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Specify the start datetime for the aggregation range. Must be used together with `to`. Cannot be combined with `date`.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Specify the end datetime for the aggregation range. Must be used together with `from`. Cannot be combined with `date`.\n"
+              },
+              {
+                "name": "flattened",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of parameters to group the results by.\nThe allowed values are: `staff`, `device`, `deviceId`, `tag`, `accountingGroup`, and `statisticGroup`.\nFor example, `groupBy` can be set to `staff,device`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get sales for the current business day or the specified date range, aggregated by one or more values.\nThe values are specified in the `groupBy` parameter and are nested in the order provided in the request.\n\n- Use either the `date` parameter **or** the `from` and `to` parameters to specify the period.\n- The `date` parameter specifies a single date for aggregation.\n- The `from` and `to` parameters specify a date-time range and must be used together.\n- **If neither `date` nor `from`/`to` are provi"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "FinancialV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/business-location/:businessLocationId/sales",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nBased on the timeClosed sales field."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of requested results, in ISO 8601 format.\n\nBased on the timeClosed sales field.\n\nIf the `to` date is set to a future date or not included, it will be adjusted to the current\ndate and time to retrieve the most recent data available."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return."
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "A token that indicates the starting point of the next set of records when paginating through results."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns financial data for a business location for a specified date range. Sorted by the `timeClosed` field of the sales."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Business Day Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/business-location/:businessLocationId/sales-daily",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The date of the business day to get sales for.\n\nExample:`2022-09-21` or `2022-12-01`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns financial data for a business location for a specified business day."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Payments Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/business-location/:businessLocationId/lightspeed-payments",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nResults queried by the dateType parameter."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of requested results, in ISO 8601 format.\n\nResults queried by the dateType parameter."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "CAPTURED,REFUNDED",
+                "type": "query",
+                "description": "Payment statuses to filter the result set by."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns Lightspeed Payments fee and surcharge data for a business location for a specified date range. Results are queried and sorted based on the specified dateType.\n\nNote: Will only return sales created after migration from iKentoo 2.0 to Lightspeed K-Series. See [this article](https://k-series-support.lightspeedhq.com/hc/en-us/articles/360056758333-Upgrading-to-K-Series-from-iKentoo-2-0) for more details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed BETA - Get Aborted Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/beta/business-location/:businessLocationId/aborted-orders",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The business date of the aborted orders."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves a list of aborted orders for a specified business day.\n\nAn aborted order is defined as an instance where items were added to an order, but **all** items were subsequently removed without being committed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ID Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Create an ID Card Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/id-cards/v1/business-locations/:businessLocationId/batches",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new batch of ID cards for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create ID Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/id-cards/v1/business-locations/:businessLocationId/batches/:batchId/cards",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the ID card batch."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a specified number of ID cards for an existing ID card batch."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Item by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/items/v1/items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the details of a specific item."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update Item by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/items/v1/items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies the values of an existing item."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/items/v1/items",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountingGroupId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "itemIds",
+                "value": "",
+                "type": "query",
+                "description": "Optional list of item IDs to retrieve. When provided, offset and amount are ignored; all matching items are returned."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the items for a specific business location. Supports searching by [`accountingGroupId`](#operation-getitems-accountinggroupid), [`name`](#operation-getitems-name), [`sku`](#operation-getitems-sku), or [`itemIds`](#operation-getitems-itemids)."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/items/v1/items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new item for a specific business location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get PMS Revenue Centers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/pms/v1/business-locations/:businessLocationId/revenue-centers",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of all POS Configurations which can be mapped to PMS Revenue Centers. For more details on revenue centers, see our [Integration Guide](https://api-portal.lsk.lightspeed.app/guides/integration-guides/property-management-systems/financial-api-endpoints#revenue-centers)."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get a PMS Provider by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/pms/v1/providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the details of a specific PMS provider.\n\nOnly PMS providers created by the authenticated OAuth client will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update a PMS Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/pms/v1/providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Modifies the values of an existing **PMS** provider.\n\nOnly PMS providers created by the authenticated OAuth client can be updated.\n"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Delete a PMS Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trial.lsk.lightspeed.app/pms/v1/providers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Permanently removes a PMS provider from a businessLocation."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get PMS Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/pms/v1/providers",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of PMS providers that have been configured for the business location. Only PMS providers created by the authenticated OAuth client will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create PMS Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/pms/v1/providers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new PMS provider for the businessLocation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reservations for Platforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Callback to Complete Onboarding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/integration/onboarding",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Once the external platform receives the [onboarding webhook](https://api-docs.lsk.lightspeed.app/operation/operation-reservationonboardingnotification), the process needs to be completed using this callback."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Platform Profile Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/profile",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve platform profile details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create or Update Platform Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/profile",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create or update details for external reservation platform."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Platform Course Settings Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/course-settings",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Setup platform's course settings definition."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create or Update Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/restaurant/:platform-restaurant-id/reservation/:platform-reservation-id/push",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "platform-restaurant-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "platform-reservation-id",
+                "value": "",
+                "type": "path",
+                "description": "The external identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new reservation or provide updates about guests, deposits, status, etc."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication by XApiKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/api-keys",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate XApiKey authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication with BasicAuth",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/basic-auth",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate BasicAuth authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication with BearerAuth",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/bearer-auth",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate BearerAuth authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication with OAuth2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/oauth2",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate OAuth2 authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Business Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/user/platform/:platform-code/business-locations",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number, when paginating"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The items per page, when paginating"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve all the business locations accessible for a User"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Activate Integration for Restaurant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/user/platform/:platform-code/integration/activate",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate the integration between the K-Series business location and the external reservation platform."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Deactivate Integration for Restaurant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/user/platform/:platform-code/integration/deactivate",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deactivate the integration between the K-Series business location and the external reservation platform."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Staff",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Shifts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/shift",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number, when paginating."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page, when paginating."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by field and direction."
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Show results after this start time. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "Show results before this end time. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+              },
+              {
+                "name": "staffId",
+                "value": "",
+                "type": "query",
+                "description": "Filter on the unique identifier for the user."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get Shifts"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All POS Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/POS",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number, when paginating."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page, when paginating."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by field and direction."
+              },
+              {
+                "name": "isActive",
+                "value": "",
+                "type": "query",
+                "description": "Filter on active status."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter on user start date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter on user end date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get All POS Users"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create POS User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/POS",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Create POS User"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update POS User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/POS/:staffId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "staffId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Update POS User"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Back Office Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/BACK_OFFICE",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number, when paginating."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page, when paginating."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by field and direction."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter on email address."
+              },
+              {
+                "name": "isActive",
+                "value": "",
+                "type": "query",
+                "description": "Filter on active status."
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter on user start date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter on user end date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get All Back Office Users"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/staff/:staffId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "staffId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the user."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get Single User"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All User Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/groups",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number, when paginating."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page, when paginating."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort by field and direction."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter on group name."
+              },
+              {
+                "name": "roles",
+                "value": "",
+                "type": "query",
+                "description": "Filter on group roles."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get All User Groups"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single User Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/groups/:groupId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the user group."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get Single User Group"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Business Location Access",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/business/:businessId/assignStaff/:staffId",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business."
+              },
+              {
+                "name": "staffId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Add Business Location Access"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Remove Business Location Access",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/unAssignStaff/:staffId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "staffId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the user."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Remove Business Location Access"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/webhooks",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get Webhooks"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/webhooks",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Create Webhook"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update Existing Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the webhook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates the details of an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the webhook."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Delete Webhook"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Report Access Levels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/POS/reportAccess",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get Report Access Levels"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Back Office User Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/BACK_OFFICE/roles",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get All Back Office User Permissions"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All POS User Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/staff/v1/businessLocations/:businessLocationId/userTypes/POS/roles",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lightspeed Get All POS User Permissions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tax Breakdown",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Post Proposed Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/tp/v1/business-locations/:businessLocationId/tax-breakdown",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the tax breakdown of a proposed order"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rich Item",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Allergens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/i/allergens",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of all possible allergens that can be added to a rich item. See [Allergens Table](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/allergens) for more details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Locales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/i/locales/:businessId",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the locales of a business in ISO Code 2 or language_localization (eg. 'en' or 'en_US')."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update Locales",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/i/locales/:businessId",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Sets business item languages. Supports language ISO code 2 or language_localization (eg. 'en' or 'en_US')."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Rich Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all of the rich item information for a specific business."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Rich Item by Sku",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId/:sku",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get a rich item from its sku and the business id."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create or Update Rich Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId/:sku",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new rich item or updates an existing rich item. To update the sku, set the new sku in the request body. The picture cannot be set using this method (use PATCH method)."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update Picture",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId/:sku",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Partially updates the rich item to set the picture or rawPicture."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Delete Rich Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId/:sku",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete rich item"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Rich Items by SKUs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId/itemsBySkus",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of rich items matching the SKUs provided in the request."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Picture Specifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/i/richItem/:businessId/pictureSpec",
+            "params": [
+              {
+                "name": "businessId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get rich item picture specifications."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

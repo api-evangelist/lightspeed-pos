@@ -2,289 +2,263 @@ aid: lightspeed-pos
 url: https://raw.githubusercontent.com/api-evangelist/lightspeed-pos/refs/heads/main/apis.yml
 name: Lightspeed
 kind: company
-description: 'Lightspeed (Lightspeed Commerce) operates a portfolio of Retail, Restaurant, eCom, and Golf POS platforms via series-named product lines: X-Series (Vend), R-Series (Retail Pro/Cloud), C-Series (eCom), E-Series (Ecwid), K-Series (Restaurant Lightspeed), L-Series, O-Series (Kounta), G-Series (Gastrofix), and the ChronoGolf Partner API.'
+description: >-
+  Lightspeed (Lightspeed Commerce) operates a portfolio of Retail, Restaurant, eCom, and Golf POS platforms via
+  series-named product lines: X-Series (Vend), R-Series (Retail Pro/Cloud), C-Series (eCom), E-Series (Ecwid), K-Series
+  (Restaurant Lightspeed), L-Series, O-Series (Kounta), G-Series (Gastrofix), and the ChronoGolf Partner API.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- POS
-- Retail
-- Restaurant
-- Ecommerce
+  - POS
+  - Retail
+  - Restaurant
+  - Ecommerce
 created: '2026-05-08'
 modified: '2026-06-02'
 specificationVersion: '0.19'
 apis:
-- aid: lightspeed:retail-x-series
-  name: Lightspeed Retail X-Series API (Vend)
-  description: REST API for Lightspeed Retail X-Series, formerly Vend. Covers products, customers, sales, inventory, suppliers, registers, taxes, and outlets.
-  humanURL: https://x-series-api.lightspeedhq.com/
-  baseURL: https://x-series-api.lightspeedhq.com/api/2.0
-  tags:
-  - REST
-  - Retail
-  - Vend
-  properties:
-  - type: Documentation
-    url: https://x-series-api.lightspeedhq.com/
-  - type: OpenAPI
-    url: openapi/lightspeed-pos-retail-x-series-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/retail-x-series-general.yaml
-- aid: lightspeed:retail-r-series
-  name: Lightspeed Retail R-Series API
-  description: REST API for Lightspeed Retail R-Series (Retail Pro / Cloud). Covers items, sales, customers, employees, shops, and inventory.
-  humanURL: https://developers.lightspeedhq.com/retail/introduction/introduction/
-  baseURL: https://api.lightspeedapp.com/API/V3
-  tags:
-  - REST
-  - Retail
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/retail/introduction/introduction/
-  - type: OpenAPI
-    url: openapi/lightspeed-pos-retail-r-series-openapi.yml
-  - type: CodeExamples
-    title: Postman Collection
-    url: https://www.postman.com/lightspeedhq/r-series-api/documentation/01jc01h/r-series-collection
-  - type: NaftikoCapability
-    url: capabilities/retail-r-series-account.yaml
-  - type: NaftikoCapability
-    url: capabilities/retail-r-series-catalog.yaml
-  - type: NaftikoCapability
-    url: capabilities/retail-r-series-customer.yaml
-  - type: NaftikoCapability
-    url: capabilities/retail-r-series-item.yaml
-  - type: NaftikoCapability
-    url: capabilities/retail-r-series-sale.yaml
-  - type: NaftikoCapability
-    url: capabilities/retail-r-series-staff.yaml
-- aid: lightspeed:ecom-c-series
-  name: Lightspeed eCom C-Series API
-  description: REST API for the Lightspeed eCom C-Series storefront platform.
-  humanURL: https://developers.lightspeedhq.com/ecom/introduction/introduction/
-  tags:
-  - REST
-  - Ecommerce
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/ecom/introduction/introduction/
-- aid: lightspeed:ecom-e-series
-  name: Lightspeed eCom E-Series API (Ecwid)
-  description: REST API for Ecwid-powered Lightspeed eCom E-Series stores.
-  humanURL: https://api-docs.ecwid.com/
-  tags:
-  - REST
-  - Ecommerce
-  - Ecwid
-  properties:
-  - type: Documentation
-    url: https://api-docs.ecwid.com/
-- aid: lightspeed:restaurant-k-series
-  name: Lightspeed Restaurant K-Series API
-  description: REST API for Lightspeed Restaurant K-Series, the flagship cloud restaurant POS. Covers items and rich items, menus, modifiers and discounts, orders (Order & Pay), checks and payments, floorplans and tables, staff and webhooks, financials and aggregated sales, tax breakdown, PMS integration, reservations, and ID cards.
-  humanURL: https://api-docs.lsk.lightspeed.app/
-  baseURL: https://api.lsk.lightspeed.app
-  tags:
-  - REST
-  - Restaurant
-  - K-Series
-  properties:
-  - type: Documentation
-    url: https://api-docs.lsk.lightspeed.app/
-  - type: Documentation
-    title: Developer Portal
-    url: https://api-portal.lsk.lightspeed.app/
-  - type: OpenAPI
-    url: openapi/lightspeed-pos-restaurant-k-series-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-financial.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-financialv2.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-id-cards.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-items.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-order-and-pay-webhook.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-order-and-pay.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-pms.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-reservations-for-platforms.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-rich-item.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-staff.yaml
-  - type: NaftikoCapability
-    url: capabilities/restaurant-k-series-tax-breakdown.yaml
-- aid: lightspeed:restaurant-l-series
-  name: Lightspeed Restaurant L-Series API
-  description: REST API for the Lightspeed Restaurant L-Series cloud POS.
-  humanURL: https://developers.lightspeedhq.com/
-  tags:
-  - REST
-  - Restaurant
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/
-- aid: lightspeed:restaurant-o-series
-  name: Lightspeed Restaurant O-Series API (Kounta)
-  description: REST API for Lightspeed Restaurant O-Series (Kounta).
-  humanURL: https://developers.kounta.com/
-  tags:
-  - REST
-  - Restaurant
-  - Kounta
-  properties:
-  - type: Documentation
-    url: https://developers.kounta.com/
-- aid: lightspeed:restaurant-g-series
-  name: Lightspeed Restaurant G-Series API (Gastrofix)
-  description: REST API for Lightspeed Restaurant G-Series (Gastrofix).
-  humanURL: https://developers.lightspeedhq.com/
-  tags:
-  - REST
-  - Restaurant
-  - Gastrofix
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/
-- aid: lightspeed:chronogolf-partner
-  name: Lightspeed ChronoGolf Partner API
-  description: Partner API for ChronoGolf, Lightspeed's tee-time and course management platform.
-  humanURL: https://developers.lightspeedhq.com/
-  tags:
-  - REST
-  - Golf
-  - Partner
-  properties:
-  - type: Documentation
-    url: https://developers.lightspeedhq.com/
+  - aid: lightspeed:retail-x-series
+    name: Lightspeed Retail X-Series API (Vend)
+    description: >-
+      REST API for Lightspeed Retail X-Series, formerly Vend. Covers products, customers, sales, inventory, suppliers,
+      registers, taxes, and outlets.
+    humanURL: https://x-series-api.lightspeedhq.com/
+    baseURL: https://x-series-api.lightspeedhq.com/api/2.0
+    tags:
+      - REST
+      - Retail
+      - Vend
+    properties:
+      - type: Documentation
+        url: https://x-series-api.lightspeedhq.com/
+      - type: OpenAPI
+        url: openapi/lightspeed-pos-retail-x-series-openapi.yml
+  - aid: lightspeed:retail-r-series
+    name: Lightspeed Retail R-Series API
+    description: >-
+      REST API for Lightspeed Retail R-Series (Retail Pro / Cloud). Covers items, sales, customers, employees, shops,
+      and inventory.
+    humanURL: https://developers.lightspeedhq.com/retail/introduction/introduction/
+    baseURL: https://api.lightspeedapp.com/API/V3
+    tags:
+      - REST
+      - Retail
+    properties:
+      - type: Documentation
+        url: https://developers.lightspeedhq.com/retail/introduction/introduction/
+      - type: OpenAPI
+        url: openapi/lightspeed-pos-retail-r-series-openapi.yml
+      - type: CodeExamples
+        title: Postman Collection
+        url: https://www.postman.com/lightspeedhq/r-series-api/documentation/01jc01h/r-series-collection
+  - aid: lightspeed:ecom-c-series
+    name: Lightspeed eCom C-Series API
+    description: REST API for the Lightspeed eCom C-Series storefront platform.
+    humanURL: https://developers.lightspeedhq.com/ecom/introduction/introduction/
+    tags:
+      - REST
+      - Ecommerce
+    properties:
+      - type: Documentation
+        url: https://developers.lightspeedhq.com/ecom/introduction/introduction/
+  - aid: lightspeed:ecom-e-series
+    name: Lightspeed eCom E-Series API (Ecwid)
+    description: REST API for Ecwid-powered Lightspeed eCom E-Series stores.
+    humanURL: https://api-docs.ecwid.com/
+    tags:
+      - REST
+      - Ecommerce
+      - Ecwid
+    properties:
+      - type: Documentation
+        url: https://api-docs.ecwid.com/
+  - aid: lightspeed:restaurant-k-series
+    name: Lightspeed Restaurant K-Series API
+    description: >-
+      REST API for Lightspeed Restaurant K-Series, the flagship cloud restaurant POS. Covers items and rich items,
+      menus, modifiers and discounts, orders (Order & Pay), checks and payments, floorplans and tables, staff and
+      webhooks, financials and aggregated sales, tax breakdown, PMS integration, reservations, and ID cards.
+    humanURL: https://api-docs.lsk.lightspeed.app/
+    baseURL: https://api.lsk.lightspeed.app
+    tags:
+      - REST
+      - Restaurant
+      - K-Series
+    properties:
+      - type: Documentation
+        url: https://api-docs.lsk.lightspeed.app/
+      - type: Documentation
+        title: Developer Portal
+        url: https://api-portal.lsk.lightspeed.app/
+      - type: OpenAPI
+        url: openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+  - aid: lightspeed:restaurant-l-series
+    name: Lightspeed Restaurant L-Series API
+    description: REST API for the Lightspeed Restaurant L-Series cloud POS.
+    humanURL: https://developers.lightspeedhq.com/
+    tags:
+      - REST
+      - Restaurant
+    properties:
+      - type: Documentation
+        url: https://developers.lightspeedhq.com/
+  - aid: lightspeed:restaurant-o-series
+    name: Lightspeed Restaurant O-Series API (Kounta)
+    description: REST API for Lightspeed Restaurant O-Series (Kounta).
+    humanURL: https://developers.kounta.com/
+    tags:
+      - REST
+      - Restaurant
+      - Kounta
+    properties:
+      - type: Documentation
+        url: https://developers.kounta.com/
+  - aid: lightspeed:restaurant-g-series
+    name: Lightspeed Restaurant G-Series API (Gastrofix)
+    description: REST API for Lightspeed Restaurant G-Series (Gastrofix).
+    humanURL: https://developers.lightspeedhq.com/
+    tags:
+      - REST
+      - Restaurant
+      - Gastrofix
+    properties:
+      - type: Documentation
+        url: https://developers.lightspeedhq.com/
+  - aid: lightspeed:chronogolf-partner
+    name: Lightspeed ChronoGolf Partner API
+    description: Partner API for ChronoGolf, Lightspeed's tee-time and course management platform.
+    humanURL: https://developers.lightspeedhq.com/
+    tags:
+      - REST
+      - Golf
+      - Partner
+    properties:
+      - type: Documentation
+        url: https://developers.lightspeedhq.com/
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/lightspeedcommerce
-- type: Website
-  url: https://www.lightspeedhq.com/
-- type: Developer
-  url: https://developers.lightspeedhq.com/
-- type: Plans
-  url: plans/lightspeed-pos-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/lightspeed-pos-rate-limits.yml
-- type: FinOps
-  url: finops/lightspeed-pos-finops.yml
-- type: Integrations
-  url: https://www.lightspeedhq.com/integrations/
-- type: GitHubOrganization
-  url: https://github.com/LightspeedHQ
-- type: SDK
-  title: Lightspeed Payments Online Payments SDK (npm)
-  url: https://www.npmjs.com/package/@lightspeed/online-payments-sdk
-- type: Spectral
-  url: rules/lightspeed-pos-spectral-rules.yml
-- type: Vocabulary
-  url: vocabulary/lightspeed-pos-vocabulary.yaml
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/lightspeedcommerce
+  - type: Website
+    url: https://www.lightspeedhq.com/
+  - type: Developer
+    url: https://developers.lightspeedhq.com/
+  - type: Plans
+    url: plans/lightspeed-pos-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/lightspeed-pos-rate-limits.yml
+  - type: FinOps
+    url: finops/lightspeed-pos-finops.yml
+  - type: Integrations
+    url: https://www.lightspeedhq.com/integrations/
+  - type: GitHubOrganization
+    url: https://github.com/LightspeedHQ
+  - type: SDK
+    title: Lightspeed Payments Online Payments SDK (npm)
+    url: https://www.npmjs.com/package/@lightspeed/online-payments-sdk
+  - type: Spectral
+    url: rules/lightspeed-pos-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/lightspeed-pos-vocabulary.yaml
 integrations:
-- name: NuORDER by Lightspeed
-- name: Toolkit
-- name: 2ACCEPT Payment Provider -USA
-- name: 99minds Inc. Gift Card, Loyalty
-- name: Accumula eCommerce, ERP
-- name: AdVision eCommerce eCommerce, Marketing
-- name: Agendrix Employee Scheduling
-- name: Amadeus Hotel PMS
-- name: Amaka Accounting
-- name: AnyDay Payments, Payroll
-- name: APICBASE Analytics, Inventory Management
-- name: AppCard Loyalty
-- name: Ascent360 Marketing
-- name: Astro Loyalty Loyalty, Marketing
-- name: Atlas Payments, Payroll, Reporting
-- name: Avero Features / Tools, Reporting
-- name: Beesly Reporting
-- name: Better Chains Workforce
-- name: BevSpot Inventory Management, Invoicing
-- name: BigCommerce eCommerce
-- name: Bike Index Customer Service
-- name: bike.rent Manager Rental, Reservation
-- name: BikeExchange eCommerce, Inventory Management, Marketing
-- name: BirdEye Communication, Customer Service
-- name: Bite Digital menus
-- name: BlueCheck Age & ID Verification Analytics
-- name: Bookingplanner by Stardekk Hotel PMS
-- name: Boomtown Features / Tools
-- name: BPL Digital Online Ordering Online Ordering
-- name: BriteCo Features / Tools
-- name: Campspot PMS, Reservation
-- name: Capitan Membership Management, Reporting, Scheduling
-- name: Chowly Online Ordering
-- name: City Hive Loyalty, Online Ordering
-- name: Clock Hotel PMS
-- name: Cloudbeds Hotel PMS
-- name: Como Customer-engagement, Loyalty, Marketing
-- name: Cork Guru Digital menus
-- name: Courserev AI, Booking
-- name: CoverManager Reservation
-- name: Dakis Features / Tools, Inventory Management
-- name: DataQlick Inventory Management
-- name: Datateer Reporting
-- name: DAVO Sales Tax Accounting, Reporting
-- name: Deputy Employee Scheduling
-- name: DigiValet Customer Service, Online Ordering
-- name: Dolce Software Scheduling
-- name: Dor Analytics, Reporting
-- name: DYNE Analytics, Marketing
-- name: Eagle Eye Networks AI
-- name: Econolease Financial Services Features / Tools
-- name: eGolf Waiver Booking
-- name: EventPro360 Event Management
-- name: EzShop eCommerce
-- name: Faire Inventory Management
-- name: Flipdish Online Ordering
-- name: Formitable Reservation
-- name: Freebees Loyalty, Marketing
-- name: Fresh Kitchen Display
-- name: Frontdesk Anywhere Hotel PMS Hotel PMS
-- name: Gift Up! Loyalty, Marketing
-- name: Golf Canada Customer Service, Membership Management
-- name: Golf Genius Membership Management, Reservation
-- name: GolfBack Online Ordering, Reservation
-- name: GolfNow Marketing, Reservation
-- name: GourmetMiles Analytics, Customer Service, Loyalty, Marketing
-- name: Gratuity Solutions Payroll
-- name: Growzer Analytics, Inventory Management, Online Ordering
-- name: GrubHub Online Ordering
-- name: Gusto Payroll
-- name: Hostme Online Ordering, Reservation
-- name: HotSchedules Workforce
-- name: Hubtiger Rental, Reservation, Workorders
-- name: Hyperspace Features / Tools
-- name: Incentivio Analytics, Customer-engagement, Online Ordering
-- name: Infi Kiosk
-- name: Infinity Cubed Solutions Procurement Management Services
-- name: inKind Loyalty, Payments
-- name: INSIGHT from Konnectryx Features / Tools
-- name: Kangaroo Rewards eCommerce, Loyalty, Marketing
-- name: Kimoby Communication, Customer Service
-- name: Klaviyo Customer-engagement, Marketing
-- name: Lendio
-- name: Lightspeed Delivery by Deliverect Online Ordering
-- name: LINK! Data, Migration
-- name: Loyal2 Loyalty
-- name: LoyalAction Loyalty, Marketing
-- name: Loyale eCommerce, Loyalty, Marketing
-- name: M2E Cloud eCommerce, Inventory Management, Marketplace
-- name: Mailchimp Marketing
-- name: MarginEdge Analytics, Inventory Management
-- name: MarketMan Inventory Management, Invoicing, Reporting
-- name: Marsello Loyalty, Marketing
-- name: Maurisource eCommerce
-- name: MDware Invoicing for Retail Invoicing
-- name: Menufy Online Ordering
-- name: MEWS Hotel PMS
-- name: Mister eCommerce Marketing
-- name: Mobi2Go Online Ordering
-- name: Mood Media Customer-engagement
+  - name: NuORDER by Lightspeed
+  - name: Toolkit
+  - name: 2ACCEPT Payment Provider -USA
+  - name: 99minds Inc. Gift Card, Loyalty
+  - name: Accumula eCommerce, ERP
+  - name: AdVision eCommerce eCommerce, Marketing
+  - name: Agendrix Employee Scheduling
+  - name: Amadeus Hotel PMS
+  - name: Amaka Accounting
+  - name: AnyDay Payments, Payroll
+  - name: APICBASE Analytics, Inventory Management
+  - name: AppCard Loyalty
+  - name: Ascent360 Marketing
+  - name: Astro Loyalty Loyalty, Marketing
+  - name: Atlas Payments, Payroll, Reporting
+  - name: Avero Features / Tools, Reporting
+  - name: Beesly Reporting
+  - name: Better Chains Workforce
+  - name: BevSpot Inventory Management, Invoicing
+  - name: BigCommerce eCommerce
+  - name: Bike Index Customer Service
+  - name: bike.rent Manager Rental, Reservation
+  - name: BikeExchange eCommerce, Inventory Management, Marketing
+  - name: BirdEye Communication, Customer Service
+  - name: Bite Digital menus
+  - name: BlueCheck Age & ID Verification Analytics
+  - name: Bookingplanner by Stardekk Hotel PMS
+  - name: Boomtown Features / Tools
+  - name: BPL Digital Online Ordering Online Ordering
+  - name: BriteCo Features / Tools
+  - name: Campspot PMS, Reservation
+  - name: Capitan Membership Management, Reporting, Scheduling
+  - name: Chowly Online Ordering
+  - name: City Hive Loyalty, Online Ordering
+  - name: Clock Hotel PMS
+  - name: Cloudbeds Hotel PMS
+  - name: Como Customer-engagement, Loyalty, Marketing
+  - name: Cork Guru Digital menus
+  - name: Courserev AI, Booking
+  - name: CoverManager Reservation
+  - name: Dakis Features / Tools, Inventory Management
+  - name: DataQlick Inventory Management
+  - name: Datateer Reporting
+  - name: DAVO Sales Tax Accounting, Reporting
+  - name: Deputy Employee Scheduling
+  - name: DigiValet Customer Service, Online Ordering
+  - name: Dolce Software Scheduling
+  - name: Dor Analytics, Reporting
+  - name: DYNE Analytics, Marketing
+  - name: Eagle Eye Networks AI
+  - name: Econolease Financial Services Features / Tools
+  - name: eGolf Waiver Booking
+  - name: EventPro360 Event Management
+  - name: EzShop eCommerce
+  - name: Faire Inventory Management
+  - name: Flipdish Online Ordering
+  - name: Formitable Reservation
+  - name: Freebees Loyalty, Marketing
+  - name: Fresh Kitchen Display
+  - name: Frontdesk Anywhere Hotel PMS Hotel PMS
+  - name: Gift Up! Loyalty, Marketing
+  - name: Golf Canada Customer Service, Membership Management
+  - name: Golf Genius Membership Management, Reservation
+  - name: GolfBack Online Ordering, Reservation
+  - name: GolfNow Marketing, Reservation
+  - name: GourmetMiles Analytics, Customer Service, Loyalty, Marketing
+  - name: Gratuity Solutions Payroll
+  - name: Growzer Analytics, Inventory Management, Online Ordering
+  - name: GrubHub Online Ordering
+  - name: Gusto Payroll
+  - name: Hostme Online Ordering, Reservation
+  - name: HotSchedules Workforce
+  - name: Hubtiger Rental, Reservation, Workorders
+  - name: Hyperspace Features / Tools
+  - name: Incentivio Analytics, Customer-engagement, Online Ordering
+  - name: Infi Kiosk
+  - name: Infinity Cubed Solutions Procurement Management Services
+  - name: inKind Loyalty, Payments
+  - name: INSIGHT from Konnectryx Features / Tools
+  - name: Kangaroo Rewards eCommerce, Loyalty, Marketing
+  - name: Kimoby Communication, Customer Service
+  - name: Klaviyo Customer-engagement, Marketing
+  - name: Lendio
+  - name: Lightspeed Delivery by Deliverect Online Ordering
+  - name: LINK! Data, Migration
+  - name: Loyal2 Loyalty
+  - name: LoyalAction Loyalty, Marketing
+  - name: Loyale eCommerce, Loyalty, Marketing
+  - name: M2E Cloud eCommerce, Inventory Management, Marketplace
+  - name: Mailchimp Marketing
+  - name: MarginEdge Analytics, Inventory Management
+  - name: MarketMan Inventory Management, Invoicing, Reporting
+  - name: Marsello Loyalty, Marketing
+  - name: Maurisource eCommerce
+  - name: MDware Invoicing for Retail Invoicing
+  - name: Menufy Online Ordering
+  - name: MEWS Hotel PMS
+  - name: Mister eCommerce Marketing
+  - name: Mobi2Go Online Ordering
+  - name: Mood Media Customer-engagement
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

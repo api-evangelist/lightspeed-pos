@@ -1,0 +1,635 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Retail R-Series API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+      "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account.json",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the Lightspeed Retail R-Series account associated with the access token. Call this immediately after the OAuth token exchange to resolve the numeric accountID required by all other endpoints."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Item",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Item.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "upc",
+                "value": "",
+                "type": "query",
+                "description": "Filter items by Universal Product Code."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all active (unarchived) inventory items for the account. Supports filtering by query parameters such as upc, systemSku, and description."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Item.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new inventory item in the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Item by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Item/:itemID.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "itemID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the item."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a single inventory item by its itemID."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Update Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Item/:itemID.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "itemID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an existing inventory item."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Delete Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Item/:itemID.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "itemID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the item."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Archives (deletes) an inventory item."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sale",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Sale.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "completed",
+                "value": "",
+                "type": "query",
+                "description": "Filter by completion status."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns point-of-sale transactions for the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Sale.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new sale transaction."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Sale by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Sale/:saleID.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "saleID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the sale."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a single sale by its saleID, including its sale lines."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Customer.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns customer records for the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Customer.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new customer record."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Customer/:customerID.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "customerID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a single customer by its customerID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Category.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the item categories defined for the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed List Manufacturers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Manufacturer.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the manufacturers defined for the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed List Vendors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Vendor.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the vendors (suppliers) defined for the account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Staff",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Employee.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the employees for the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed List Shops",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lightspeedapp.com/API/V3/Account/:accountID/Shop.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://cloud.lightspeedapp.com/oauth/authorize.php",
+              "accessTokenUrl": "https://cloud.lightspeedapp.com/oauth/access_token.php",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the shops (store locations) for the account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

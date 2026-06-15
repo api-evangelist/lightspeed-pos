@@ -1,0 +1,2117 @@
+{
+  "item": [
+    {
+      "id": "6215d7e1-94d2-4d46-84dd-a645290ae84e",
+      "name": "Lightspeed List Brands",
+      "request": {
+        "name": "Lightspeed List Brands",
+        "description": {},
+        "url": {
+          "path": [
+            "brands"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "50"
+            },
+            {
+              "disabled": false,
+              "key": "after",
+              "value": "<integer>",
+              "description": "Cursor for paging."
+            }
+          ],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "16cf1cb2-ca31-4d44-b5b4-8bc692e19c2c",
+          "name": "A page of brands.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "brands"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page_size",
+                  "value": "50"
+                },
+                {
+                  "key": "after",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"name\": \"Sample name\",\n      \"description\": \"example\",\n      \"deleted_at\": \"2026-03-15T14:30:00Z\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2ea667b9-44bd-4eb1-9d65-bf6f2f885120",
+      "name": "Lightspeed Create a Brand",
+      "request": {
+        "name": "Lightspeed Create a Brand",
+        "description": {},
+        "url": {
+          "path": [
+            "brands"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"deleted_at\": \"<dateTime>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "55502c47-3276-4ce5-909b-6a135d93d03c",
+          "name": "Brand created.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "brands"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"deleted_at\": \"2026-03-15T14:30:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"deleted_at\": \"2026-03-15T14:30:00Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4a9f2785-654a-4674-a26c-7afa45485062",
+      "name": "Lightspeed Get a Brand by ID",
+      "request": {
+        "name": "Lightspeed Get a Brand by ID",
+        "description": {},
+        "url": {
+          "path": [
+            "brands",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "06bca185-161c-4e14-8b3b-22776530f25a",
+          "name": "The brand.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "brands",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"deleted_at\": \"2026-03-15T14:30:00Z\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ca4d877c-42da-4f95-82d6-d7cff8355244",
+      "name": "Lightspeed Update a Brand",
+      "request": {
+        "name": "Lightspeed Update a Brand",
+        "description": {},
+        "url": {
+          "path": [
+            "brands",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"deleted_at\": \"<dateTime>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ab9b2cff-5a49-4997-8418-62f634e16a3a",
+          "name": "Brand updated.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "brands",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"deleted_at\": \"2026-03-15T14:30:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "17449967-ec99-476d-8691-2967c391abc0",
+      "name": "Lightspeed Delete a Brand",
+      "request": {
+        "name": "Lightspeed Delete a Brand",
+        "description": {},
+        "url": {
+          "path": [
+            "brands",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "169edd92-c85e-479c-865c-f1a8a7b0d2d8",
+          "name": "Brand deleted.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "brands",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7c2d3469-8445-4605-95f6-eec1008bb579",
+      "name": "Lightspeed List Products",
+      "request": {
+        "name": "Lightspeed List Products",
+        "description": {},
+        "url": {
+          "path": [
+            "products"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "page_size",
+              "value": "50"
+            }
+          ],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "5bd0c972-2909-48c3-af7a-253bd805ebfd",
+          "name": "A page of products.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "page_size",
+                  "value": "50"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"source_id\": \"500123\",\n      \"handle\": \"example\",\n      \"sku\": \"SKU-1001\",\n      \"name\": \"Sample name\",\n      \"description\": \"example\",\n      \"price_excluding_tax\": 69.88,\n      \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"active\": true\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "70f80262-1ba3-4dbc-816f-81b209f54065",
+      "name": "Lightspeed Create a Product",
+      "request": {
+        "name": "Lightspeed Create a Product",
+        "description": {},
+        "url": {
+          "path": [
+            "products"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<uuid>\",\n  \"source_id\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price_excluding_tax\": \"<float>\",\n  \"brand_id\": \"<uuid>\",\n  \"active\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6f7073b7-9c61-4243-9957-f9a0b2f01054",
+          "name": "Product created.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"source_id\": \"500123\",\n  \"handle\": \"example\",\n  \"sku\": \"SKU-1001\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"price_excluding_tax\": 48.7,\n  \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "35ab1f6d-1dc1-4025-b0ea-fb851700aad7",
+      "name": "Lightspeed Get a Product by ID",
+      "request": {
+        "name": "Lightspeed Get a Product by ID",
+        "description": {},
+        "url": {
+          "path": [
+            "products",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "627c3ecd-e342-40b8-8784-55c49886570b",
+          "name": "The product.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"source_id\": \"500123\",\n  \"handle\": \"example\",\n  \"sku\": \"SKU-1001\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"price_excluding_tax\": 14.96,\n  \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"active\": true\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "10cb1ee7-59e8-4405-9491-50fe2658c32a",
+      "name": "Lightspeed Update a Product",
+      "request": {
+        "name": "Lightspeed Update a Product",
+        "description": {},
+        "url": {
+          "path": [
+            "products",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<uuid>\",\n  \"source_id\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price_excluding_tax\": \"<float>\",\n  \"brand_id\": \"<uuid>\",\n  \"active\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6138fc6d-b267-4a8b-9c0b-9485481523df",
+          "name": "Product updated.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"source_id\": \"500123\",\n  \"handle\": \"example\",\n  \"sku\": \"SKU-1001\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"price_excluding_tax\": 5.13,\n  \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "a35f9835-1b20-4eed-a832-1774cedf8b6c",
+      "name": "Lightspeed List Sales",
+      "request": {
+        "name": "Lightspeed List Sales",
+        "description": {},
+        "url": {
+          "path": [
+            "sales"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f3e1decd-74db-405d-b196-7b3ccf68f30f",
+          "name": "A page of sales.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"outlet_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"register_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"user_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"customer_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"status\": \"OPEN\",\n      \"total_price\": 49.56,\n      \"total_tax\": 45.6,\n      \"line_items\": [\n        {}\n      ]\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b74f0289-7330-4751-8d23-d16e3024c581",
+      "name": "Lightspeed Create a Sale",
+      "request": {
+        "name": "Lightspeed Create a Sale",
+        "description": {},
+        "url": {
+          "path": [
+            "sales"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<uuid>\",\n  \"outlet_id\": \"<uuid>\",\n  \"register_id\": \"<uuid>\",\n  \"user_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"status\": \"<string>\",\n  \"total_price\": \"<float>\",\n  \"total_tax\": \"<float>\",\n  \"line_items\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "af1fa1fc-850b-4bbe-b465-7d3727262701",
+          "name": "Sale created.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"outlet_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"register_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"user_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"customer_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"status\": \"CLOSED\",\n  \"total_price\": 8.96,\n  \"total_tax\": 20.69,\n  \"line_items\": [\n    {}\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "dcf8ad2f-c397-42b8-ae6e-d81eb34fe674",
+      "name": "Lightspeed Get a Sale by ID",
+      "request": {
+        "name": "Lightspeed Get a Sale by ID",
+        "description": {},
+        "url": {
+          "path": [
+            "sales",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "cf0909ae-0351-4aad-99aa-63d0e1ec79be",
+          "name": "The sale.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sales",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"outlet_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"register_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"user_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"customer_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"status\": \"LAYBY\",\n  \"total_price\": 39.32,\n  \"total_tax\": 37.15,\n  \"line_items\": [\n    {}\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d3ab4c5a-cdf5-4b9c-a9fa-cb241f532c5d",
+      "name": "Lightspeed List Customers",
+      "request": {
+        "name": "Lightspeed List Customers",
+        "description": {},
+        "url": {
+          "path": [
+            "customers"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6951222c-dfef-440d-96e2-db6aa809b5d0",
+          "name": "A page of customers.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d7b6abae-09de-4089-a677-aca025ae2265",
+      "name": "Lightspeed Create a Customer",
+      "request": {
+        "name": "Lightspeed Create a Customer",
+        "description": {},
+        "url": {
+          "path": [
+            "customers"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"<uuid>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"customer_code\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "6115e7b4-03ce-4dce-a988-707c68b7210d",
+          "name": "Customer created.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"first_name\": \"Sample first_name\",\n  \"last_name\": \"Sample last_name\",\n  \"email\": \"guest@example.com\",\n  \"phone\": \"example\",\n  \"customer_code\": \"example\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2ed07dd2-9f7d-4f78-9103-e6f0fc7fcb95",
+      "name": "Lightspeed Get a Customer by ID",
+      "request": {
+        "name": "Lightspeed Get a Customer by ID",
+        "description": {},
+        "url": {
+          "path": [
+            "customers",
+            ":id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<uuid>",
+              "key": "id",
+              "description": "(Required) "
+            },
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6edd6009-e2e1-4100-92a0-2a4b0d505235",
+          "name": "The customer.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"first_name\": \"Sample first_name\",\n  \"last_name\": \"Sample last_name\",\n  \"email\": \"guest@example.com\",\n  \"phone\": \"example\",\n  \"customer_code\": \"example\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "43dc23d9-da56-4236-bc16-194eeb98601a",
+      "name": "Lightspeed List Gift Cards",
+      "request": {
+        "name": "Lightspeed List Gift Cards",
+        "description": {},
+        "url": {
+          "path": [
+            "gift_cards"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "method": "GET",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c907da58-e515-49eb-95e0-38cea2738e98",
+          "name": "A page of gift cards.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "gift_cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "187da04d-809e-4f77-8f05-d6594daf3618",
+      "name": "Lightspeed Create a Gift Card",
+      "request": {
+        "name": "Lightspeed Create a Gift Card",
+        "description": {},
+        "url": {
+          "path": [
+            "gift_cards"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "description": "Retailer subdomain prefix.",
+              "type": "any",
+              "value": "{{domainPrefix}}",
+              "key": "domainPrefix"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "scope",
+              "value": "products.read products.write sales.read sales.write customers.read customers.write"
+            },
+            {
+              "key": "accessTokenUrl",
+              "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+            },
+            {
+              "key": "authUrl",
+              "value": "https://secure.retail.lightspeed.app/connect"
+            },
+            {
+              "key": "grant_type",
+              "value": "authorization_code"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "<object>",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "8e5bf304-1c20-4f12-8adf-9cae39db5a09",
+          "name": "Gift card created.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "gift_cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Retailer subdomain prefix.",
+                  "type": "any",
+                  "value": "{{domainPrefix}}",
+                  "key": "domainPrefix"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: oauth2",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<token>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Retailer subdomain prefix.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "domainPrefix"
+    },
+    {
+      "type": "string",
+      "value": "https://{{domainPrefix}}.retail.lightspeed.app/api/2.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "products.read products.write sales.read sales.write customers.read customers.write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://secure.retail.lightspeed.app/connect"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3888c15-2e80-4dee-bbad-22f21b1430ab",
+    "name": "Lightspeed Retail X-Series API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partial OpenAPI 3.1 representation of the Lightspeed Retail X-Series\n(formerly Vend) REST API. The X-Series API is documented at\nhttps://x-series-api.lightspeedhq.com/ and uses OAuth 2.0 with scope-based\naccess control. The base URL is per-tenant under the\nhttps://x-series-api.lightspeedhq.com domain. Authentication uses Bearer\naccess tokens issued via the OAuth 2.0 authorization-code flow.\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

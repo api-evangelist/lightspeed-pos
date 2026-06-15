@@ -1,0 +1,476 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Retail X-Series API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+      "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lightspeed List Brands",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/brands",
+        "params": [
+          {
+            "name": "page_size",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "after",
+            "value": "",
+            "type": "query",
+            "description": "Cursor for paging."
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed List Brands"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Create a Brand",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/brands",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Create a Brand"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Get a Brand by ID",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/brands/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Get a Brand by ID"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Update a Brand",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/brands/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Update a Brand"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Delete a Brand",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/brands/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Delete a Brand"
+    },
+    {
+      "info": {
+        "name": "Lightspeed List Products",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/products",
+        "params": [
+          {
+            "name": "page_size",
+            "value": "",
+            "type": "query"
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed List Products"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Create a Product",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/products",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Create a Product"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Get a Product by ID",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/products/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Get a Product by ID"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Update a Product",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/products/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Update a Product"
+    },
+    {
+      "info": {
+        "name": "Lightspeed List Sales",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/sales",
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed List Sales"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Create a Sale",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/sales",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Create a Sale"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Get a Sale by ID",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/sales/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Get a Sale by ID"
+    },
+    {
+      "info": {
+        "name": "Lightspeed List Customers",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/customers",
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed List Customers"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Create a Customer",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/customers",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Create a Customer"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Get a Customer by ID",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/customers/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Get a Customer by ID"
+    },
+    {
+      "info": {
+        "name": "Lightspeed List Gift Cards",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/gift_cards",
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed List Gift Cards"
+    },
+    {
+      "info": {
+        "name": "Lightspeed Create a Gift Card",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://{domainPrefix}.retail.lightspeed.app/api/2.0/gift_cards",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        },
+        "auth": {
+          "type": "oauth2",
+          "flow": "authorization_code",
+          "authorizationUrl": "https://secure.retail.lightspeed.app/connect",
+          "accessTokenUrl": "https://{domainPrefix}.retail.lightspeed.app/api/1.0/token",
+          "credentials": {
+            "clientId": "{{clientId}}",
+            "clientSecret": "{{clientSecret}}"
+          }
+        }
+      },
+      "docs": "Lightspeed Create a Gift Card"
+    }
+  ],
+  "bundled": true
+}
