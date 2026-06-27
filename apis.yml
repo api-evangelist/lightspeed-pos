@@ -151,7 +151,7 @@ common:
     url: https://www.lightspeedhq.com/integrations/
   - type: GitHubOrganization
     url: https://github.com/LightspeedHQ
-  - type: SDK
+  - type: SDKs
     title: Lightspeed Payments Online Payments SDK (npm)
     url: https://www.npmjs.com/package/@lightspeed/online-payments-sdk
   - type: Spectral
