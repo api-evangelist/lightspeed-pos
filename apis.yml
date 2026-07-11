@@ -262,3 +262,9 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+
+common:
+  - type: OAuthScopes
+    url: scopes/lightspeed-pos-scopes.yml
+  - url: https://www.lightspeedhq.com/blog/feed/
+    type: Blog

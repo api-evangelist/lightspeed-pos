@@ -1,0 +1,173 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/lightspeed-pos-restaurant-k-series-openapi.yml, openapi/lightspeed-pos-retail-r-series-openapi.yml,
+  openapi/lightspeed-pos-retail-x-series-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: /oauth/authorize
+    tokenUrl: /oauth/token
+  description: |-
+    The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
+    See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
+- name: OAuth2
+  source: openapi/lightspeed-pos-retail-r-series-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://cloud.lightspeedapp.com/oauth/authorize.php
+    tokenUrl: https://cloud.lightspeedapp.com/oauth/access_token.php
+  description: OAuth 2.0 authorization-code flow with scope-based access control.
+- name: OAuth2
+  source: openapi/lightspeed-pos-retail-x-series-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://secure.retail.lightspeed.app/connect
+    tokenUrl: https://{domainPrefix}.retail.lightspeed.app/api/1.0/token
+  description: OAuth 2.0 authorization-code flow with scope-based access.
+scopes:
+- scope: customers.read
+  description: Read customers.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
+- scope: customers.write
+  description: Create or modify customers.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
+- scope: employee:admin
+  description: Manage employees and shops.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:all
+  description: Full access to all account resources.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:customers
+  description: Create and modify customers.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:customers_read
+  description: Read customers.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:inventory
+  description: Create and modify inventory items.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:inventory_read
+  description: Read inventory items and catalog.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:register
+  description: Create sales at the register.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: employee:reports
+  description: Read sales and reporting data.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+- scope: financial-api
+  description: Read financial data
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: id-cards
+  description: Create and manage ID card batches and cards.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: items
+  description: Read and write items
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: orders-api
+  description: |-
+    Read business information, floors, menus, discounts, and production instructions.
+    Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: products.read
+  description: Read products, brands, and inventory.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
+- scope: products.write
+  description: Create or modify products, brands, and inventory.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
+- scope: propertymanagement
+  description: Read and write Property Management System configurations.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: reservation-***
+  description: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code)
+    of the reservation platform.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: reservation-platform-code
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: reservations-api
+  description: |-
+    Configure *legacy* reservation integrations.
+    **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
+    More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: sales.read
+  description: Read sales transactions.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
+- scope: sales.write
+  description: Create or modify sales.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
+- scope: staff-api
+  description: Read shift information, read and write user information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+- scope: user-token-by-authorization-code
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
