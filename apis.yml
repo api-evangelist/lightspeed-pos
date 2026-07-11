@@ -264,6 +264,10 @@ maintainers:
     email: kin@apievangelist.com
 
 common:
+  - type: DomainSecurity
+    url: security/lightspeed-pos-domain-security.yml
+  - type: Authentication
+    url: authentication/lightspeed-pos-authentication.yml
   - type: OAuthScopes
     url: scopes/lightspeed-pos-scopes.yml
   - url: https://www.lightspeedhq.com/blog/feed/

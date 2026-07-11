@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/lightspeed-pos-restaurant-k-series-openapi.yml, openapi/lightspeed-pos-retail-r-series-openapi.yml,
+  openapi/lightspeed-pos-retail-x-series-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: /oauth/authorize
+    tokenUrl: /oauth/token
+    scopes: 8
+  description: |-
+    The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
+    See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
+  sources:
+  - openapi/lightspeed-pos-restaurant-k-series-openapi.yml
+  - openapi/lightspeed-pos-retail-r-series-openapi.yml
+  - openapi/lightspeed-pos-retail-x-series-openapi.yml
