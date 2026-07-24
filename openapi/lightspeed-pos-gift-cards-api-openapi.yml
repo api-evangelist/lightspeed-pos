@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Lightspeed Restaurant K Series Account Gift Cards API
+  description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
+
+    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+
+    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
+
+    '
+  x-logo:
+    altText: Lightspeed Commerce
+    url: static/lightspeed@2x.png
+  contact:
+    name: Lightspeed Commerce
+    url: https://api-portal.lsk.lightspeed.app/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-02'
+  x-source-url: https://api-docs.lsk.lightspeed.app/source.json
+servers:
+- url: https://api.trial.lsk.lightspeed.app
+  description: Demo URL
+  x-bump-branch-name: demo
+- url: https://api.lsk.lightspeed.app
+  description: Production URL
+  x-bump-branch-name: prod
+tags:
+- name: Gift Cards
+paths:
+  /gift_cards:
+    get:
+      summary: Lightspeed List Gift Cards
+      operationId: listGiftCards
+      security:
+      - OAuth2:
+        - products.read
+      responses:
+        '200':
+          description: A page of gift cards.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - Gift Cards
+    post:
+      summary: Lightspeed Create a Gift Card
+      operationId: createGiftCard
+      security:
+      - OAuth2:
+        - products.write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            examples:
+              CreateGiftCardRequestExample:
+                summary: Default createGiftCard request
+                x-microcks-default: true
+                value: {}
+      responses:
+        '201':
+          description: Gift card created.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      tags:
+      - Gift Cards
+components:
+  securitySchemes:
+    OAuth2:
+      description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
+
+        See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
+
+        '
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            orders-api: 'Read business information, floors, menus, discounts, and production instructions.
+
+              Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.'
+            financial-api: Read financial data
+            reservation-***: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code) of the reservation platform.
+            items: Read and write items
+            propertymanagement: Read and write Property Management System configurations.
+            id-cards: Create and manage ID card batches and cards.
+            staff-api: Read shift information, read and write user information.
+            reservations-api: 'Configure *legacy* reservation integrations.
+
+              **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
+
+              More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).'
+x-tagGroups:
+- name: Rich Item API
+  tags:
+  - Rich Item
+  - Migration
+- name: Tax Preview API
+  tags:
+  - Tax Breakdown
+- name: Staff Api
+  tags:
+  - Staff
+  - Internal Staff
+- name: Reservation API
+  tags:
+  - Reservations for Platforms
+- name: PMS API
+  tags:
+  - PMS
+- name: Items API
+  tags:
+  - Items
+  - ItemsV2
+  - Menus
+  - Buttons
+  - Production Instructions
+  - Inventory
+  - Combos
+  - Groups
+  - MenusV2
+  - Accounting Group
+  - IntegrationMenu
+  - Price Lists
+  - Products
+  - ItemAppearance
+  - Modifiers
+  - ModifierGroups
+  - Allergens
+  - Locales
+  - RichItem
+- name: id-cards-api API
+  tags:
+  - ID Cards
+- name: Financial API
+  tags:
+  - Financial
+  - FinancialV2
+- name: Online Ordering API
+  tags:
+  - Order and Pay
+  - 'Order and Pay: Webhook'

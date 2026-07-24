@@ -1,0 +1,3528 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Lightspeed Restaurant K Series Account Order and Pay API
+  description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
+
+    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+
+    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
+
+    '
+  x-logo:
+    altText: Lightspeed Commerce
+    url: static/lightspeed@2x.png
+  contact:
+    name: Lightspeed Commerce
+    url: https://api-portal.lsk.lightspeed.app/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-02'
+  x-source-url: https://api-docs.lsk.lightspeed.app/source.json
+servers:
+- url: https://api.trial.lsk.lightspeed.app
+  description: Demo URL
+  x-bump-branch-name: demo
+- url: https://api.lsk.lightspeed.app
+  description: Production URL
+  x-bump-branch-name: prod
+tags:
+- name: Order and Pay
+paths:
+  /o/op/data/businesses:
+    get:
+      summary: Lightspeed Get Businesses
+      operationId: apeLookupBusinesses
+      description: Returns a list of all businesses and business locations associated with the access token.
+      tags:
+      - Order and Pay
+      responses:
+        '200':
+          description: Businesses
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    name:
+                      example: My Awesome Business
+                      description: The business name.
+                      type: string
+                    id:
+                      example: 454335871
+                      description: The unique identifier for the business.
+                      type: integer
+                      format: int64
+                    businessLocations:
+                      description: The business locations within this business.
+                      items:
+                        properties:
+                          id:
+                            $ref: '#/components/schemas/apeBusinessLocationId'
+                          name:
+                            example: My Awesome Business - Location 1
+                            description: The business location name.
+                            type: string
+                        type: object
+                      type: array
+                  type: object
+                type: array
+              examples:
+                ApeLookupBusinesses200Example:
+                  summary: Default apeLookupBusinesses 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: My Awesome Business
+                    id: 454335871
+                    businessLocations:
+                    - id: 45454565682155
+                      name: My Awesome Business - Location 1
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/data/{businessLocationId}/floorplans:
+    get:
+      summary: Lightspeed Get All Floorplans
+      operationId: apeLookupFloorPlans
+      description: Returns the floorplans for a specific business location.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: path
+        required: true
+      - name: expandTables
+        in: query
+        required: false
+        description: 'If true, the response will include the table details for each floorplan.
+
+          If false, the response will only include the [`name`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-name) and [`id`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-id) for the floorplans.'
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Floorplans
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    id:
+                      example: 141948669132976
+                      description: The unique identifier for the floorplan.
+                      format: int64
+                      type: integer
+                    name:
+                      description: The name of the floorplan.
+                      example: Terrace
+                      type: string
+                    tables:
+                      items:
+                        $ref: '#/components/schemas/apeTable'
+                      type: array
+                  type: object
+                type: array
+              examples:
+                ApeLookupFloorPlans200Example:
+                  summary: Default apeLookupFloorPlans 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: 141948669132976
+                    name: Terrace
+                    tables:
+                    - number: 1
+                      reference: abcdefg123456
+                      id: '141948669132977'
+                      active: true
+                      description: Table 1
+                      defaultClientCount: 4
+        '404':
+          description: 'Not Found
+
+
+            Indicates that the business location has no floorplans configured.'
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/data/{businessLocationId}/floorplans/{floorPlanId}/tables:
+    get:
+      summary: Lightspeed Get Floorplan Tables
+      operationId: apeGetTables
+      description: Returns the tables for a specific floorplan of a business location
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: path
+        required: true
+      - schema:
+          $ref: '#/components/schemas/apeFloorPlanId'
+        name: floorPlanId
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Tables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/apeTable'
+              examples:
+                ApeGetTables200Example:
+                  summary: Default apeGetTables 200 response
+                  x-microcks-default: true
+                  value:
+                  - number: 1
+                    reference: abcdefg123456
+                    id: '141948669132977'
+                    active: true
+                    description: Table 1
+                    defaultClientCount: 4
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/data/account-profiles:
+    get:
+      summary: Lightspeed Get All Order Profiles
+      operationId: apeAccountProfiles
+      description: 'Returns a list of active [order profiles](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) for a specific business location.
+
+
+        The order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code) can be used to retrieve a specific price list when [loading a menu](https://api-docs.lsk.lightspeed.app/operation/operation-apegetmenubyid).
+
+
+        Note: Order Profiles were previously called Account Profiles, and may still be referred to in this way in the API, in some cases.'
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      responses:
+        '200':
+          description: Order profiles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeAccountProfiles'
+              examples:
+                ApeAccountProfiles200Example:
+                  summary: Default apeAccountProfiles 200 response
+                  x-microcks-default: true
+                  value:
+                    businessLocationId: 45454565682155
+                    accountProfileList:
+                    - id: 12454575601144
+                      code: takeaway
+                      name: Takeaway
+                      deliveryMode: TAKE_AWAY
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/data/{businessLocationId}/account-profiles/tagcode/{tagCode}:
+    get:
+      summary: Lightspeed Get Single Order Profile
+      operationId: apeGetAccountProfile
+      description: 'Returns details of an active [order profile](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) based on its [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code).
+
+
+        Note: Order Profiles were previously called Account Profiles, and may still be referred to in this way in the API, in some cases.'
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: path
+        required: true
+      - schema:
+          $ref: '#/components/schemas/apeTagCode'
+        name: tagCode
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Order profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeAccountProfile'
+              examples:
+                ApeGetAccountProfile200Example:
+                  summary: Default apeGetAccountProfile 200 response
+                  x-microcks-default: true
+                  value:
+                    id: 12454575601144
+                    code: takeaway
+                    name: Takeaway
+                    deliveryMode: TAKE_AWAY
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/menu/list:
+    get:
+      summary: Lightspeed Get All Menus
+      operationId: apeLoadMenus
+      description: Returns a list of menus for a given business location.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      responses:
+        '200':
+          description: Load menus
+          content:
+            application/json:
+              schema:
+                items:
+                  properties:
+                    menuName:
+                      description: The name of the menu.
+                      example: Lunch Menu
+                      type: string
+                    ikentooMenuId:
+                      type: integer
+                      description: The unique identifier for the menu.
+                      example: 141948669132851
+                      format: int64
+                  type: object
+                type: array
+              examples:
+                ApeLoadMenus200Example:
+                  summary: Default apeLoadMenus 200 response
+                  x-microcks-default: true
+                  value:
+                  - menuName: Lunch Menu
+                    ikentooMenuId: 141948669132851
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/menu/load/{menuId}:
+    get:
+      summary: Lightspeed Get Single Menu
+      operationId: apeGetMenuById
+      deprecated: true
+      description: '**Deprecated:** Use [/o/op/2/menu/load/{menuId}](#/Order%20and%20Pay/getMenuByIdV2) instead. V2 includes product modifier groups and product modifiers on menu items and deal items. Returns details of a particular menu based on its unique identifier and other query parameters.'
+      tags:
+      - Order and Pay
+      parameters:
+      - name: menuId
+        in: path
+        required: true
+        description: The unique identifier for the menu.
+        schema:
+          type: integer
+          description: The unique identifier for the menu.
+          example: 141948669132851
+          format: int64
+      - name: businessLocationId
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+      - name: accountProfile
+        in: query
+        required: false
+        schema:
+          type: string
+          description: The order profile [`code`](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code). Item prices returned will be those associated with this order profile, when applicable. See the [order profiles](https://api-portal.lsk.lightspeed.app/guides/definitions/order-profiles) definition for more details.
+          example: TAKEAWAY
+          default: ''
+      - name: richContent
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Query parameter to include rich content of menu items.
+          example: true
+          default: false
+      responses:
+        '200':
+          description: Successful retrieval of menu details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeMenu'
+              examples:
+                ApeGetMenuById200Example:
+                  summary: Default apeGetMenuById 200 response
+                  x-microcks-default: true
+                  value:
+                    menuName: Main Menu
+                    menuEntryGroups:
+                    - '@type': group
+                      id: '141948669133028'
+                      name: Mains
+                      color: blue
+                      menuEntry: []
+                    richDataMissing: false
+                    ikentooMenuId: 141948669132851
+                    conditionalTaxRules: false
+        '503':
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                properties:
+                  status:
+                    enum:
+                    - '503'
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  message:
+                    type: string
+                  apiSubExceptions:
+                    items:
+                      properties:
+                        field:
+                          type: string
+                        rejectedValue:
+                          type: string
+                        message:
+                          type: string
+                      type: object
+                    type: array
+                type: object
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/2/menu/load/{menuId}:
+    get:
+      summary: Lightspeed Get Single Menu V2
+      operationId: apeGetMenuByIdV2
+      description: 'Returns details of a particular menu based on its unique identifier and other query parameters. Product modifier groups and product modifiers are always included in the response.
+
+
+        **Migration from V1:** The response includes `menuModifierGroups` on each menu item and deal item, containing product modifier details (name, price, extraPrice, sku, rich data). Items with product modifier groups are no longer marked as `asSubItem`.'
+      tags:
+      - Order and Pay
+      parameters:
+      - name: menuId
+        in: path
+        required: true
+        description: The unique identifier for the menu.
+        schema:
+          type: integer
+          description: The unique identifier for the menu.
+          example: 141948669132851
+          format: int64
+      - name: businessLocationId
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+      - name: accountProfile
+        in: query
+        required: false
+        schema:
+          type: string
+          description: The order profile [`code`](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code). Item prices returned will be those associated with this order profile, when applicable. See the [order profiles](https://api-portal.lsk.lightspeed.app/guides/definitions/order-profiles) definition for more details.
+          example: TAKEAWAY
+          default: ''
+      - name: richContent
+        in: query
+        required: false
+        schema:
+          type: boolean
+          description: Query parameter to include rich content of menu items.
+          example: true
+          default: false
+      responses:
+        '200':
+          description: Successful retrieval of menu details including product modifiers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeMenuV2'
+              examples:
+                ApeGetMenuByIdV2200Example:
+                  summary: Default apeGetMenuByIdV2 200 response
+                  x-microcks-default: true
+                  value:
+                    menuName: Main Menu
+                    menuEntryGroups:
+                    - '@type': group
+                      id: '141948669133028'
+                      name: Mains
+                      color: blue
+                      menuEntry: []
+                    richDataMissing: false
+                    ikentooMenuId: 141948669132851
+                    conditionalTaxRules: false
+        '503':
+          description: Service Unavailable
+          content:
+            '*/*':
+              schema:
+                properties:
+                  status:
+                    enum:
+                    - '503'
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  message:
+                    type: string
+                  apiSubExceptions:
+                    items:
+                      properties:
+                        field:
+                          type: string
+                        rejectedValue:
+                          type: string
+                        message:
+                          type: string
+                      type: object
+                    type: array
+                type: object
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/menu/modifiers:
+    get:
+      summary: Lightspeed Get Modifiers
+      operationId: apeLoadAllModifiers
+      description: Returns a list of production instructions for a specific business location.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      responses:
+        '200':
+          description: Load modifiers
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/apeProductionInstruction'
+                type: array
+                examples:
+                - - multiSelectionPermitted: false
+                    productionInstructionGroupName: Meat cooking
+                    productionIntructionGroupId: 236025632784487
+                    productionInstructionList:
+                    - instruction: Bleu
+                      ikentooModifierId: 236025632784488
+                    - instruction: Rare
+                      ikentooModifierId: 236025632784490
+                    - instruction: Medium Rare
+                      ikentooModifierId: 236025632784492
+                    - instruction: Medium
+                      ikentooModifierId: 236025632784494
+                    - instruction: Medium well
+                      ikentooModifierId: 236025632784496
+                    - instruction: Well done
+                      ikentooModifierId: 236025632784498
+                  - multiSelectionPermitted: false
+                    productionInstructionGroupName: Fish cooking
+                    productionIntructionGroupId: 236025632784501
+                    productionInstructionList:
+                    - instruction: Seared
+                      ikentooModifierId: 236025632784502
+                    - instruction: Medium
+                      ikentooModifierId: 236025632784504
+                    - instruction: Well done
+                      ikentooModifierId: 236025632784506
+                  - multiSelectionPermitted: false
+                    productionInstructionGroupName: Egg cooking
+                    productionIntructionGroupId: 236025632784509
+                    productionInstructionList:
+                    - instruction: Sunny Side
+                      ikentooModifierId: 236025632784510
+                    - instruction: Over Easy
+                      ikentooModifierId: 236025632784512
+                    - instruction: Hard
+                      ikentooModifierId: 236025632784514
+                    - instruction: Scrambled
+                      ikentooModifierId: 236025632784516
+                  - multiSelectionPermitted: false
+                    productionInstructionGroupName: Garnish
+                    productionIntructionGroupId: 236025632784519
+                    productionInstructionList:
+                    - instruction: Fries
+                      ikentooModifierId: 236025632784520
+                    - instruction: Pasta
+                      ikentooModifierId: 236025632784522
+                    - instruction: Rice
+                      ikentooModifierId: 236025632784524
+                    - instruction: Vegetables
+                      ikentooModifierId: 236025632784526
+                    - instruction: Salad
+                      ikentooModifierId: 236025632784528
+                  - multiSelectionPermitted: false
+                    productionInstructionGroupName: Flavors
+                    productionIntructionGroupId: 236025632784531
+                    productionInstructionList:
+                    - instruction: Vanilla
+                      ikentooModifierId: 236025632784532
+                    - instruction: Strawberry
+                      ikentooModifierId: 236025632784534
+                    - instruction: Chocolate
+                      ikentooModifierId: 236025632784536
+                    - instruction: Coffee
+                      ikentooModifierId: 236025632784538
+                    - instruction: Caramel
+                      ikentooModifierId: 236025632784540
+              examples:
+                ApeLoadAllModifiers200Example:
+                  summary: Default apeLoadAllModifiers 200 response
+                  x-microcks-default: true
+                  value:
+                  - multiSelectionPermitted: true
+                    productionInstructionGroupName: Sample productionInstructionGroupName
+                    productionIntructionGroupId: 760
+                    productionInstructionList:
+                    - {}
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/menu/discounts:
+    get:
+      summary: Lightspeed Get Discounts
+      operationId: apeLoadAllDiscounts
+      description: Returns a list of discounts for a specific business location.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      responses:
+        '200':
+          description: Load discounts
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/apeDiscount'
+                type: array
+                examples:
+                - - name: Free
+                    code: FREE
+                    discountPercentage: 100.0
+                  - name: Ten Euros Off
+                    code: TEN_OFF
+                    discountAmount: 10.0
+              examples:
+                ApeLoadAllDiscounts200Example:
+                  summary: Default apeLoadAllDiscounts 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Staff Discount
+                    code: STAFF
+                    discountPercentage: 15
+                    discountAmount: 5
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/order/local:
+    post:
+      summary: Lightspeed Create Local Order
+      description: 'Creates a new dine-in order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details.
+
+
+        If the [accountIdentifier](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-accountidentifier) of an existing order is provided in the body of the request, the request will update the existing order.'
+      operationId: apeLocalOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - businessLocationId
+              - thirdPartyReference
+              - endpointId
+              - customerInfo
+              properties:
+                businessLocationId:
+                  $ref: '#/components/schemas/apeBusinessLocationId'
+                thirdPartyReference:
+                  description: The external reference provided for this order. Must be unique. This value will be included in the order details sent to the [webhook URL](https://api-docs.lsk.lightspeed.app/operation/operation-apecreatewebhookoo#operation-apecreatewebhookoo-body-application-json-url).
+                  type: string
+                  minLength: 1
+                  maxLength: 48
+                  examples:
+                  - MyAwesomeThirdPartyReference
+                endpointId:
+                  description: Endpoint ID for a unique webhook that has been created using [the webhook endpoint](https://api-docs.lsk.lightspeed.app/operation/operation-apecreatewebhookoo).
+                  type: string
+                  examples:
+                  - MY-AWESOME-ENDPOINT-ID
+                customerInfo:
+                  $ref: '#/components/schemas/apeCustomerInfo'
+                orderNote:
+                  description: A note added to this order and displayed on the printed dockets.
+                  type: string
+                  examples:
+                  - Sample Order Note
+                maxTimeToAttemptOrderDeliverToPos:
+                  description: '** Use of this feature is strongly recommended **
+
+
+                    Maximum time to attempt delivery of this order to the POS. In milliseconds. The minimum value is 60000ms (1 minute).
+
+
+                    If [`scheduledTimeForOrderAsIso8601`](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-scheduledtimefororderasiso8601) is used, this value will be added to the scheduled order time.'
+                  type: integer
+                  format: int32
+                  examples:
+                  - 60000
+                staffId:
+                  description: The unique identifier for the staff member.
+                  type: integer
+                  format: int64
+                  examples:
+                  - 1234567890
+                accountProfileCode:
+                  description: A valid order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code) to associate with this order. See the [order profiles](https://api-portal.lsk.lightspeed.app/guides/definitions/order-profiles) definition for more details.
+                  type: string
+                  examples:
+                  - LOCALORDER
+                scheduledTimeForOrderAsIso8601:
+                  description: The time that the order will be sent to the POS. Must be in the future.
+                  type: string
+                  format: date-time
+                  examples:
+                  - '2024-04-04T09:42:00.000+00:00'
+                payment:
+                  $ref: '#/components/schemas/apeOrderPayment'
+                accountId:
+                  description: The system-generated account identifier for this order (Applies to iKentoo V2). If this is specified, the associated order will be updated.
+                  deprecated: true
+                  type: string
+                  examples:
+                  - '1234567890'
+                accountIdentifier:
+                  description: The system-generated account identifier for this order (Applies to iKentoo V3+). If this is specified, the associated order will be updated.
+                  type: string
+                  examples:
+                  - A1235.89
+                tableNumber:
+                  description: The table number for this local order. If updating an existing order, (ie.`accountIdentifier` is specified), the `tableNumber` cannot be updated.
+                  type: string
+                  examples:
+                  - '1'
+                clientCount:
+                  description: The number of customers for this order. If updating an existing order, (ie.`accountIdentifier` is specified), the `clientCount` cannot be updated.
+                  type: integer
+                  format: int32
+                  examples:
+                  - 4
+                items:
+                  description: The items in this order.
+                  items:
+                    $ref: '#/components/schemas/apeLocalOrderItemLine'
+                  type: array
+                targetPrinterProfileId:
+                  description: The printer profile id to use for printing the receipt for this payment. If not provided, the default active printer profile for the business location will be used.
+                  type: integer
+                  format: int64
+                  examples:
+                  - 1773881235
+              type: object
+            examples:
+              ApeLocalOrderRequestExample:
+                summary: Default apeLocalOrder request
+                x-microcks-default: true
+                value:
+                  businessLocationId: 45454565682155
+                  thirdPartyReference: example
+                  endpointId: '500123'
+                  customerInfo:
+                    firstName: Jane
+                    lastName: Doe
+                    thirdPartyReference: ZEN-7074522d-c71d-403f
+                    email: jane.doe@example.com
+                    contactNumberAsE164: '+14155552671'
+                    notes: Notes about the customer.
+                    salutation: Mr.
+                    sendEmailReceipts: true
+                    emailNotification: DONT_CHANGE
+                  orderNote: example
+                  maxTimeToAttemptOrderDeliverToPos: 510
+                  staffId: 131
+                  accountProfileCode: example
+                  scheduledTimeForOrderAsIso8601: '2026-03-15T14:30:00Z'
+                  payment:
+                    paymentMethod: OOPAYMENT
+                    paymentAmount: 14.0
+                    tipAmount: 2.0
+                  accountId: '500123'
+                  accountIdentifier: '500123'
+                  tableNumber: example
+                  clientCount: 776
+                  items:
+                  - quantity: 1
+                    sku: UGG-BB-PUR-06
+                    customItemName: My Custom Item Name
+                    customItemPrice: 10.0
+                    discountAmountOverride: 5.0
+                    discountPercentOverride: 10.0
+                    modifiers:
+                    - {}
+                    discountCode: FIVEPERCENT
+                    course: 2
+                    subItems:
+                    - {}
+                  targetPrinterProfileId: 670
+        required: true
+      tags:
+      - Order and Pay
+      responses:
+        '200':
+          description: accepted
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    description: The response.
+                    type: string
+                    examples:
+                    - ok
+                type: object
+              examples:
+                ApeLocalOrder200Example:
+                  summary: Default apeLocalOrder 200 response
+                  x-microcks-default: true
+                  value:
+                    status: OPEN
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Response object for error code 400
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - 2023-11-07T19:15:05.043+0000
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error response.
+                    examples:
+                    - 400
+                  error:
+                    type: string
+                    description: A brief title of the error status.
+                    examples:
+                    - Bad Request
+                  message:
+                    type: string
+                    description: A message describing the nature of the error in detail.
+                    examples:
+                    - 'Validation failed for object=''localOrder''. Error count: 1'
+                  errors:
+                    type: array
+                    description: An array of error details, outlining specific issues with the request.
+                    items:
+                      type: object
+                      properties:
+                        codes:
+                          type: array
+                          items:
+                            type: string
+                          description: A set of code strings that correspond to the validation error.
+                          example: &id001
+                          - NotNull.localOrder.thirdPartyReference
+                          - NotNull.thirdPartyReference
+                          - NotNull.java.lang.String
+                          - NotNull
+                        arguments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              codes:
+                                type: array
+                                items:
+                                  type: string
+                                description: Argument codes that are related to the field in validation.
+                                example: &id002
+                                - localOrder.thirdPartyReference
+                                - thirdPartyReference
+                              defaultMessage:
+                                type: string
+                                description: The default message associated with the failed validation.
+                                example: thirdPartyReference
+                              code:
+                                type: string
+                                description: A single code that represents the specific validation rule that was not satisfied.
+                                example: thirdPartyReference
+                        defaultMessage:
+                          type: string
+                          description: The default error message provided when the associated field fails validation.
+                          example: must not be null
+                        objectName:
+                          type: string
+                          description: The name of the object that failed validation.
+                          example: localOrder
+                        field:
+                          type: string
+                          description: The name of the field that failed validation.
+                          example: thirdPartyReference
+                        bindingFailure:
+                          type: boolean
+                          description: Indicates whether the error was a result of a binding failure.
+                          example: false
+                        code:
+                          type: string
+                          description: A code representing the specific type of validation error.
+                          example: NotNull
+                  path:
+                    type: string
+                    description: The path of the failed request.
+                    examples:
+                    - /o/op/1/order/local
+              examples:
+                ApeLocalOrder400Example:
+                  summary: Default apeLocalOrder 400 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 764
+                    error: example
+                    message: example
+                    errors:
+                    - codes: *id001
+                      arguments:
+                      - codes: *id002
+                        defaultMessage: thirdPartyReference
+                        code: thirdPartyReference
+                      defaultMessage: must not be null
+                      objectName: localOrder
+                      field: thirdPartyReference
+                      bindingFailure: false
+                      code: NotNull
+                    path: example
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                properties:
+                  status:
+                    description: The request status.
+                    type: string
+                    examples:
+                    - fail
+                  msg:
+                    description: A message describing the error.
+                    type: string
+                    examples:
+                    - reference has already been used 123456789
+                type: object
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/order/toGo:
+    post:
+      summary: Lightspeed Create to Go Order
+      operationId: apePlaceToGoOrder
+      description: Creates a new takeaway or delivery order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - businessLocationId
+              - thirdPartyReference
+              - endpointId
+              - customerInfo
+              properties:
+                businessLocationId:
+                  $ref: '#/components/schemas/apeBusinessLocationId'
+                thirdPartyReference:
+                  description: The external reference provided for this order. Must be unique. This value will be included in the order details sent to the [webhook URL](https://api-docs.lsk.lightspeed.app/operation/operation-apecreatewebhookoo#operation-apecreatewebhookoo-body-application-json-url).
+                  type: string
+                  minLength: 1
+                  maxLength: 48
+                  examples:
+                  - MyAwesomeThirdPartyReference
+                endpointId:
+                  description: Endpoint id for a unique webhook that has been created using [the webhook endpoint](https://api-docs.lsk.lightspeed.app/operation/operation-apecreatewebhookoo).
+                  type: string
+                  examples:
+                  - MY-AWESOME-ENDPOINT-ID
+                customerInfo:
+                  $ref: '#/components/schemas/apeCustomerInfo'
+                orderNote:
+                  description: A note added to this order and displayed on the printed dockets.
+                  type: string
+                  examples:
+                  - Sample Order Note
+                maxTimeToAttemptOrderDeliverToPos:
+                  description: '** Use of this feature is strongly recommended **
+
+
+                    Maximum time to attempt delivery of this order to the POS. In milliseconds. The minimum value is 60000ms (1 minute).
+
+
+                    If [`scheduledTimeForOrderAsIso8601`](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-scheduledtimefororderasiso8601) is used, this value will be added to the scheduled order time.'
+                  type: integer
+                  format: int32
+                  examples:
+                  - 60000
+                staffId:
+                  description: The unique identifier for the staff member.
+                  type: integer
+                  format: int64
+                  examples:
+                  - 1234567890
+                accountProfileCode:
+                  description: A valid order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code) to associate with this order. See the [order profiles](https://api-portal.lsk.lightspeed.app/guides/definitions/order-profiles) definition for more details.
+                  type: string
+                  examples:
+                  - TOGOORDER
+                scheduledTimeForOrderAsIso8601:
+                  description: The time that the order will be sent to the POS. Must be in the future.
+                  type: string
+                  format: date-time
+                  examples:
+                  - '2024-04-04T09:42:00.000+00:00'
+                payment:
+                  $ref: '#/components/schemas/apeOrderPayment'
+                collectionCode:
+                  maxLength: 8
+                  description: Unique collection code for this order. If left blank, one will be automatically generated.
+                  type: string
+                  examples:
+                  - '12345'
+                orderCollectionTimeAsIso8601:
+                  description: The expected collection time of the order. Must be in the future.
+                  type: string
+                  format: date-time
+                  examples:
+                  - '2024-04-04T09:42:00.000+00:00'
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/apeToGoOrderItemLine'
+                deliveryAddress:
+                  type: object
+                  description: The address to which the order should be delivered.
+                  properties:
+                    addressLine1:
+                      type: string
+                      description: The first line of the street address.
+                    addressLine2:
+                      type: string
+                      description: The second line of the street address (if applicable).
+                    zip:
+                      type: string
+                      description: The postal code for the delivery address.
+                    city:
+                      type: string
+                      description: The city in which the delivery address is located.
+                targetPrinterProfileId:
+                  description: The printer profile id to use for printing the receipt for this payment. If not provided, the default active printer profile for the business location will be used.
+                  type: integer
+                  format: int64
+                  examples:
+                  - 1773881235
+              type: object
+            examples:
+              ApePlaceToGoOrderRequestExample:
+                summary: Default apePlaceToGoOrder request
+                x-microcks-default: true
+                value:
+                  businessLocationId: 45454565682155
+                  thirdPartyReference: example
+                  endpointId: '500123'
+                  customerInfo:
+                    firstName: Jane
+                    lastName: Doe
+                    thirdPartyReference: ZEN-7074522d-c71d-403f
+                    email: jane.doe@example.com
+                    contactNumberAsE164: '+14155552671'
+                    notes: Notes about the customer.
+                    salutation: Mr.
+                    sendEmailReceipts: true
+                    emailNotification: DONT_CHANGE
+                  orderNote: example
+                  maxTimeToAttemptOrderDeliverToPos: 449
+                  staffId: 370
+                  accountProfileCode: example
+                  scheduledTimeForOrderAsIso8601: '2026-03-15T14:30:00Z'
+                  payment:
+                    paymentMethod: OOPAYMENT
+                    paymentAmount: 14.0
+                    tipAmount: 2.0
+                  collectionCode: example
+                  orderCollectionTimeAsIso8601: '2026-03-15T14:30:00Z'
+                  items:
+                  - quantity: 1
+                    sku: UGG-BB-PUR-06
+                    customItemName: My Custom Item Name
+                    customItemPrice: 10.0
+                    discountAmountOverride: 5.0
+                    discountPercentOverride: 10.0
+                    modifiers:
+                    - {}
+                    discountCode: FIVEPERCENT
+                    subItems:
+                    - {}
+                  deliveryAddress:
+                    addressLine1: example
+                    addressLine2: example
+                    zip: example
+                    city: example
+                  targetPrinterProfileId: 258
+        required: true
+      tags:
+      - Order and Pay
+      responses:
+        '200':
+          description: accepted
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    description: The response.
+                    type: string
+                    examples:
+                    - ok
+                type: object
+              examples:
+                ApePlaceToGoOrder200Example:
+                  summary: Default apePlaceToGoOrder 200 response
+                  x-microcks-default: true
+                  value:
+                    status: OPEN
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Response object for error code 400
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - 2023-11-07T19:15:05.043+0000
+                  status:
+                    type: integer
+                    description: The HTTP status code of the error response.
+                    examples:
+                    - 400
+                  error:
+                    type: string
+                    description: A brief title of the error status.
+                    examples:
+                    - Bad Request
+                  message:
+                    type: string
+                    description: A message describing the nature of the error in detail.
+                    examples:
+                    - 'Validation failed for object=''toGoOrder''. Error count: 1'
+                  errors:
+                    type: array
+                    description: An array of error details, outlining specific issues with the request.
+                    items:
+                      type: object
+                      properties:
+                        codes:
+                          type: array
+                          items:
+                            type: string
+                          description: A set of code strings that correspond to the validation error.
+                          example: &id003
+                          - NotNull.toGoOrder.thirdPartyReference
+                          - NotNull.thirdPartyReference
+                          - NotNull.java.lang.String
+                          - NotNull
+                        arguments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              codes:
+                                type: array
+                                items:
+                                  type: string
+                                description: Argument codes that are related to the field in validation.
+                                example: &id004
+                                - toGoOrder.thirdPartyReference
+                                - thirdPartyReference
+                              defaultMessage:
+                                type: string
+                                description: The default message associated with the failed validation.
+                                example: thirdPartyReference
+                              code:
+                                type: string
+                                description: A single code that represents the specific validation rule that was not satisfied.
+                                example: thirdPartyReference
+                        defaultMessage:
+                          type: string
+                          description: The default error message provided when the associated field fails validation.
+                          example: must not be null
+                        objectName:
+                          type: string
+                          description: The name of the object that failed validation.
+                          example: toGoOrder
+                        field:
+                          type: string
+                          description: The name of the field that failed validation.
+                          example: thirdPartyReference
+                        bindingFailure:
+                          type: boolean
+                          description: Indicates whether the error was a result of a binding failure.
+                          example: false
+                        code:
+                          type: string
+                          description: A code representing the specific type of validation error.
+                          example: NotNull
+                  path:
+                    type: string
+                    description: The path of the failed request.
+                    examples:
+                    - /o/op/1/order/toGo
+              examples:
+                ApePlaceToGoOrder400Example:
+                  summary: Default apePlaceToGoOrder 400 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 866
+                    error: example
+                    message: example
+                    errors:
+                    - codes: *id003
+                      arguments:
+                      - codes: *id004
+                        defaultMessage: thirdPartyReference
+                        code: thirdPartyReference
+                      defaultMessage: must not be null
+                      objectName: toGoOrder
+                      field: thirdPartyReference
+                      bindingFailure: false
+                      code: NotNull
+                    path: example
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                properties:
+                  status:
+                    description: The request status.
+                    type: string
+                    examples:
+                    - fail
+                  msg:
+                    description: A message describing the error.
+                    type: string
+                    examples:
+                    - reference has already been used 123456789
+                type: object
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/order/table/getCheck:
+    get:
+      summary: Lightspeed Get All Open Checks
+      operationId: apeGetCheck
+      description: Returns all open orders for the current day.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      responses:
+        '200':
+          description: All open orders for the current day.
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/apeAccountSnapshot'
+                type: array
+              examples:
+                ApeGetCheck200Example:
+                  summary: Default apeGetCheck 200 response
+                  x-microcks-default: true
+                  value:
+                  - clientCount: 4
+                    identifier: '500123'
+                    uuid: a3bb189e-8f29-4cce-b0e9-f29b123dfe3d
+                    openDate: '2021-06-21T14:20:00Z'
+                    closeDate: '2021-06-22T10:15:00Z'
+                    paidAmount: 100.0
+                    serviceCharge: 10.0
+                    name: ORDER A1C2E
+                    currentAmount: 110.0
+                    staffName: Jane Smith
+                    staffId: 7701234
+                    salesEntries:
+                    - {}
+                    paymentEntries:
+                    - {}
+                    id: '500123'
+                    ikaccountId: A78094.48
+                    number: 255
+                    tableNumber: 2
+                    posId: 54321
+                    deviceId: 186
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - 2023-11-07T22:18:49.101+0000
+                  status:
+                    type: integer
+                    description: The HTTP status code associated with the error.
+                    examples:
+                    - 400
+                  error:
+                    type: string
+                    description: A short description of the HTTP status code meaning.
+                    examples:
+                    - Bad Request
+                  message:
+                    type: string
+                    description: A human-readable message providing more details about the error.
+                    examples:
+                    - Required request parameter 'businessLocationId' for method parameter type Long is not present
+                  path:
+                    type: string
+                    description: The request path where the error occurred.
+                    examples:
+                    - /o/op/1/order/table/getCheck
+              examples:
+                ApeGetCheck400Example:
+                  summary: Default apeGetCheck 400 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 47
+                    error: example
+                    message: example
+                    path: example
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/order/table/{tableNumber}/getCheck:
+    get:
+      summary: Lightspeed Get Open Check by Table
+      operationId: apeCheckLookup
+      description: 'Returns an open order for a specific table.
+
+        Note: If more than one order is assigned to the table, the oldest order will be returned.'
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      - schema:
+          example: 1
+          description: The table [number](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-tables-number).
+          type: integer
+          format: int32
+        name: tableNumber
+        in: path
+        required: true
+      responses:
+        '200':
+          description: Check
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeAccountSnapshot'
+              examples:
+                ApeCheckLookup200Example:
+                  summary: Default apeCheckLookup 200 response
+                  x-microcks-default: true
+                  value:
+                    clientCount: 4
+                    identifier: '500123'
+                    uuid: a3bb189e-8f29-4cce-b0e9-f29b123dfe3d
+                    openDate: '2021-06-21T14:20:00Z'
+                    closeDate: '2021-06-22T10:15:00Z'
+                    paidAmount: 100.0
+                    serviceCharge: 10.0
+                    name: ORDER A1C2E
+                    currentAmount: 110.0
+                    staffName: Jane Smith
+                    staffId: 7701234
+                    salesEntries:
+                    - id: 1341648999023061
+                      uuid: 2c83b049-a2c1-4bc5-8479-eb152e5a54be
+                      itemName: Burger
+                      itemSku: '14'
+                      unitAmount: 10.0
+                      quantity: 1.0
+                      modifiers: []
+                      amountWithTax: 11.5
+                      amountLessTax: 10.0
+                      discountedAmount: 0.0
+                      timeOfTransactionUtc: 2023-11-07T21:24:44.741+0000
+                      active: true
+                      parentId: 478
+                      subLineItems:
+                      - id: 1341648999023062
+                        uuid: 2c83b049-a2c1-4bc5-8479-eb152e5a54be
+                        itemName: Extra Cheese
+                        itemSku: '35'
+                        unitAmount: 1.0
+                        quantity: 1.0
+                        modifiers: []
+                        amountWithTax: 1.15
+                        amountLessTax: 1.0
+                        discountedAmount: 0.0
+                        grossUnitAmount: 1.0
+                        timeOfTransactionUtc: 2023-11-07T21:24:44.755+0000
+                        active: true
+                        subLineItems: []
+                        taxIncluded: false
+                      isTaxIncluded: true
+                      taxIncluded: false
+                    paymentEntries:
+                    - paymentMethodDescription: API Payment
+                      externalReference: '12345678901234'
+                      paymentMethodCode: APM
+                      amountPaid: 12.65
+                      paymentDate: 2023-11-07T22:05:16.127+0000
+                      active: true
+                      accountCancelled: true
+                    id: '500123'
+                    ikaccountId: A78094.48
+                    number: 819
+                    tableNumber: 2
+                    posId: 54321
+                    deviceId: 931
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - 2023-11-07T22:18:49.101+0000
+                  status:
+                    type: integer
+                    description: The HTTP status code associated with the error.
+                    examples:
+                    - 404
+                  error:
+                    type: string
+                    description: A short description of the HTTP status code meaning.
+                    examples:
+                    - Not Found
+                  message:
+                    type: string
+                    description: A human-readable message providing more details about the error.
+                    examples:
+                    - account not found for BL 123456789
+                  path:
+                    type: string
+                    description: The request path where the error occurred.
+                    examples:
+                    - /o/op/1/order/table/1/getCheck
+              examples:
+                ApeCheckLookup404Example:
+                  summary: Default apeCheckLookup 404 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 498
+                    error: example
+                    message: example
+                    path: example
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/order/accounts/{accountIdentifier}:
+    get:
+      summary: Lightspeed Get Single Check
+      operationId: apeCheckLookupWithaccountIdentifier
+      description: Returns a check based on the Account Identifier.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          description: 'The ID of the account being requested.
+
+            (ex: A78094.69)'
+          example: A739800.52
+          type: string
+        name: accountIdentifier
+        in: path
+        required: true
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      responses:
+        '200':
+          description: The account requested.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeAccountSnapshot'
+              examples:
+                ApeCheckLookupWithaccountIdentifier200Example:
+                  summary: Default apeCheckLookupWithaccountIdentifier 200 response
+                  x-microcks-default: true
+                  value:
+                    clientCount: 4
+                    identifier: '500123'
+                    uuid: a3bb189e-8f29-4cce-b0e9-f29b123dfe3d
+                    openDate: '2021-06-21T14:20:00Z'
+                    closeDate: '2021-06-22T10:15:00Z'
+                    paidAmount: 100.0
+                    serviceCharge: 10.0
+                    name: ORDER A1C2E
+                    currentAmount: 110.0
+                    staffName: Jane Smith
+                    staffId: 7701234
+                    salesEntries:
+                    - id: 1341648999023061
+                      uuid: 2c83b049-a2c1-4bc5-8479-eb152e5a54be
+                      itemName: Burger
+                      itemSku: '14'
+                      unitAmount: 10.0
+                      quantity: 1.0
+                      modifiers: []
+                      amountWithTax: 11.5
+                      amountLessTax: 10.0
+                      discountedAmount: 0.0
+                      timeOfTransactionUtc: 2023-11-07T21:24:44.741+0000
+                      active: true
+                      parentId: 656
+                      subLineItems:
+                      - id: 1341648999023062
+                        uuid: 2c83b049-a2c1-4bc5-8479-eb152e5a54be
+                        itemName: Extra Cheese
+                        itemSku: '35'
+                        unitAmount: 1.0
+                        quantity: 1.0
+                        modifiers: []
+                        amountWithTax: 1.15
+                        amountLessTax: 1.0
+                        discountedAmount: 0.0
+                        grossUnitAmount: 1.0
+                        timeOfTransactionUtc: 2023-11-07T21:24:44.755+0000
+                        active: true
+                        subLineItems: []
+                        taxIncluded: false
+                      isTaxIncluded: true
+                      taxIncluded: false
+                    paymentEntries:
+                    - paymentMethodDescription: API Payment
+                      externalReference: '12345678901234'
+                      paymentMethodCode: APM
+                      amountPaid: 12.65
+                      paymentDate: 2023-11-07T22:05:16.127+0000
+                      active: true
+                      accountCancelled: false
+                    id: '500123'
+                    ikaccountId: A78094.48
+                    number: 742
+                    tableNumber: 2
+                    posId: 54321
+                    deviceId: 989
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - 2023-11-07T22:18:49.101+0000
+                  status:
+                    type: integer
+                    description: The HTTP status code associated with the error.
+                    examples:
+                    - 400
+                  error:
+                    type: string
+                    description: A short description of the HTTP status code meaning.
+                    examples:
+                    - Bad Request
+                  message:
+                    type: string
+                    description: A human-readable message providing more details about the error.
+                    examples:
+                    - Invalid account identifier
+                  path:
+                    type: string
+                    description: The request path where the error occurred.
+                    examples:
+                    - /o/op/1/order/accounts/-1
+              examples:
+                ApeCheckLookupWithaccountIdentifier400Example:
+                  summary: Default apeCheckLookupWithaccountIdentifier 400 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 75
+                    error: example
+                    message: example
+                    path: example
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - 2023-11-07T22:18:49.101+0000
+                  status:
+                    type: integer
+                    description: The HTTP status code associated with the error.
+                    examples:
+                    - 404
+                  error:
+                    type: string
+                    description: A short description of the HTTP status code meaning.
+                    examples:
+                    - Not Found
+                  message:
+                    type: string
+                    description: A human-readable message providing more details about the error.
+                    examples:
+                    - account not found for BL 123456789
+                  path:
+                    type: string
+                    description: The request path where the error occurred.
+                    examples:
+                    - /o/op/1/order/accounts/A78094.697/
+              examples:
+                ApeCheckLookupWithaccountIdentifier404Example:
+                  summary: Default apeCheckLookupWithaccountIdentifier 404 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 463
+                    error: example
+                    message: example
+                    path: example
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/pay:
+    post:
+      summary: Lightspeed Apply a Payment
+      operationId: apeMakePayment
+      description: Add a payment to an existing order.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apeStandalonePayment'
+            examples:
+              ApeMakePaymentRequestExample:
+                summary: Default apeMakePayment request
+                x-microcks-default: true
+                value:
+                  iKaccountId: 0
+                  iKaccountIdentifier: A1234.56
+                  thirdPartyPaymentReference: '12345678901234'
+                  endpointId: MY-AWESOME-ENDPOINT-ID
+                  businessLocationId: 45454565682155
+                  taskTtlInMs: 60000
+                  staffId: 118
+                  deviceId: 12345678980
+                  paymentMethod: OOPAYMENT
+                  paymentAmount: 20.06
+                  tipAmount: 2.5
+                  targetPrinterProfileId: 1773881235
+        required: true
+      tags:
+      - Order and Pay
+      responses:
+        '200':
+          description: accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apePaymentSubmissionResponse'
+              examples:
+                ApeMakePayment200Example:
+                  summary: Default apeMakePayment 200 response
+                  x-microcks-default: true
+                  value:
+                    status: ok
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/apePaymentBadRequestError'
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/printMsg:
+    post:
+      summary: Lightspeed Print Message
+      operationId: apePrintMsg
+      description: Send a message to the POS. Generates a notification on the register screen. Can also be sent to the printer. <br> If the POS is offline, the message will be stored for up to 24h and sent when the POS comes online.
+      tags:
+      - Order and Pay
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                message:
+                  description: The message to be printed.
+                  type: string
+                  examples:
+                  - The Print Message
+                alsoToPrinter:
+                  description: Print on the receipt printer as well as till (highly recommended).
+                  type: boolean
+                  examples:
+                  - true
+              type: object
+              required:
+              - message
+            examples:
+              ApePrintMsgRequestExample:
+                summary: Default apePrintMsg request
+                x-microcks-default: true
+                value:
+                  message: example
+                  alsoToPrinter: false
+        required: true
+      responses:
+        '200':
+          description: accepted
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    description: The response.
+                    type: string
+                    examples:
+                    - ok
+                type: object
+              examples:
+                ApePrintMsg200Example:
+                  summary: Default apePrintMsg 200 response
+                  x-microcks-default: true
+                  value:
+                    status: OPEN
+      security:
+      - OAuth2:
+        - orders-api
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /o/op/1/itemAvailability:
+    get:
+      summary: Lightspeed Get Item Availability Information
+      description: Returns item availability information, by business location and SKUs.
+      operationId: apeGetRestrictedItems
+      tags:
+      - Order and Pay
+      security:
+      - OAuth2:
+        - orders-api
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      - name: skus
+        in: query
+        description: List of SKUs to return.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            example: SKU1
+          maxItems: 50
+          minItems: 1
+      - name: page
+        in: query
+        description: Starting page of results, when paginating. Starts at 0.
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of results to return, when paginating.
+        required: false
+        schema:
+          maximum: 50
+          minimum: 1
+          type: integer
+          format: int32
+          default: 25
+        example: 25
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeRestrictedItemPaginatedResponse'
+              examples:
+                ApeGetRestrictedItems200Example:
+                  summary: Default apeGetRestrictedItems 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - sku: SKU1
+                      count: 50
+                      updatedAt: '2025-07-08T14:20:00Z'
+                    metadata:
+                      warnings:
+                      - {}
+                      current: {}
+                      total: 1
+                      totalPages: 10
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - '2023-11-07T22:18:49.101Z'
+                  status:
+                    type: integer
+                    description: The HTTP status code associated with the error.
+                    examples:
+                    - 400
+                  error:
+                    type: string
+                    description: A short description of the HTTP status code meaning.
+                    examples:
+                    - Bad Request
+                  message:
+                    type: string
+                    description: A human-readable message providing more details about the error.
+                    examples:
+                    - Required request parameter 'businessLocationId' for method parameter type Long is not present
+                  path:
+                    type: string
+                    description: The request path where the error occurred.
+                    examples:
+                    - /o/op/1/itemAvailability
+              examples:
+                ApeGetRestrictedItems400Example:
+                  summary: Default apeGetRestrictedItems 400 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 362
+                    error: example
+                    message: example
+                    path: example
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      summary: Lightspeed Get Item Availability Information by POST
+      description: Returns item availability information filtered by business location and SKUs. The list of SKUs must be provided in the request body.
+      operationId: apeGetRestrictedItemsByPost
+      tags:
+      - Order and Pay
+      security:
+      - OAuth2:
+        - orders-api
+      parameters:
+      - schema:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        name: businessLocationId
+        in: query
+        required: true
+      - name: page
+        in: query
+        description: Starting page of results, when paginating. Starts at 0.
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          format: int32
+          default: 0
+        example: 0
+      - name: size
+        in: query
+        description: Number of results to return, when paginating.
+        required: false
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+          format: int32
+          default: 25
+        example: 25
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apeSkusRequest'
+            examples:
+              ApeGetRestrictedItemsByPostRequestExample:
+                summary: Default apeGetRestrictedItemsByPost request
+                x-microcks-default: true
+                value:
+                  skus:
+                  - SKU1
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apeRestrictedItemPaginatedResponse'
+              examples:
+                ApeGetRestrictedItemsByPost200Example:
+                  summary: Default apeGetRestrictedItemsByPost 200 response
+                  x-microcks-default: true
+                  value:
+                    data:
+                    - sku: SKU1
+                      count: 50
+                      updatedAt: '2025-07-08T14:20:00Z'
+                    metadata:
+                      warnings:
+                      - {}
+                      current: {}
+                      total: 1
+                      totalPages: 10
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: The date and time at which the error occurred.
+                    examples:
+                    - '2023-11-07T22:18:49.101Z'
+                  status:
+                    type: integer
+                    description: The HTTP status code associated with the error.
+                    examples:
+                    - 400
+                  error:
+                    type: string
+                    description: A short description of the HTTP status code meaning.
+                    examples:
+                    - Bad Request
+                  message:
+                    type: string
+                    description: A human-readable message providing more details about the error.
+                    examples:
+                    - Required request parameter 'businessLocationId' for method parameter type Long is not present
+                  path:
+                    type: string
+                    description: The request path where the error occurred.
+                    examples:
+                    - /o/op/1/itemAvailability
+              examples:
+                ApeGetRestrictedItemsByPost400Example:
+                  summary: Default apeGetRestrictedItemsByPost 400 response
+                  x-microcks-default: true
+                  value:
+                    timestamp: '2026-03-15T14:30:00Z'
+                    status: 255
+                    error: example
+                    message: example
+                    path: example
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    apeRestrictedItemPaginatedResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/apeRestrictedItem'
+        metadata:
+          $ref: '#/components/schemas/apePaginatedMetadata'
+    apeAccountSnapshot:
+      type: object
+      properties:
+        clientCount:
+          type: integer
+          format: int32
+          description: The number of guests at the table.
+          example: 4
+        identifier:
+          type: string
+          deprecated: true
+        uuid:
+          type: string
+          description: The account uuid.
+          example: a3bb189e-8f29-4cce-b0e9-f29b123dfe3d
+        openDate:
+          type: string
+          format: date-time
+          description: The date this account was opened in UTC.
+          example: '2021-06-21T14:20:00Z'
+        closeDate:
+          type: string
+          format: date-time
+          description: The date this account was closed in UTC.
+          example: '2021-06-22T10:15:00Z'
+        paidAmount:
+          type: number
+          description: The total of all payments on the check.
+          example: 100.0
+        serviceCharge:
+          type: number
+          description: The service charge applied to the check.
+          example: 10.0
+        name:
+          type: string
+          description: The check name.
+          example: ORDER A1C2E
+        currentAmount:
+          type: number
+          description: The current total amount on the check.
+          example: 110.0
+        staffName:
+          type: string
+          description: The name of the staff member assigned to the check.
+          example: Jane Smith
+        staffId:
+          type: integer
+          format: int64
+          description: The unique ID of the staff member assigned to the check.
+          example: 7701234
+        salesEntries:
+          type: array
+          description: Collection of check items.
+          items:
+            $ref: '#/components/schemas/apeAccountLineItem'
+        paymentEntries:
+          type: array
+          description: Collection of payment entries to the check.
+          items:
+            $ref: '#/components/schemas/apeAccountPaymentLine'
+        id:
+          type: string
+          deprecated: true
+        ikaccountId:
+          type: string
+          description: The system-generated account identifier for this check.(Applies to iKentoo V3+).
+          example: A78094.48
+        number:
+          type: integer
+          format: int32
+          deprecated: true
+        tableNumber:
+          type: integer
+          format: int32
+          description: The table number assigned to the check.
+          example: 2
+        posId:
+          type: integer
+          format: int64
+          description: The unique ID of the POS station that processed the check.
+          example: 54321
+        deviceId:
+          type: integer
+          format: int64
+          deprecated: true
+    apeItemModifier:
+      properties:
+        modifierId:
+          example: '236025632784492'
+          description: Modifier ID to be applied to this item.
+          type: string
+      type: object
+    apeTopLevelMenuGroupEntry:
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is a menu group, which represents a menu screen in the POS.
+            example: group
+            enum:
+            - group
+      - type: object
+        properties:
+          id:
+            type: string
+            description: The menu group ID.
+            example: '141948669133028'
+          name:
+            type: string
+            description: The menu group name.
+            example: Mains
+          color:
+            type: string
+            description: The color of the button in the POS.
+            example: blue
+          menuEntry:
+            type: array
+            description: Array of menu entry objects.
+            items:
+              type: object
+              oneOf:
+              - $ref: '#/components/schemas/apeMenuItemEntry'
+              - $ref: '#/components/schemas/apeMenuDealEntry'
+              - $ref: '#/components/schemas/apeMenuGroupEntry'
+              discriminator:
+                propertyName: '@type'
+                mapping:
+                  menuItem: '#/components/schemas/apeMenuItemEntry'
+                  menuDeal: '#/components/schemas/apeMenuDealEntry'
+                  group: '#/components/schemas/apeMenuGroupEntry'
+    apeMenuItemTax:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Tax description as it appears on a POS and receipt.
+          example: 5% GST
+        amount:
+          type: number
+          description: The amount of Tax applied by default by this Tax, this can change dynamically at time of sale.
+          example: 12.55
+        percentage:
+          type: number
+          description: The percentage of Tax applied by default by this Tax, this can change dynamically at time of sale.
+          example: 5.0
+    apeCurrentInfo:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Current page number.
+          example: 0
+        pageSize:
+          type: integer
+          format: int32
+          description: Number of items per page.
+          example: 50
+    apeCustomerInfo:
+      required:
+      - firstName
+      properties:
+        firstName:
+          example: Jane
+          description: Customer first name.
+          type: string
+          minLength: 1
+          maxLength: 128
+        lastName:
+          example: Doe
+          description: Customer last name.
+          type: string
+        thirdPartyReference:
+          example: ZEN-7074522d-c71d-403f
+          type: string
+          description: The unique reference for this customer which can help to identify them later on. If the email is left empty, this should be empty as well.
+        email:
+          example: jane.doe@example.com
+          description: The email address for this customer.
+          type: string
+        contactNumberAsE164:
+          example: '+14155552671'
+          description: The customer phone number in E164 format.
+          type: string
+        notes:
+          example: Notes about the customer.
+          description: The notes attached to the customer.
+          type: string
+        salutation:
+          example: Mr.
+          description: Salutation for the customer (Mr., Mrs., Dr., etc...).
+          type: string
+        sendEmailReceipts:
+          example: true
+          description: Default value of emailNotification setting for new customers
+          type: boolean
+        emailNotification:
+          default: DONT_CHANGE
+          description: Update the customer email notification setting. For example, sendEmailReceipts = true, emailNotification = DONT_CHANGE - sends receipt email for all users who haven't disabled it in the Backoffice. sendEmailReceipts = false, emailNotification = DONT_CHANGE - will not send receipt email for all users except those who enabled it in the Backoffice
+          enum:
+          - ENABLE
+          - DISABLE
+          - DONT_CHANGE
+          type: string
+      type: object
+    apeMenuItemEntry:
+      title: menuItem
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is an individual item.
+            example: menuItem
+            enum:
+            - menuItem
+      - $ref: '#/components/schemas/apeMenuItemEntryParent'
+      - type: object
+        properties:
+          asSubItem:
+            type: boolean
+            description: Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false.
+          productionInstructionList:
+            type: array
+            description: Array of production instructions for this product
+            items:
+              $ref: '#/components/schemas/apeProductionInstruction'
+            example:
+            - multiSelectionPermitted: false
+              productionInstructionGroupName: Meat cooking
+              productionIntructionGroupId: 236025632784487
+              productionInstructionList:
+              - instruction: Bleu
+                ikentooModifierId: 236025632784488
+              - instruction: Rare
+                ikentooModifierId: 236025632784490
+              - instruction: Medium Rare
+                ikentooModifierId: 236025632784492
+              - instruction: Medium
+                ikentooModifierId: 236025632784494
+              - instruction: Medium well
+                ikentooModifierId: 236025632784496
+              - instruction: Well done
+                ikentooModifierId: 236025632784498
+    apeMenuV2:
+      properties:
+        menuName:
+          description: The name of the menu.
+          type: string
+          example: Main Menu
+        menuEntryGroups:
+          description: 'Menu groups of this menu. The top-level entry will always be of type "group", representing a menu screen. Beneath each `menuEntryGroup` will be a `menuEntry` array containing any combination of one or more menu entries:
+
+            * A `menuItemEntry` represents an individual item and may include product modifier groups.
+
+            * A `menuGroupEntry` represents a menu sub-screen.
+
+            * A `menuDealEntry` represents a combo.
+
+            * A `menuProductModifierEntry` represents a product modifier.'
+          items:
+            $ref: '#/components/schemas/apeTopLevelMenuGroupEntryV2'
+          type: array
+        richDataMissing:
+          description: Indicates whether or not rich item data is missing, if requested.
+          type: boolean
+          example: false
+        ikentooMenuId:
+          type: integer
+          description: The unique identifier for the menu.
+          example: 141948669132851
+          format: int64
+        conditionalTaxRules:
+          description: Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.
+          type: boolean
+      type: object
+    apeLocalOrderItemLine:
+      properties:
+        quantity:
+          example: 1
+          description: Quantity of item to be ordered.
+          type: integer
+          format: int32
+        sku:
+          example: UGG-BB-PUR-06
+          maxLength: 25
+          description: The SKU of the item to be ordered.
+          type: string
+        customItemName:
+          example: My Custom Item Name
+          description: The custom name to be used, if overwriting is permitted for this item.
+          type: string
+        customItemPrice:
+          example: 10.0
+          description: The custom price to be used, if custom pricing is permitted for this item.
+          type: number
+        discountAmountOverride:
+          description: The custom discount amount applied to this item. Only one of `discountAmountOverride` or `discountPercentOverride` can be set. Must be used in conjunction with a [discountCode](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-items-discountcode) and this discount must be configured as a "manual discount" in the POS. See [Understanding Discounts](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657089-Understanding-discounts).
+          type: number
+          example: 5.0
+        discountPercentOverride:
+          description: The custom percentage discount applied to this item. Only one of `discountAmountOverride` or `discountPercentOverride` can be set. Must be used in conjunction with a [discountCode](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-items-discountcode) and this discount must be configured as a "manual discount" in the POS. See [Understanding Discounts](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657089-Understanding-discounts).
+          type: number
+          example: 10.0
+        modifiers:
+          description: Collection of [modifiers](https://api-docs.lsk.lightspeed.app/operation/operation-apeloadallmodifiers) to be applied to this item.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeItemModifier'
+        discountCode:
+          example: FIVEPERCENT
+          description: The discount code being applied to this item, if applicable.
+          type: string
+        course:
+          example: 2
+          description: The course number for this item, if applicable.
+          minimum: 0
+          type: integer
+          format: int32
+        subItems:
+          description: The sub-items applied to this item.
+          items:
+            $ref: '#/components/schemas/apeSubItemOrderLine'
+          type: array
+      type: object
+      required:
+      - quantity
+      - sku
+    apeAccountProfiles:
+      properties:
+        businessLocationId:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        accountProfileList:
+          items:
+            $ref: '#/components/schemas/apeAccountProfile'
+          type: array
+      type: object
+    apeStandalonePayment:
+      description: Payment to apply to an existing order.
+      type: object
+      required:
+      - businessLocationId
+      - endpointId
+      - paymentAmount
+      - thirdPartyPaymentReference
+      properties:
+        iKaccountId:
+          example: 0
+          type: integer
+          format: int64
+          deprecated: true
+        iKaccountIdentifier:
+          example: A1234.56
+          description: The ID of the account to apply this payment to.
+          type: string
+        thirdPartyPaymentReference:
+          description: A unique external reference provided for this order. This value will be sent back in the webhook.
+          type: string
+          minLength: 1
+          maxLength: 50
+          example: '12345678901234'
+        endpointId:
+          description: Endpoint ID for a unique webhook that has been created using [the webhook endpoint](https://api-docs.lsk.lightspeed.app/operation/operation-apecreatewebhookoo).
+          type: string
+          example: MY-AWESOME-ENDPOINT-ID
+        businessLocationId:
+          $ref: '#/components/schemas/apeBusinessLocationId'
+        taskTtlInMs:
+          example: 60000
+          description: Maximum time to attempt delivery of this payment to the POS. In milliseconds. The minimum value is 60000ms (1 minute).
+          type: integer
+          format: int32
+        staffId:
+          type: integer
+          format: int64
+          description: The ID of the employee responsible for this payment.
+        deviceId:
+          description: POS device to specifically receive this payment. If left null then all POS devices may receive the payment but only one will process it.
+          type: integer
+          format: int64
+          example: 12345678980
+        paymentMethod:
+          example: OOPAYMENT
+          description: Payment method code as configured by the merchant.
+          type: string
+        paymentAmount:
+          example: 20.06
+          description: The total amount of the payment without tips.
+          type: number
+        tipAmount:
+          example: 2.5
+          description: The tip amount, if any.
+          type: number
+        targetPrinterProfileId:
+          example: 1773881235
+          description: The printer profile id to use for printing the receipt for this payment. If not provided, the default active printer profile for the business location will be used.
+          type: integer
+          format: int64
+    apeItemRichData:
+      type: object
+      properties:
+        squareImageUrl:
+          description: A download link for the image associated with this item, as formatted for display in the POS.
+          type: string
+          example: http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb.image/png
+        rawImageUrl:
+          description: A download link for the image associated with this item.
+          type: string
+          example: http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_raw.image/png
+        previewImageUrl:
+          description: A download link for the preview image associated with this item.
+          type: string
+          example: http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/8262_2f6c1716-0f06-488c-afc2-d888666d94fb_preview.image/png
+        containsAlcohol:
+          description: Flag to indicate if the item contains alcohol.
+          type: boolean
+          example: true
+        alcoholPercentage:
+          description: The percentage of alcohol in the item.
+          type: number
+          example: 13.0
+        texts:
+          type: array
+          items:
+            $ref: '#/components/schemas/apeItemTexts'
+        allergenCodes:
+          description: The allergen codes associated with this item.
+          example:
+          - mustard
+          - cereals
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+    apeTable:
+      description: The tables under this floorplan.
+      properties:
+        number:
+          description: The table number.
+          format: int32
+          type: integer
+          example: 1
+        reference:
+          description: The table reference.
+          type: string
+          example: abcdefg123456
+        id:
+          description: The unique identifier for this table.
+          type: string
+          example: '141948669132977'
+        active:
+          description: If the table is active.
+          type: boolean
+          example: true
+        description:
+          description: The table description.
+          type: string
+          example: Table 1
+        defaultClientCount:
+          description: The default client count for this table.
+          format: int32
+          type: integer
+          example: 4
+      type: object
+    apeMenuModifierGroupV2:
+      type: object
+      description: A product modifier group containing product modifiers to select from.
+      properties:
+        description:
+          type: string
+          description: Description of the modifier group.
+          example: Milk options
+        sku:
+          type: string
+          description: The SKU of the modifier group.
+          example: '30'
+        mustSelectAnItem:
+          type: boolean
+          description: Whether or not this is a required selection.
+          example: false
+        multiSelectionPermitted:
+          type: boolean
+          description: Whether or not multiple items can be selected from this modifier group.
+          example: false
+        minimumSelection:
+          type: integer
+          format: int32
+          description: The minimum number of items that must be selected from this modifier group. If null then no minimum is set.
+          example: 0
+        maximumSelection:
+          type: integer
+          format: int32
+          description: The maximum number of items that can be selected from this modifier group. If null then no maximum is set.
+          example: 2
+        itemRichData:
+          $ref: '#/components/schemas/apeItemRichData'
+        productModifiers:
+          description: Array of product modifiers within this modifier group.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeMenuProductModifierEntryV2'
+    apeToGoOrderItemLine:
+      properties:
+        quantity:
+          example: 1
+          description: Quantity of item to be ordered.
+          type: integer
+          format: int32
+        sku:
+          example: UGG-BB-PUR-06
+          maxLength: 25
+          description: The SKU of the item to be ordered.
+          type: string
+        customItemName:
+          example: My Custom Item Name
+          description: The custom name to be used, if overwriting is permitted for this item.
+          type: string
+        customItemPrice:
+          example: 10.0
+          description: The custom price to be used, if custom pricing is permitted for this item.
+          type: number
+        discountAmountOverride:
+          description: The custom discount amount applied to this item. Only one of `discountAmountOverride` or `discountPercentOverride` can be set.
+          type: number
+          example: 5.0
+        discountPercentOverride:
+          description: The custom percentage discount applied to this item. Only one of `discountAmountOverride` or `discountPercentOverride` can be set.
+          type: number
+          example: 10.0
+        modifiers:
+          description: Collection of [modifiers](https://api-docs.lsk.lightspeed.app/operation/operation-apeloadallmodifiers) to be applied to this item.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeItemModifier'
+        discountCode:
+          example: FIVEPERCENT
+          description: The discount code being applied to this item, if applicable.
+          type: string
+        subItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/apeSubItemOrderLine'
+      type: object
+      required:
+      - quantity
+      - sku
+    apeSkusRequest:
+      type: object
+      required:
+      - skus
+      properties:
+        skus:
+          type: array
+          items:
+            type: string
+            example: SKU1
+          minItems: 1
+          maxItems: 50
+          description: List of SKUs to return.
+    apeTagCode:
+      description: The order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code).
+      type: string
+      example: DELIVERY
+    apeSubItemOrderLine:
+      required:
+      - quantity
+      - sku
+      properties:
+        quantity:
+          example: 1
+          description: Quantity of sub-item to be ordered.
+          type: integer
+          format: int32
+        sku:
+          example: ABC-123
+          maxLength: 25
+          description: The SKU of the sub-item to be ordered.
+          type: string
+        customItemName:
+          example: My Custom Sub-Item Name
+          description: The custom name to be used if overwriting is supported for this sub-item.
+          type: string
+        customItemPrice:
+          example: 2.0
+          description: The custom price to be used if overwriting is supported for this sub-item.
+          type: number
+        modifiers:
+          description: Collection of modifiers to be applied to this sub-item.
+          items:
+            $ref: '#/components/schemas/apeItemModifier'
+          type: array
+        subItems:
+          description: Product modifiers applied to this item.
+          items:
+            $ref: '#/components/schemas/apeSubItemOrderLine'
+          type: array
+      type: object
+    apeItemTexts:
+      type: object
+      properties:
+        locale:
+          type: string
+          description: The two letter language code associated with this item text.
+        friendlyDisplayName:
+          type: string
+          description: The display name for this item in the configured language.
+        description:
+          type: string
+          description: The descriptive text for this item in the configured language.
+      example:
+        locale: en
+        friendlyDisplayName: Burger - ENG
+        description: <p>Burger in english</p>
+    apeMenuGroupEntryV2:
+      title: group
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is a menu group.
+            example: group
+            enum:
+            - group
+          id:
+            type: string
+            description: The menu group ID.
+            example: '141948669133028'
+          name:
+            type: string
+            description: The menu group name.
+            example: Mains
+          color:
+            type: string
+            description: The color of the button in the POS.
+            example: blue
+          menuEntry:
+            type: array
+            description: Array of menu entry objects.
+            items:
+              type: object
+              oneOf:
+              - $ref: '#/components/schemas/apeMenuItemEntryV2'
+              - $ref: '#/components/schemas/apeMenuDealEntryV2'
+              - $ref: '#/components/schemas/apeMenuGroupEntryV2'
+              - $ref: '#/components/schemas/apeMenuProductModifierEntryV2'
+              discriminator:
+                propertyName: '@type'
+                mapping:
+                  menuItem: '#/components/schemas/apeMenuItemEntryV2'
+                  menuDeal: '#/components/schemas/apeMenuDealEntryV2'
+                  group: '#/components/schemas/apeMenuGroupEntryV2'
+                  menuProductModifier: '#/components/schemas/apeMenuProductModifierEntryV2'
+    apeAccountLineItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique ID assigned to the sale line.
+          example: 1341648999023061
+        uuid:
+          type: string
+          description: The UUID assigned to the sale line.
+          example: 2c83b049-a2c1-4bc5-8479-eb152e5a54be
+        itemName:
+          type: string
+          description: The name given to the item.
+          example: Burger
+        itemSku:
+          type: string
+          description: The SKU assigned to the item.
+          example: '14'
+        unitAmount:
+          type: number
+          description: The price per unit.
+          example: 10.0
+        quantity:
+          type: number
+          format: double
+          description: The quantity of the item for this sale line.
+          example: 1.0
+        modifiers:
+          type: array
+          description: The modifiers of the item for this sale line.
+          items:
+            $ref: '#/components/schemas/apeModifier'
+        amountWithTax:
+          type: number
+          description: The total price of the item including tax.
+          example: 11.5
+        amountLessTax:
+          type: number
+          description: The total price of the item without tax.
+          example: 10.0
+        discountedAmount:
+          type: number
+          description: The amount the item was discounted.
+          example: 0.0
+        timeOfTransactionUtc:
+          type: string
+          format: date-time
+          description: The date and time in UTC when the transaction occurred.
+          example: 2023-11-07T21:24:44.741+0000
+        active:
+          type: boolean
+          deprecated: true
+          example: true
+        parentId:
+          type: integer
+          format: int64
+          writeOnly: true
+        subLineItems:
+          type: array
+          description: Collection of sub-line items associated with this sale line.
+          items:
+            $ref: '#/components/schemas/apeAccountLineItem'
+          example:
+          - id: 1341648999023062
+            uuid: 2c83b049-a2c1-4bc5-8479-eb152e5a54be
+            itemName: Extra Cheese
+            itemSku: '35'
+            unitAmount: 1.0
+            quantity: 1.0
+            modifiers: []
+            amountWithTax: 1.15
+            amountLessTax: 1.0
+            discountedAmount: 0.0
+            grossUnitAmount: 1.0
+            timeOfTransactionUtc: 2023-11-07T21:24:44.755+0000
+            active: true
+            subLineItems: []
+            taxIncluded: false
+        isTaxIncluded:
+          type: boolean
+          writeOnly: true
+        taxIncluded:
+          type: boolean
+          description: Indicates whether tax is included in the unit amount.
+          example: false
+    apeRestrictedItem:
+      type: object
+      properties:
+        sku:
+          type: string
+          description: The SKU assigned to the item.
+          example: SKU1
+        count:
+          type: integer
+          description: The count of available items.
+          format: int64
+          example: 50
+        updatedAt:
+          type: string
+          format: date-time
+          description: The last update of the item count.
+          example: '2025-07-08T14:20:00Z'
+    apeMenuItemEntryParentV2:
+      properties:
+        productName:
+          type: string
+          description: The name of the item.
+          example: Burger
+        productPrice:
+          type: number
+          description: The price of the item.
+          example: 10.0
+        extraPrice:
+          type: number
+          description: Additional item price when selected in a combo group.
+          example: 1.99
+        color:
+          type: string
+          description: The color of the menu button for this item.
+          example: blue
+        sku:
+          type: string
+          description: The SKU of the item.
+          example: '25'
+        customItemNameEnabled:
+          type: boolean
+          description: Whether the name of the item can be customized.
+          example: false
+        pricingStrategy:
+          type: string
+          description: The pricing type of the item.
+          example: PRICE_CANNOT_BE_CUSTOMIZED
+          enum:
+          - CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE
+          - CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE
+          - CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL
+          - PRICE_CANNOT_BE_CUSTOMIZED
+        itemRichData:
+          $ref: '#/components/schemas/apeItemRichData'
+        defaultTaxAmount:
+          description: The tax amount as calculated at the default tax rate (a sum for multiple taxes).
+          type: number
+          example: 1.5
+        defaultTaxPercentage:
+          description: The default tax percentage for this item (a sum for multiple taxes).
+          type: number
+          example: 15.0
+        taxIncludedInPrice:
+          description: Whether or not tax is included in the price of the item.
+          type: boolean
+          example: false
+        conditionalTaxRules:
+          description: Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.
+          type: boolean
+        taxes:
+          description: Detailed tax info
+          items:
+            $ref: '#/components/schemas/apeMenuItemTax'
+          type: array
+    apeAccountPaymentLine:
+      type: object
+      properties:
+        paymentMethodDescription:
+          type: string
+          description: Payment method for this payment line.
+          example: API Payment
+        externalReference:
+          type: string
+          description: Payment external reference.
+          example: '12345678901234'
+        paymentMethodCode:
+          type: string
+          description: Payment method code for this payment line.
+          example: APM
+        amountPaid:
+          type: number
+          description: Amount paid for this payment line.
+          example: 12.65
+        paymentDate:
+          type: string
+          format: date-time
+          description: Date/Time in UTC of this payment.
+          example: 2023-11-07T22:05:16.127+0000
+        active:
+          type: boolean
+          description: Whether this payment line is active or not.
+          example: true
+        accountCancelled:
+          type: boolean
+          writeOnly: true
+      description: Payments associated with this check.
+    apeMenuDealEntry:
+      title: menuDeal
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates the item is a Combo.
+            example: menuDeal
+            enum:
+            - menuDeal
+          items:
+            description: List of items to select from.
+            type: array
+            items:
+              $ref: '#/components/schemas/apeMenuItemEntry'
+          menuDealGroups:
+            type: array
+            description: Array of Items in the Combo
+            items:
+              $ref: '#/components/schemas/apeMenuDealGroup'
+      - $ref: '#/components/schemas/apeMenuItemEntryParent'
+    apeModifier:
+      type: object
+      properties:
+        name:
+          example: Rare
+          description: The name of the modifier.
+          type: string
+        quantity:
+          example: 1
+          description: The quantity of the modifier.
+          type: integer
+          format: int32
+      description: The modifiers of the item for this sale line
+    apeProductionInstructionEntry:
+      type: object
+      properties:
+        instruction:
+          type: string
+          description: The name of the production instruction.
+        ikentooModifierId:
+          description: The unique identifier of this production instruction.
+          type: integer
+          format: int64
+      description: Array of production instructions for this group
+    apeMenuDealEntryV2:
+      title: menuDeal
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates the item is a Combo.
+            example: menuDeal
+            enum:
+            - menuDeal
+          items:
+            description: List of items to select from.
+            type: array
+            items:
+              $ref: '#/components/schemas/apeMenuItemEntryV2'
+          menuDealGroups:
+            type: array
+            description: Array of Items in the Combo
+            items:
+              $ref: '#/components/schemas/apeMenuDealGroupV2'
+      - $ref: '#/components/schemas/apeMenuItemEntryParentV2'
+    apeProductionInstruction:
+      type: object
+      properties:
+        multiSelectionPermitted:
+          type: boolean
+          description: Specifies if more than one production instruction can be selected for this group.
+        productionInstructionGroupName:
+          type: string
+          description: The group name for this production instruction.
+        productionIntructionGroupId:
+          type: integer
+          description: The unique identifier for this production instruction group.
+          format: int64
+        productionInstructionList:
+          type: array
+          description: Array of production instructions for this group.
+          items:
+            $ref: '#/components/schemas/apeProductionInstructionEntry'
+    apePaymentSubmissionResponse:
+      description: Acknowledgement that the payment was accepted for delivery to the POS.
+      type: object
+      properties:
+        status:
+          description: The response.
+          example: ok
+          type: string
+    apeOrderPayment:
+      required:
+      - paymentAmount
+      properties:
+        paymentMethod:
+          example: OOPAYMENT
+          description: Payment method code as configured by the merchant.
+          type: string
+        paymentAmount:
+          example: 14.0
+          description: The total amount of the payment including tips if any.
+          type: number
+        tipAmount:
+          example: 2.0
+          description: The tip amount, if any.
+          type: number
+      type: object
+    apeCurrentWarning:
+      type: object
+      properties:
+        information:
+          type: string
+        type:
+          type: string
+    apeMenuGroupEntry:
+      title: group
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is a sub-screen of the menu in the POS. The object will have the same structure as the `menuEntryGroups` object and may contain any of the three `menuEntry` types.
+            example: group
+            enum:
+            - group
+      - type: object
+        properties:
+          id:
+            type: string
+            description: The menu group ID.
+            example: '141948669133028'
+          name:
+            type: string
+            description: The menu group name.
+            example: Mains
+          color:
+            type: string
+            description: The color of the button in the POS.
+            example: blue
+          menuEntry:
+            type: array
+            description: Array of menu entry objects.
+            items:
+              type: object
+              oneOf:
+              - $ref: '#/components/schemas/apeMenuItemEntry'
+              - $ref: '#/components/schemas/apeMenuDealEntry'
+              - $ref: '#/components/schemas/apeMenuGroupEntry'
+              discriminator:
+                propertyName: '@type'
+                mapping:
+                  menuItem: '#/components/schemas/apeMenuItemEntry'
+                  menuDeal: '#/components/schemas/apeMenuDealEntry'
+                  group: '#/components/schemas/apeMenuGroupEntry'
+    apeMenuItemEntryV2:
+      title: menuItem
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is an individual item.
+            example: menuItem
+            enum:
+            - menuItem
+      - $ref: '#/components/schemas/apeMenuItemEntryParentV2'
+      - type: object
+        properties:
+          asSubItem:
+            type: boolean
+            description: Indicates whether or not this product is a sub-item that cannot be sold alone. Note - when the item is nested under a `menuDeal` this will always be false.
+          productionInstructionList:
+            type: array
+            description: Array of production instructions for this product
+            items:
+              $ref: '#/components/schemas/apeProductionInstruction'
+            example:
+            - multiSelectionPermitted: false
+              productionInstructionGroupName: Meat cooking
+              productionIntructionGroupId: 236025632784487
+              productionInstructionList:
+              - instruction: Bleu
+                ikentooModifierId: 236025632784488
+              - instruction: Rare
+                ikentooModifierId: 236025632784490
+              - instruction: Medium Rare
+                ikentooModifierId: 236025632784492
+              - instruction: Medium
+                ikentooModifierId: 236025632784494
+              - instruction: Medium well
+                ikentooModifierId: 236025632784496
+              - instruction: Well done
+                ikentooModifierId: 236025632784498
+          menuModifierGroups:
+            type: array
+            description: Array of product modifier groups for this product
+            items:
+              $ref: '#/components/schemas/apeMenuModifierGroupV2'
+    apeFloorPlanId:
+      type: integer
+      format: int64
+      example: 45454565682155
+      description: The unique identifier for the floor plan. See [Get Floorplans](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans)
+    apeMenuDealGroup:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the combo item grouping.
+          example: Side Dishes
+        sku:
+          type: string
+          description: The SKU of the combo item grouping.
+          example: '25'
+        mustSelectAnItem:
+          type: boolean
+          description: Whether or not this is a required selection.
+          example: true
+        multiSelectionPermitted:
+          type: boolean
+          description: Whether or not multiple items can be selected from this item grouping.
+          example: true
+        minimumSelection:
+          type: integer
+          format: int32
+          description: The minimum number of items that must be selected from this item grouping. If null then no minimum is set.
+          example: 1
+        maximumSelection:
+          type: integer
+          format: int32
+          description: The maximum number of items that can be selected from this item grouping. If null then no maximum is set.
+          example: 3
+        itemRichData:
+          $ref: '#/components/schemas/apeItemRichData'
+        items:
+          description: List of items to select from.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeMenuItemEntry'
+      description: Collections of item groups within the combo to select from.
+    apeDiscount:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The discount name as configured in merchant account.
+          example: Staff Discount
+        code:
+          type: string
+          description: The discount code as configured in merchant account.
+          example: STAFF
+        discountPercentage:
+          type: number
+          description: The discount percentage, may be fractional. A discount can be a percentage or an amount, but not both.
+          example: 15
+        discountAmount:
+          type: number
+          description: The discount amount, may be fractional. A discount can be a percentage or an amount, but not both.
+          example: 5
+    apeMenu:
+      properties:
+        menuName:
+          description: The name of the menu.
+          type: string
+          example: Main Menu
+        menuEntryGroups:
+          description: 'Menu groups of this menu. The top-level entry will always be of type "group", representing a menu screen. Beneath each `menuEntryGroup` will be a `menuEntry` array containing any combination of one or more menu entries:
+
+            * A `menuItemEntry` represents an individual item.
+
+            * A `menuGroupEntry` represents a menu sub-screen.
+
+            * A `menuDealEntry` represents a combo.'
+          items:
+            $ref: '#/components/schemas/apeTopLevelMenuGroupEntry'
+          type: array
+        richDataMissing:
+          description: Indicates whether or not rich item data is missing, if requested.
+          type: boolean
+          example: false
+        ikentooMenuId:
+          type: integer
+          description: The unique identifier for the menu.
+          example: 141948669132851
+          format: int64
+        conditionalTaxRules:
+          description: Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.
+          type: boolean
+      type: object
+    apeAccountProfile:
+      properties:
+        id:
+          format: int64
+          type: integer
+          description: The unique identifier for the order profile.
+          example: 12454575601144
+        code:
+          type: string
+          description: A short code representing the order profile.
+          example: takeaway
+        name:
+          type: string
+          example: Takeaway
+          description: The system display name for the order profile.
+        deliveryMode:
+          enum:
+          - NONE
+          - TAKE_AWAY
+          - DELIVERY
+          type: string
+          example: TAKE_AWAY
+          description: Specifies the delivery mode for the order profile.
+      type: object
+    apeMenuProductModifierEntryV2:
+      title: menuProductModifier
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is a product modifier.
+            example: menuProductModifier
+            enum:
+            - menuProductModifier
+      - $ref: '#/components/schemas/apeMenuItemEntryParentV2'
+      - type: object
+        properties:
+          productionInstructionList:
+            type: array
+            description: Array of production instructions for this modifier
+            items:
+              $ref: '#/components/schemas/apeProductionInstruction'
+            example:
+            - multiSelectionPermitted: false
+              productionInstructionGroupName: Meat cooking
+              productionIntructionGroupId: 236025632784487
+              productionInstructionList:
+              - instruction: Bleu
+                ikentooModifierId: 236025632784488
+              - instruction: Rare
+                ikentooModifierId: 236025632784490
+              - instruction: Medium Rare
+                ikentooModifierId: 236025632784492
+              - instruction: Medium
+                ikentooModifierId: 236025632784494
+              - instruction: Medium well
+                ikentooModifierId: 236025632784496
+              - instruction: Well done
+                ikentooModifierId: 236025632784498
+    apePaymentBadRequestError:
+      description: Standard error payload returned for a rejected payment request.
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: The date and time at which the error occurred, in UTC.
+          example: 2023-11-07T23:00:20.075+0000
+        status:
+          type: integer
+          description: The HTTP status code indicating the type of error.
+          example: 400
+        error:
+          type: string
+          description: A short description of the HTTP status code meaning.
+          example: Bad Request
+        message:
+          type: string
+          description: A detailed message describing the error, including any specific details about the request that led to the error.
+          example: reference has already been used 12345678901234
+        path:
+          type: string
+          description: The request path where the error occurred.
+          example: /o/op/1/pay
+    apeBusinessLocationId:
+      description: The unique identifier for the business location.
+      type: integer
+      format: int64
+      example: 45454565682155
+    apeMenuItemEntryParent:
+      properties:
+        productName:
+          type: string
+          description: The name of the item.
+          example: Burger
+        productPrice:
+          type: number
+          description: The price of the item.
+          example: 10.0
+        extraPrice:
+          type: number
+          description: Additional item price when selected in a combo group.
+          example: 1.99
+        color:
+          type: string
+          description: The color of the menu button for this item.
+          example: blue
+        sku:
+          type: string
+          description: The SKU of the item.
+          example: '25'
+        customItemNameEnabled:
+          type: boolean
+          description: Whether the name of the item can be customized.
+          example: false
+        pricingStrategy:
+          type: string
+          description: The pricing type of the item.
+          example: PRICE_CANNOT_BE_CUSTOMIZED
+          enum:
+          - CUSTOMIZED_ITEM_PRICE_WILL_BE_NEGATIVE
+          - CUSTOMIZED_ITEM_PRICE_WILL_BE_POSTIVE
+          - CUSTOMIZED_ITEM_PRICE_WILL_BE_A_PERCENTAGE_OF_TOTAL
+          - PRICE_CANNOT_BE_CUSTOMIZED
+        itemRichData:
+          $ref: '#/components/schemas/apeItemRichData'
+        defaultTaxAmount:
+          description: The tax amount as calculated at the default tax rate (a sum for multiple taxes).
+          type: number
+          example: 1.5
+        defaultTaxPercentage:
+          description: The default tax percentage for this item (a sum for multiple taxes).
+          type: number
+          example: 15.0
+        taxIncludedInPrice:
+          description: Whether or not tax is included in the price of the item.
+          type: boolean
+          example: false
+        conditionalTaxRules:
+          description: Warning that actual tax depends on a POS Account condition and may be different from what is provided in this API.
+          type: boolean
+        taxes:
+          description: Detailed tax info
+          items:
+            $ref: '#/components/schemas/apeMenuItemTax'
+          type: array
+    apeTopLevelMenuGroupEntryV2:
+      allOf:
+      - type: object
+        properties:
+          '@type':
+            type: string
+            description: Indicates this is a menu group.
+            example: group
+            enum:
+            - group
+          id:
+            type: string
+            description: The menu group ID.
+            example: '141948669133028'
+          name:
+            type: string
+            description: The menu group name.
+            example: Mains
+          color:
+            type: string
+            description: The color of the button in the POS.
+            example: blue
+          menuEntry:
+            type: array
+            description: Array of menu entry objects.
+            items:
+              type: object
+              oneOf:
+              - $ref: '#/components/schemas/apeMenuItemEntryV2'
+              - $ref: '#/components/schemas/apeMenuDealEntryV2'
+              - $ref: '#/components/schemas/apeMenuGroupEntryV2'
+              - $ref: '#/components/schemas/apeMenuProductModifierEntryV2'
+              discriminator:
+                propertyName: '@type'
+                mapping:
+                  menuItem: '#/components/schemas/apeMenuItemEntryV2'
+                  menuDeal: '#/components/schemas/apeMenuDealEntryV2'
+                  group: '#/components/schemas/apeMenuGroupEntryV2'
+                  menuProductModifier: '#/components/schemas/apeMenuProductModifierEntryV2'
+    apePaginatedMetadata:
+      type: object
+      properties:
+        warnings:
+          description: A list of warnings that occurred during the request, but which did not prevent a successful response.  For instance, if the Business Location does not have the required POS app version to support item availability.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeCurrentWarning'
+        current:
+          $ref: '#/components/schemas/apeCurrentInfo'
+        total:
+          type: integer
+          format: int32
+          example: 1
+          description: Total number of items requested.
+        totalPages:
+          type: integer
+          format: int32
+          example: 10
+          description: Total number of pages of items.
+    apeMenuDealGroupV2:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the combo item grouping.
+          example: Side Dishes
+        sku:
+          type: string
+          description: The SKU of the combo item grouping.
+          example: '25'
+        mustSelectAnItem:
+          type: boolean
+          description: Whether or not this is a required selection.
+          example: true
+        multiSelectionPermitted:
+          type: boolean
+          description: Whether or not multiple items can be selected from this item grouping.
+          example: true
+        minimumSelection:
+          type: integer
+          format: int32
+          description: The minimum number of items that must be selected from this item grouping. If null then no minimum is set.
+          example: 1
+        maximumSelection:
+          type: integer
+          format: int32
+          description: The maximum number of items that can be selected from this item grouping. If null then no maximum is set.
+          example: 3
+        itemRichData:
+          $ref: '#/components/schemas/apeItemRichData'
+        items:
+          description: List of items to select from.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeMenuItemEntryV2'
+      description: Collections of item groups within the combo to select from.
+  securitySchemes:
+    OAuth2:
+      description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
+
+        See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
+
+        '
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            orders-api: 'Read business information, floors, menus, discounts, and production instructions.
+
+              Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.'
+            financial-api: Read financial data
+            reservation-***: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code) of the reservation platform.
+            items: Read and write items
+            propertymanagement: Read and write Property Management System configurations.
+            id-cards: Create and manage ID card batches and cards.
+            staff-api: Read shift information, read and write user information.
+            reservations-api: 'Configure *legacy* reservation integrations.
+
+              **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
+
+              More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).'
+x-tagGroups:
+- name: Rich Item API
+  tags:
+  - Rich Item
+  - Migration
+- name: Tax Preview API
+  tags:
+  - Tax Breakdown
+- name: Staff Api
+  tags:
+  - Staff
+  - Internal Staff
+- name: Reservation API
+  tags:
+  - Reservations for Platforms
+- name: PMS API
+  tags:
+  - PMS
+- name: Items API
+  tags:
+  - Items
+  - ItemsV2
+  - Menus
+  - Buttons
+  - Production Instructions
+  - Inventory
+  - Combos
+  - Groups
+  - MenusV2
+  - Accounting Group
+  - IntegrationMenu
+  - Price Lists
+  - Products
+  - ItemAppearance
+  - Modifiers
+  - ModifierGroups
+  - Allergens
+  - Locales
+  - RichItem
+- name: id-cards-api API
+  tags:
+  - ID Cards
+- name: Financial API
+  tags:
+  - Financial
+  - FinancialV2
+- name: Online Ordering API
+  tags:
+  - Order and Pay
+  - 'Order and Pay: Webhook'

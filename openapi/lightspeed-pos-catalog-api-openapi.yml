@@ -1,0 +1,269 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Lightspeed Restaurant K Series Account Catalog API
+  description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
+
+    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+
+    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
+
+    '
+  x-logo:
+    altText: Lightspeed Commerce
+    url: static/lightspeed@2x.png
+  contact:
+    name: Lightspeed Commerce
+    url: https://api-portal.lsk.lightspeed.app/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-02'
+  x-source-url: https://api-docs.lsk.lightspeed.app/source.json
+servers:
+- url: https://api.trial.lsk.lightspeed.app
+  description: Demo URL
+  x-bump-branch-name: demo
+- url: https://api.lsk.lightspeed.app
+  description: Production URL
+  x-bump-branch-name: prod
+tags:
+- name: Catalog
+  description: Categories, manufacturers, and vendors that classify items.
+paths:
+  /Account/{accountID}/Category.json:
+    get:
+      summary: Lightspeed List Categories
+      operationId: getCategories
+      description: Returns the item categories defined for the account.
+      tags:
+      - Catalog
+      security:
+      - OAuth2:
+        - employee:inventory_read
+      parameters:
+      - $ref: '#/components/parameters/accountID'
+      responses:
+        '200':
+          description: A page of categories.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Category:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+              examples:
+                GetCategories200Example:
+                  summary: Default getCategories 200 response
+                  x-microcks-default: true
+                  value:
+                    Category:
+                    - categoryID: '500123'
+                      name: Sample name
+                      parentID: '500123'
+                      fullPathName: Sample fullPathName
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /Account/{accountID}/Manufacturer.json:
+    get:
+      summary: Lightspeed List Manufacturers
+      operationId: getManufacturers
+      description: Returns the manufacturers defined for the account.
+      tags:
+      - Catalog
+      security:
+      - OAuth2:
+        - employee:inventory_read
+      parameters:
+      - $ref: '#/components/parameters/accountID'
+      responses:
+        '200':
+          description: A page of manufacturers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manufacturer:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Manufacturer'
+              examples:
+                GetManufacturers200Example:
+                  summary: Default getManufacturers 200 response
+                  x-microcks-default: true
+                  value:
+                    Manufacturer:
+                    - manufacturerID: '500123'
+                      name: Sample name
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /Account/{accountID}/Vendor.json:
+    get:
+      summary: Lightspeed List Vendors
+      operationId: getVendors
+      description: Returns the vendors (suppliers) defined for the account.
+      tags:
+      - Catalog
+      security:
+      - OAuth2:
+        - employee:inventory_read
+      parameters:
+      - $ref: '#/components/parameters/accountID'
+      responses:
+        '200':
+          description: A page of vendors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Vendor:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Vendor'
+              examples:
+                GetVendors200Example:
+                  summary: Default getVendors 200 response
+                  x-microcks-default: true
+                  value:
+                    Vendor:
+                    - vendorID: '500123'
+                      name: Sample name
+                      accountNumber: example
+                      contactID: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    accountID:
+      name: accountID
+      in: path
+      required: true
+      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+      schema:
+        type: string
+  schemas:
+    Category:
+      type: object
+      description: An item category used to classify inventory.
+      properties:
+        categoryID:
+          type: string
+          description: Unique category identifier.
+        name:
+          type: string
+          description: Category name.
+        parentID:
+          type: string
+          description: Identifier of the parent category.
+        fullPathName:
+          type: string
+          description: Fully qualified category path.
+    Vendor:
+      type: object
+      description: A vendor (supplier) of inventory items.
+      properties:
+        vendorID:
+          type: string
+          description: Unique vendor identifier.
+        name:
+          type: string
+          description: Vendor name.
+        accountNumber:
+          type: string
+          description: Merchant account number with the vendor.
+        contactID:
+          type: string
+          description: Identifier of the related contact record.
+    Manufacturer:
+      type: object
+      description: A manufacturer of inventory items.
+      properties:
+        manufacturerID:
+          type: string
+          description: Unique manufacturer identifier.
+        name:
+          type: string
+          description: Manufacturer name.
+  securitySchemes:
+    OAuth2:
+      description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
+
+        See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
+
+        '
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            orders-api: 'Read business information, floors, menus, discounts, and production instructions.
+
+              Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.'
+            financial-api: Read financial data
+            reservation-***: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code) of the reservation platform.
+            items: Read and write items
+            propertymanagement: Read and write Property Management System configurations.
+            id-cards: Create and manage ID card batches and cards.
+            staff-api: Read shift information, read and write user information.
+            reservations-api: 'Configure *legacy* reservation integrations.
+
+              **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
+
+              More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).'
+x-tagGroups:
+- name: Rich Item API
+  tags:
+  - Rich Item
+  - Migration
+- name: Tax Preview API
+  tags:
+  - Tax Breakdown
+- name: Staff Api
+  tags:
+  - Staff
+  - Internal Staff
+- name: Reservation API
+  tags:
+  - Reservations for Platforms
+- name: PMS API
+  tags:
+  - PMS
+- name: Items API
+  tags:
+  - Items
+  - ItemsV2
+  - Menus
+  - Buttons
+  - Production Instructions
+  - Inventory
+  - Combos
+  - Groups
+  - MenusV2
+  - Accounting Group
+  - IntegrationMenu
+  - Price Lists
+  - Products
+  - ItemAppearance
+  - Modifiers
+  - ModifierGroups
+  - Allergens
+  - Locales
+  - RichItem
+- name: id-cards-api API
+  tags:
+  - ID Cards
+- name: Financial API
+  tags:
+  - Financial
+  - FinancialV2
+- name: Online Ordering API
+  tags:
+  - Order and Pay
+  - 'Order and Pay: Webhook'

@@ -1,0 +1,1592 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Lightspeed Restaurant K Series Account Reservations for Platforms API
+  description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
+
+    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+
+    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
+
+    '
+  x-logo:
+    altText: Lightspeed Commerce
+    url: static/lightspeed@2x.png
+  contact:
+    name: Lightspeed Commerce
+    url: https://api-portal.lsk.lightspeed.app/
+  x-generated-from: documentation
+  x-last-validated: '2026-06-02'
+  x-source-url: https://api-docs.lsk.lightspeed.app/source.json
+servers:
+- url: https://api.trial.lsk.lightspeed.app
+  description: Demo URL
+  x-bump-branch-name: demo
+- url: https://api.lsk.lightspeed.app
+  description: Production URL
+  x-bump-branch-name: prod
+tags:
+- name: Reservations for Platforms
+paths:
+  /reservation/api/1/platform/{platform-code}/integration/onboarding:
+    post:
+      description: Once the external platform receives the [onboarding webhook](https://api-docs.lsk.lightspeed.app/operation/operation-reservationonboardingnotification), the process needs to be completed using this callback.
+      operationId: reservation-serviceOnboardingCallback
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-serviceOnboardingCallbackRequest'
+            examples:
+              Reservation-serviceOnboardingCallbackRequestExample:
+                summary: Default reservation-serviceOnboardingCallback request
+                x-microcks-default: true
+                value:
+                  businessLocationId: 9765040300495493
+                  onboardingCode: DONE
+                  onboardingId: 84f16177-98c5-4010-a7ab-d00144d1dede
+                  platformRestaurantId: Restaurant-123
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-serviceOnboardingCallbackResponse'
+              examples:
+                Reservation-serviceOnboardingCallback200Example:
+                  summary: Default reservation-serviceOnboardingCallback 200 response
+                  x-microcks-default: true
+                  value:
+                    onboardingCode: DONE
+          description: Accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-serviceOnboardingCallbackResponse'
+              examples:
+                Reservation-serviceOnboardingCallback400Example:
+                  summary: Default reservation-serviceOnboardingCallback 400 response
+                  x-microcks-default: true
+                  value:
+                    onboardingCode: DONE
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-serviceOnboardingCallbackResponse'
+              examples:
+                Reservation-serviceOnboardingCallback404Example:
+                  summary: Default reservation-serviceOnboardingCallback 404 response
+                  x-microcks-default: true
+                  value:
+                    onboardingCode: DONE
+          description: Platform not found
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Callback to Complete Onboarding
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/profile:
+    get:
+      description: Retrieve platform profile details.
+      operationId: reservation-serviceGetByPlatformCode
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformProfileResponse'
+              examples:
+                Reservation-serviceGetByPlatformCode200Example:
+                  summary: Default reservation-serviceGetByPlatformCode 200 response
+                  x-microcks-default: true
+                  value:
+                    baseUrl: https://my.platform/api/lsk
+                    depositSupported: true
+                    displayName: My Platform
+                    errorsWebhookUrl: https://my.platform/api/lsk/webhook/errors
+                    integrationWebhookUrl: https://my.platform/api/lsk/webhook/integrations
+                    notificationTypes:
+                    - ORDER_CLOSED
+                    onboardingWebhookUrl: https://my.platform/api/lsk/webhook/onboarding
+                    orderWebhookUrl: https://my.platform/api/lsk/webhook/orders
+                    posReservationUpdateWebhookUrl: https://my.platform/api/lsk/webhook/reservation
+                    ownNotificationsOnly: true
+                    webhookAuthType: OAUTH2
+                    allowCourseNumberUpdates: true
+                    inServiceTableStatuses:
+                    - statusLabel: Appetizer
+                      statusValue: appetizer
+                      sequence: 1
+                    allowedPosStatuses:
+                    - SCHEDULED
+          description: Platform profile details
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Platform Profile Details
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: Create or update details for external reservation platform.
+      operationId: reservation-serviceSetByPlatformCode
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformProfile'
+            examples:
+              Reservation-serviceSetByPlatformCodeRequestExample:
+                summary: Default reservation-serviceSetByPlatformCode request
+                x-microcks-default: true
+                value:
+                  baseUrl: https://my.platform/api/lsk
+                  depositSupported: true
+                  displayName: My Platform
+                  errorsWebhookUrl: https://my.platform/api/lsk/webhook/errors
+                  integrationWebhookUrl: https://my.platform/api/lsk/webhook/integrations
+                  notificationTypes:
+                  - ORDER_CLOSED
+                  onboardingWebhookUrl: https://my.platform/api/lsk/webhook/onboarding
+                  orderWebhookUrl: https://my.platform/api/lsk/webhook/orders
+                  posReservationUpdateWebhookUrl: https://my.platform/api/lsk/webhook/reservation
+                  ownNotificationsOnly: true
+                  webhookAuthDetails:
+                    apiKeys:
+                      headers:
+                        X-API-ID: Example-x-api-id
+                        X-API-SECRET: Example-x-api-secret
+                      parameters: {}
+                    basic:
+                      password: Example-Password
+                      username: LightspeedKSeries
+                    bearer:
+                      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                      ttl: '2035-01-01T00:00:00'
+                    oauth2:
+                      authorizationGrantType: CLIENT_CREDENTIALS
+                      clientAuthorizationMethod: CLIENT_SECRET_BASIC
+                      clientId: LightspeedKSeries
+                      clientName: LightspeedKSeries
+                      clientSecret: Example-Client-Secret
+                      providerJwkSetUri: https://my.platform/public-keys
+                      providerTokenUri: https://my.platform/emitter/token
+                      scopes:
+                      - webhooks-api
+                  webhookAuthType: OAUTH2
+                  allowCourseNumberUpdates: true
+                  inServiceTableStatuses:
+                  - statusLabel: Appetizer
+                    statusValue: appetizer
+                    sequence: 1
+                  allowedPosStatuses:
+                  - SCHEDULED
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformProfileResponse'
+              examples:
+                Reservation-serviceSetByPlatformCode200Example:
+                  summary: Default reservation-serviceSetByPlatformCode 200 response
+                  x-microcks-default: true
+                  value:
+                    baseUrl: https://my.platform/api/lsk
+                    depositSupported: true
+                    displayName: My Platform
+                    errorsWebhookUrl: https://my.platform/api/lsk/webhook/errors
+                    integrationWebhookUrl: https://my.platform/api/lsk/webhook/integrations
+                    notificationTypes:
+                    - ORDER_CLOSED
+                    onboardingWebhookUrl: https://my.platform/api/lsk/webhook/onboarding
+                    orderWebhookUrl: https://my.platform/api/lsk/webhook/orders
+                    posReservationUpdateWebhookUrl: https://my.platform/api/lsk/webhook/reservation
+                    ownNotificationsOnly: true
+                    webhookAuthType: OAUTH2
+                    allowCourseNumberUpdates: true
+                    inServiceTableStatuses:
+                    - statusLabel: Appetizer
+                      statusValue: appetizer
+                      sequence: 1
+                    allowedPosStatuses:
+                    - SCHEDULED
+          description: Platform profile details
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Create or Update Platform Profile
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/course-settings:
+    patch:
+      description: Setup platform's course settings definition.
+      operationId: reservation-servicePlatformCourseSettings
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformCourseSettingsDto'
+            examples:
+              Reservation-servicePlatformCourseSettingsRequestExample:
+                summary: Default reservation-servicePlatformCourseSettings request
+                x-microcks-default: true
+                value:
+                  allowCourseNumberUpdates: true
+                  inServiceTableStatuses:
+                  - statusLabel: Appetizer
+                    statusValue: appetizer
+                    sequence: 1
+      responses:
+        '200':
+          description: Accepted
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Platform Course Settings Definition
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/restaurant/{platform-restaurant-id}/reservation/{platform-reservation-id}/push:
+    put:
+      description: Create a new reservation or provide updates about guests, deposits, status, etc.
+      operationId: reservation-servicePushPlatformReservation
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      - in: path
+        name: platform-restaurant-id
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformRestaurantId'
+      - description: The external identifier of the reservation.
+        in: path
+        name: platform-reservation-id
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformReservationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformReservation'
+            examples:
+              Reservation-servicePushPlatformReservationRequestExample:
+                summary: Default reservation-servicePushPlatformReservation request
+                x-microcks-default: true
+                value:
+                  guest:
+                    email: john.smith@email.com
+                    firstName: John
+                    lastName: Smith
+                    phone: '+13453455555'
+                    platformGuestId: ABC-123
+                    walkIn: true
+                    foodAndDrinkNotes: Only milk and cookies!
+                    notes: Put the ring in the champagne!
+                    language: en
+                    allergens:
+                    - almonds
+                    - egg
+                    dietaryRestrictions:
+                    - no alcohol
+                    - vegan
+                  liability:
+                    currency: EUR
+                    deposits:
+                    - {}
+                    refunds:
+                    - {}
+                  notes: More balloons!
+                  specialOffer: Free dessert
+                  tags:
+                  - romantic meal
+                  - special occasion
+                  partySize: 2
+                  sequenceId: 145789499819
+                  status: SCHEDULED
+                  tableNumbers:
+                  - '1'
+                  utcScheduledAt: '2024-01-01T20:00:00'
+                  utcUpdatedAt: '2024-01-01T20:10:00'
+                  guestRequest: I would need two baby chairs.
+                  expectedDuration: PT30M
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformReservationAcceptedDto'
+              examples:
+                Reservation-servicePushPlatformReservation202Example:
+                  summary: Default reservation-servicePushPlatformReservation 202 response
+                  x-microcks-default: true
+                  value:
+                    platformCode: MyPlatform
+                    platformRestaurantId: Restaurant-123
+                    platformReservationId: Reservation-123
+                    accepted: true
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+        '404':
+          description: Integration not found
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Create or Update Reservation
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/webhook/auth/api-keys:
+    patch:
+      description: Activate XApiKey authentication for webhooks.
+      operationId: reservation-serviceActivateApiKeysAuth
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformAPIKeysWebhook'
+            examples:
+              Reservation-serviceActivateApiKeysAuthRequestExample:
+                summary: Default reservation-serviceActivateApiKeysAuth request
+                x-microcks-default: true
+                value:
+                  headers:
+                    X-API-ID: Example-x-api-id
+                    X-API-SECRET: Example-x-api-secret
+                  parameters: {}
+      responses:
+        '200':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformWebhookResponseDto'
+              examples:
+                Reservation-serviceActivateApiKeysAuth200Example:
+                  summary: Default reservation-serviceActivateApiKeysAuth 200 response
+                  x-microcks-default: true
+                  value:
+                    accepted: true
+                    currentAuthType: BEARER_TOKEN
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+        '404':
+          description: Platform not found
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Add Authentication by XApiKey
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/webhook/auth/basic-auth:
+    patch:
+      description: Activate BasicAuth authentication for webhooks.
+      operationId: reservation-serviceActivateBasicAuth
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformBasicAuthWebhook'
+            examples:
+              Reservation-serviceActivateBasicAuthRequestExample:
+                summary: Default reservation-serviceActivateBasicAuth request
+                x-microcks-default: true
+                value:
+                  password: Example-Password
+                  username: LightspeedKSeries
+      responses:
+        '200':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformWebhookResponseDto'
+              examples:
+                Reservation-serviceActivateBasicAuth200Example:
+                  summary: Default reservation-serviceActivateBasicAuth 200 response
+                  x-microcks-default: true
+                  value:
+                    accepted: true
+                    currentAuthType: OAUTH2
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+        '404':
+          description: Platform not found
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Add Authentication with BasicAuth
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/webhook/auth/bearer-auth:
+    patch:
+      description: Activate BearerAuth authentication for webhooks.
+      operationId: reservation-serviceActivateBearerAuthAuth
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformBearerTokenWebhook'
+            examples:
+              Reservation-serviceActivateBearerAuthAuthRequestExample:
+                summary: Default reservation-serviceActivateBearerAuthAuth request
+                x-microcks-default: true
+                value:
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+                  ttl: '2035-01-01T00:00:00'
+      responses:
+        '200':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformWebhookResponseDto'
+              examples:
+                Reservation-serviceActivateBearerAuthAuth200Example:
+                  summary: Default reservation-serviceActivateBearerAuthAuth 200 response
+                  x-microcks-default: true
+                  value:
+                    accepted: true
+                    currentAuthType: BEARER_TOKEN
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+        '404':
+          description: Platform not found
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Add Authentication with BearerAuth
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/platform/{platform-code}/webhook/auth/oauth2:
+    patch:
+      description: Activate OAuth2 authentication for webhooks.
+      operationId: reservation-serviceActivateOAuth2
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformOAuth2Webhook'
+            examples:
+              Reservation-serviceActivateOAuth2RequestExample:
+                summary: Default reservation-serviceActivateOAuth2 request
+                x-microcks-default: true
+                value:
+                  authorizationGrantType: CLIENT_CREDENTIALS
+                  clientAuthorizationMethod: CLIENT_SECRET_BASIC
+                  clientId: LightspeedKSeries
+                  clientName: LightspeedKSeries
+                  clientSecret: Example-Client-Secret
+                  providerJwkSetUri: https://my.platform/public-keys
+                  providerTokenUri: https://my.platform/emitter/token
+                  scopes:
+                  - webhooks-api
+      responses:
+        '200':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation-servicePlatformWebhookResponseDto'
+              examples:
+                Reservation-serviceActivateOAuth2200Example:
+                  summary: Default reservation-serviceActivateOAuth2 200 response
+                  x-microcks-default: true
+                  value:
+                    accepted: true
+                    currentAuthType: BEARER_TOKEN
+        '400':
+          description: Non relevant request
+        '403':
+          description: Scope 'reservation-{platform-code}' not found in the token
+        '404':
+          description: Platform not found
+      security:
+      - OAuth2:
+        - reservation-platform-code
+      summary: Lightspeed Add Authentication with OAuth2
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/user/platform/{platform-code}/business-locations:
+    get:
+      description: Retrieve all the business locations accessible for a User
+      operationId: reservation-serviceGetBusinessLocations
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      - description: The page number, when paginating
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The items per page, when paginating
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 1000
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/reservation-servicePlatformBusinessLocation'
+                type: array
+                examples:
+                - - businessLocationId: '123456789'
+                    city: Genève
+                    country: CH
+                    name: Le Gâteau
+                    state: Canton de Genève
+                    street1: Rue de la Servette 10
+                    street2: Suite 2
+                    zip: '101201'
+              examples:
+                Reservation-serviceGetBusinessLocations200Example:
+                  summary: Default reservation-serviceGetBusinessLocations 200 response
+                  x-microcks-default: true
+                  value:
+                  - businessLocationId: '500123'
+                    city: example
+                    country: example
+                    name: Sample name
+                    state: example
+                    street1: example
+                    street2: example
+                    zip: example
+          description: A list of business locations
+        '400':
+          description: Non relevant request
+        '403':
+          description: Access token not relevant for the businessLocation, use authorization-code
+        '404':
+          description: No business locations found
+      security:
+      - OAuth2:
+        - user-token-by-authorization-code
+      summary: Lightspeed Get Business Locations
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/user/platform/{platform-code}/integration/activate:
+    post:
+      description: Activate the integration between the K-Series business location and the external reservation platform.
+      operationId: reservation-serviceActivatePlatformIntegration
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformIntegrationDto'
+            examples:
+              Reservation-serviceActivatePlatformIntegrationRequestExample:
+                summary: Default reservation-serviceActivatePlatformIntegration request
+                x-microcks-default: true
+                value:
+                  businessLocationId: 9765040300495493
+                  platformRestaurantId: Restaurant-123
+      responses:
+        '200':
+          description: Accepted
+        '400':
+          description: Non relevant request
+        '403':
+          description: Access token not relevant for the businessLocation, use authorization-code
+        '404':
+          description: Platform not found
+      security:
+      - OAuth2:
+        - user-token-by-authorization-code
+      summary: Lightspeed Activate Integration for Restaurant
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reservation/api/1/user/platform/{platform-code}/integration/deactivate:
+    post:
+      description: Deactivate the integration between the K-Series business location and the external reservation platform.
+      operationId: reservation-serviceDeactivatePlatformIntegration
+      parameters:
+      - in: path
+        name: platform-code
+        required: true
+        schema:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservation-servicePlatformIntegrationDto'
+            examples:
+              Reservation-serviceDeactivatePlatformIntegrationRequestExample:
+                summary: Default reservation-serviceDeactivatePlatformIntegration request
+                x-microcks-default: true
+                value:
+                  businessLocationId: 9765040300495493
+                  platformRestaurantId: Restaurant-123
+      responses:
+        '200':
+          description: Accepted
+        '400':
+          description: Non relevant request
+        '403':
+          description: Access token not relevant for the businessLocation, use authorization-code
+        '404':
+          description: Platform not found
+      security:
+      - OAuth2:
+        - user-token-by-authorization-code
+      summary: Lightspeed Deactivate Integration for Restaurant
+      tags:
+      - Reservations for Platforms
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    reservation-servicePlatformReservationAcceptedDto:
+      required:
+      - accepted
+      - platformCode
+      - platformReservationId
+      - platformRestaurantId
+      type: object
+      properties:
+        platformCode:
+          $ref: '#/components/schemas/reservation-servicePlatformCode'
+        platformRestaurantId:
+          description: The external platform's unique identifier for the restaurant.
+          example: Restaurant-123
+          pattern: '[a-zA-Z0-9_-]+'
+          type: string
+        platformReservationId:
+          description: The external platform's unique identifier for the reservation.
+          example: Reservation-123
+          maxLength: 36
+          pattern: '[a-zA-Z0-9_-]+'
+          type: string
+        accepted:
+          description: Whether the reservation request was accepted.
+          example: true
+          type: boolean
+    reservation-serviceBusinessLocationId:
+      description: The unique identifier of the business location.
+      example: 9765040300495493
+      format: int64
+      type: integer
+    reservation-servicePlatformCode:
+      description: The unique code assigned to the reservation platform.
+      example: MyPlatform
+      maxLength: 11
+      pattern: '[a-zA-Z0-9_-]+'
+      type: string
+    reservation-servicePlatformReservationId:
+      description: The external platform's unique identifier for the reservation.
+      example: Reservation-123
+      maxLength: 36
+      pattern: '[a-zA-Z0-9_-]+'
+      type: string
+    reservation-servicePlatformRestaurantId:
+      description: The external platform's unique identifier for the restaurant.
+      example: Restaurant-123
+      pattern: '[a-zA-Z0-9_-]+'
+      type: string
+    reservation-serviceOnboardingCode:
+      description: The machine code to interact with the external platform during the onboarding process.
+      enum:
+      - ACCEPTED
+      - DONE
+      - ONBOARDING_EXPIRED
+      - ONBOARDING_ID_NOT_VALID
+      - PLATFORM_CODE_NOT_VALID
+      - BUSINESS_LOCATION_NOT_VALID
+      - PLATFORM_RESTAURANT_NOT_VALID
+      - PLATFORM_RESTAURANT_NOT_FOUND
+      - UNEXPECTED_ERROR
+      example: DONE
+      type: string
+    reservation-servicePlatformDepositSupported:
+      description: Whether or not the platform supports deposits.
+      example: true
+      type: boolean
+    reservation-servicePlatformReservationStatus:
+      description: External reservation statuses for platforms.
+      enum:
+      - ON_HOLD
+      - SCHEDULED
+      - PARTIALLY_ARRIVED
+      - ARRIVED
+      - PARTIALLY_SEATED
+      - SEATED
+      - DEPARTED
+      - CANCELLED
+      - NO_SHOW
+      - ERROR
+      example: SCHEDULED
+      type: string
+    reservation-serviceLiability:
+      description: The guest's obligation for the reservation.
+      properties:
+        currency:
+          description: ISO-4217
+          example: EUR
+          pattern: '[A-Z]{3}'
+          type: string
+        deposits:
+          description: List of all prepaid deposits made through the external platform.
+          items:
+            properties:
+              amount:
+                description: The amount of the deposit made through the external platform.
+                example: '100.00'
+                pattern: ^[0-9]+.[0-9]{2}$
+                type: string
+              platformDepositId:
+                description: The external platform's unique identifier for the deposit.
+                example: '1'
+                pattern: '[a-zA-Z0-9_-]+'
+                type: string
+              utcCreatedAt:
+                description: Deposit creation time.
+                example: '2024-01-01T20:00:00'
+                format: date-time
+                type: string
+                x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+              utcVoidedAt:
+                description: Deposit void time, if applicable.
+                example: '2024-01-01T20:00:00'
+                format: date-time
+                type: string
+                x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+              voided:
+                description: Whether or not the deposit was voided.
+                example: false
+                type: boolean
+            required:
+            - amount
+            - utcCreatedAt
+            type: object
+          type: array
+          uniqueItems: true
+        refunds:
+          description: List of all deposits refunded to the guest.
+          items:
+            properties:
+              amount:
+                description: The amount which was refunded by the external platform.
+                example: '100.00'
+                pattern: ^[0-9]+.[0-9]{2}$
+                type: string
+              platformRefundId:
+                description: The external platform's unique identifier for the refund.
+                example: '1'
+                pattern: '[a-zA-Z0-9_-]+'
+                type: string
+              utcCreatedAt:
+                description: Refund creation time.
+                example: '2024-01-01T20:00:00'
+                format: date-time
+                type: string
+                x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+              utcVoidedAt:
+                description: Refund void time, if applicable.
+                example: '2024-01-01T20:00:00'
+                format: date-time
+                type: string
+                x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+              voided:
+                description: Whether or not the refund was voided.
+                example: false
+                type: boolean
+            required:
+            - amount
+            - utcCreatedAt
+            type: object
+          type: array
+          uniqueItems: true
+      required:
+      - currency
+      - deposits
+      type: object
+    reservation-servicePlatformCourseSettingsDto:
+      properties:
+        allowCourseNumberUpdates:
+          type: boolean
+          example: true
+          default: false
+          description: If true, table statuses can be customized using a number format.
+        inServiceTableStatuses:
+          items:
+            $ref: '#/components/schemas/reservation-servicePlatformTableStatusDto'
+          type: array
+          description: List of customizable table statuses that will be used to notify platforms about reservation progress with outbound API.
+      type: object
+    reservation-servicePlatformReservation:
+      properties:
+        guest:
+          description: Guest information associated with the reservation.
+          properties:
+            email:
+              description: The guest's email address.
+              example: john.smith@email.com
+              format: email
+              type: string
+            firstName:
+              description: The guest's first name.
+              example: John
+              type: string
+            lastName:
+              description: The guest's last name.
+              example: Smith
+              type: string
+            phone:
+              description: The guest's phone number.
+              example: '+13453455555'
+              format: phone
+              type: string
+            platformGuestId:
+              description: The external platform's unique identifier for the guest.
+              example: ABC-123
+              pattern: '[a-zA-Z0-9_-]+'
+              type: string
+            walkIn:
+              default: false
+              description: When `true`, indicates this is a walk-in reservation.
+              example: true
+              type: boolean
+            foodAndDrinkNotes:
+              example: Only milk and cookies!
+              type: string
+              description: Any details about guest's food and drink preferences.
+            notes:
+              example: Put the ring in the champagne!
+              type: string
+              description: Other notes about the guest.
+            language:
+              example: en
+              type: string
+              description: Guest's language; use [two-symbol ISO-639](https://www.loc.gov/standards/iso639-2/php/code_list.php) for best results on POS.
+            allergens:
+              example:
+              - almonds
+              - egg
+              items:
+                type: string
+              type: array
+              uniqueItems: true
+              description: Any allergens linked to this guest. See [Allergens](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/allergens) table for a list of allergen names with available translations. Any other text will be displayed as provided in the request body.
+            dietaryRestrictions:
+              example:
+              - no alcohol
+              - vegan
+              items:
+                type: string
+              type: array
+              uniqueItems: true
+              description: Any dietary restrictions linked to this guest. See [Dietary Restrictions](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/dietary-restrictions) table for a list of restrictions with available translations. Any other text will be displayed as provided in the request body.
+          required:
+          - platformGuestId
+          - firstName
+          type: object
+        liability:
+          $ref: '#/components/schemas/reservation-serviceLiability'
+        notes:
+          example: More balloons!
+          type: string
+          description: Venue-entered notes specific to the reservation.
+        specialOffer:
+          example: Free dessert
+          type: string
+          description: Any special offer linked to the reservation.
+        tags:
+          example:
+          - romantic meal
+          - special occasion
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+          description: Tags linked to this reservation. See [Reservation Tags](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/reservation-tags) table for a list of tags with available translations. All others will be displayed as provided in the request body.
+        partySize:
+          description: The number of expected guests.
+          example: 2
+          format: int32
+          type: integer
+        sequenceId:
+          description: 'An optional sequence number assigned by the external platform. If provided, it will be used to determine the order of updates of a reservation. It is the responsibility of the external platform to provide a monotonically increasing sequence number.
+
+            If omitted, the utcUpdatedAt field will be used to determine the order of updates. That can be imprecise when dealing with events that happen in short timeframes in a distributed system.
+
+            The value SHOULD NOT be set to null or zero or any special value, but instead omitted from the JSON object entirely if it is not used.
+
+            '
+          example: 145789499819
+          type: integer
+          format: int64
+        status:
+          $ref: '#/components/schemas/reservation-servicePlatformReservationStatus'
+        tableNumbers:
+          description: 'The list of table numbers associated with this reservation.
+
+            If no valid table is provided, POS order is not created.
+
+            '
+          example:
+          - '1'
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        utcScheduledAt:
+          description: The scheduled reservation time.
+          example: '2024-01-01T20:00:00'
+          format: date-time
+          type: string
+          x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+        utcUpdatedAt:
+          description: 'The timestamp of the most recent change to the reservation.
+
+            '
+          example: '2024-01-01T20:10:00'
+          format: date-time
+          type: string
+          x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+        guestRequest:
+          description: Notes added to the reservation by the guest.
+          example: I would need two baby chairs.
+          type: string
+        expectedDuration:
+          description: Expected duration of the meal. ISO-8601 format.
+          example: PT30M
+          type: string
+          format: duration
+          x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+      required:
+      - utcUpdatedAt
+      - utcScheduledAt
+      - partySize
+      - guest
+      - status
+      type: object
+    reservation-servicePlatformDisplayName:
+      description: The official platform name that will be displayed.
+      example: My Platform
+      type: string
+    reservation-serviceOnboardingCallbackResponse:
+      properties:
+        onboardingCode:
+          $ref: '#/components/schemas/reservation-serviceOnboardingCode'
+      required:
+      - onboardingCode
+      type: object
+    reservation-servicePlatformProfile:
+      properties:
+        baseUrl:
+          description: The base URL of the external platform (optional).
+          example: https://my.platform/api/lsk
+          format: uri
+          type: string
+        depositSupported:
+          $ref: '#/components/schemas/reservation-servicePlatformDepositSupported'
+        displayName:
+          $ref: '#/components/schemas/reservation-servicePlatformDisplayName'
+        errorsWebhookUrl:
+          description: 'The URL where notifications for any issues will be sent. <br> Required for [`error` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Get Sample Error notification](https://api-docs.lsk.lightspeed.app/operation/operation-reservationErrorNotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/errors
+          type: string
+          format: uri
+        integrationWebhookUrl:
+          description: 'The URL where notifications for activation or deactivation of the customer''s integration will be sent. <br> Required for [`integration` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Integration notification](https://api-docs.lsk.lightspeed.app/operation/operation-reservationintegrationnotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/integrations
+          type: string
+          format: uri
+        notificationTypes:
+          description: The events that trigger a notification.
+          example:
+          - ORDER_CLOSED
+          items:
+            type: string
+            enum:
+            - ORDER_OPENED
+            - ORDER_UPDATED
+            - ORDER_CLOSED
+            - ONBOARDING_STARTED
+            - INTEGRATION_ACTIVATED
+            - INTEGRATION_DEACTIVATED
+            - POS_RESERVATION_UPDATED
+            - ERROR
+          type: array
+          uniqueItems: true
+        onboardingWebhookUrl:
+          description: 'The URL where notifications for the customer''s integration onboarding will be sent. <br> Required for [`onboarding` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Onboarding notification](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservationonboardingnotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/onboarding
+          type: string
+          format: uri
+        orderWebhookUrl:
+          description: 'The URL where order notifications will be sent. <br> Required for [`order` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Order Notification](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservationordernotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/orders
+          type: string
+          format: uri
+        posReservationUpdateWebhookUrl:
+          description: The URL where notifications about reservation changes on POS will be sent.
+          type: string
+          format: uri
+          example: https://my.platform/api/lsk/webhook/reservation
+        ownNotificationsOnly:
+          description: When `true`, notifications will only be sent for orders linked to the reservation platform.
+          example: true
+          type: boolean
+        webhookAuthDetails:
+          description: The authentication credentials to be sent with the webhook notifications.
+          properties:
+            apiKeys:
+              $ref: '#/components/schemas/reservation-servicePlatformAPIKeysWebhook'
+            basic:
+              $ref: '#/components/schemas/reservation-servicePlatformBasicAuthWebhook'
+            bearer:
+              $ref: '#/components/schemas/reservation-servicePlatformBearerTokenWebhook'
+            oauth2:
+              $ref: '#/components/schemas/reservation-servicePlatformOAuth2Webhook'
+          type: object
+        webhookAuthType:
+          description: The type of authentication used by the webhook.
+          enum:
+          - BASIC_AUTH
+          - BEARER_TOKEN
+          - API_KEYS
+          - OAUTH2
+          - NONE
+          example: OAUTH2
+          type: string
+        allowCourseNumberUpdates:
+          type: boolean
+          example: true
+          default: false
+          description: If true, table statuses can be customized using a number format.
+        inServiceTableStatuses:
+          items:
+            $ref: '#/components/schemas/reservation-servicePlatformTableStatusDto'
+          type: array
+          description: List of customizable table statuses that will be used to notify platforms about reservation progress with outbound API.
+        allowedPosStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/reservation-servicePlatformReservationStatus'
+      required:
+      - displayName
+      - webhookAuthType
+      - webhookAuthDetails
+      type: object
+    reservation-servicePlatformAPIKeysWebhook:
+      description: The API keys that will be sent with the webhook notifications. See [API Keys](https://swagger.io/docs/specification/authentication/api-keys/).
+      properties:
+        headers:
+          additionalProperties:
+            description: Key-value pairs of arbitrary static headers to send with the webhook request.
+            type: string
+          example:
+            X-API-ID: Example-x-api-id
+            X-API-SECRET: Example-x-api-secret
+          type: object
+        parameters:
+          additionalProperties:
+            description: Key-value pairs of arbitrary static query parameters to send with the webhook request.
+            type: string
+          example: {}
+          type: object
+      type: object
+    reservation-servicePlatformIntegrationDto:
+      properties:
+        businessLocationId:
+          $ref: '#/components/schemas/reservation-serviceBusinessLocationId'
+        platformRestaurantId:
+          $ref: '#/components/schemas/reservation-servicePlatformRestaurantId'
+      required:
+      - businessLocationId
+      - platformRestaurantId
+      type: object
+    reservation-serviceOnboardingCallbackRequest:
+      properties:
+        businessLocationId:
+          $ref: '#/components/schemas/reservation-serviceBusinessLocationId'
+        onboardingCode:
+          $ref: '#/components/schemas/reservation-serviceOnboardingCode'
+        onboardingId:
+          $ref: '#/components/schemas/reservation-serviceOnboardingId'
+        platformRestaurantId:
+          $ref: '#/components/schemas/reservation-servicePlatformRestaurantId'
+      required:
+      - onboardingId
+      - onboardingCode
+      - platformRestaurantId
+      - businessLocationId
+      type: object
+    reservation-servicePlatformBusinessLocation:
+      properties:
+        businessLocationId:
+          description: The unique identifier of the business location.
+          type: string
+        city:
+          description: The business location's city.
+          type: string
+        country:
+          description: The business location's country.
+          type: string
+        name:
+          description: The business location's name.
+          type: string
+        state:
+          description: The business location's state.
+          type: string
+        street1:
+          description: The first line of the business location's street address.
+          type: string
+        street2:
+          description: The second line of the business location's street address.
+          type: string
+        zip:
+          description: The business location's postal code.
+          type: string
+      required:
+      - businessLocationId
+      type: object
+    reservation-servicePlatformWebhookResponseDto:
+      type: object
+      description: Updated webhook authorization details.
+      required:
+      - accepted
+      - currentAuthType
+      properties:
+        accepted:
+          description: Whether the webhook request was accepted.
+          example: true
+          type: boolean
+        currentAuthType:
+          description: The current authentication type.
+          enum:
+          - BASIC_AUTH
+          - BEARER_TOKEN
+          - API_KEYS
+          - OAUTH2
+          type: string
+    reservation-servicePlatformOAuth2Webhook:
+      description: The OAuth2 credentials that will be sent with the webhook notifications. See [OAuth 2.0](https://oauth.net/2/).
+      properties:
+        authorizationGrantType:
+          default: CLIENT_CREDENTIALS
+          description: The authorization grant type. See [OAuth2 Grant Types](https://oauth.net/2/grant-types/).
+          enum:
+          - CLIENT_CREDENTIALS
+          example: CLIENT_CREDENTIALS
+          type: string
+        clientAuthorizationMethod:
+          default: CLIENT_SECRET_BASIC
+          description: The client authorization method. See [OAuth2 Client Authentication](https://oauth.net/2/client-authentication/).
+          enum:
+          - CLIENT_SECRET_BASIC
+          - CLIENT_SECRET_JWT
+          - CLIENT_SECRET_POST
+          example: CLIENT_SECRET_BASIC
+          type: string
+        clientId:
+          description: The OAuth2 client ID.
+          example: LightspeedKSeries
+          type: string
+        clientName:
+          description: The OAuth2 client name.
+          example: LightspeedKSeries
+          type: string
+        clientSecret:
+          description: The OAuth2 client secret.
+          example: Example-Client-Secret
+          format: password
+          type: string
+        providerJwkSetUri:
+          description: The external platform URL for getting public keys to verify given access tokens on the K-Series side.
+          example: https://my.platform/public-keys
+          format: uri
+          type: string
+        providerTokenUri:
+          description: The external platform URL for getting access tokens by private credentials.
+          example: https://my.platform/emitter/token
+          format: uri
+          type: string
+        scopes:
+          description: The scopes being granted to the API client.
+          example:
+          - webhooks-api
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - clientId
+      - clientSecret
+      - providerTokenUri
+      type: object
+    reservation-serviceOnboardingId:
+      description: The unique identifier of the integration process that has started onboarding.
+      example: 84f16177-98c5-4010-a7ab-d00144d1dede
+      type: string
+    reservation-servicePlatformProfileResponse:
+      properties:
+        baseUrl:
+          description: The base URL of the external platform (optional).
+          example: https://my.platform/api/lsk
+          format: uri
+          type: string
+        depositSupported:
+          $ref: '#/components/schemas/reservation-servicePlatformDepositSupported'
+        displayName:
+          $ref: '#/components/schemas/reservation-servicePlatformDisplayName'
+        errorsWebhookUrl:
+          description: 'The URL where notifications for any issues will be sent. <br> Required for [`error` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Get Sample Error notification](https://api-docs.lsk.lightspeed.app/operation/operation-reservationErrorNotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/errors
+          type: string
+          format: uri
+        integrationWebhookUrl:
+          description: 'The URL where notifications for activation or deactivation of the customer''s integration will be sent. <br> Required for [`integration` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Integration notification](https://api-docs.lsk.lightspeed.app/operation/operation-reservationintegrationnotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/integrations
+          type: string
+          format: uri
+        notificationTypes:
+          description: The events that trigger a notification.
+          example:
+          - ORDER_CLOSED
+          items:
+            type: string
+            enum:
+            - ORDER_OPENED
+            - ORDER_UPDATED
+            - ORDER_CLOSED
+            - ONBOARDING_STARTED
+            - INTEGRATION_ACTIVATED
+            - INTEGRATION_DEACTIVATED
+            - POS_RESERVATION_UPDATED
+            - ERROR
+          type: array
+          uniqueItems: true
+        onboardingWebhookUrl:
+          description: 'The URL where notifications for the customer''s integration onboarding will be sent. <br> Required for [`onboarding` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Onboarding notification](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservationonboardingnotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/onboarding
+          type: string
+          format: uri
+        orderWebhookUrl:
+          description: 'The URL where order notifications will be sent. <br> Required for [`order` notificationTypes](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-body-application-json-notificationtypes).<br> See [Order Notification](https://api-docs.lsk.lightspeed.app/prod/operation/operation-reservationordernotification).
+
+            '
+          example: https://my.platform/api/lsk/webhook/orders
+          type: string
+          format: uri
+        posReservationUpdateWebhookUrl:
+          description: The URL where notifications about reservation changes on POS will be sent.
+          example: https://my.platform/api/lsk/webhook/reservation
+          type: string
+          format: uri
+        ownNotificationsOnly:
+          description: When `true`, notifications will only be sent for orders linked to the reservation platform.
+          example: true
+          type: boolean
+        webhookAuthType:
+          description: The type of authentication used by the webhook.
+          enum:
+          - BASIC_AUTH
+          - BEARER_TOKEN
+          - API_KEYS
+          - OAUTH2
+          - NONE
+          example: OAUTH2
+          type: string
+        allowCourseNumberUpdates:
+          type: boolean
+          example: true
+          default: false
+          description: If true, table statuses can be customized using a number format.
+        inServiceTableStatuses:
+          items:
+            $ref: '#/components/schemas/reservation-servicePlatformTableStatusDto'
+          type: array
+          description: List of customizable table statuses that will be used to notify platforms about reservation progress with outbound API.
+        allowedPosStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/reservation-servicePlatformReservationStatus'
+          description: Reservation statuses allowed for setting on a POS. PARTIALLY_ARRIVED should be included only with ARRIVED, and PARTIALLY_SEATED only with SEATED. Requires posReservationUpdateWebhookUrl to be set.
+      required:
+      - displayName
+      - webhookAuthType
+      type: object
+    reservation-servicePlatformBasicAuthWebhook:
+      description: The basic authentication credentials that will be sent with the webhook notifications. See [Basic Authentication](https://swagger.io/docs/specification/authentication/basic-authentication/).
+      properties:
+        password:
+          description: The basic auth password.
+          example: Example-Password
+          format: password
+          type: string
+        username:
+          description: The basic auth username.
+          example: LightspeedKSeries
+          type: string
+      required:
+      - username
+      - password
+      type: object
+    reservation-servicePlatformTableStatusDto:
+      properties:
+        statusLabel:
+          type: string
+          example: Appetizer
+          description: The unique text which will be displayed in the back-office for users.
+        statusValue:
+          type: string
+          example: appetizer
+          description: The unique code which will be used for outbound communication within table status mapping.
+        sequence:
+          format: int32
+          type: integer
+          example: 1
+          description: This number is used to resolve collisions between statuses in order of highest priority.
+      type: object
+      required:
+      - statusLabel
+      - statusValue
+      - sequence
+    reservation-servicePlatformBearerTokenWebhook:
+      description: The bearer token that will be sent with the webhook notifications. See [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/).
+      properties:
+        token:
+          description: The bearer token.
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          format: password
+          type: string
+        ttl:
+          description: Token expiration time in UTC.
+          example: '2035-01-01T00:00:00'
+          format: date-time
+          type: string
+          x-field-extra-annotation: '@com.fasterxml.jackson.annotation.JsonFormat(pattern = "yyyy-MM-dd''T''HH:mm:ss", shape = com.fasterxml.jackson.annotation.JsonFormat.Shape.STRING, timezone = "UTC")'
+      required:
+      - token
+      type: object
+  securitySchemes:
+    OAuth2:
+      description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
+
+        See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
+
+        '
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            orders-api: 'Read business information, floors, menus, discounts, and production instructions.
+
+              Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.'
+            financial-api: Read financial data
+            reservation-***: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code) of the reservation platform.
+            items: Read and write items
+            propertymanagement: Read and write Property Management System configurations.
+            id-cards: Create and manage ID card batches and cards.
+            staff-api: Read shift information, read and write user information.
+            reservations-api: 'Configure *legacy* reservation integrations.
+
+              **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
+
+              More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).'
+x-tagGroups:
+- name: Rich Item API
+  tags:
+  - Rich Item
+  - Migration
+- name: Tax Preview API
+  tags:
+  - Tax Breakdown
+- name: Staff Api
+  tags:
+  - Staff
+  - Internal Staff
+- name: Reservation API
+  tags:
+  - Reservations for Platforms
+- name: PMS API
+  tags:
+  - PMS
+- name: Items API
+  tags:
+  - Items
+  - ItemsV2
+  - Menus
+  - Buttons
+  - Production Instructions
+  - Inventory
+  - Combos
+  - Groups
+  - MenusV2
+  - Accounting Group
+  - IntegrationMenu
+  - Price Lists
+  - Products
+  - ItemAppearance
+  - Modifiers
+  - ModifierGroups
+  - Allergens
+  - Locales
+  - RichItem
+- name: id-cards-api API
+  tags:
+  - ID Cards
+- name: Financial API
+  tags:
+  - Financial
+  - FinancialV2
+- name: Online Ordering API
+  tags:
+  - Order and Pay
+  - 'Order and Pay: Webhook'
