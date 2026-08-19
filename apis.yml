@@ -27,7 +27,7 @@ tags:
   - Ecommerce
 created: '2026-05-08'
 modified: '2026-06-02'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: lightspeed:ecom-c-series
   name: Lightspeed eCom C-Series API
