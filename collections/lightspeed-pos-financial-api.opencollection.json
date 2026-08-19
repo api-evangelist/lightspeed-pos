@@ -1,0 +1,338 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series Account Financial API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Financial",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Businesses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/data/businesses",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Starting page of results, when paginating."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return, when paginating."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all businesses the token has access to. Pagination is supported by providing the `page` and `size` query parameters. The maximum number of business locations per business returned is 500."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Tax Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/tax-rates",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns tax rates for a business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Payment Methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/paymentMethods",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all payment methods for a business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Accounting Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/accountingGroups",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all accounting groups for a business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Financials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/financials/:from/:to",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "path",
+                "description": "Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "path",
+                "description": "End of requested results, in ISO 8601 format.\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return."
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "The `accountId` where the results should begin.\n\nExample: `A65315.18`"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns financial data for a business location for a specified date range.\n\nNote: Will only return sales created after migration from iKentoo 2.0 to Lightspeed K-Series."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Daily Financials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/dailyFinancials",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The date in YYYY-MM-DD format."
+              },
+              {
+                "name": "includeConsumers",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the financial data for the current business day or for the specified date."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Receipt by External Reference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/saleByExternalReference",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "externalReferenceId",
+                "value": "",
+                "type": "query",
+                "description": "The external reference of the receipt. See [externalReferences](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences)."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a single receipt matching the external reference supplied in the request. See [`externalReferences`](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences) for examples."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Aggregated Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/finance/:businessLocationId/aggregatedSales",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Specify a single date for which to retrieve aggregated sales data. Cannot be combined with `from` and `to`. Use either `date`, or both `from` and `to`.\n"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Specify the start datetime for the aggregation range. Must be used together with `to`. Cannot be combined with `date`.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Specify the end datetime for the aggregation range. Must be used together with `from`. Cannot be combined with `date`.\n"
+              },
+              {
+                "name": "flattened",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groupBy",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of parameters to group the results by.\nThe allowed values are: `staff`, `device`, `deviceId`, `tag`, `accountingGroup`, and `statisticGroup`.\nFor example, `groupBy` can be set to `staff,device`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get sales for the current business day or the specified date range, aggregated by one or more values.\nThe values are specified in the `groupBy` parameter and are nested in the order provided in the request.\n\n- Use either the `date` parameter **or** the `from` and `to` parameters to specify the period.\n- The `date` parameter specifies a single date for aggregation.\n- The `from` and `to` parameters specify a date-time range and must be used together.\n- **If neither `date` nor `from`/`to` are provi"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

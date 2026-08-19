@@ -1,0 +1,630 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series Account Order and Pay API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order and Pay",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Businesses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/businesses",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of all businesses and business locations associated with the access token."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Floorplans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/:businessLocationId/floorplans",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expandTables",
+                "value": "",
+                "type": "query",
+                "description": "If true, the response will include the table details for each floorplan.\nIf false, the response will only include the [`name`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-name) and [`id`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-id) for the floorplans."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the floorplans for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Floorplan Tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/:businessLocationId/floorplans/:floorPlanId/tables",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "floorPlanId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns the tables for a specific floorplan of a business location"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Order Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/account-profiles",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of active [order profiles](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) for a specific business location.\n\nThe order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code) can be used to retrieve a specific price list when [loading a menu](https://api-docs.lsk.lightspeed.app/operation/operation-apegetmenubyid).\n\nNote:"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Order Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/data/:businessLocationId/account-profiles/tagcode/:tagCode",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tagCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details of an active [order profile](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) based on its [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code).\n\nNote: Order Profiles were previously called Account Profiles, and may still be referred to in this way in the API, in some cases."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/list",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of menus for a given business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/load/:menuId",
+            "params": [
+              {
+                "name": "menuId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the menu."
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountProfile",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "richContent",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**Deprecated:** Use [/o/op/2/menu/load/{menuId}](#/Order%20and%20Pay/getMenuByIdV2) instead. V2 includes product modifier groups and product modifiers on menu items and deal items. Returns details of a particular menu based on its unique identifier and other query parameters."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Menu V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/2/menu/load/:menuId",
+            "params": [
+              {
+                "name": "menuId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the menu."
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accountProfile",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "richContent",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns details of a particular menu based on its unique identifier and other query parameters. Product modifier groups and product modifiers are always included in the response.\n\n**Migration from V1:** The response includes `menuModifierGroups` on each menu item and deal item, containing product modifier details (name, price, extraPrice, sku, rich data). Items with product modifier groups are no longer marked as `asSubItem`."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Modifiers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/modifiers",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of production instructions for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Discounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/menu/discounts",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a list of discounts for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Local Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/local",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new dine-in order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details.\n\nIf the [accountIdentifier](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-accountidentifier) of an existing order is provided in the body of the request, the request will update the existing order."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create to Go Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/toGo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new takeaway or delivery order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get All Open Checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/table/getCheck",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all open orders for the current day."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Open Check by Table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/table/:tableNumber/getCheck",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tableNumber",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns an open order for a specific table.\nNote: If more than one order is assigned to the table, the oldest order will be returned."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Single Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/order/accounts/:accountIdentifier",
+            "params": [
+              {
+                "name": "accountIdentifier",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a check based on the Account Identifier."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Apply a Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/pay",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a payment to an existing order."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Print Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/printMsg",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Send a message to the POS. Generates a notification on the register screen. Can also be sent to the printer. <br> If the POS is offline, the message will be stored for up to 24h and sent when the POS comes online."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Item Availability Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/itemAvailability",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skus",
+                "value": "",
+                "type": "query",
+                "description": "List of SKUs to return."
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Starting page of results, when paginating. Starts at 0."
+              },
+              {
+                "name": "size",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results to return, when paginating."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns item availability information, by business location and SKUs."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Item Availability Information by POST",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/o/op/1/itemAvailability",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Starting page of results, when paginating. Starts at 0."
+              },
+              {
+                "name": "size",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results to return, when paginating."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns item availability information filtered by business location and SKUs. The list of SKUs must be provided in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

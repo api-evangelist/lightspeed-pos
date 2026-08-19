@@ -1,0 +1,336 @@
+{
+  "item": [
+    {
+      "id": "8d23ea9d-1b7f-4d1c-b62f-a6b859406cbd",
+      "name": "ID Cards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bd1f2dd-7203-4c30-9f1e-6697a08dc788",
+          "name": "Lightspeed Create an ID Card Batch",
+          "request": {
+            "name": "Lightspeed Create an ID Card Batch",
+            "description": {
+              "content": "Creates a new batch of ID cards for a specific business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "id-cards",
+                "v1",
+                "business-locations",
+                ":businessLocationId",
+                "batches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dbb5bba9-b86b-4ee3-86c1-918d94cde712",
+              "name": "Successfully created an ID card batch.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "id-cards",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sample Batch Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchId\": 12345,\n  \"name\": \"Sample name\",\n  \"businessLocationId\": 67890\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a26f5e88-bc84-47d2-9afa-5ab254313fa5",
+          "name": "Lightspeed Create ID Cards",
+          "request": {
+            "name": "Lightspeed Create ID Cards",
+            "description": {
+              "content": "Creates a specified number of ID cards for an existing ID card batch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "id-cards",
+                "v1",
+                "business-locations",
+                ":businessLocationId",
+                "batches",
+                ":batchId",
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "batchId",
+                  "description": "(Required) The unique identifier for the ID card batch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardCount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39d3664c-b650-4a78-a625-750e53ad2eee",
+              "name": "Successfully created ID cards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "id-cards",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "batches",
+                    ":batchId",
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "batchId",
+                      "description": "(Required) The unique identifier for the ID card batch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardCount\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batchId\": 12345,\n  \"cards\": [\n    {\n      \"id\": 98765,\n      \"consumerRecordId\": 54321,\n      \"consumerId\": 13579,\n      \"url\": \"https://example.com/id-cards/98765/qr-code\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d0408f77-fa0f-40a3-879d-fb8835c584cb",
+    "name": "Lightspeed Restaurant K Series Account ID Cards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

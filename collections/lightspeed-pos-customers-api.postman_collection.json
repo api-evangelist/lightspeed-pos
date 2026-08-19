@@ -1,0 +1,338 @@
+{
+  "item": [
+    {
+      "id": "66d1dde2-7456-4c56-977a-ffb3699477ea",
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5469f4c2-dc80-4e25-835b-ad0b30fe76a5",
+          "name": "Lightspeed List Customers",
+          "request": {
+            "name": "Lightspeed List Customers",
+            "description": {},
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dc4edbdb-1cb1-4a7f-90f2-0b4e12e6f604",
+              "name": "A page of customers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "736ced12-d22a-48e2-b391-7dc60cbf3e40",
+          "name": "Lightspeed Create a Customer",
+          "request": {
+            "name": "Lightspeed Create a Customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"customer_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "070d3c34-6344-46df-9245-89b8033c0745",
+              "name": "Customer created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"first_name\": \"Sample first_name\",\n  \"last_name\": \"Sample last_name\",\n  \"email\": \"guest@example.com\",\n  \"phone\": \"example\",\n  \"customer_code\": \"example\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66c3cf48-65e9-4070-9997-17024cad4e8f",
+          "name": "Lightspeed Get a Customer by ID",
+          "request": {
+            "name": "Lightspeed Get a Customer by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe9fa57c-4166-4bd2-a1a8-eb8a01327837",
+              "name": "The customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"first_name\": \"Sample first_name\",\n  \"last_name\": \"Sample last_name\",\n  \"email\": \"guest@example.com\",\n  \"phone\": \"example\",\n  \"customer_code\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "527809c0-a700-4a0c-ae6b-0fe557ffe977",
+    "name": "Lightspeed Restaurant K Series Account Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

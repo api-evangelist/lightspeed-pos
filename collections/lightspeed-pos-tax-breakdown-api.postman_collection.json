@@ -1,0 +1,427 @@
+{
+  "item": [
+    {
+      "id": "2ab795e7-f947-4152-9f58-0a0f97f0a0e4",
+      "name": "Tax Breakdown",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6085e7c7-6c38-4f85-9d36-9f7905135cfe",
+          "name": "Lightspeed Post Proposed Order",
+          "request": {
+            "name": "Lightspeed Post Proposed Order",
+            "description": {
+              "content": "Returns the tax breakdown of a proposed order",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tp",
+                "v1",
+                "business-locations",
+                ":businessLocationId",
+                "tax-breakdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountProfileCode\": \"<string>\",\n  \"items\": [\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"subItems\": [\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<double>\"\n        },\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<double>\"\n        }\n      ]\n    },\n    {\n      \"sku\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"subItems\": [\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<double>\"\n        },\n        {\n          \"sku\": \"<string>\",\n          \"quantity\": \"<double>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7f08164-2ad7-41b7-823d-3f1aa8766899",
+              "name": "Tax Breakdown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tp",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "tax-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountProfileCode\": \"example\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-1001\",\n      \"quantity\": 34.78,\n      \"subItems\": [\n        {\n          \"sku\": \"SKU-1001\",\n          \"quantity\": 98.68\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"quantity\": 32.84,\n      \"unitPrice\": 20.69,\n      \"netAmount\": 25.06,\n      \"grossAmount\": 6.61,\n      \"taxAmount\": 49.31\n    }\n  ],\n  \"taxLines\": [\n    {\n      \"description\": \"example\",\n      \"taxRate\": \"example\",\n      \"taxCode\": \"example\",\n      \"taxName\": \"Sample taxName\",\n      \"netAmount\": 92.1,\n      \"grossAmount\": 85.96,\n      \"taxAmount\": 92.84,\n      \"taxIncluded\": false\n    }\n  ],\n  \"totalNetAmountInCents\": 204,\n  \"totalGrossAmountInCents\": 536,\n  \"totalTaxAmountInCents\": 485,\n  \"amountDue\": 64.49\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "102b12ba-8e99-4f4b-90f0-57db9d8e7f85",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tp",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "tax-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountProfileCode\": \"example\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-1001\",\n      \"quantity\": 34.78,\n      \"subItems\": [\n        {\n          \"sku\": \"SKU-1001\",\n          \"quantity\": 98.68\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"400\",\n  \"timestamp\": \"1979-12-30T10:27:28.013Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26930d1d-3195-490a-95c4-f0e75a6bf23e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tp",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "tax-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountProfileCode\": \"example\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-1001\",\n      \"quantity\": 34.78,\n      \"subItems\": [\n        {\n          \"sku\": \"SKU-1001\",\n          \"quantity\": 98.68\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"403\",\n  \"timestamp\": \"1947-12-19T08:27:09.366Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4b5ac83-74ef-4a61-ba11-4c7a431f7896",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tp",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "tax-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountProfileCode\": \"example\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-1001\",\n      \"quantity\": 34.78,\n      \"subItems\": [\n        {\n          \"sku\": \"SKU-1001\",\n          \"quantity\": 98.68\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"404\",\n  \"timestamp\": \"2004-11-22T13:32:20.421Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "353f5428-ea29-4797-9d8b-a5c2ab264224",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tp",
+                    "v1",
+                    "business-locations",
+                    ":businessLocationId",
+                    "tax-breakdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountProfileCode\": \"example\",\n  \"items\": [\n    {\n      \"sku\": \"SKU-1001\",\n      \"quantity\": 34.78,\n      \"subItems\": [\n        {\n          \"sku\": \"SKU-1001\",\n          \"quantity\": 98.68\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"503\",\n  \"timestamp\": \"2008-02-10T12:10:04.953Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "79719306-b4d0-4d94-8127-3a54362b96b7",
+    "name": "Lightspeed Restaurant K Series Account Tax Breakdown API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

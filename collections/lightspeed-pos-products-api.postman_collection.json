@@ -1,0 +1,485 @@
+{
+  "item": [
+    {
+      "id": "7ed5ffc7-94a9-463d-9850-38351ba5a66f",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d26779e-9897-4af4-bbee-cc8733a9214e",
+          "name": "Lightspeed List Products",
+          "request": {
+            "name": "Lightspeed List Products",
+            "description": {},
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6aabda49-fe40-4d1e-8ac5-f81e505ea796",
+              "name": "A page of products.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"source_id\": \"500123\",\n      \"handle\": \"example\",\n      \"sku\": \"SKU-1001\",\n      \"name\": \"Sample name\",\n      \"description\": \"example\",\n      \"price_excluding_tax\": 69.88,\n      \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"active\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e2d6897-5dfb-4ba2-9288-d64505a575e7",
+          "name": "Lightspeed Create a Product",
+          "request": {
+            "name": "Lightspeed Create a Product",
+            "description": {},
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"source_id\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price_excluding_tax\": \"<float>\",\n  \"brand_id\": \"<uuid>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "129e1ac4-cbb6-4bff-974d-23525f64ed66",
+              "name": "Product created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"source_id\": \"500123\",\n  \"handle\": \"example\",\n  \"sku\": \"SKU-1001\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"price_excluding_tax\": 48.7,\n  \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"active\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c725ce9c-73a8-45ed-b410-b0b583a01650",
+          "name": "Lightspeed Get a Product by ID",
+          "request": {
+            "name": "Lightspeed Get a Product by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e4f2459-9def-48be-b7dc-a5940f825963",
+              "name": "The product.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"source_id\": \"500123\",\n  \"handle\": \"example\",\n  \"sku\": \"SKU-1001\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"price_excluding_tax\": 14.96,\n  \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"active\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb76373f-7d4b-41c6-b6e1-95e6d939e8ca",
+          "name": "Lightspeed Update a Product",
+          "request": {
+            "name": "Lightspeed Update a Product",
+            "description": {},
+            "url": {
+              "path": [
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"source_id\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"price_excluding_tax\": \"<float>\",\n  \"brand_id\": \"<uuid>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1da240a2-5f4c-4cee-897d-b6e7b0609cac",
+              "name": "Product updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"source_id\": \"500123\",\n  \"handle\": \"example\",\n  \"sku\": \"SKU-1001\",\n  \"name\": \"Sample name\",\n  \"description\": \"example\",\n  \"price_excluding_tax\": 5.13,\n  \"brand_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"active\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e3af5007-51c6-4dcf-8c1b-7798633f1df3",
+    "name": "Lightspeed Restaurant K Series Account Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

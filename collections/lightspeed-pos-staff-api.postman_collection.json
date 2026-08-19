@@ -1,0 +1,3986 @@
+{
+  "item": [
+    {
+      "id": "f78f9035-fb8b-4ac4-b120-498a788ef110",
+      "name": "Staff",
+      "description": {
+        "content": "Staff API. Authorisation Code grant type is required for this API with permission ROLE_CONFIG_USERS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d45fde16-f272-4521-b795-b3fd94aee148",
+          "name": "Lightspeed Get Shifts",
+          "request": {
+            "name": "Lightspeed Get Shifts",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "shift"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of results to return per page, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "date,desc",
+                  "description": "Sort by field and direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "Show results after this start time. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "Show results before this end time. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+                },
+                {
+                  "disabled": false,
+                  "key": "staffId",
+                  "value": "<long>",
+                  "description": "Filter on the unique identifier for the user."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5c7bd7f0-43d7-4a02-8239-4c7226f0797f",
+              "name": "List of shifts with related links.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "shift"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "date,desc"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "staffId",
+                      "value": "<long>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"shifts\": [\n      {\n        \"uuid\": \"REcdfpCwQJKUR53gdzIk5Q==\",\n        \"businessId\": 12345,\n        \"businessLocationId\": 1234567890,\n        \"deviceId\": 54321,\n        \"staffId\": 1234,\n        \"declaredCashTips\": \"10.00\",\n        \"dateInUTC\": \"2020-01-01T00:00:00Z\",\n        \"events\": []\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2af1145-b645-47f9-a6e5-a63472bbda28",
+          "name": "Lightspeed Get All POS Users",
+          "request": {
+            "name": "Lightspeed Get All POS Users",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "POS"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of results to return per page, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "userId,desc",
+                  "description": "Sort by field and direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>",
+                  "description": "Filter on active status."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter on user start date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter on user end date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0c3d5f32-1db0-4296-937c-f36e55a3829a",
+              "name": "Staff List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "userId,desc"
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staff\": [\n      {\n        \"staffId\": {},\n        \"username\": {},\n        \"userTypes\": [],\n        \"firstName\": {},\n        \"lastName\": {},\n        \"active\": {},\n        \"pinCodeSet\": {},\n        \"createdOn\": {},\n        \"modifiedOn\": {},\n        \"businessId\": {},\n        \"businessLocationId\": {},\n        \"groups\": [],\n        \"reportAccess\": [],\n        \"roles\": []\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85be3b19-caae-4cf6-9457-bac3f622c088",
+          "name": "Lightspeed Create POS User",
+          "request": {
+            "name": "Lightspeed Create POS User",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "POS"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"pinCode\": \"<string>\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"active\": true,\n  \"visible\": true,\n  \"group\": \"<long>\",\n  \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "979bba9f-28b6-4233-94b5-d7b190a28d76",
+              "name": "User created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": true,\n  \"visible\": true,\n  \"group\": 736,\n  \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\",\n  \"roles\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"staffId\": 1234,\n  \"username\": \"John Doe\",\n  \"userTypes\": [\n    \"BACK_OFFICE\"\n  ],\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"guest@example.com\",\n  \"active\": true,\n  \"pinCodeSet\": true,\n  \"createdOn\": \"2026-03-15T14:30:00Z\",\n  \"modifiedOn\": \"2026-03-15T14:30:00Z\",\n  \"businessId\": 12345,\n  \"businessLocationId\": 1234567890,\n  \"groups\": [\n    {\n      \"id\": 1234,\n      \"name\": \"Bar Staff\"\n    }\n  ],\n  \"reportAccess\": [\n    \"STAFF_REPORT_OWN_ACCESS\"\n  ],\n  \"roles\": [\n    {\n      \"id\": 1234,\n      \"name\": \"ROLE_CAN_LOGIN\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2350a56-480c-40b9-9813-d88e3834ef0b",
+              "name": "Bad request. Invalid input parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": true,\n  \"visible\": true,\n  \"group\": 736,\n  \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\",\n  \"roles\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01853a80-89a7-4260-9441-f7c5c8639582",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": true,\n  \"visible\": true,\n  \"group\": 736,\n  \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\",\n  \"roles\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a33f138e-69d9-4e4e-8a0c-5a7a9970d59a",
+              "name": "Access Denied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": true,\n  \"visible\": true,\n  \"group\": 736,\n  \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\",\n  \"roles\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "304e61e9-9a8e-422d-8a93-42a8666f4f62",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": true,\n  \"visible\": true,\n  \"group\": 736,\n  \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\",\n  \"roles\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b30f635-65e7-4964-9552-0725fa0ba020",
+          "name": "Lightspeed Update POS User",
+          "request": {
+            "name": "Lightspeed Update POS User",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "POS",
+                ":staffId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "staffId",
+                  "description": "(Required) The unique identifier for the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"pinCode\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"visible\": \"<boolean>\",\n  \"reportAccess\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group\": -1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ab05140-9eef-4a1a-b516-7d891ef9a2f9",
+              "name": "User updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": false,\n  \"visible\": false,\n  \"group\": -1,\n  \"reportAccess\": \"example\",\n  \"roles\": [\n    \"example\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"staffId\": 1234,\n  \"username\": \"John Doe\",\n  \"userTypes\": [\n    \"BACK_OFFICE\"\n  ],\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"guest@example.com\",\n  \"active\": true,\n  \"pinCodeSet\": false,\n  \"createdOn\": \"2026-03-15T14:30:00Z\",\n  \"modifiedOn\": \"2026-03-15T14:30:00Z\",\n  \"businessId\": 12345,\n  \"businessLocationId\": 1234567890,\n  \"groups\": [\n    {\n      \"id\": 1234,\n      \"name\": \"Bar Staff\"\n    }\n  ],\n  \"reportAccess\": [\n    \"STAFF_REPORT_OWN_ACCESS\"\n  ],\n  \"roles\": [\n    {\n      \"id\": 1234,\n      \"name\": \"ROLE_CAN_LOGIN\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e573a4fa-21de-45ad-a276-523e85fb292c",
+              "name": "Bad request. Invalid input parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": false,\n  \"visible\": false,\n  \"group\": -1,\n  \"reportAccess\": \"example\",\n  \"roles\": [\n    \"example\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43869950-22e7-4862-80cb-f17044192f1b",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": false,\n  \"visible\": false,\n  \"group\": -1,\n  \"reportAccess\": \"example\",\n  \"roles\": [\n    \"example\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6602b999-437f-41e3-b0d3-5f13f241ec16",
+              "name": "Access Denied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": false,\n  \"visible\": false,\n  \"group\": -1,\n  \"reportAccess\": \"example\",\n  \"roles\": [\n    \"example\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa902d07-442e-4fa5-ab62-7df5dad9f08c",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"John Doe\",\n  \"pinCode\": \"1234\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"active\": false,\n  \"visible\": false,\n  \"group\": -1,\n  \"reportAccess\": \"example\",\n  \"roles\": [\n    \"example\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10bedb79-73d8-4dce-91e2-da24eb1a5d5f",
+          "name": "Lightspeed Get All Back Office Users",
+          "request": {
+            "name": "Lightspeed Get All Back Office Users",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "BACK_OFFICE"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of results to return per page, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "userId,desc",
+                  "description": "Sort by field and direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Filter on email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "isActive",
+                  "value": "<boolean>",
+                  "description": "Filter on active status."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Filter on user start date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Filter on user end date. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d657f575-d00e-4658-9547-8aad8f5f7668",
+              "name": "Staff List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "BACK_OFFICE"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "userId,desc"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "isActive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staff\": [\n      {\n        \"staffId\": {},\n        \"userTypes\": [],\n        \"firstName\": {},\n        \"lastName\": {},\n        \"email\": {},\n        \"active\": {},\n        \"createdOn\": {},\n        \"modifiedOn\": {},\n        \"businessId\": {},\n        \"businessLocationId\": {},\n        \"groups\": [],\n        \"reportAccess\": [],\n        \"roles\": []\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "173480df-dd4b-4653-9d6f-fc4ce175e9ab",
+          "name": "Lightspeed Get Single User",
+          "request": {
+            "name": "Lightspeed Get Single User",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "staff",
+                ":staffId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "staffId",
+                  "description": "(Required) The unique identifier for the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eb0cade3-354f-40dc-b872-8282fd5fd2f3",
+              "name": "User object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "staff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"staffId\": 1234,\n  \"username\": \"John Doe\",\n  \"userTypes\": [\n    \"API\"\n  ],\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"guest@example.com\",\n  \"active\": true,\n  \"pinCodeSet\": false,\n  \"createdOn\": \"2026-03-15T14:30:00Z\",\n  \"modifiedOn\": \"2026-03-15T14:30:00Z\",\n  \"businessId\": 12345,\n  \"businessLocationId\": 1234567890,\n  \"groups\": [\n    {\n      \"id\": 1234,\n      \"name\": \"Bar Staff\"\n    }\n  ],\n  \"reportAccess\": [\n    \"STAFF_REPORT_OWN_ACCESS\"\n  ],\n  \"roles\": [\n    {\n      \"id\": 1234,\n      \"name\": \"ROLE_CAN_LOGIN\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52cb71a9-db88-47d9-9074-be72f300b4cc",
+          "name": "Lightspeed Get All User Groups",
+          "request": {
+            "name": "Lightspeed Get All User Groups",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of results to return per page, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "name,asc",
+                  "description": "Sort by field and direction."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter on group name."
+                },
+                {
+                  "disabled": false,
+                  "key": "roles",
+                  "value": "<string>",
+                  "description": "Filter on group roles."
+                },
+                {
+                  "disabled": false,
+                  "key": "roles",
+                  "value": "<string>",
+                  "description": "Filter on group roles."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "09372fdc-c95c-4466-af61-ea26c13954f6",
+              "name": "POS User Groups List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name,asc"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roles",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roles",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staffGroupList\": [\n      {\n        \"id\": 1234,\n        \"name\": \"Bar Staff\",\n        \"roles\": [],\n        \"reportAccess\": {}\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9059195f-074b-41d9-a38a-0037404542fc",
+          "name": "Lightspeed Get Single User Group",
+          "request": {
+            "name": "Lightspeed Get Single User Group",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "groupId",
+                  "description": "(Required) The unique identifier for the user group."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3648f79b-6714-4e17-aff5-c717f786a834",
+              "name": "POS User Group",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "groupId",
+                      "description": "(Required) The unique identifier for the user group."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staffGroup\": {\n      \"id\": 1234,\n      \"name\": \"Bar Staff\",\n      \"roles\": [\n        {}\n      ],\n      \"reportAccess\": \"STAFF_REPORT_OWN_ACCESS\"\n    }\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa702ea6-2ae5-49af-a360-dd0163dc8485",
+          "name": "Lightspeed Add Business Location Access",
+          "request": {
+            "name": "Lightspeed Add Business Location Access",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "business",
+                ":businessId",
+                "assignStaff",
+                ":staffId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) The unique identifier for the business."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "staffId",
+                  "description": "(Required) The unique identifier for the user."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessLocationIds\": [\n    \"<long>\",\n    \"<long>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51d8820c-c323-416e-8e02-e853fe5d388c",
+              "name": "User business location access added successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "business",
+                    ":businessId",
+                    "assignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) The unique identifier for the business."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationIds\": [\n    123456789,\n    987654321\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessLocationIds\": [\n    123456789,\n    987654321\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a02f9526-1d29-40fa-b336-fe05759e4e1c",
+              "name": "Bad request. Invalid input parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "business",
+                    ":businessId",
+                    "assignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) The unique identifier for the business."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationIds\": [\n    123456789,\n    987654321\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e45c82d7-ee48-4051-aaa8-2269c536d578",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "business",
+                    ":businessId",
+                    "assignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) The unique identifier for the business."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationIds\": [\n    123456789,\n    987654321\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15dfcac7-a69d-4a5a-96f1-0d2fece687c8",
+              "name": "Access Denied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "business",
+                    ":businessId",
+                    "assignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) The unique identifier for the business."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationIds\": [\n    123456789,\n    987654321\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "70ae46ac-c543-4797-b73e-6955c43e121a",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "business",
+                    ":businessId",
+                    "assignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) The unique identifier for the business."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationIds\": [\n    123456789,\n    987654321\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "161aa592-7b61-4cd8-be0a-cec59bc98c39",
+          "name": "Lightspeed Remove Business Location Access",
+          "request": {
+            "name": "Lightspeed Remove Business Location Access",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "unAssignStaff",
+                ":staffId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "staffId",
+                  "description": "(Required) The unique identifier for the user."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1e1d9b4-c10e-4ba1-9c40-6110ecc833f3",
+              "name": "User business location access removed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "unAssignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d492613b-a748-46c5-b2f1-7ae26a11014c",
+              "name": "Bad request. Invalid input parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "unAssignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86d01a80-2263-431a-8a5a-4de893323960",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "unAssignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9e531b14-0f5c-498a-ac89-17cd9d609cac",
+              "name": "Access Denied.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "unAssignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8188d00-7427-4375-922a-be0b57059bc0",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "unAssignStaff",
+                    ":staffId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "staffId",
+                      "description": "(Required) The unique identifier for the user."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3fabbdb-dad3-4a09-914c-176570acb24f",
+          "name": "Lightspeed Create Webhook",
+          "request": {
+            "name": "Lightspeed Create Webhook",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notificationType\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"webhookName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "12242343-7ce9-463a-9d27-4e8185371e80",
+              "name": "Webhook Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"Sample webhookName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"e95c2cc5-4489-4025-a7e2-a34faeaa5f9d\",\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"My Awesome Webhook\",\n  \"businessLocationId\": 1234567890,\n  \"createdAt\": \"2026-03-15T14:30:00Z\",\n  \"updatedAt\": \"2026-03-15T14:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0585ff30-38ab-455b-96ad-2803a3f5c623",
+          "name": "Lightspeed Get Webhooks",
+          "request": {
+            "name": "Lightspeed Get Webhooks",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0cdf6acf-adb6-4357-8445-68b8f8967042",
+              "name": "Webhooks Returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"uuid\": \"e95c2cc5-4489-4025-a7e2-a34faeaa5f9d\",\n    \"notificationType\": \"shift.deleted\",\n    \"url\": \"example\",\n    \"webhookName\": \"My Awesome Webhook\",\n    \"businessLocationId\": 1234567890,\n    \"createdAt\": \"2026-03-15T14:30:00Z\",\n    \"updatedAt\": \"2026-03-15T14:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9da313a9-fbc3-4a9d-98af-309b7649c63e",
+          "name": "Lightspeed Update Existing Webhook",
+          "request": {
+            "name": "Lightspeed Update Existing Webhook",
+            "description": {
+              "content": "Updates the details of an existing webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "webhookId",
+                  "description": "(Required) The unique identifier for the webhook."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notificationType\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"webhookName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f91ee82e-3073-4d91-878f-5665b4aa6156",
+              "name": "Webhook updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "webhookId",
+                      "description": "(Required) The unique identifier for the webhook."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"Sample webhookName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"e95c2cc5-4489-4025-a7e2-a34faeaa5f9d\",\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"My Awesome Webhook\",\n  \"businessLocationId\": 1234567890,\n  \"createdAt\": \"2026-03-15T14:30:00Z\",\n  \"updatedAt\": \"2026-03-15T14:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df153560-ce69-4850-8e59-388a3b29dcd1",
+              "name": "Bad request. Invalid input parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "webhookId",
+                      "description": "(Required) The unique identifier for the webhook."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"Sample webhookName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "172c6cc2-3bb0-449a-9f06-b338aa0e113b",
+              "name": "Not found. The specified webhook ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "webhookId",
+                      "description": "(Required) The unique identifier for the webhook."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"Sample webhookName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a5e3916-91c7-4c18-a541-b47f9044225c",
+              "name": "Conflict. A webhook with the specified details already exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "webhookId",
+                      "description": "(Required) The unique identifier for the webhook."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notificationType\": \"shift.updated\",\n  \"url\": \"example\",\n  \"webhookName\": \"Sample webhookName\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e42aaa5-d20e-4d52-ac4e-86b4f4bfd253",
+          "name": "Lightspeed Delete Webhook",
+          "request": {
+            "name": "Lightspeed Delete Webhook",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "webhookId",
+                  "description": "(Required) The unique identifier for the webhook."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3929027f-a5e2-4691-9409-800be8f04910",
+              "name": "Webhook successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "webhookId",
+                      "description": "(Required) The unique identifier for the webhook."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "511e590f-da45-4c62-abfb-a325cd907a1b",
+          "name": "Lightspeed Get Report Access Levels",
+          "request": {
+            "name": "Lightspeed Get Report Access Levels",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "POS",
+                "reportAccess"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5c77c856-59f1-4c78-8129-becc75dba75c",
+              "name": "List of report access levels.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    "reportAccess"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staff\": [\n      {\n        \"value\": \"STAFF_REPORT_OWN_ACCESS\",\n        \"description\": \"The POS user can see their own reports\"\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9d4a403-3c09-4099-b602-955a4f9c2ff8",
+          "name": "Lightspeed Get All Back Office User Permissions",
+          "request": {
+            "name": "Lightspeed Get All Back Office User Permissions",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "BACK_OFFICE",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dfec0e1a-55a8-4793-b0e0-6787d4002a56",
+              "name": "User permissions List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "BACK_OFFICE",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staff\": [\n      {\n        \"value\": \"ROLE_MANAGER\",\n        \"description\": \"POS user is a manager\"\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feb68c4d-c2c9-46d7-ae24-16ccaf022296",
+          "name": "Lightspeed Get All POS User Permissions",
+          "request": {
+            "name": "Lightspeed Get All POS User Permissions",
+            "description": {},
+            "url": {
+              "path": [
+                "staff",
+                "v1",
+                "businessLocations",
+                ":businessLocationId",
+                "userTypes",
+                "POS",
+                "roles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3f41607f-52df-455c-8894-98aa107d0732",
+              "name": "User permissions List",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "staff",
+                    "v1",
+                    "businessLocations",
+                    ":businessLocationId",
+                    "userTypes",
+                    "POS",
+                    "roles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"staff\": [\n      {\n        \"value\": \"ROLE_MANAGER\",\n        \"description\": \"POS user is a manager\"\n      }\n    ]\n  },\n  \"links\": {\n    \"first\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"self\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc\"\n    },\n    \"next\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc\"\n    },\n    \"last\": {\n      \"href\": \"https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc\"\n    }\n  },\n  \"page\": {\n    \"page\": 1,\n    \"size\": 10,\n    \"totalElements\": 100,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "987be931-b748-4d72-ae51-1e9983b181db",
+          "name": "Lightspeed List Employees",
+          "request": {
+            "name": "Lightspeed List Employees",
+            "description": {
+              "content": "Returns the employees for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Employee.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "05fbb5cf-2801-47ab-bea5-82453dfd6b70",
+              "name": "A page of employees.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Employee.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Employee\": [\n    {\n      \"employeeID\": \"500123\",\n      \"firstName\": \"Sample firstName\",\n      \"lastName\": \"Sample lastName\",\n      \"shopID\": \"500123\",\n      \"limitToShopID\": \"500123\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85c4f57d-6a87-424c-9444-89d0f555de0f",
+          "name": "Lightspeed List Shops",
+          "request": {
+            "name": "Lightspeed List Shops",
+            "description": {
+              "content": "Returns the shops (store locations) for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Shop.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b8e72b2-bca4-4a27-a119-cd8c6c781f43",
+              "name": "A page of shops.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Shop.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Shop\": [\n    {\n      \"shopID\": \"500123\",\n      \"name\": \"Sample name\",\n      \"taxCategoryID\": \"500123\",\n      \"timeZone\": \"example\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "65a7c388-f4ef-4850-9c73-acad514c06ed",
+    "name": "Lightspeed Restaurant K Series Account Staff API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

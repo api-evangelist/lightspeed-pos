@@ -1,0 +1,348 @@
+{
+  "item": [
+    {
+      "id": "27c6a1ef-f127-4a70-8e9c-87c31ebbc726",
+      "name": "Sales",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4d4b2a7d-6c96-44f8-88c9-7bc2f8e3ec35",
+          "name": "Lightspeed List Sales",
+          "request": {
+            "name": "Lightspeed List Sales",
+            "description": {},
+            "url": {
+              "path": [
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc54c178-92dd-449f-abe8-47bac44fba7f",
+              "name": "A page of sales.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"outlet_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"register_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"user_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"customer_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n      \"status\": \"OPEN\",\n      \"total_price\": 49.56,\n      \"total_tax\": 45.6,\n      \"line_items\": [\n        {}\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "525a5a7a-af02-4cda-aade-e58020f87f0b",
+          "name": "Lightspeed Create a Sale",
+          "request": {
+            "name": "Lightspeed Create a Sale",
+            "description": {},
+            "url": {
+              "path": [
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"outlet_id\": \"<uuid>\",\n  \"register_id\": \"<uuid>\",\n  \"user_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"status\": \"<string>\",\n  \"total_price\": \"<float>\",\n  \"total_tax\": \"<float>\",\n  \"line_items\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7dc11011-0ec5-4b3a-90ae-bc29f3f199ae",
+              "name": "Sale created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"outlet_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"register_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"user_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"customer_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"status\": \"CLOSED\",\n  \"total_price\": 8.96,\n  \"total_tax\": 20.69,\n  \"line_items\": [\n    {}\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b97b16bd-eb22-4331-a415-c2ed025e3224",
+          "name": "Lightspeed Get a Sale by ID",
+          "request": {
+            "name": "Lightspeed Get a Sale by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "sales",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "285d25c1-30a8-42e9-b9e8-c4d41432073a",
+              "name": "The sale.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sales",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"outlet_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"register_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"user_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"customer_id\": \"3f2504e0-4f89-41d3-9a0c-0305e82c3301\",\n  \"status\": \"LAYBY\",\n  \"total_price\": 39.32,\n  \"total_tax\": 37.15,\n  \"line_items\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "235cfe51-fdf6-4040-ada4-703909022b4f",
+    "name": "Lightspeed Restaurant K Series Account Sales API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

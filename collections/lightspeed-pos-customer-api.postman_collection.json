@@ -1,0 +1,430 @@
+{
+  "item": [
+    {
+      "id": "961b0079-bd75-433d-96cb-75774cbfd65c",
+      "name": "Customer",
+      "description": {
+        "content": "Customer records and contact details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5159ae12-caed-4648-8325-72279d670b09",
+          "name": "Lightspeed List Customers",
+          "request": {
+            "name": "Lightspeed List Customers",
+            "description": {
+              "content": "Returns customer records for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Customer.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "19f78542-8cc1-4b52-8b7b-140033e4614a",
+              "name": "A page of customers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Customer.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@attributes\": {\n    \"count\": 739,\n    \"offset\": 994,\n    \"limit\": 647\n  },\n  \"Customer\": [\n    {\n      \"customerID\": \"500123\",\n      \"firstName\": \"Sample firstName\",\n      \"lastName\": \"Sample lastName\",\n      \"company\": \"example\",\n      \"contactID\": \"500123\",\n      \"discountID\": \"500123\",\n      \"taxCategoryID\": \"500123\",\n      \"Contact\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce9a408c-2e8f-4519-af90-94a74f8da14e",
+          "name": "Lightspeed Create Customer",
+          "request": {
+            "name": "Lightspeed Create Customer",
+            "description": {
+              "content": "Creates a new customer record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Customer.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerID\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"company\": \"<string>\",\n  \"contactID\": \"<string>\",\n  \"discountID\": \"<string>\",\n  \"taxCategoryID\": \"<string>\",\n  \"Contact\": {\n    \"contactID\": \"<string>\",\n    \"custom\": \"<string>\",\n    \"noEmail\": \"<boolean>\",\n    \"noPhone\": \"<boolean>\",\n    \"noMail\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46f5a3d9-fccb-4d5a-8952-d8831928d8bd",
+              "name": "Customer created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Customer.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerID\": \"500123\",\n  \"firstName\": \"Sample firstName\",\n  \"lastName\": \"Sample lastName\",\n  \"company\": \"example\",\n  \"contactID\": \"500123\",\n  \"discountID\": \"500123\",\n  \"taxCategoryID\": \"500123\",\n  \"Contact\": {\n    \"contactID\": \"500123\",\n    \"custom\": \"example\",\n    \"noEmail\": true,\n    \"noPhone\": true,\n    \"noMail\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Customer\": {\n    \"customerID\": \"500123\",\n    \"firstName\": \"Sample firstName\",\n    \"lastName\": \"Sample lastName\",\n    \"company\": \"example\",\n    \"contactID\": \"500123\",\n    \"discountID\": \"500123\",\n    \"taxCategoryID\": \"500123\",\n    \"Contact\": {\n      \"contactID\": \"500123\",\n      \"custom\": \"example\",\n      \"noEmail\": true,\n      \"noPhone\": true,\n      \"noMail\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0daa27ae-b0f2-4165-8f5c-aa840b3e59cb",
+          "name": "Lightspeed Get Customer by ID",
+          "request": {
+            "name": "Lightspeed Get Customer by ID",
+            "description": {
+              "content": "Returns a single customer by its customerID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Customer",
+                "{{customerID}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dfd7a62b-f275-45d5-875c-4e94c5cd0266",
+              "name": "The customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Customer",
+                    "{{customerID}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Customer\": {\n    \"customerID\": \"500123\",\n    \"firstName\": \"Sample firstName\",\n    \"lastName\": \"Sample lastName\",\n    \"company\": \"example\",\n    \"contactID\": \"500123\",\n    \"discountID\": \"500123\",\n    \"taxCategoryID\": \"500123\",\n    \"Contact\": {\n      \"contactID\": \"500123\",\n      \"custom\": \"example\",\n      \"noEmail\": false,\n      \"noPhone\": true,\n      \"noMail\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique identifier of the customer.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "customerID"
+    }
+  ],
+  "info": {
+    "_postman_id": "f7d789ce-7108-4a84-99ba-68d0c003fc30",
+    "name": "Lightspeed Restaurant K Series Account Customer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

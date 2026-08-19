@@ -1,0 +1,1177 @@
+{
+  "item": [
+    {
+      "id": "ad79434c-666a-4832-8e5f-0910031cd90a",
+      "name": "FinancialV2",
+      "description": {
+        "content": "V2 endpoints (`/f/v2/...`) for retrieving sales and financial data.\n\n### Endpoint Mapping\n\n| V1 Endpoint | V2 Endpoint |\n|-------------|-------------|\n| `getFinancials` (`/f/finance/{id}/financials/{from}/{to}`) | `getSales` (`/f/v2/business-location/{id}/sales`) |\n| `getDailyFinancials` (`/f/finance/{id}/dailyFinancials`) | `getBusinessDaySales` (`/f/v2/business-location/{id}/sales-daily`) |\n\nResponse DTOs are nearly identical to V1 with the exceptions noted below\n\n### V2 behaviour\n\n- **Sorting**: Explicitly sorted by `timeClosed`\n- **Transitory Accounts /  Unsettled Sales**: Returns closed transactions and ensures no transitory (unclosed) transactions are included in reporting\n- **Pagination**: `pageSize` max of 100. No HATEOAS `_links`; uses `nextPageToken` string for pagination instead\n- **Daily endpoints** (`getBusinessDaySales`): No pagination, no hard cap on results. May have slower response times for larger data sets\n- **Backoffice transactions**: Historical dating not currently supported — transactions appear as if created at current time. Transactions can only be found by the date/time they were actually created. *Historical dating support is planned for a future release.*\n- **Backoffice modifications** (payment method change and canceling): Modifications appear on the date the modification was performed, not the original transaction date\n\nIf you need to query transactions by their original business date (e.g. for historical reporting or reconciliation); The V1 endpoints may be more suitable until backwards compatibility is added to V2 for this aspect.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e63810c-582b-4d6e-8603-ced0eff8d42c",
+          "name": "Lightspeed Get Sales",
+          "request": {
+            "name": "Lightspeed Get Sales",
+            "description": {
+              "content": "Returns financial data for a business location for a specified date range. Sorted by the `timeClosed` field of the sales.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "v2",
+                "business-location",
+                ":businessLocationId",
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nBased on the timeClosed sales field."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End of requested results, in ISO 8601 format.\n\nBased on the timeClosed sales field.\n\nIf the `to` date is set to a future date or not included, it will be adjusted to the current\ndate and time to retrieve the most recent data available."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "",
+                  "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50",
+                  "description": "Number of entries to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextPageToken",
+                  "value": "",
+                  "description": "A token that indicates the starting point of the next set of records when paginating through results."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f9aaceb-9095-444c-bf90-9e9609dee5cf",
+              "name": "Financial data returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2023-01-01T14:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2023-01-01T13:00:00Z"
+                    },
+                    {
+                      "key": "include",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sales\": [\n    {\n      \"accountReference\": \"57X0j3hzTZ2oo9sdVWiUog==\",\n      \"accountFiscId\": \"A65315.17\",\n      \"receiptId\": \"R65315.13\",\n      \"source\": {},\n      \"salesLines\": [],\n      \"payments\": [],\n      \"timeOfOpening\": \"2023-02-14T19:58:48.224Z\",\n      \"timeClosed\": \"2023-02-14T20:04:08.734Z\",\n      \"cancelled\": false,\n      \"externalFiscalNumber\": \"IntegratorReferenceId\",\n      \"tableNumber\": \"1\",\n      \"tableName\": \"Dining Room, Table 1\",\n      \"accountProfileCode\": \"AAP\",\n      \"ownerName\": \"Manager\",\n      \"ownerId\": 14670,\n      \"type\": \"SALE\",\n      \"externalReferences\": [],\n      \"nbCovers\": 2,\n      \"dineIn\": true,\n      \"deviceId\": 75125\n    }\n  ],\n  \"nextPageToken\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a46c5eb9-b046-49e4-84c8-1c17c53e68f7",
+              "name": "Bad Request - Invalid request parameters or format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2023-01-01T14:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2023-01-01T13:00:00Z"
+                    },
+                    {
+                      "key": "include",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid date format: 12/12/2023\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06abfe07-e4af-4a3b-9040-8d5be58776c4",
+              "name": "Internal Server Error - An error occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2023-01-01T14:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2023-01-01T13:00:00Z"
+                    },
+                    {
+                      "key": "include",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"path\": \"example\",\n  \"status\": 576,\n  \"error\": \"example\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "982bb3ad-1e51-4ef7-8ad1-2cf4fa929b49",
+          "name": "Lightspeed Get Business Day Sales",
+          "request": {
+            "name": "Lightspeed Get Business Day Sales",
+            "description": {
+              "content": "Returns financial data for a business location for a specified business day.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "v2",
+                "business-location",
+                ":businessLocationId",
+                "sales-daily"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "(Required) The date of the business day to get sales for.\n\nExample:`2022-09-21` or `2022-12-01`"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "",
+                  "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2a7e2bd-00e6-45e3-a077-79c2f3d4be83",
+              "name": "Financial data returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "sales-daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2021-09-21"
+                    },
+                    {
+                      "key": "include",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sales\": [\n    {\n      \"accountReference\": \"57X0j3hzTZ2oo9sdVWiUog==\",\n      \"accountFiscId\": \"A65315.17\",\n      \"receiptId\": \"R65315.13\",\n      \"source\": {},\n      \"salesLines\": [],\n      \"payments\": [],\n      \"timeOfOpening\": \"2023-02-14T19:58:48.224Z\",\n      \"timeClosed\": \"2023-02-14T20:04:08.734Z\",\n      \"cancelled\": false,\n      \"externalFiscalNumber\": \"IntegratorReferenceId\",\n      \"tableNumber\": \"1\",\n      \"tableName\": \"Dining Room, Table 1\",\n      \"accountProfileCode\": \"AAP\",\n      \"ownerName\": \"Manager\",\n      \"ownerId\": 14670,\n      \"type\": \"SALE\",\n      \"externalReferences\": [],\n      \"nbCovers\": 2,\n      \"dineIn\": true,\n      \"deviceId\": 75125\n    }\n  ],\n  \"nextStartOfDayAsIso8601\": \"2023-07-28T05:30:00-05:00\",\n  \"dataComplete\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2287a4e3-3e77-43ae-b7f6-eeabe6a4a14d",
+              "name": "Bad Request - Invalid request parameters or format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "sales-daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2021-09-21"
+                    },
+                    {
+                      "key": "include",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "161a1b1e-a160-4407-a11c-73b365885295",
+              "name": "Internal Server Error - An error occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "sales-daily"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2021-09-21"
+                    },
+                    {
+                      "key": "include",
+                      "value": ""
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"path\": \"example\",\n  \"status\": 195,\n  \"error\": \"example\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9430770d-e157-485c-8715-2742fc1c62f9",
+          "name": "Lightspeed Payments Data",
+          "request": {
+            "name": "Lightspeed Payments Data",
+            "description": {
+              "content": "Returns Lightspeed Payments fee and surcharge data for a business location for a specified date range. Results are queried and sorted based on the specified dateType.\n\nNote: Will only return sales created after migration from iKentoo 2.0 to Lightspeed K-Series. See [this article](https://k-series-support.lightspeedhq.com/hc/en-us/articles/360056758333-Upgrading-to-K-Series-from-iKentoo-2-0) for more details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "v2",
+                "business-location",
+                ":businessLocationId",
+                "lightspeed-payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nResults queried by the dateType parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End of requested results, in ISO 8601 format.\n\nResults queried by the dateType parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50",
+                  "description": "Number of entries to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "ASC"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateType",
+                  "value": "MODIFIED"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Payment statuses to filter the result set by."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Payment statuses to filter the result set by."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9daf77ab-cbfc-41c2-a688-5821ad7c5df8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "lightspeed-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2023-01-01T14:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2023-01-01T13:00:00Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    },
+                    {
+                      "key": "dateType",
+                      "value": "CREATED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CAPTURED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "REFUNDED"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payments\": [\n    {\n      \"accountFiscId\": \"A72691.8\",\n      \"lightspeedPaymentId\": \"ad-GJ33PFSCGVG4NFH4\",\n      \"uuid\": \"bc7i2X_CTkeg8qlec66wmg==\",\n      \"reference\": \"RFOOVMIMPSDY\",\n      \"status\": {},\n      \"createdDate\": \"2022-09-21T10:11:56Z\",\n      \"captureDate\": \"2022-09-21T10:11:56Z\",\n      \"modificationDate\": \"2022-09-21T10:11:56Z\",\n      \"fees\": {},\n      \"surcharge\": {}\n    }\n  ],\n  \"pageSize\": 100,\n  \"offset\": 0,\n  \"nextOffset\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1b64105-8bc4-4be3-bf4d-0b32e45e3e1b",
+              "name": "Bad Request - Invalid request parameters or format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "business-location",
+                    ":businessLocationId",
+                    "lightspeed-payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2023-01-01T14:00:00Z"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2023-01-01T13:00:00Z"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    },
+                    {
+                      "key": "dateType",
+                      "value": "CREATED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "CAPTURED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "REFUNDED"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid date format: 12/12/2023\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b88d960-747b-4bfc-89af-a978faac5402",
+          "name": "Lightspeed BETA - Get Aborted Orders",
+          "request": {
+            "name": "Lightspeed BETA - Get Aborted Orders",
+            "description": {
+              "content": "Retrieves a list of aborted orders for a specified business day.\n\nAn aborted order is defined as an instance where items were added to an order, but **all** items were subsequently removed without being committed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "v2",
+                "beta",
+                "business-location",
+                ":businessLocationId",
+                "aborted-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "(Required) The business date of the aborted orders."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3989e76b-3320-467d-8c1e-89c72e8d5973",
+              "name": "Aborted orders returned successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "beta",
+                    "business-location",
+                    ":businessLocationId",
+                    "aborted-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2023-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"staffName\": \"Employee 1\",\n    \"timeOfAbortedOrder\": \"2023-03-14T19:58:48.224Z\",\n    \"totalAmountAborted\": \"33.32\",\n    \"abortedLineItems\": [\n      {}\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db9259c0-878d-401f-8add-b81e7ff5b0e4",
+              "name": "Bad Request - Invalid request parameters or format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "beta",
+                    "business-location",
+                    ":businessLocationId",
+                    "aborted-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2023-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98428de9-3963-43e7-a170-121071477855",
+              "name": "Internal Server Error - An error occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "v2",
+                    "beta",
+                    "business-location",
+                    ":businessLocationId",
+                    "aborted-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "2023-01-01"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"path\": \"example\",\n  \"status\": 926,\n  \"error\": \"example\",\n  \"requestId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "af243fff-783b-4b08-aa47-82e849424706",
+    "name": "Lightspeed Restaurant K Series Account FinancialV2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

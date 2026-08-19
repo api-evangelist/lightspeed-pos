@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series Account Sale API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sale",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed List Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/Account/:accountID/Sale.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "completed",
+                "value": "",
+                "type": "query",
+                "description": "Filter by completion status."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns point-of-sale transactions for the account."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create Sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/Account/:accountID/Sale.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new sale transaction."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Sale by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/Account/:accountID/Sale/:saleID.json",
+            "params": [
+              {
+                "name": "accountID",
+                "value": "",
+                "type": "path",
+                "description": "The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+              },
+              {
+                "name": "saleID",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the sale."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a single sale by its saleID, including its sale lines."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

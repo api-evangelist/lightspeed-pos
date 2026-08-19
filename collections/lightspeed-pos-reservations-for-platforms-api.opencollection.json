@@ -1,0 +1,417 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series Account Reservations for Platforms API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reservations for Platforms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Callback to Complete Onboarding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/integration/onboarding",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Once the external platform receives the [onboarding webhook](https://api-docs.lsk.lightspeed.app/operation/operation-reservationonboardingnotification), the process needs to be completed using this callback."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Platform Profile Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/profile",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve platform profile details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create or Update Platform Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/profile",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create or update details for external reservation platform."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Platform Course Settings Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/course-settings",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Setup platform's course settings definition."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create or Update Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/restaurant/:platform-restaurant-id/reservation/:platform-reservation-id/push",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "platform-restaurant-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "platform-reservation-id",
+                "value": "",
+                "type": "path",
+                "description": "The external identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a new reservation or provide updates about guests, deposits, status, etc."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication by XApiKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/api-keys",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate XApiKey authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication with BasicAuth",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/basic-auth",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate BasicAuth authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication with BearerAuth",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/bearer-auth",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate BearerAuth authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Add Authentication with OAuth2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/platform/:platform-code/webhook/auth/oauth2",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate OAuth2 authentication for webhooks."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Business Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/user/platform/:platform-code/business-locations",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number, when paginating"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "The items per page, when paginating"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieve all the business locations accessible for a User"
+        },
+        {
+          "info": {
+            "name": "Lightspeed Activate Integration for Restaurant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/user/platform/:platform-code/integration/activate",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Activate the integration between the K-Series business location and the external reservation platform."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Deactivate Integration for Restaurant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/reservation/api/1/user/platform/:platform-code/integration/deactivate",
+            "params": [
+              {
+                "name": "platform-code",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deactivate the integration between the K-Series business location and the external reservation platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

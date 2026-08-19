@@ -1,0 +1,1480 @@
+{
+  "item": [
+    {
+      "id": "7d5bf914-2be6-4c31-9c54-1d21ae699509",
+      "name": "Rich Item",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e554bfa-2dba-4d05-b539-b7f3b1c864bf",
+          "name": "Lightspeed Get Allergens",
+          "request": {
+            "name": "Lightspeed Get Allergens",
+            "description": {
+              "content": "Returns a list of all possible allergens that can be added to a rich item. See [Allergens Table](https://api-portal.lsk.lightspeed.app/guides/reference/reference-tables/allergens) for more details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "allergens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e56cce99-d29e-4d63-9a65-8fae999093bc",
+              "name": "Allergens",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "allergens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"fish\",\n    \"translations\": [\n      {\n        \"locale\": \"en\",\n        \"text\": \"Fish\"\n      },\n      {\n        \"locale\": \"fr\",\n        \"text\": \"Poisson\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4b3bdd5-65bc-4099-93c8-1d9ccefd3fc5",
+          "name": "Lightspeed Get Locales",
+          "request": {
+            "name": "Lightspeed Get Locales",
+            "description": {
+              "content": "Returns the locales of a business in ISO Code 2 or language_localization (eg. 'en' or 'en_US').",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "locales",
+                ":businessId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c0c1c4d-e473-44e4-822a-7ebc1d27f6c2",
+              "name": "Locales",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "locales",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"en\",\n  \"es\",\n  \"de\",\n  \"fr\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2753586d-7b81-41d8-bdef-5628ba774e59",
+          "name": "Lightspeed Update Locales",
+          "request": {
+            "name": "Lightspeed Update Locales",
+            "description": {
+              "content": "Sets business item languages. Supports language ISO code 2 or language_localization (eg. 'en' or 'en_US').",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "locales",
+                ":businessId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a93e8fba-6b02-43c5-a709-fe62a91ea4ee",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "locales",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"en\",\n  \"es\",\n  \"de\",\n  \"fr\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c92ea827-57d3-4878-904d-c14979f50871",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "locales",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"en\",\n  \"es\",\n  \"de\",\n  \"fr\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5512c2c-45ec-4bc3-aadc-e473c4811525",
+          "name": "Lightspeed Get Rich Items",
+          "request": {
+            "name": "Lightspeed Get Rich Items",
+            "description": {
+              "content": "Returns all of the rich item information for a specific business.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "99903d56-54dd-4d83-bb1e-a30082bac4e4",
+              "name": "Rich Items",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "sku"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "sku"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"richItemDtoList\": [\n      {\n        \"businessId\": 454335871,\n        \"sku\": \"UGG-BB-PUR-06\",\n        \"descriptions\": [\n          {\n            \"localeCode\": \"de\",\n            \"description\": \"Das ist ein Test\",\n            \"displayName\": \"Rich Item 1 DE\"\n          },\n          {\n            \"localeCode\": \"en\",\n            \"description\": \"This is a test for a rich item\",\n            \"displayName\": \"Rich Item 1\"\n          }\n        ],\n        \"allergenCodes\": [\n          \"milk\",\n          \"cereals\"\n        ],\n        \"creationDate\": \"2021-11-03T13:50:47Z\",\n        \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n        \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\",\n        \"_links\": {\n          \"self\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"items\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"businessId\": 454335871,\n        \"sku\": \"UGG-BB-PUR-06\",\n        \"descriptions\": [\n          {\n            \"localeCode\": \"de\",\n            \"description\": \"Das ist ein Test\",\n            \"displayName\": \"Rich Item 1 DE\"\n          },\n          {\n            \"localeCode\": \"en\",\n            \"description\": \"This is a test for a rich item\",\n            \"displayName\": \"Rich Item 1\"\n          }\n        ],\n        \"allergenCodes\": [\n          \"milk\",\n          \"cereals\"\n        ],\n        \"creationDate\": \"2021-11-03T13:50:47Z\",\n        \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n        \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\",\n        \"_links\": {\n          \"self\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"items\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.trial.lsk.lightspeed.app/i/i/richItem/8262?page=0&size=100&sort=\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89d3925c-3176-4555-9137-4366570e432d",
+          "name": "Lightspeed Get Rich Item by Sku",
+          "request": {
+            "name": "Lightspeed Get Rich Item by Sku",
+            "description": {
+              "content": "Get a rich item from its sku and the business id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "afd25d37-d22d-4107-bf63-8dc93af55246",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"businessId\": 454335871,\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"descriptions\": [\n    {\n      \"localeCode\": \"de\",\n      \"description\": \"Das ist ein Test\",\n      \"displayName\": \"Rich Item 1 DE\"\n    },\n    {\n      \"localeCode\": \"en\",\n      \"description\": \"This is a test for a rich item\",\n      \"displayName\": \"Rich Item 1\"\n    }\n  ],\n  \"allergenCodes\": [\n    \"milk\",\n    \"cereals\"\n  ],\n  \"creationDate\": \"2021-11-03T13:50:47Z\",\n  \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n  \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n  \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n  \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\",\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.trial.lsk.lightspeed.app/i/richItem/8262/UGG-BB-PUR-06\"\n    },\n    \"items\": {\n      \"href\": \"https://api.trial.lsk.lightspeed.app/i/richItem/8262/\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37abfcc7-54ee-4d28-9c80-70d281a15a0f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "696b91f8-23ad-4bec-ad44-f5c16cd6e7ec",
+          "name": "Lightspeed Update Picture",
+          "request": {
+            "name": "Lightspeed Update Picture",
+            "description": {
+              "content": "Partially updates the rich item to set the picture or rawPicture.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessId\": \"<long>\",\n  \"sku\": \"<string>\",\n  \"fileType\": \"<string>\",\n  \"picture\": \"<byte>\",\n  \"rawPicture\": \"<byte>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e207d43-9610-4334-bf4e-0d5a39bee637",
+              "name": "Patched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessId\": 660,\n  \"sku\": \"SKU-1001\",\n  \"fileType\": \"example\",\n  \"picture\": \"example\",\n  \"rawPicture\": \"example\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"businessId\": 454335871,\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"descriptions\": [\n    {\n      \"localeCode\": \"de\",\n      \"description\": \"Das ist ein Test\",\n      \"displayName\": \"Rich Item 1 DE\"\n    },\n    {\n      \"localeCode\": \"en\",\n      \"description\": \"This is a test for a rich item\",\n      \"displayName\": \"Rich Item 1\"\n    }\n  ],\n  \"allergenCodes\": [\n    \"milk\",\n    \"cereals\"\n  ],\n  \"creationDate\": \"2021-11-03T13:50:47Z\",\n  \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n  \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n  \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n  \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7459d4c9-f949-48ea-9e8d-3c32f66914e4",
+          "name": "Lightspeed Create or Update Rich Item",
+          "request": {
+            "name": "Lightspeed Create or Update Rich Item",
+            "description": {
+              "content": "Creates a new rich item or updates an existing rich item. To update the sku, set the new sku in the request body. The picture cannot be set using this method (use PATCH method).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=UTF-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessId\": \"<long>\",\n  \"sku\": \"<string>\",\n  \"allergenCodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"descriptions\": [\n    {\n      \"localeCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\"\n    },\n    {\n      \"localeCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8f8e130-5eb5-450c-bc98-525824f8a524",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=UTF-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessId\": 704,\n  \"sku\": \"SKU-1001\",\n  \"allergenCodes\": [\n    \"example\"\n  ],\n  \"descriptions\": [\n    {\n      \"localeCode\": \"fr\",\n      \"description\": \"Ceci est un café. L'apostrophe.\",\n      \"displayName\": \"Super expresso\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"businessId\": 454335871,\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"descriptions\": [\n    {\n      \"localeCode\": \"de\",\n      \"description\": \"Das ist ein Test\",\n      \"displayName\": \"Rich Item 1 DE\"\n    },\n    {\n      \"localeCode\": \"en\",\n      \"description\": \"This is a test for a rich item\",\n      \"displayName\": \"Rich Item 1\"\n    }\n  ],\n  \"allergenCodes\": [\n    \"milk\",\n    \"cereals\"\n  ],\n  \"creationDate\": \"2021-11-03T13:50:47Z\",\n  \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n  \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n  \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n  \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed8ebb58-fd73-4465-a082-d68f788cfccb",
+          "name": "Lightspeed Delete Rich Item",
+          "request": {
+            "name": "Lightspeed Delete Rich Item",
+            "description": {
+              "content": "Delete rich item",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId",
+                ":sku"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sku",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "21b965b1-3595-4178-a6f3-f21f3fe17cca",
+              "name": "Item deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    ":sku"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sku",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e755d38-54b1-46b2-b031-6efcdcd6e082",
+          "name": "Lightspeed Get Rich Items by SKUs",
+          "request": {
+            "name": "Lightspeed Get Rich Items by SKUs",
+            "description": {
+              "content": "Returns a list of rich items matching the SKUs provided in the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId",
+                "itemsBySkus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0cf7df02-9467-4e64-97fe-48c6e77b46be",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    "itemsBySkus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"UGG-BB-PUR-06\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"richItemDtoList\": [\n      {\n        \"businessId\": 454335871,\n        \"sku\": \"UGG-BB-PUR-06\",\n        \"descriptions\": [\n          {\n            \"localeCode\": \"de\",\n            \"description\": \"Das ist ein Test\",\n            \"displayName\": \"Rich Item 1 DE\"\n          },\n          {\n            \"localeCode\": \"en\",\n            \"description\": \"This is a test for a rich item\",\n            \"displayName\": \"Rich Item 1\"\n          }\n        ],\n        \"allergenCodes\": [\n          \"milk\",\n          \"cereals\"\n        ],\n        \"creationDate\": \"2021-11-03T13:50:47Z\",\n        \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n        \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\",\n        \"_links\": {\n          \"self\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"items\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"businessId\": 454335871,\n        \"sku\": \"UGG-BB-PUR-06\",\n        \"descriptions\": [\n          {\n            \"localeCode\": \"de\",\n            \"description\": \"Das ist ein Test\",\n            \"displayName\": \"Rich Item 1 DE\"\n          },\n          {\n            \"localeCode\": \"en\",\n            \"description\": \"This is a test for a rich item\",\n            \"displayName\": \"Rich Item 1\"\n          }\n        ],\n        \"allergenCodes\": [\n          \"milk\",\n          \"cereals\"\n        ],\n        \"creationDate\": \"2021-11-03T13:50:47Z\",\n        \"lastUpdateDate\": \"2021-11-11T16:29:56Z\",\n        \"pictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"previewPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7.png\",\n        \"rawPictureUrl\": \"http://s3-eu-west-1.amazonaws.com/com.ikentoo.trial.rich-content-store/25372_029b5ad1-08f7-4e1f-9087-3ca91ad818f7_raw.png\",\n        \"_links\": {\n          \"self\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"items\": {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.trial.lsk.lightspeed.app/i/richItem/8262/UGG-BB-PUR-06\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f054d32c-951d-4c3b-9724-6e3a2eb533cb",
+          "name": "Lightspeed Get Picture Specifications",
+          "request": {
+            "name": "Lightspeed Get Picture Specifications",
+            "description": {
+              "content": "Get rich item picture specifications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "i",
+                "richItem",
+                ":businessId",
+                "pictureSpec"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1987ebe4-fff9-41e2-94df-b2ac8864e3d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "i",
+                    "richItem",
+                    ":businessId",
+                    "pictureSpec"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"key_0\": {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"templated\": true,\n      \"title\": \"string\",\n      \"type\": \"string\"\n    },\n    \"key_1\": {\n      \"deprecation\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"name\": \"string\",\n      \"profile\": \"string\",\n      \"templated\": false,\n      \"title\": \"string\",\n      \"type\": \"string\"\n    }\n  },\n  \"minHeight\": 7709,\n  \"minWidth\": 9521,\n  \"requiredAspectRatio\": 382.51544300225817\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61b78c3d-05ec-4720-8d8b-6564698cb3d9",
+    "name": "Lightspeed Restaurant K Series Account Rich Item API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1362 @@
+{
+  "item": [
+    {
+      "id": "036cc00c-5f9c-4234-b615-9eb6fff66158",
+      "name": "Financial",
+      "description": {
+        "content": "V1 endpoints (`/f/finance/...`) for retrieving sales and financial data.\n\nFor the newer V2 versions of these endpoints see FinancialV2\n\n### V1 behaviour\n\n- **Sorting**: No guaranteed sorting order; internal transformations may alter order unpredictably\n- **Transitory Accounts / Unsettled Sales**: Returns closed transactions only\n- **Pagination**: `pageSize` max of 1000. Uses HATEOAS `_links` with `self` and `nextPage` URLs\n- **Daily endpoints** (`getDailyFinancials`): No pagination, no hard cap on results. May have slower response times for larger data sets\n- **Backoffice transactions**: Historical dating supported. Transactions will be dated to a past date if the action impacts past reports. Can query transactions by original business date\n- **Backoffice modifications** (payment method change and canceling): Modifications appear on the original transaction date\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6fefd32d-17cc-4672-a3d0-f523ac312e47",
+          "name": "Lightspeed Get Businesses",
+          "request": {
+            "name": "Lightspeed Get Businesses",
+            "description": {
+              "content": "Returns all businesses the token has access to. Pagination is supported by providing the `page` and `size` query parameters. The maximum number of business locations per business returned is 500.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "data",
+                "businesses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Starting page of results, when paginating."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "1000",
+                  "description": "Number of results to return, when paginating."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d62f4c4b-8c84-4423-9345-ff7090e09526",
+              "name": "Businesses returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "data",
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"businessList\": [\n      {\n        \"businessName\": \"My Business\",\n        \"businessId\": 1234,\n        \"currencyCode\": \"GBP\",\n        \"businessLocations\": [\n          {}\n        ]\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https:///api.ikentoo.com/data/businesses\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72769db2-d213-46e0-8b09-118f4695b72a",
+          "name": "Lightspeed Get Tax Rates",
+          "request": {
+            "name": "Lightspeed Get Tax Rates",
+            "description": {
+              "content": "Returns tax rates for a business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "tax-rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bbf759d3-824a-43d9-b80b-38fcdfc991d3",
+              "name": "Tax rates returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "tax-rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"taxRateList\": [\n      {}\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ikentoo.com/f/finance/141948669132802/tax-rates\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "314fa392-f142-4059-bee0-d3cda056d99b",
+          "name": "Lightspeed Get Payment Methods",
+          "request": {
+            "name": "Lightspeed Get Payment Methods",
+            "description": {
+              "content": "Returns all payment methods for a business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "paymentMethods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9154957c-363a-4a79-b6f1-74acc4670dc2",
+              "name": "Payment methods returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "paymentMethods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"paymentMethodList\": [\n      {\n        \"name\": \"Cash\",\n        \"code\": \"CASH\",\n        \"accountingReference\": \"cash-payment\",\n        \"pmId\": 1234567890\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https:///api.ikentoo.com/finance/1234567/paymentMethodss\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61952e3d-971d-46d5-b16a-95cdffccddd6",
+          "name": "Lightspeed Get Accounting Groups",
+          "request": {
+            "name": "Lightspeed Get Accounting Groups",
+            "description": {
+              "content": "Returns all accounting groups for a business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "accountingGroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d5c29d5b-41b9-4c1d-a066-5c3062b567b0",
+              "name": "Accounting groups returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "accountingGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_embedded\": {\n    \"accountingGroupList\": [\n      {\n        \"accountingGroupId\": 1234567890,\n        \"name\": \"Food\",\n        \"statisticGroup\": \"[{\\\"category\\\":\\\"default\\\",\\\"value\\\":\\\"Food\\\"}]\",\n        \"code\": \"fd\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ikentoo.com/f/finance/1234567/accountingGroups\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d36f487d-eb35-4837-8a5a-71c51b085884",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "accountingGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4d7d06a-f863-49fb-a071-b14106ad4727",
+          "name": "Lightspeed Get Financials",
+          "request": {
+            "name": "Lightspeed Get Financials",
+            "description": {
+              "content": "Returns financial data for a business location for a specified date range.\n\nNote: Will only return sales created after migration from iKentoo 2.0 to Lightspeed K-Series.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "financials",
+                ":from",
+                ":to"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "",
+                  "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "1000",
+                  "description": "Number of entries to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextPageToken",
+                  "value": "<string>",
+                  "description": "The `accountId` where the results should begin.\n\nExample: `A65315.18`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<dateTime>",
+                  "key": "from",
+                  "description": "(Required) Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<dateTime>",
+                  "key": "to",
+                  "description": "(Required) End of requested results, in ISO 8601 format.\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e48976f-5b49-48ac-b6d6-3bc493fb45f0",
+              "name": "Financials returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "financials",
+                    ":from",
+                    ":to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<dateTime>",
+                      "key": "from",
+                      "description": "(Required) Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<dateTime>",
+                      "key": "to",
+                      "description": "(Required) End of requested results, in ISO 8601 format.\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessName\": \"My Business\",\n  \"nextStartOfDayAsIso8601\": \"2023-07-28T05:30:00-05:00\",\n  \"businessLocationId\": 123456789,\n  \"sales\": [\n    {\n      \"accountReference\": \"57X0j3hzTZ2oo9sdVWiUog==\",\n      \"accountFiscId\": \"A65315.17\",\n      \"receiptId\": \"R65315.13\",\n      \"source\": {},\n      \"salesLines\": [],\n      \"payments\": [],\n      \"timeofOpening\": \"2023-02-14T19:58:48.224Z\",\n      \"timeofCloseAndPaid\": \"2023-02-14T20:04:08.734Z\",\n      \"cancelled\": false,\n      \"externalFiscalNumber\": \"example\",\n      \"tableNumber\": \"1\",\n      \"tableName\": \"Dining Room, Table 1\",\n      \"accountProfileCode\": \"AAP\",\n      \"ownerName\": \"Manager\",\n      \"ownerId\": 14670,\n      \"type\": \"SALE\",\n      \"externalReferences\": [],\n      \"nbCovers\": 2,\n      \"dineIn\": true,\n      \"deviceId\": 75125\n    }\n  ],\n  \"dataComplete\": false,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ikentoo.com/f/finance/141948669132802/financials/2021-08-30T14:00:00Z/2023-09-03T15:30:00Z?pageSize=10&include=payments\",\n      \"templated\": true\n    },\n    \"nextPage\": {\n      \"href\": \"https://api.ikentoo.com/f/finance/141948669132802/financials/2021-08-30T14:00:00Z/2023-09-03T15:30:00Z?pageSize=10&include=payments&nextPageToken=A65315.18\",\n      \"templated\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80e27e81-bafc-4ac5-a7f8-247ae7376b68",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "financials",
+                    ":from",
+                    ":to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": ""
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<dateTime>",
+                      "key": "from",
+                      "description": "(Required) Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<dateTime>",
+                      "key": "to",
+                      "description": "(Required) End of requested results, in ISO 8601 format.\n\nExample:`2022-09-21T10:11:56Z` or `2022-09-21T06:11:56-04:00`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb1d1c86-a72d-4432-866f-466f5a44ff3e",
+          "name": "Lightspeed Get Daily Financials",
+          "request": {
+            "name": "Lightspeed Get Daily Financials",
+            "description": {
+              "content": "Returns the financial data for the current business day or for the specified date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "dailyFinancials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "",
+                  "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "The date in YYYY-MM-DD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeConsumers",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9a8e094d-80e9-411f-b09d-5113357ac9cd",
+              "name": "Daily financials returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "dailyFinancials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include",
+                      "value": ""
+                    },
+                    {
+                      "key": "date",
+                      "value": "2021-10-28"
+                    },
+                    {
+                      "key": "includeConsumers",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessName\": \"My Business\",\n  \"nextStartOfDayAsIso8601\": \"2023-07-28T05:30:00-05:00\",\n  \"businessLocationId\": 123456789,\n  \"sales\": [\n    {\n      \"accountReference\": \"57X0j3hzTZ2oo9sdVWiUog==\",\n      \"accountFiscId\": \"A65315.17\",\n      \"receiptId\": \"R65315.13\",\n      \"source\": {},\n      \"salesLines\": [],\n      \"payments\": [],\n      \"timeofOpening\": \"2023-02-14T19:58:48.224Z\",\n      \"timeofCloseAndPaid\": \"2023-02-14T20:04:08.734Z\",\n      \"cancelled\": false,\n      \"externalFiscalNumber\": \"example\",\n      \"tableNumber\": \"1\",\n      \"tableName\": \"Dining Room, Table 1\",\n      \"accountProfileCode\": \"AAP\",\n      \"ownerName\": \"Manager\",\n      \"ownerId\": 14670,\n      \"type\": \"SALE\",\n      \"externalReferences\": [],\n      \"nbCovers\": 2,\n      \"dineIn\": true,\n      \"deviceId\": 75125\n    }\n  ],\n  \"dataComplete\": false,\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.ikentoo.com/f/finance/141948669132802/financials/2021-08-30T14:00:00Z/2023-09-03T15:30:00Z?pageSize=10&include=payments\",\n      \"templated\": true\n    },\n    \"nextPage\": {\n      \"href\": \"https://api.ikentoo.com/f/finance/141948669132802/financials/2021-08-30T14:00:00Z/2023-09-03T15:30:00Z?pageSize=10&include=payments&nextPageToken=A65315.18\",\n      \"templated\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "730856d7-2825-484b-85f3-3cb2c4d7404d",
+          "name": "Lightspeed Get Receipt by External Reference",
+          "request": {
+            "name": "Lightspeed Get Receipt by External Reference",
+            "description": {
+              "content": "Returns a single receipt matching the external reference supplied in the request. See [`externalReferences`](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences) for examples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "saleByExternalReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "externalReferenceId",
+                  "value": "<string>",
+                  "description": "(Required) The external reference of the receipt. See [externalReferences](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bea6fabc-df1f-47c6-924e-9260151a4408",
+              "name": "Receipt returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "saleByExternalReference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "externalReferenceId",
+                      "value": "TASK:OO-{businessLocationId}-{unique-reference-code}"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountReference\": \"57X0j3hzTZ2oo9sdVWiUog==\",\n  \"accountFiscId\": \"A65315.17\",\n  \"receiptId\": \"R65315.13\",\n  \"source\": {\n    \"initialAccountId\": \"A65315.13\",\n    \"previousAccountId\": \"A65315.15\"\n  },\n  \"salesLines\": [\n    {\n      \"id\": \"S65315.33\",\n      \"parentLineId\": \"S65315.32\",\n      \"totalNetAmountWithTax\": \"11.00\",\n      \"totalNetAmountWithoutTax\": \"8.33\",\n      \"menuListPrice\": \"10.00\",\n      \"unitCostPrice\": \"5.00\",\n      \"serviceCharge\": \"1.00\",\n      \"serviceChargeType\": \"APPORTIONED\",\n      \"serviceChargeRate\": \"10.00\",\n      \"discountAmount\": \"0.00\",\n      \"taxCode\": \"VAT20\",\n      \"taxAmount\": \"1.6667\",\n      \"taxRatePercentage\": \"20.00\",\n      \"taxLines\": \"example\",\n      \"discountType\": \"DISCOUNT\",\n      \"discountCode\": \"10PCT\",\n      \"discountName\": \"10% Discount\",\n      \"accountDiscountAmount\": \"1.00\",\n      \"accountDiscountType\": \"DISCOUNT\",\n      \"accountDiscountCode\": \"Staff 20%\"\n    }\n  ],\n  \"payments\": [\n    {\n      \"code\": \"CASH\",\n      \"description\": \"Cash\",\n      \"paymentMethodId\": 141948669132824,\n      \"netAmountWithTax\": \"11.00\",\n      \"currency\": \"GBP\",\n      \"tip\": \"0.00\",\n      \"consumer\": {\n        \"id\": \"ec021fb0-4c12-425e-b30f-320ab720448b\",\n        \"customerId\": 120913,\n        \"title\": \"Mr\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"phoneNumber1\": \"555-555-5555\",\n        \"phoneNumber2\": \"555-555-5556\",\n        \"companyName\": \"Company Name\",\n        \"addressLine1\": \"123 Street st.\",\n        \"addressLine2\": \"Unit 123\",\n        \"zipCode\": \"12345\",\n        \"city\": \"Some City\",\n        \"state\": \"Some State\",\n        \"email\": \"customer@email.com\",\n        \"taxIdentifier\": \"123456789\",\n        \"fiscalCode\": \"123456789\",\n        \"destinationCode\": \"123456789\"\n      },\n      \"type\": \"NORMAL\",\n      \"deviceId\": \"72676\",\n      \"deviceName\": \"ipad9\",\n      \"staffId\": 180480,\n      \"staffName\": \"Manager\",\n      \"authorization\": \"001\",\n      \"externalReference\": \"1000\",\n      \"revenueCenter\": \"Fixed POS\",\n      \"revenueCenterId\": 141948669132822,\n      \"fiscId\": \"T72691.8\",\n      \"uuid\": \"bc7i2X_CTkeg8qlec66wmg==\",\n      \"fiscDate\": \"2023-02-14T20:04:08.665Z\",\n      \"surcharge\": \"0.00\"\n    }\n  ],\n  \"timeofOpening\": \"2023-02-14T19:58:48.224Z\",\n  \"timeofCloseAndPaid\": \"2023-02-14T20:04:08.734Z\",\n  \"cancelled\": false,\n  \"externalFiscalNumber\": \"example\",\n  \"tableNumber\": \"1\",\n  \"tableName\": \"Dining Room, Table 1\",\n  \"accountProfileCode\": \"AAP\",\n  \"ownerName\": \"Manager\",\n  \"ownerId\": 14670,\n  \"type\": \"SALE\",\n  \"externalReferences\": [\n    \"\\\"TASK:OO-{businessLocationId}-{unique-reference-code}\\\", \\\"TASK:OO-{businessLocationId}-(another-unique-reference-code)\\\"\"\n  ],\n  \"nbCovers\": 2,\n  \"dineIn\": true,\n  \"deviceId\": 75125\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2365552-291c-4e6d-89b3-b36b93369bc3",
+          "name": "Lightspeed Get Aggregated Sales",
+          "request": {
+            "name": "Lightspeed Get Aggregated Sales",
+            "description": {
+              "content": "Get sales for the current business day or the specified date range, aggregated by one or more values.\nThe values are specified in the `groupBy` parameter and are nested in the order provided in the request.\n\n- Use either the `date` parameter **or** the `from` and `to` parameters to specify the period.\n- The `date` parameter specifies a single date for aggregation.\n- The `from` and `to` parameters specify a date-time range and must be used together.\n- **If neither `date` nor `from`/`to` are provided it defaults to today's date**.\n- The date range between `from` and `to` cannot exceed 365 days (1 year).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "f",
+                "finance",
+                ":businessLocationId",
+                "aggregatedSales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Specify a single date for which to retrieve aggregated sales data. Cannot be combined with `from` and `to`. Use either `date`, or both `from` and `to`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Specify the start datetime for the aggregation range. Must be used together with `to`. Cannot be combined with `date`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "Specify the end datetime for the aggregation range. Must be used together with `from`. Cannot be combined with `date`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "flattened",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupBy",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of parameters to group the results by.\nThe allowed values are: `staff`, `device`, `deviceId`, `tag`, `accountingGroup`, and `statisticGroup`.\nFor example, `groupBy` can be set to `staff,device`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) The unique identifier for the business location."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ffe9b3c-7534-4862-b018-eefda5800bc4",
+              "name": "Aggregated sales returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "aggregatedSales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "flattened",
+                      "value": "true"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupByKey\": \"example\",\n  \"groupByValue\": \"example\",\n  \"totalAmount\": \"12.50\",\n  \"serviceCharge\": \"example\",\n  \"totalDiscountedAmount\": \"12.50\",\n  \"totalTaxAmount\": \"12.50\",\n  \"numberOfSales\": 49.89,\n  \"children\": [\n    {\n      \"groupByKey\": \"device\",\n      \"children\": [\n        {\n          \"groupByValue\": \"iPad7\",\n          \"totalAmount\": \"28.00\",\n          \"serviceCharge\": \"0.00\",\n          \"totalDiscountedAmount\": \"0.00\",\n          \"totalTaxAmount\": \"4.19\",\n          \"numberOfSales\": 3,\n          \"children\": []\n        }\n      ]\n    }\n  ],\n  \"nextStartOfDayAsIso8601\": \"example\",\n  \"dataComplete\": false,\n  \"businessName\": \"Sample businessName\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2eadc11-ba45-478b-98f4-007b0e078739",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "f",
+                    "finance",
+                    ":businessLocationId",
+                    "aggregatedSales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "flattened",
+                      "value": "true"
+                    },
+                    {
+                      "key": "groupBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) The unique identifier for the business location."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"key_0\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6d0514e7-a271-444e-8e7f-35c19c23396c",
+    "name": "Lightspeed Restaurant K Series Account Financial API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

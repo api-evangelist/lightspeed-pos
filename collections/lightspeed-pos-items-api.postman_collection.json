@@ -1,0 +1,937 @@
+{
+  "item": [
+    {
+      "id": "51c97850-13ea-4106-b6b0-51a7227ff3bb",
+      "name": "Items",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd465ad6-5a9c-4e2e-bb27-dc6bc4829b8a",
+          "name": "Lightspeed Get Item by ID",
+          "request": {
+            "name": "Lightspeed Get Item by ID",
+            "description": {
+              "content": "Returns the details of a specific item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "v1",
+                "items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6951a9a2-f212-4d47-8a35-21076573cdef",
+              "name": "Item found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3012455645,\n  \"name\": \"Burger\",\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"00000001\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroup\": {\n    \"id\": 40570261078058,\n    \"name\": \"Alcoholic beverages\"\n  },\n  \"statisticGroups\": [\n    {\n      \"category\": \"default\",\n      \"value\": \"Food\"\n    }\n  ],\n  \"costPrice\": 5,\n  \"prices\": [\n    {\n      \"amount\": 10,\n      \"name\": \"Tuesday Special\"\n    }\n  ],\n  \"sharingType\": \"SHARED\",\n  \"priceMode\": \"POSITIVE_OPEN_PRICE\",\n  \"inventorySource\": \"PURCHASED\",\n  \"disabled\": false,\n  \"contentDimension\": \"MASS\",\n  \"contentUom\": \"kg\",\n  \"contentValue\": 1,\n  \"itemType\": \"ITEM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfe69619-f886-4c9d-afa8-8a929bee07b9",
+              "name": "Item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"404\",\n  \"timestamp\": \"1966-01-20T17:03:02.043Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7a37675-3e31-4bfc-b6a8-5e12591b3326",
+          "name": "Lightspeed Update Item by ID",
+          "request": {
+            "name": "Lightspeed Update Item by ID",
+            "description": {
+              "content": "Modifies the values of an existing item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "v1",
+                "items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"businessLocationId\": \"<long>\",\n  \"sku\": \"<string>\",\n  \"defaultPrice\": \"<number>\",\n  \"accountingGroupId\": \"<long>\",\n  \"docketName\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"barcode\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"costPrice\": \"<number>\",\n  \"priceMode\": \"AMOUNT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f35498d9-1d9e-41de-ab28-aec7463c8bb0",
+              "name": "Item updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Burger\",\n  \"businessLocationId\": 45454565682155,\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"10011101100\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroupId\": 462478248241,\n  \"costPrice\": 5,\n  \"defaultPrice\": 10,\n  \"priceMode\": \"PERCENT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3012455645,\n  \"name\": \"Burger\",\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"00000001\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroup\": {\n    \"id\": 40570261078058,\n    \"name\": \"Alcoholic beverages\"\n  },\n  \"statisticGroups\": [\n    {\n      \"category\": \"default\",\n      \"value\": \"Food\"\n    }\n  ],\n  \"costPrice\": 5,\n  \"prices\": [\n    {\n      \"amount\": 10,\n      \"name\": \"Tuesday Special\"\n    }\n  ],\n  \"sharingType\": \"SHARED\",\n  \"priceMode\": \"POSITIVE_OPEN_PRICE\",\n  \"inventorySource\": \"PURCHASED\",\n  \"disabled\": false,\n  \"contentDimension\": \"MASS\",\n  \"contentUom\": \"kg\",\n  \"contentValue\": 1,\n  \"itemType\": \"ITEM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58a4541c-d47a-4339-9897-e27a545308f2",
+              "name": "Constraint violation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Burger\",\n  \"businessLocationId\": 45454565682155,\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"10011101100\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroupId\": 462478248241,\n  \"costPrice\": 5,\n  \"defaultPrice\": 10,\n  \"priceMode\": \"PERCENT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"400\",\n  \"timestamp\": \"2013-08-05T02:35:39.010Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b9306f8-9cdc-4d48-9aa1-b45ef235a797",
+          "name": "Lightspeed Get All Items",
+          "request": {
+            "name": "Lightspeed Get All Items",
+            "description": {
+              "content": "Returns the items for a specific business location. Supports searching by [`accountingGroupId`](#operation-getitems-accountinggroupid), [`name`](#operation-getitems-name), [`sku`](#operation-getitems-sku), or [`itemIds`](#operation-getitems-itemids).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "v1",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sku",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountingGroupId",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "itemIds",
+                  "value": "<long>",
+                  "description": "Optional list of item IDs to retrieve. When provided, offset and amount are ignored; all matching items are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "itemIds",
+                  "value": "<long>",
+                  "description": "Optional list of item IDs to retrieve. When provided, offset and amount are ignored; all matching items are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "925d6e61-948b-4b3b-a4ad-9b13c7a97090",
+              "name": "Item found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "UGG-BB-PUR-06"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Burger"
+                    },
+                    {
+                      "key": "accountingGroupId",
+                      "value": "44874545485"
+                    },
+                    {
+                      "key": "itemIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "itemIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3012455645,\n  \"name\": \"Burger\",\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"00000001\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroup\": {\n    \"id\": 40570261078058,\n    \"name\": \"Alcoholic beverages\"\n  },\n  \"statisticGroups\": [\n    {\n      \"category\": \"default\",\n      \"value\": \"Food\"\n    }\n  ],\n  \"costPrice\": 5,\n  \"prices\": [\n    {\n      \"amount\": 10,\n      \"name\": \"Tuesday Special\"\n    }\n  ],\n  \"sharingType\": \"SHARED\",\n  \"priceMode\": \"POSITIVE_OPEN_PRICE\",\n  \"inventorySource\": \"PURCHASED\",\n  \"disabled\": false,\n  \"contentDimension\": \"MASS\",\n  \"contentUom\": \"kg\",\n  \"contentValue\": 1,\n  \"itemType\": \"ITEM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "800572da-8678-4d77-a981-d640858bd61a",
+              "name": "Constraint violation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "UGG-BB-PUR-06"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Burger"
+                    },
+                    {
+                      "key": "accountingGroupId",
+                      "value": "44874545485"
+                    },
+                    {
+                      "key": "itemIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "itemIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"400\",\n  \"timestamp\": \"2013-08-05T02:35:39.010Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3126eb80-9b61-4ff6-b1dd-3833d5b9f504",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "sku",
+                      "value": "UGG-BB-PUR-06"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Burger"
+                    },
+                    {
+                      "key": "accountingGroupId",
+                      "value": "44874545485"
+                    },
+                    {
+                      "key": "itemIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "itemIds",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "10"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"404\",\n  \"timestamp\": \"1966-01-20T17:03:02.043Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05c33843-be8f-4949-bcd2-0d30a2662183",
+          "name": "Lightspeed Create Item",
+          "request": {
+            "name": "Lightspeed Create Item",
+            "description": {
+              "content": "Create a new item for a specific business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "v1",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"accountingGroupId\": \"<long>\",\n  \"defaultPrice\": \"<number>\",\n  \"businessLocationId\": \"<long>\",\n  \"docketName\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"barcode\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"costPrice\": \"<number>\",\n  \"priceMode\": \"AMOUNT\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4cb8c7b-74b1-4a85-a1a5-3bce1337d699",
+              "name": "Item created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Burger\",\n  \"businessLocationId\": 45454565682155,\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"10011101100\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroupId\": 462478248241,\n  \"costPrice\": 5,\n  \"defaultPrice\": 10,\n  \"priceMode\": \"PERCENT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3012455645,\n  \"name\": \"Burger\",\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"00000001\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroup\": {\n    \"id\": 40570261078058,\n    \"name\": \"Alcoholic beverages\"\n  },\n  \"statisticGroups\": [\n    {\n      \"category\": \"default\",\n      \"value\": \"Food\"\n    }\n  ],\n  \"costPrice\": 5,\n  \"prices\": [\n    {\n      \"amount\": 10,\n      \"name\": \"Tuesday Special\"\n    }\n  ],\n  \"sharingType\": \"SHARED\",\n  \"priceMode\": \"POSITIVE_OPEN_PRICE\",\n  \"inventorySource\": \"PURCHASED\",\n  \"disabled\": false,\n  \"contentDimension\": \"MASS\",\n  \"contentUom\": \"kg\",\n  \"contentValue\": 1,\n  \"itemType\": \"ITEM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2e7a7a-a051-4d30-836a-3971c6464d0c",
+              "name": "Could not create item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "v1",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Burger\",\n  \"businessLocationId\": 45454565682155,\n  \"docketName\": \"The Burger\",\n  \"sku\": \"UGG-BB-PUR-06\",\n  \"active\": true,\n  \"barcode\": \"10011101100\",\n  \"barcodes\": [\n    \"10011101100\"\n  ],\n  \"accountingGroupId\": 462478248241,\n  \"costPrice\": 5,\n  \"defaultPrice\": 10,\n  \"priceMode\": \"PERCENT\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"404\",\n  \"timestamp\": \"1966-01-20T17:03:02.043Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "42165529-693a-46ee-9512-e71e4084bafc",
+    "name": "Lightspeed Restaurant K Series Account Items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

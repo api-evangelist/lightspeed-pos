@@ -1,0 +1,221 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series Account FinancialV2 API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FinancialV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Get Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/business-location/:businessLocationId/sales",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nBased on the timeClosed sales field."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of requested results, in ISO 8601 format.\n\nBased on the timeClosed sales field.\n\nIf the `to` date is set to a future date or not included, it will be adjusted to the current\ndate and time to retrieve the most recent data available."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return."
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "A token that indicates the starting point of the next set of records when paginating through results."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns financial data for a business location for a specified date range. Sorted by the `timeClosed` field of the sales."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Get Business Day Sales",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/business-location/:businessLocationId/sales-daily",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The date of the business day to get sales for.\n\nExample:`2022-09-21` or `2022-12-01`"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Objects to be included in the response.\n\nThe allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns financial data for a business location for a specified business day."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Payments Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/business-location/:businessLocationId/lightspeed-payments",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start of requested results, in ISO 8601 format.\n\nThe date range between 'from' and 'to' cannot exceed 365 days (1 year).\n\nResults queried by the dateType parameter."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End of requested results, in ISO 8601 format.\n\nResults queried by the dateType parameter."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of entries to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "CAPTURED,REFUNDED",
+                "type": "query",
+                "description": "Payment statuses to filter the result set by."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns Lightspeed Payments fee and surcharge data for a business location for a specified date range. Results are queried and sorted based on the specified dateType.\n\nNote: Will only return sales created after migration from iKentoo 2.0 to Lightspeed K-Series. See [this article](https://k-series-support.lightspeedhq.com/hc/en-us/articles/360056758333-Upgrading-to-K-Series-from-iKentoo-2-0) for more details."
+        },
+        {
+          "info": {
+            "name": "Lightspeed BETA - Get Aborted Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.trial.lsk.lightspeed.app/f/v2/beta/business-location/:businessLocationId/aborted-orders",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "45454565682155",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "The business date of the aborted orders."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves a list of aborted orders for a specified business day.\n\nAn aborted order is defined as an instance where items were added to an order, but **all** items were subsequently removed without being committed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

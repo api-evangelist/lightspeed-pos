@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lightspeed Restaurant K Series Account ID Cards API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ID Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lightspeed Create an ID Card Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/id-cards/v1/business-locations/:businessLocationId/batches",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a new batch of ID cards for a specific business location."
+        },
+        {
+          "info": {
+            "name": "Lightspeed Create ID Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trial.lsk.lightspeed.app/id-cards/v1/business-locations/:businessLocationId/batches/:batchId/cards",
+            "params": [
+              {
+                "name": "businessLocationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the business location."
+              },
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the ID card batch."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/oauth/authorize",
+              "accessTokenUrl": "/oauth/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a specified number of ID cards for an existing ID card batch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

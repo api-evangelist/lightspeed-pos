@@ -1,0 +1,440 @@
+{
+  "item": [
+    {
+      "id": "2df61e30-bea8-4417-9791-6f6d66c27f8d",
+      "name": "Sale",
+      "description": {
+        "content": "Point-of-sale transactions and their line items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02e15736-33cd-4d1e-9c8f-8d1807c13ee8",
+          "name": "Lightspeed List Sales",
+          "request": {
+            "name": "Lightspeed List Sales",
+            "description": {
+              "content": "Returns point-of-sale transactions for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Sale.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "completed",
+                  "value": "<boolean>",
+                  "description": "Filter by completion status."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4421457-cb4b-432b-9fc1-593d17b09524",
+              "name": "A page of sales.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Sale.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "completed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@attributes\": {\n    \"count\": 902,\n    \"offset\": 1000,\n    \"limit\": 426\n  },\n  \"Sale\": [\n    {\n      \"saleID\": \"500123\",\n      \"timeStamp\": \"2026-03-15T14:30:00Z\",\n      \"completed\": true,\n      \"total\": \"12.50\",\n      \"totalDue\": \"12.50\",\n      \"displayableTotal\": \"12.50\",\n      \"discountPercent\": \"example\",\n      \"customerID\": \"500123\",\n      \"employeeID\": \"500123\",\n      \"shopID\": \"500123\",\n      \"registerID\": \"500123\",\n      \"SaleLines\": {\n        \"SaleLine\": []\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7b10589-c9a0-4706-9cf7-2f6f0995911d",
+          "name": "Lightspeed Create Sale",
+          "request": {
+            "name": "Lightspeed Create Sale",
+            "description": {
+              "content": "Creates a new sale transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Sale.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"saleID\": \"<string>\",\n  \"timeStamp\": \"<dateTime>\",\n  \"completed\": \"<boolean>\",\n  \"total\": \"<string>\",\n  \"totalDue\": \"<string>\",\n  \"displayableTotal\": \"<string>\",\n  \"discountPercent\": \"<string>\",\n  \"customerID\": \"<string>\",\n  \"employeeID\": \"<string>\",\n  \"shopID\": \"<string>\",\n  \"registerID\": \"<string>\",\n  \"SaleLines\": {\n    \"SaleLine\": [\n      {\n        \"saleLineID\": \"<string>\",\n        \"itemID\": \"<string>\",\n        \"saleID\": \"<string>\",\n        \"unitQuantity\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"normalUnitPrice\": \"<string>\",\n        \"discountID\": \"<string>\"\n      },\n      {\n        \"saleLineID\": \"<string>\",\n        \"itemID\": \"<string>\",\n        \"saleID\": \"<string>\",\n        \"unitQuantity\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"normalUnitPrice\": \"<string>\",\n        \"discountID\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc4342de-7f64-4e96-b7f0-b0b3c38553e3",
+              "name": "Sale created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Sale.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"saleID\": \"500123\",\n  \"timeStamp\": \"2026-03-15T14:30:00Z\",\n  \"completed\": false,\n  \"total\": \"12.50\",\n  \"totalDue\": \"12.50\",\n  \"displayableTotal\": \"12.50\",\n  \"discountPercent\": \"example\",\n  \"customerID\": \"500123\",\n  \"employeeID\": \"500123\",\n  \"shopID\": \"500123\",\n  \"registerID\": \"500123\",\n  \"SaleLines\": {\n    \"SaleLine\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Sale\": {\n    \"saleID\": \"500123\",\n    \"timeStamp\": \"2026-03-15T14:30:00Z\",\n    \"completed\": false,\n    \"total\": \"12.50\",\n    \"totalDue\": \"12.50\",\n    \"displayableTotal\": \"12.50\",\n    \"discountPercent\": \"example\",\n    \"customerID\": \"500123\",\n    \"employeeID\": \"500123\",\n    \"shopID\": \"500123\",\n    \"registerID\": \"500123\",\n    \"SaleLines\": {\n      \"SaleLine\": [\n        {}\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b5bbeaa-5d73-42f6-98df-ddd882fc0fe7",
+          "name": "Lightspeed Get Sale by ID",
+          "request": {
+            "name": "Lightspeed Get Sale by ID",
+            "description": {
+              "content": "Returns a single sale by its saleID, including its sale lines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Account",
+                ":accountID",
+                "Sale",
+                "{{saleID}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountID",
+                  "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3646ea37-b4ed-4799-9127-f9b319b2c80b",
+              "name": "The sale.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Account",
+                    ":accountID",
+                    "Sale",
+                    "{{saleID}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountID",
+                      "description": "(Required) The numeric Lightspeed Retail account identifier, resolved via GET /Account.json."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Sale\": {\n    \"saleID\": \"500123\",\n    \"timeStamp\": \"2026-03-15T14:30:00Z\",\n    \"completed\": true,\n    \"total\": \"12.50\",\n    \"totalDue\": \"12.50\",\n    \"displayableTotal\": \"12.50\",\n    \"discountPercent\": \"example\",\n    \"customerID\": \"500123\",\n    \"employeeID\": \"500123\",\n    \"shopID\": \"500123\",\n    \"registerID\": \"500123\",\n    \"SaleLines\": {\n      \"SaleLine\": [\n        {}\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique identifier of the sale.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "saleID"
+    }
+  ],
+  "info": {
+    "_postman_id": "629b891d-01c9-450c-a7d1-26749e747aa4",
+    "name": "Lightspeed Restaurant K Series Account Sale API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

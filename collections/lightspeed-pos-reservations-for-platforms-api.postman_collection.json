@@ -1,0 +1,3863 @@
+{
+  "item": [
+    {
+      "id": "ed75db10-869f-4a01-81cd-6aa0a6886333",
+      "name": "Reservations for Platforms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ecf397d-6097-4a5d-aa90-bdb21e97c7aa",
+          "name": "Lightspeed Callback to Complete Onboarding",
+          "request": {
+            "name": "Lightspeed Callback to Complete Onboarding",
+            "description": {
+              "content": "Once the external platform receives the [onboarding webhook](https://api-docs.lsk.lightspeed.app/operation/operation-reservationonboardingnotification), the process needs to be completed using this callback.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "integration",
+                "onboarding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"onboardingId\": \"<string>\",\n  \"onboardingCode\": \"<string>\",\n  \"platformRestaurantId\": \"<string>\",\n  \"businessLocationId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d8bbb09-6e03-49bb-8d7c-7bd0760ec9d7",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"onboardingCode\": \"DONE\",\n  \"onboardingId\": \"84f16177-98c5-4010-a7ab-d00144d1dede\",\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"onboardingCode\": \"DONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8915e987-4fa0-4069-af2c-1e359cebb1bb",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"onboardingCode\": \"DONE\",\n  \"onboardingId\": \"84f16177-98c5-4010-a7ab-d00144d1dede\",\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"onboardingCode\": \"DONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19c17592-b399-4dfd-9289-72c1d35d1d47",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"onboardingCode\": \"DONE\",\n  \"onboardingId\": \"84f16177-98c5-4010-a7ab-d00144d1dede\",\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4585ea64-ad60-4e41-b11a-16b124c800b7",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"onboardingCode\": \"DONE\",\n  \"onboardingId\": \"84f16177-98c5-4010-a7ab-d00144d1dede\",\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"onboardingCode\": \"DONE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8065ffed-f98d-4092-a05c-0b728f51f9f0",
+          "name": "Lightspeed Platform Profile Details",
+          "request": {
+            "name": "Lightspeed Platform Profile Details",
+            "description": {
+              "content": "Retrieve platform profile details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d3313f48-3f46-414a-8ca1-6a228f2c36d0",
+              "name": "Platform profile details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseUrl\": \"https://my.platform/api/lsk\",\n  \"depositSupported\": true,\n  \"displayName\": \"My Platform\",\n  \"errorsWebhookUrl\": \"https://my.platform/api/lsk/webhook/errors\",\n  \"integrationWebhookUrl\": \"https://my.platform/api/lsk/webhook/integrations\",\n  \"notificationTypes\": [\n    \"ORDER_CLOSED\"\n  ],\n  \"onboardingWebhookUrl\": \"https://my.platform/api/lsk/webhook/onboarding\",\n  \"orderWebhookUrl\": \"https://my.platform/api/lsk/webhook/orders\",\n  \"posReservationUpdateWebhookUrl\": \"https://my.platform/api/lsk/webhook/reservation\",\n  \"ownNotificationsOnly\": true,\n  \"webhookAuthType\": \"OAUTH2\",\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ],\n  \"allowedPosStatuses\": [\n    \"SCHEDULED\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51968779-c27f-4f09-9531-ecc251175c8b",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38585619-879f-46fa-bffd-eddead724cd0",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "235f6b1b-67ca-403e-9b25-a669d58abe06",
+          "name": "Lightspeed Create or Update Platform Profile",
+          "request": {
+            "name": "Lightspeed Create or Update Platform Profile",
+            "description": {
+              "content": "Create or update details for external reservation platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"webhookAuthType\": \"<string>\",\n  \"webhookAuthDetails\": {\n    \"apiKeys\": {\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\",\n        \"key_3\": \"<string>\"\n      },\n      \"parameters\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    \"basic\": {\n      \"username\": \"<string>\",\n      \"password\": \"<password>\"\n    },\n    \"bearer\": {\n      \"token\": \"<password>\",\n      \"ttl\": \"<dateTime>\"\n    },\n    \"oauth2\": {\n      \"clientId\": \"<string>\",\n      \"clientSecret\": \"<password>\",\n      \"providerTokenUri\": \"<uri>\",\n      \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n      \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n      \"clientName\": \"<string>\",\n      \"providerJwkSetUri\": \"<uri>\",\n      \"scopes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"baseUrl\": \"<uri>\",\n  \"depositSupported\": \"<boolean>\",\n  \"errorsWebhookUrl\": \"<uri>\",\n  \"integrationWebhookUrl\": \"<uri>\",\n  \"notificationTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"onboardingWebhookUrl\": \"<uri>\",\n  \"orderWebhookUrl\": \"<uri>\",\n  \"posReservationUpdateWebhookUrl\": \"<uri>\",\n  \"ownNotificationsOnly\": \"<boolean>\",\n  \"allowCourseNumberUpdates\": false,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"<string>\",\n      \"statusValue\": \"<string>\",\n      \"sequence\": \"<integer>\"\n    },\n    {\n      \"statusLabel\": \"<string>\",\n      \"statusValue\": \"<string>\",\n      \"sequence\": \"<integer>\"\n    }\n  ],\n  \"allowedPosStatuses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be29601d-eb08-406d-b40b-ec35fc9385fa",
+              "name": "Platform profile details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseUrl\": \"https://my.platform/api/lsk\",\n  \"depositSupported\": true,\n  \"displayName\": \"My Platform\",\n  \"errorsWebhookUrl\": \"https://my.platform/api/lsk/webhook/errors\",\n  \"integrationWebhookUrl\": \"https://my.platform/api/lsk/webhook/integrations\",\n  \"notificationTypes\": [\n    \"ORDER_CLOSED\"\n  ],\n  \"onboardingWebhookUrl\": \"https://my.platform/api/lsk/webhook/onboarding\",\n  \"orderWebhookUrl\": \"https://my.platform/api/lsk/webhook/orders\",\n  \"posReservationUpdateWebhookUrl\": \"https://my.platform/api/lsk/webhook/reservation\",\n  \"ownNotificationsOnly\": true,\n  \"webhookAuthDetails\": {\n    \"apiKeys\": {\n      \"headers\": {\n        \"X-API-ID\": \"Example-x-api-id\",\n        \"X-API-SECRET\": \"Example-x-api-secret\"\n      },\n      \"parameters\": {}\n    },\n    \"basic\": {\n      \"password\": \"Example-Password\",\n      \"username\": \"LightspeedKSeries\"\n    },\n    \"bearer\": {\n      \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n      \"ttl\": \"2035-01-01T00:00:00\"\n    },\n    \"oauth2\": {\n      \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n      \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n      \"clientId\": \"LightspeedKSeries\",\n      \"clientName\": \"LightspeedKSeries\",\n      \"clientSecret\": \"Example-Client-Secret\",\n      \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n      \"providerTokenUri\": \"https://my.platform/emitter/token\",\n      \"scopes\": [\n        \"webhooks-api\"\n      ]\n    }\n  },\n  \"webhookAuthType\": \"OAUTH2\",\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ],\n  \"allowedPosStatuses\": [\n    \"SCHEDULED\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"baseUrl\": \"https://my.platform/api/lsk\",\n  \"depositSupported\": true,\n  \"displayName\": \"My Platform\",\n  \"errorsWebhookUrl\": \"https://my.platform/api/lsk/webhook/errors\",\n  \"integrationWebhookUrl\": \"https://my.platform/api/lsk/webhook/integrations\",\n  \"notificationTypes\": [\n    \"ORDER_CLOSED\"\n  ],\n  \"onboardingWebhookUrl\": \"https://my.platform/api/lsk/webhook/onboarding\",\n  \"orderWebhookUrl\": \"https://my.platform/api/lsk/webhook/orders\",\n  \"posReservationUpdateWebhookUrl\": \"https://my.platform/api/lsk/webhook/reservation\",\n  \"ownNotificationsOnly\": true,\n  \"webhookAuthType\": \"OAUTH2\",\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ],\n  \"allowedPosStatuses\": [\n    \"SCHEDULED\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f14dc43a-92a7-44ba-b43c-9dcbff050676",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseUrl\": \"https://my.platform/api/lsk\",\n  \"depositSupported\": true,\n  \"displayName\": \"My Platform\",\n  \"errorsWebhookUrl\": \"https://my.platform/api/lsk/webhook/errors\",\n  \"integrationWebhookUrl\": \"https://my.platform/api/lsk/webhook/integrations\",\n  \"notificationTypes\": [\n    \"ORDER_CLOSED\"\n  ],\n  \"onboardingWebhookUrl\": \"https://my.platform/api/lsk/webhook/onboarding\",\n  \"orderWebhookUrl\": \"https://my.platform/api/lsk/webhook/orders\",\n  \"posReservationUpdateWebhookUrl\": \"https://my.platform/api/lsk/webhook/reservation\",\n  \"ownNotificationsOnly\": true,\n  \"webhookAuthDetails\": {\n    \"apiKeys\": {\n      \"headers\": {\n        \"X-API-ID\": \"Example-x-api-id\",\n        \"X-API-SECRET\": \"Example-x-api-secret\"\n      },\n      \"parameters\": {}\n    },\n    \"basic\": {\n      \"password\": \"Example-Password\",\n      \"username\": \"LightspeedKSeries\"\n    },\n    \"bearer\": {\n      \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n      \"ttl\": \"2035-01-01T00:00:00\"\n    },\n    \"oauth2\": {\n      \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n      \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n      \"clientId\": \"LightspeedKSeries\",\n      \"clientName\": \"LightspeedKSeries\",\n      \"clientSecret\": \"Example-Client-Secret\",\n      \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n      \"providerTokenUri\": \"https://my.platform/emitter/token\",\n      \"scopes\": [\n        \"webhooks-api\"\n      ]\n    }\n  },\n  \"webhookAuthType\": \"OAUTH2\",\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ],\n  \"allowedPosStatuses\": [\n    \"SCHEDULED\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30ca4193-334a-4e2f-b272-7de21182a4cd",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"baseUrl\": \"https://my.platform/api/lsk\",\n  \"depositSupported\": true,\n  \"displayName\": \"My Platform\",\n  \"errorsWebhookUrl\": \"https://my.platform/api/lsk/webhook/errors\",\n  \"integrationWebhookUrl\": \"https://my.platform/api/lsk/webhook/integrations\",\n  \"notificationTypes\": [\n    \"ORDER_CLOSED\"\n  ],\n  \"onboardingWebhookUrl\": \"https://my.platform/api/lsk/webhook/onboarding\",\n  \"orderWebhookUrl\": \"https://my.platform/api/lsk/webhook/orders\",\n  \"posReservationUpdateWebhookUrl\": \"https://my.platform/api/lsk/webhook/reservation\",\n  \"ownNotificationsOnly\": true,\n  \"webhookAuthDetails\": {\n    \"apiKeys\": {\n      \"headers\": {\n        \"X-API-ID\": \"Example-x-api-id\",\n        \"X-API-SECRET\": \"Example-x-api-secret\"\n      },\n      \"parameters\": {}\n    },\n    \"basic\": {\n      \"password\": \"Example-Password\",\n      \"username\": \"LightspeedKSeries\"\n    },\n    \"bearer\": {\n      \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n      \"ttl\": \"2035-01-01T00:00:00\"\n    },\n    \"oauth2\": {\n      \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n      \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n      \"clientId\": \"LightspeedKSeries\",\n      \"clientName\": \"LightspeedKSeries\",\n      \"clientSecret\": \"Example-Client-Secret\",\n      \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n      \"providerTokenUri\": \"https://my.platform/emitter/token\",\n      \"scopes\": [\n        \"webhooks-api\"\n      ]\n    }\n  },\n  \"webhookAuthType\": \"OAUTH2\",\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ],\n  \"allowedPosStatuses\": [\n    \"SCHEDULED\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a232cf1a-e1e4-4153-9c9f-ec66bc25ecff",
+          "name": "Lightspeed Platform Course Settings Definition",
+          "request": {
+            "name": "Lightspeed Platform Course Settings Definition",
+            "description": {
+              "content": "Setup platform's course settings definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "course-settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowCourseNumberUpdates\": false,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"<string>\",\n      \"statusValue\": \"<string>\",\n      \"sequence\": \"<integer>\"\n    },\n    {\n      \"statusLabel\": \"<string>\",\n      \"statusValue\": \"<string>\",\n      \"sequence\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be954e7c-a3bc-4df4-9087-3141133c4ab5",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "course-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5799c923-7715-483a-9649-9520aa3302f7",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "course-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d814623d-3ee8-445b-b094-b13e0c9ca7c9",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "course-settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowCourseNumberUpdates\": true,\n  \"inServiceTableStatuses\": [\n    {\n      \"statusLabel\": \"Appetizer\",\n      \"statusValue\": \"appetizer\",\n      \"sequence\": 1\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8169fc8e-df23-4396-8f6f-fcd15c873831",
+          "name": "Lightspeed Create or Update Reservation",
+          "request": {
+            "name": "Lightspeed Create or Update Reservation",
+            "description": {
+              "content": "Create a new reservation or provide updates about guests, deposits, status, etc.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "restaurant",
+                ":platform-restaurant-id",
+                "reservation",
+                ":platform-reservation-id",
+                "push"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-restaurant-id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-reservation-id",
+                  "description": "(Required) The external identifier of the reservation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"utcUpdatedAt\": \"<dateTime>\",\n  \"utcScheduledAt\": \"<dateTime>\",\n  \"partySize\": \"<integer>\",\n  \"guest\": {\n    \"platformGuestId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"lastName\": \"<string>\",\n    \"phone\": \"<phone>\",\n    \"walkIn\": false,\n    \"foodAndDrinkNotes\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"language\": \"<string>\",\n    \"allergens\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"dietaryRestrictions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"status\": \"<string>\",\n  \"liability\": {\n    \"currency\": \"<string>\",\n    \"deposits\": [\n      {\n        \"amount\": \"<string>\",\n        \"utcCreatedAt\": \"<dateTime>\",\n        \"platformDepositId\": \"<string>\",\n        \"utcVoidedAt\": \"<dateTime>\",\n        \"voided\": \"<boolean>\"\n      },\n      {\n        \"amount\": \"<string>\",\n        \"utcCreatedAt\": \"<dateTime>\",\n        \"platformDepositId\": \"<string>\",\n        \"utcVoidedAt\": \"<dateTime>\",\n        \"voided\": \"<boolean>\"\n      }\n    ],\n    \"refunds\": [\n      {\n        \"amount\": \"<string>\",\n        \"utcCreatedAt\": \"<dateTime>\",\n        \"platformRefundId\": \"<string>\",\n        \"utcVoidedAt\": \"<dateTime>\",\n        \"voided\": \"<boolean>\"\n      },\n      {\n        \"amount\": \"<string>\",\n        \"utcCreatedAt\": \"<dateTime>\",\n        \"platformRefundId\": \"<string>\",\n        \"utcVoidedAt\": \"<dateTime>\",\n        \"voided\": \"<boolean>\"\n      }\n    ]\n  },\n  \"notes\": \"<string>\",\n  \"specialOffer\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sequenceId\": \"<long>\",\n  \"tableNumbers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"guestRequest\": \"<string>\",\n  \"expectedDuration\": \"<duration>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e240aa9d-f14c-4cc1-9a5f-efeb04baac64",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "restaurant",
+                    ":platform-restaurant-id",
+                    "reservation",
+                    ":platform-reservation-id",
+                    "push"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-restaurant-id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-reservation-id",
+                      "description": "(Required) The external identifier of the reservation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest\": {\n    \"email\": \"john.smith@email.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"+13453455555\",\n    \"platformGuestId\": \"ABC-123\",\n    \"walkIn\": true,\n    \"foodAndDrinkNotes\": \"Only milk and cookies!\",\n    \"notes\": \"Put the ring in the champagne!\",\n    \"language\": \"en\",\n    \"allergens\": [\n      \"almonds\",\n      \"egg\"\n    ],\n    \"dietaryRestrictions\": [\n      \"no alcohol\",\n      \"vegan\"\n    ]\n  },\n  \"liability\": {\n    \"currency\": \"EUR\",\n    \"deposits\": [\n      {}\n    ],\n    \"refunds\": [\n      {}\n    ]\n  },\n  \"notes\": \"More balloons!\",\n  \"specialOffer\": \"Free dessert\",\n  \"tags\": [\n    \"romantic meal\",\n    \"special occasion\"\n  ],\n  \"partySize\": 2,\n  \"sequenceId\": 145789499819,\n  \"status\": \"SCHEDULED\",\n  \"tableNumbers\": [\n    \"1\"\n  ],\n  \"utcScheduledAt\": \"2024-01-01T20:00:00\",\n  \"utcUpdatedAt\": \"2024-01-01T20:10:00\",\n  \"guestRequest\": \"I would need two baby chairs.\",\n  \"expectedDuration\": \"PT30M\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"platformCode\": \"MyPlatform\",\n  \"platformRestaurantId\": \"Restaurant-123\",\n  \"platformReservationId\": \"Reservation-123\",\n  \"accepted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3010f2d-c3c8-4a87-819c-84430e9f4340",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "restaurant",
+                    ":platform-restaurant-id",
+                    "reservation",
+                    ":platform-reservation-id",
+                    "push"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-restaurant-id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-reservation-id",
+                      "description": "(Required) The external identifier of the reservation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest\": {\n    \"email\": \"john.smith@email.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"+13453455555\",\n    \"platformGuestId\": \"ABC-123\",\n    \"walkIn\": true,\n    \"foodAndDrinkNotes\": \"Only milk and cookies!\",\n    \"notes\": \"Put the ring in the champagne!\",\n    \"language\": \"en\",\n    \"allergens\": [\n      \"almonds\",\n      \"egg\"\n    ],\n    \"dietaryRestrictions\": [\n      \"no alcohol\",\n      \"vegan\"\n    ]\n  },\n  \"liability\": {\n    \"currency\": \"EUR\",\n    \"deposits\": [\n      {}\n    ],\n    \"refunds\": [\n      {}\n    ]\n  },\n  \"notes\": \"More balloons!\",\n  \"specialOffer\": \"Free dessert\",\n  \"tags\": [\n    \"romantic meal\",\n    \"special occasion\"\n  ],\n  \"partySize\": 2,\n  \"sequenceId\": 145789499819,\n  \"status\": \"SCHEDULED\",\n  \"tableNumbers\": [\n    \"1\"\n  ],\n  \"utcScheduledAt\": \"2024-01-01T20:00:00\",\n  \"utcUpdatedAt\": \"2024-01-01T20:10:00\",\n  \"guestRequest\": \"I would need two baby chairs.\",\n  \"expectedDuration\": \"PT30M\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99b7c781-4f46-4ebf-a359-21b0139f630f",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "restaurant",
+                    ":platform-restaurant-id",
+                    "reservation",
+                    ":platform-reservation-id",
+                    "push"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-restaurant-id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-reservation-id",
+                      "description": "(Required) The external identifier of the reservation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest\": {\n    \"email\": \"john.smith@email.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"+13453455555\",\n    \"platformGuestId\": \"ABC-123\",\n    \"walkIn\": true,\n    \"foodAndDrinkNotes\": \"Only milk and cookies!\",\n    \"notes\": \"Put the ring in the champagne!\",\n    \"language\": \"en\",\n    \"allergens\": [\n      \"almonds\",\n      \"egg\"\n    ],\n    \"dietaryRestrictions\": [\n      \"no alcohol\",\n      \"vegan\"\n    ]\n  },\n  \"liability\": {\n    \"currency\": \"EUR\",\n    \"deposits\": [\n      {}\n    ],\n    \"refunds\": [\n      {}\n    ]\n  },\n  \"notes\": \"More balloons!\",\n  \"specialOffer\": \"Free dessert\",\n  \"tags\": [\n    \"romantic meal\",\n    \"special occasion\"\n  ],\n  \"partySize\": 2,\n  \"sequenceId\": 145789499819,\n  \"status\": \"SCHEDULED\",\n  \"tableNumbers\": [\n    \"1\"\n  ],\n  \"utcScheduledAt\": \"2024-01-01T20:00:00\",\n  \"utcUpdatedAt\": \"2024-01-01T20:10:00\",\n  \"guestRequest\": \"I would need two baby chairs.\",\n  \"expectedDuration\": \"PT30M\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "661a8eb9-8b33-4cbe-b11e-199c1e7614f5",
+              "name": "Integration not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "restaurant",
+                    ":platform-restaurant-id",
+                    "reservation",
+                    ":platform-reservation-id",
+                    "push"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-restaurant-id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-reservation-id",
+                      "description": "(Required) The external identifier of the reservation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"guest\": {\n    \"email\": \"john.smith@email.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"phone\": \"+13453455555\",\n    \"platformGuestId\": \"ABC-123\",\n    \"walkIn\": true,\n    \"foodAndDrinkNotes\": \"Only milk and cookies!\",\n    \"notes\": \"Put the ring in the champagne!\",\n    \"language\": \"en\",\n    \"allergens\": [\n      \"almonds\",\n      \"egg\"\n    ],\n    \"dietaryRestrictions\": [\n      \"no alcohol\",\n      \"vegan\"\n    ]\n  },\n  \"liability\": {\n    \"currency\": \"EUR\",\n    \"deposits\": [\n      {}\n    ],\n    \"refunds\": [\n      {}\n    ]\n  },\n  \"notes\": \"More balloons!\",\n  \"specialOffer\": \"Free dessert\",\n  \"tags\": [\n    \"romantic meal\",\n    \"special occasion\"\n  ],\n  \"partySize\": 2,\n  \"sequenceId\": 145789499819,\n  \"status\": \"SCHEDULED\",\n  \"tableNumbers\": [\n    \"1\"\n  ],\n  \"utcScheduledAt\": \"2024-01-01T20:00:00\",\n  \"utcUpdatedAt\": \"2024-01-01T20:10:00\",\n  \"guestRequest\": \"I would need two baby chairs.\",\n  \"expectedDuration\": \"PT30M\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "689e2223-58e3-4f68-bc67-68d40ea4a67d",
+          "name": "Lightspeed Add Authentication by XApiKey",
+          "request": {
+            "name": "Lightspeed Add Authentication by XApiKey",
+            "description": {
+              "content": "Activate XApiKey authentication for webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "webhook",
+                "auth",
+                "api-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"parameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18a15111-9346-4249-b464-6d5bd2ee0b34",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"headers\": {\n    \"X-API-ID\": \"Example-x-api-id\",\n    \"X-API-SECRET\": \"Example-x-api-secret\"\n  },\n  \"parameters\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accepted\": true,\n  \"currentAuthType\": \"BEARER_TOKEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3e49811-2221-4f32-83c1-5096f9968344",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"headers\": {\n    \"X-API-ID\": \"Example-x-api-id\",\n    \"X-API-SECRET\": \"Example-x-api-secret\"\n  },\n  \"parameters\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3f532d2-16c4-4fa7-9293-110beb23fb62",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"headers\": {\n    \"X-API-ID\": \"Example-x-api-id\",\n    \"X-API-SECRET\": \"Example-x-api-secret\"\n  },\n  \"parameters\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "618a8a4b-8dde-4c27-b793-b340ac1c6071",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"headers\": {\n    \"X-API-ID\": \"Example-x-api-id\",\n    \"X-API-SECRET\": \"Example-x-api-secret\"\n  },\n  \"parameters\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa100388-4108-4ae3-b660-9894daac22f3",
+          "name": "Lightspeed Add Authentication with BasicAuth",
+          "request": {
+            "name": "Lightspeed Add Authentication with BasicAuth",
+            "description": {
+              "content": "Activate BasicAuth authentication for webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "webhook",
+                "auth",
+                "basic-auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c3e049b-f344-45b7-8ba3-a24345a59235",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "basic-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"Example-Password\",\n  \"username\": \"LightspeedKSeries\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accepted\": true,\n  \"currentAuthType\": \"OAUTH2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b79f0cd-65b4-4be6-8990-c01cbdc81896",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "basic-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"Example-Password\",\n  \"username\": \"LightspeedKSeries\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "05e9a8e4-b3da-4286-915f-e42322a5636e",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "basic-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"Example-Password\",\n  \"username\": \"LightspeedKSeries\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1cdba766-528e-4022-903b-d408523c369f",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "basic-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"Example-Password\",\n  \"username\": \"LightspeedKSeries\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2d7ad95-4546-45ea-8bc1-7ed5f7dbd05d",
+          "name": "Lightspeed Add Authentication with BearerAuth",
+          "request": {
+            "name": "Lightspeed Add Authentication with BearerAuth",
+            "description": {
+              "content": "Activate BearerAuth authentication for webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "webhook",
+                "auth",
+                "bearer-auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<password>\",\n  \"ttl\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16192b55-50e5-4487-9fdb-31285685c07e",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "bearer-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"ttl\": \"2035-01-01T00:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accepted\": true,\n  \"currentAuthType\": \"BEARER_TOKEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de983146-5277-4c50-b9d2-d6965bf0041f",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "bearer-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"ttl\": \"2035-01-01T00:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8807b1b-88f8-49e5-be0e-e9375c2b86cf",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "bearer-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"ttl\": \"2035-01-01T00:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e328763-a0ed-4c90-b084-4eedb530a440",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "bearer-auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"ttl\": \"2035-01-01T00:00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ee19ab4-c5b1-499d-8081-f1d7633c5176",
+          "name": "Lightspeed Add Authentication with OAuth2",
+          "request": {
+            "name": "Lightspeed Add Authentication with OAuth2",
+            "description": {
+              "content": "Activate OAuth2 authentication for webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "platform",
+                ":platform-code",
+                "webhook",
+                "auth",
+                "oauth2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<password>\",\n  \"providerTokenUri\": \"<uri>\",\n  \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n  \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n  \"clientName\": \"<string>\",\n  \"providerJwkSetUri\": \"<uri>\",\n  \"scopes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed9ce029-aa7b-449b-b494-1c2c44fa7470",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "oauth2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n  \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n  \"clientId\": \"LightspeedKSeries\",\n  \"clientName\": \"LightspeedKSeries\",\n  \"clientSecret\": \"Example-Client-Secret\",\n  \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n  \"providerTokenUri\": \"https://my.platform/emitter/token\",\n  \"scopes\": [\n    \"webhooks-api\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accepted\": true,\n  \"currentAuthType\": \"BEARER_TOKEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03931cc5-84dd-4610-80b6-33ae1cd9059b",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "oauth2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n  \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n  \"clientId\": \"LightspeedKSeries\",\n  \"clientName\": \"LightspeedKSeries\",\n  \"clientSecret\": \"Example-Client-Secret\",\n  \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n  \"providerTokenUri\": \"https://my.platform/emitter/token\",\n  \"scopes\": [\n    \"webhooks-api\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a2534dc5-6c7a-4074-9b97-0b2c6d6f7a7d",
+              "name": "Scope 'reservation-{platform-code}' not found in the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "oauth2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n  \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n  \"clientId\": \"LightspeedKSeries\",\n  \"clientName\": \"LightspeedKSeries\",\n  \"clientSecret\": \"Example-Client-Secret\",\n  \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n  \"providerTokenUri\": \"https://my.platform/emitter/token\",\n  \"scopes\": [\n    \"webhooks-api\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c7d6920-884e-448e-b095-85e9dde5c694",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "platform",
+                    ":platform-code",
+                    "webhook",
+                    "auth",
+                    "oauth2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authorizationGrantType\": \"CLIENT_CREDENTIALS\",\n  \"clientAuthorizationMethod\": \"CLIENT_SECRET_BASIC\",\n  \"clientId\": \"LightspeedKSeries\",\n  \"clientName\": \"LightspeedKSeries\",\n  \"clientSecret\": \"Example-Client-Secret\",\n  \"providerJwkSetUri\": \"https://my.platform/public-keys\",\n  \"providerTokenUri\": \"https://my.platform/emitter/token\",\n  \"scopes\": [\n    \"webhooks-api\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfd7d507-cbfa-489a-b63e-2d85ec77ced2",
+          "name": "Lightspeed Get Business Locations",
+          "request": {
+            "name": "Lightspeed Get Business Locations",
+            "description": {
+              "content": "Retrieve all the business locations accessible for a User",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "user",
+                "platform",
+                ":platform-code",
+                "business-locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "The page number, when paginating"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "1000",
+                  "description": "The items per page, when paginating"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0e1cbc01-97b5-4119-907f-cc773b8cc595",
+              "name": "A list of business locations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "business-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"businessLocationId\": \"500123\",\n    \"city\": \"example\",\n    \"country\": \"example\",\n    \"name\": \"Sample name\",\n    \"state\": \"example\",\n    \"street1\": \"example\",\n    \"street2\": \"example\",\n    \"zip\": \"example\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ea1896-7e7f-400d-81ad-72ea1106fc3f",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "business-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d6556237-b593-43cc-b786-af1127fcc9b0",
+              "name": "Access token not relevant for the businessLocation, use authorization-code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "business-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba37ac69-de84-4b57-b2f0-88d13094d9c4",
+              "name": "No business locations found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "business-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1000"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30b4fdb6-9f0b-49dc-abdd-f11a94c28541",
+          "name": "Lightspeed Activate Integration for Restaurant",
+          "request": {
+            "name": "Lightspeed Activate Integration for Restaurant",
+            "description": {
+              "content": "Activate the integration between the K-Series business location and the external reservation platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "user",
+                "platform",
+                ":platform-code",
+                "integration",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessLocationId\": \"<long>\",\n  \"platformRestaurantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58c3a269-09e6-497e-bcc6-627673cd77c1",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a499047-a399-458f-bde9-ad1657b743cc",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96ccc8e0-d649-4bdd-95a6-7986e715e7b2",
+              "name": "Access token not relevant for the businessLocation, use authorization-code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f47bcd5e-6174-457e-9004-c7311bf7b3a5",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08fd674f-2e1e-4357-b846-a7816ee66930",
+          "name": "Lightspeed Deactivate Integration for Restaurant",
+          "request": {
+            "name": "Lightspeed Deactivate Integration for Restaurant",
+            "description": {
+              "content": "Deactivate the integration between the K-Series business location and the external reservation platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reservation",
+                "api",
+                "1",
+                "user",
+                "platform",
+                ":platform-code",
+                "integration",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform-code",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessLocationId\": \"<long>\",\n  \"platformRestaurantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caec5022-9d6f-4d31-a47a-7cd529c6a770",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24aa9e7c-8685-4ac7-8d2c-4410d0f14581",
+              "name": "Non relevant request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "024651da-b349-4778-b777-ac8ef3168231",
+              "name": "Access token not relevant for the businessLocation, use authorization-code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d17bbe0-ab43-444e-8884-c2f0f7a04501",
+              "name": "Platform not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reservation",
+                    "api",
+                    "1",
+                    "user",
+                    "platform",
+                    ":platform-code",
+                    "integration",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform-code",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 9765040300495492,\n  \"platformRestaurantId\": \"Restaurant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d7565e66-3a18-4411-9715-323285781eae",
+    "name": "Lightspeed Restaurant K Series Account Reservations for Platforms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

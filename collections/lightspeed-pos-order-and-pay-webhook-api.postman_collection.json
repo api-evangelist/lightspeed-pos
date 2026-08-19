@@ -1,0 +1,1255 @@
+{
+  "item": [
+    {
+      "id": "6959bd8f-3ff6-4016-8e67-671da84f46af",
+      "name": "Order and Pay: Webhook",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77d17e01-6067-40cd-8554-7f2425635bb5",
+          "name": "Lightspeed Create a Webhook",
+          "request": {
+            "name": "Lightspeed Create a Webhook",
+            "description": {
+              "content": "Configures a new webhook to be used for order status updates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpointId\": \"<string>\",\n  \"url\": \"<string>\",\n  \"withBasicAuth\": false,\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provideAccount\": false,\n  \"expandTransactions\": false,\n  \"expandPayments\": false,\n  \"subscribeTo\": [\n    {\n      \"name\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "96311a00-1a3c-4f8b-8f19-6b2718f43e30",
+              "name": "Webhook",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01ac2fd9-118c-4474-b10f-174808534273",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 147,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"errors\": [\n    {\n      \"codes\": [\n        \"NotNull.webhookEndpointDto.endpointId\",\n        \"NotNull.endpointId\",\n        \"NotNull.java.lang.String\",\n        \"NotNull\"\n      ],\n      \"arguments\": [\n        {\n          \"codes\": [\n            \"webhookEndpointDto.endpointId\",\n            \"endpointId\"\n          ],\n          \"defaultMessage\": \"endpointId\",\n          \"code\": \"endpointId\"\n        }\n      ],\n      \"defaultMessage\": \"must not be null\",\n      \"objectName\": \"webhookEndpointDto\",\n      \"field\": \"endpointId\",\n      \"bindingFailure\": false,\n      \"code\": \"NotNull\"\n    }\n  ],\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73303040-2411-40e7-8e30-456ae772c438",
+          "name": "Lightspeed Update a Webhook",
+          "request": {
+            "name": "Lightspeed Update a Webhook",
+            "description": {
+              "content": "Updates an existing webhook entry.\n\nImportant Note: if `provideAccount`, `expandTransactions`, or `expandPayments` are excluded from the update request, they will be reset to their default values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpointId\": \"<string>\",\n  \"url\": \"<string>\",\n  \"withBasicAuth\": false,\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"provideAccount\": false,\n  \"expandTransactions\": false,\n  \"expandPayments\": false,\n  \"subscribeTo\": [\n    {\n      \"name\": \"<string>\",\n      \"resource\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"resource\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c304058c-cd0b-4e1f-a862-001d27f46228",
+              "name": "Webhook",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5188b5d-b567-4341-91db-3711b72c7eb2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 357,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"errors\": [\n    {\n      \"codes\": [\n        \"NotNull.webhookEndpointDto.endpointId\",\n        \"NotNull.endpointId\",\n        \"NotNull.java.lang.String\",\n        \"NotNull\"\n      ],\n      \"arguments\": [\n        {\n          \"codes\": [\n            \"webhookEndpointDto.endpointId\",\n            \"endpointId\"\n          ],\n          \"defaultMessage\": \"endpointId\",\n          \"code\": \"endpointId\"\n        }\n      ],\n      \"defaultMessage\": \"must not be null\",\n      \"objectName\": \"webhookEndpointDto\",\n      \"field\": \"endpointId\",\n      \"bindingFailure\": false,\n      \"code\": \"NotNull\"\n    }\n  ],\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3549df5-c901-4d95-a248-553e59ef381f",
+          "name": "Lightspeed Retrieve a Webhook",
+          "request": {
+            "name": "Lightspeed Retrieve a Webhook",
+            "description": {
+              "content": "Retrieve an existing webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2940069a-72f4-40b5-922a-b04ccecad00d",
+              "name": "Webhook",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"url\": \"https://webhook.site/1dc40b86-3d0d\",\n  \"withBasicAuth\": true,\n  \"username\": \"username\",\n  \"password\": \"password\",\n  \"provideAccount\": true,\n  \"expandTransactions\": true,\n  \"expandPayments\": true,\n  \"subscribeTo\": [\n    {\n      \"name\": \"DELIVERED\",\n      \"resource\": \"order\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf3f4b13-d6bd-429b-b713-187f2b4f7a3c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 370,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d986d68-3e99-464d-837a-fa0e098772b4",
+          "name": "Lightspeed Delete a Webhook",
+          "request": {
+            "name": "Lightspeed Delete a Webhook",
+            "description": {
+              "content": "Delete an existing webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "72365117-745e-4e49-812e-cfe3c2e25485",
+              "name": "Webhook deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed2a8d1b-4c84-4d14-aa4e-b97a43e4c7bf",
+          "name": "Lightspeed Get Webhook Business Locations",
+          "request": {
+            "name": "Lightspeed Get Webhook Business Locations",
+            "description": {
+              "content": "Get all business locations added to a webhook endpoint via the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook",
+                ":endpointId",
+                "business-locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c03d59ef-9554-4163-9bca-21cf9b2dbd61",
+              "name": "Business location IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId",
+                    "business-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"businessLocationId\": 45454565682155,\n    \"createdAt\": \"2023-11-07T19:15:05.043+0000\",\n    \"updatedAt\": \"2023-11-07T19:15:05.043+0000\",\n    \"warnings\": [\n      {}\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4f9dfef-3dd2-445d-bf80-b57f4bf89d99",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId",
+                    "business-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78b582e8-ce5a-4b42-9fc9-493b618935b8",
+          "name": "Lightspeed Add a Business Location to a Webhook",
+          "request": {
+            "name": "Lightspeed Add a Business Location to a Webhook",
+            "description": {
+              "content": "Enables a webhook for the specified business location.\nRequired to receive item availability notifications (type 'item').\nNot required for 'order' and 'payment' webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook",
+                ":endpointId",
+                "business-locations",
+                ":businessLocationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "08d7311d-47b2-431a-8b2e-109991717868",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId",
+                    "business-locations",
+                    ":businessLocationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessLocationId\": 45454565682155,\n  \"createdAt\": \"2023-11-07T19:15:05.043+0000\",\n  \"updatedAt\": \"2023-11-07T19:15:05.043+0000\",\n  \"warnings\": [\n    {\n      \"information\": \"example\",\n      \"type\": \"example\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e71250b-9818-4fd5-8691-0e815e4041aa",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId",
+                    "business-locations",
+                    ":businessLocationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96e21fa7-9a14-453c-8560-7b344da54a8e",
+          "name": "Lightspeed Remove Business Location from a Webhook",
+          "request": {
+            "name": "Lightspeed Remove Business Location from a Webhook",
+            "description": {
+              "content": "Remove a business location ID from a webhook endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "wh",
+                "1",
+                "webhook",
+                ":endpointId",
+                "business-locations",
+                ":businessLocationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e2b78421-2bbb-47ac-8ff4-675ae2dd19b8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId",
+                    "business-locations",
+                    ":businessLocationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessLocationId\": 45454565682155,\n  \"createdAt\": \"2023-11-07T19:15:05.043+0000\",\n  \"updatedAt\": \"2023-11-07T19:15:05.043+0000\",\n  \"warnings\": [\n    {\n      \"information\": \"example\",\n      \"type\": \"example\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87932613-7d07-4e57-a7ae-59f4ff4d937a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "wh",
+                    "1",
+                    "webhook",
+                    ":endpointId",
+                    "business-locations",
+                    ":businessLocationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a072e955-9650-4d8d-afce-b361933d3f24",
+    "name": "Lightspeed Restaurant K Series Account Order and Pay: Webhook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}

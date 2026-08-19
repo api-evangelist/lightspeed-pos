@@ -1,0 +1,3376 @@
+{
+  "item": [
+    {
+      "id": "0382a99a-1402-4fec-bbce-5f240f853c00",
+      "name": "Order and Pay",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ae47f64-45a7-4c97-bc9a-8d06da9740ea",
+          "name": "Lightspeed Get Businesses",
+          "request": {
+            "name": "Lightspeed Get Businesses",
+            "description": {
+              "content": "Returns a list of all businesses and business locations associated with the access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "data",
+                "businesses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c65b7168-a1c4-40b4-90be-63de8f4c21b1",
+              "name": "Businesses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "data",
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"My Awesome Business\",\n    \"id\": 454335871,\n    \"businessLocations\": [\n      {\n        \"id\": 45454565682155,\n        \"name\": \"My Awesome Business - Location 1\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23b88e2f-e57a-438a-916c-b92cc57f9ea5",
+          "name": "Lightspeed Get All Floorplans",
+          "request": {
+            "name": "Lightspeed Get All Floorplans",
+            "description": {
+              "content": "Returns the floorplans for a specific business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "data",
+                ":businessLocationId",
+                "floorplans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expandTables",
+                  "value": "true",
+                  "description": "If true, the response will include the table details for each floorplan.\nIf false, the response will only include the [`name`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-name) and [`id`](https://api-docs.lsk.lightspeed.app/operation/operation-apelookupfloorplans#operation-apelookupfloorplans-200-body-application-json-id) for the floorplans."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8515f984-666f-4aa9-bcc5-1b56dda8b38e",
+              "name": "Floorplans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "data",
+                    ":businessLocationId",
+                    "floorplans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expandTables",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 141948669132976,\n    \"name\": \"Terrace\",\n    \"tables\": [\n      {\n        \"number\": 1,\n        \"reference\": \"abcdefg123456\",\n        \"id\": \"141948669132977\",\n        \"active\": true,\n        \"description\": \"Table 1\",\n        \"defaultClientCount\": 4\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fc30285-4546-475a-bf3c-9b4e5ee99f68",
+              "name": "Not Found\n\nIndicates that the business location has no floorplans configured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "data",
+                    ":businessLocationId",
+                    "floorplans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expandTables",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df9a1784-4cec-4bea-bbd6-460b6acca86e",
+          "name": "Lightspeed Get Floorplan Tables",
+          "request": {
+            "name": "Lightspeed Get Floorplan Tables",
+            "description": {
+              "content": "Returns the tables for a specific floorplan of a business location",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "data",
+                ":businessLocationId",
+                "floorplans",
+                ":floorPlanId",
+                "tables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "floorPlanId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ac35f84f-5949-4eeb-813b-8e3602984405",
+              "name": "Tables",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "data",
+                    ":businessLocationId",
+                    "floorplans",
+                    ":floorPlanId",
+                    "tables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "floorPlanId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"number\": 1,\n    \"reference\": \"abcdefg123456\",\n    \"id\": \"141948669132977\",\n    \"active\": true,\n    \"description\": \"Table 1\",\n    \"defaultClientCount\": 4\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e3716a4-011d-4ed4-b039-5a1f0714ed42",
+          "name": "Lightspeed Get All Order Profiles",
+          "request": {
+            "name": "Lightspeed Get All Order Profiles",
+            "description": {
+              "content": "Returns a list of active [order profiles](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) for a specific business location.\n\nThe order profile [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code) can be used to retrieve a specific price list when [loading a menu](https://api-docs.lsk.lightspeed.app/operation/operation-apegetmenubyid).\n\nNote: Order Profiles were previously called Account Profiles, and may still be referred to in this way in the API, in some cases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "data",
+                "account-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "488393ad-3d1f-454d-b13d-5be9cf2cd182",
+              "name": "Order profiles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "data",
+                    "account-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businessLocationId\": 45454565682155,\n  \"accountProfileList\": [\n    {\n      \"id\": 12454575601144,\n      \"code\": \"takeaway\",\n      \"name\": \"Takeaway\",\n      \"deliveryMode\": \"TAKE_AWAY\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8fee312-0403-4810-a742-51f970568f98",
+          "name": "Lightspeed Get Single Order Profile",
+          "request": {
+            "name": "Lightspeed Get Single Order Profile",
+            "description": {
+              "content": "Returns details of an active [order profile](https://k-series-support.lightspeedhq.com/hc/en-us/articles/1260804657389-About-order-profiles) based on its [code](https://api-docs.lsk.lightspeed.app/operation/operation-apeaccountprofiles#operation-apeaccountprofiles-200-body-application-json-accountprofilelist-code).\n\nNote: Order Profiles were previously called Account Profiles, and may still be referred to in this way in the API, in some cases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "data",
+                ":businessLocationId",
+                "account-profiles",
+                "tagcode",
+                ":tagCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "businessLocationId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tagCode",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "22726d20-4af6-4837-a789-270f28f9edca",
+              "name": "Order profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "data",
+                    ":businessLocationId",
+                    "account-profiles",
+                    "tagcode",
+                    ":tagCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "businessLocationId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tagCode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 12454575601144,\n  \"code\": \"takeaway\",\n  \"name\": \"Takeaway\",\n  \"deliveryMode\": \"TAKE_AWAY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c89319a5-96a9-4154-9d6b-8e456fcf8d4b",
+          "name": "Lightspeed Get All Menus",
+          "request": {
+            "name": "Lightspeed Get All Menus",
+            "description": {
+              "content": "Returns a list of menus for a given business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "menu",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e597979b-7ef5-44c3-9c45-fde7228fe46c",
+              "name": "Load menus",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "menu",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"menuName\": \"Lunch Menu\",\n    \"ikentooMenuId\": 141948669132851\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e6275af-63fb-4204-9f25-e78aeaf8a938",
+          "name": "Lightspeed Get Single Menu",
+          "request": {
+            "name": "Lightspeed Get Single Menu",
+            "description": {
+              "content": "**Deprecated:** Use [/o/op/2/menu/load/{menuId}](#/Order%20and%20Pay/getMenuByIdV2) instead. V2 includes product modifier groups and product modifiers on menu items and deal items. Returns details of a particular menu based on its unique identifier and other query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "menu",
+                "load",
+                ":menuId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "accountProfile",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "richContent",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "menuId",
+                  "description": "(Required) The unique identifier for the menu."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9001503f-6a38-413f-8cc8-5d7b2d25869e",
+              "name": "Successful retrieval of menu details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "menu",
+                    "load",
+                    ":menuId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "accountProfile",
+                      "value": "TAKEAWAY"
+                    },
+                    {
+                      "key": "richContent",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "menuId",
+                      "description": "(Required) The unique identifier for the menu."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"menuName\": \"Main Menu\",\n  \"menuEntryGroups\": [\n    {\n      \"@type\": \"group\",\n      \"id\": \"141948669133028\",\n      \"name\": \"Mains\",\n      \"color\": \"blue\",\n      \"menuEntry\": []\n    }\n  ],\n  \"richDataMissing\": false,\n  \"ikentooMenuId\": 141948669132851,\n  \"conditionalTaxRules\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fedf9c8-b7b8-4648-b941-2a028b3a8e1a",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "menu",
+                    "load",
+                    ":menuId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "accountProfile",
+                      "value": "TAKEAWAY"
+                    },
+                    {
+                      "key": "richContent",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "menuId",
+                      "description": "(Required) The unique identifier for the menu."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"503\",\n  \"timestamp\": \"1986-04-19T03:51:58.755Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4466e4df-7a9d-42b0-8149-94816a95db46",
+          "name": "Lightspeed Get Single Menu V2",
+          "request": {
+            "name": "Lightspeed Get Single Menu V2",
+            "description": {
+              "content": "Returns details of a particular menu based on its unique identifier and other query parameters. Product modifier groups and product modifiers are always included in the response.\n\n**Migration from V1:** The response includes `menuModifierGroups` on each menu item and deal item, containing product modifier details (name, price, extraPrice, sku, rich data). Items with product modifier groups are no longer marked as `asSubItem`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "2",
+                "menu",
+                "load",
+                ":menuId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "accountProfile",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "richContent",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "menuId",
+                  "description": "(Required) The unique identifier for the menu."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "39208122-1f24-436d-a520-f987b3c9f142",
+              "name": "Successful retrieval of menu details including product modifiers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "2",
+                    "menu",
+                    "load",
+                    ":menuId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "accountProfile",
+                      "value": "TAKEAWAY"
+                    },
+                    {
+                      "key": "richContent",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "menuId",
+                      "description": "(Required) The unique identifier for the menu."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"menuName\": \"Main Menu\",\n  \"menuEntryGroups\": [\n    {\n      \"@type\": \"group\",\n      \"id\": \"141948669133028\",\n      \"name\": \"Mains\",\n      \"color\": \"blue\",\n      \"menuEntry\": []\n    }\n  ],\n  \"richDataMissing\": false,\n  \"ikentooMenuId\": 141948669132851,\n  \"conditionalTaxRules\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58ce60c4-38e7-4dc3-8c42-4fc331c2019f",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "2",
+                    "menu",
+                    "load",
+                    ":menuId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "accountProfile",
+                      "value": "TAKEAWAY"
+                    },
+                    {
+                      "key": "richContent",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "menuId",
+                      "description": "(Required) The unique identifier for the menu."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"503\",\n  \"timestamp\": \"1986-04-19T03:51:58.755Z\",\n  \"message\": \"string\",\n  \"apiSubExceptions\": [\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"rejectedValue\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "085eab67-a45f-4843-a6e7-a7fb19d470e1",
+          "name": "Lightspeed Get Modifiers",
+          "request": {
+            "name": "Lightspeed Get Modifiers",
+            "description": {
+              "content": "Returns a list of production instructions for a specific business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "menu",
+                "modifiers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "54911c01-9bc5-4cb6-adcf-01ca10a8c8cd",
+              "name": "Load modifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "menu",
+                    "modifiers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"multiSelectionPermitted\": true,\n    \"productionInstructionGroupName\": \"Sample productionInstructionGroupName\",\n    \"productionIntructionGroupId\": 760,\n    \"productionInstructionList\": [\n      {}\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81cef0a2-d052-4d1d-9e25-16211d3e30cb",
+          "name": "Lightspeed Get Discounts",
+          "request": {
+            "name": "Lightspeed Get Discounts",
+            "description": {
+              "content": "Returns a list of discounts for a specific business location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "menu",
+                "discounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5a733dab-1703-4b9e-8d56-3b9ffbf426e9",
+              "name": "Load discounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "menu",
+                    "discounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"Staff Discount\",\n    \"code\": \"STAFF\",\n    \"discountPercentage\": 15,\n    \"discountAmount\": 5\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93e88b9f-a2c1-44ab-837e-de04363f930d",
+          "name": "Lightspeed Create Local Order",
+          "request": {
+            "name": "Lightspeed Create Local Order",
+            "description": {
+              "content": "Creates a new dine-in order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details.\n\nIf the [accountIdentifier](https://api-docs.lsk.lightspeed.app/operation/operation-apelocalorder#operation-apelocalorder-body-application-json-accountidentifier) of an existing order is provided in the body of the request, the request will update the existing order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "order",
+                "local"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessLocationId\": \"<long>\",\n  \"thirdPartyReference\": \"<string>\",\n  \"endpointId\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"thirdPartyReference\": \"<string>\",\n    \"email\": \"<string>\",\n    \"contactNumberAsE164\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"salutation\": \"<string>\",\n    \"sendEmailReceipts\": \"<boolean>\",\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"<string>\",\n  \"maxTimeToAttemptOrderDeliverToPos\": \"<integer>\",\n  \"staffId\": \"<long>\",\n  \"accountProfileCode\": \"<string>\",\n  \"scheduledTimeForOrderAsIso8601\": \"<dateTime>\",\n  \"payment\": {\n    \"paymentAmount\": \"<number>\",\n    \"paymentMethod\": \"<string>\",\n    \"tipAmount\": \"<number>\"\n  },\n  \"accountId\": \"<string>\",\n  \"accountIdentifier\": \"<string>\",\n  \"tableNumber\": \"<string>\",\n  \"clientCount\": \"<integer>\",\n  \"items\": [\n    {\n      \"quantity\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"customItemName\": \"<string>\",\n      \"customItemPrice\": \"<number>\",\n      \"discountAmountOverride\": \"<number>\",\n      \"discountPercentOverride\": \"<number>\",\n      \"modifiers\": [\n        {\n          \"modifierId\": \"<string>\"\n        },\n        {\n          \"modifierId\": \"<string>\"\n        }\n      ],\n      \"discountCode\": \"<string>\",\n      \"course\": \"<integer>\",\n      \"subItems\": [\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        },\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"quantity\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"customItemName\": \"<string>\",\n      \"customItemPrice\": \"<number>\",\n      \"discountAmountOverride\": \"<number>\",\n      \"discountPercentOverride\": \"<number>\",\n      \"modifiers\": [\n        {\n          \"modifierId\": \"<string>\"\n        },\n        {\n          \"modifierId\": \"<string>\"\n        }\n      ],\n      \"discountCode\": \"<string>\",\n      \"course\": \"<integer>\",\n      \"subItems\": [\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        },\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"targetPrinterProfileId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97499b35-b780-4433-92bf-d0b2f23f511c",
+              "name": "accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "local"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 45454565682155,\n  \"thirdPartyReference\": \"example\",\n  \"endpointId\": \"500123\",\n  \"customerInfo\": {\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"thirdPartyReference\": \"ZEN-7074522d-c71d-403f\",\n    \"email\": \"jane.doe@example.com\",\n    \"contactNumberAsE164\": \"+14155552671\",\n    \"notes\": \"Notes about the customer.\",\n    \"salutation\": \"Mr.\",\n    \"sendEmailReceipts\": true,\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"example\",\n  \"maxTimeToAttemptOrderDeliverToPos\": 510,\n  \"staffId\": 131,\n  \"accountProfileCode\": \"example\",\n  \"scheduledTimeForOrderAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"payment\": {\n    \"paymentMethod\": \"OOPAYMENT\",\n    \"paymentAmount\": 14,\n    \"tipAmount\": 2\n  },\n  \"accountId\": \"500123\",\n  \"accountIdentifier\": \"500123\",\n  \"tableNumber\": \"example\",\n  \"clientCount\": 776,\n  \"items\": [\n    {\n      \"quantity\": 1,\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"customItemName\": \"My Custom Item Name\",\n      \"customItemPrice\": 10,\n      \"discountAmountOverride\": 5,\n      \"discountPercentOverride\": 10,\n      \"modifiers\": [\n        {}\n      ],\n      \"discountCode\": \"FIVEPERCENT\",\n      \"course\": 2,\n      \"subItems\": [\n        {}\n      ]\n    }\n  ],\n  \"targetPrinterProfileId\": 670\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OPEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df56c147-e803-43eb-ae56-127baeb6b39c",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "local"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 45454565682155,\n  \"thirdPartyReference\": \"example\",\n  \"endpointId\": \"500123\",\n  \"customerInfo\": {\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"thirdPartyReference\": \"ZEN-7074522d-c71d-403f\",\n    \"email\": \"jane.doe@example.com\",\n    \"contactNumberAsE164\": \"+14155552671\",\n    \"notes\": \"Notes about the customer.\",\n    \"salutation\": \"Mr.\",\n    \"sendEmailReceipts\": true,\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"example\",\n  \"maxTimeToAttemptOrderDeliverToPos\": 510,\n  \"staffId\": 131,\n  \"accountProfileCode\": \"example\",\n  \"scheduledTimeForOrderAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"payment\": {\n    \"paymentMethod\": \"OOPAYMENT\",\n    \"paymentAmount\": 14,\n    \"tipAmount\": 2\n  },\n  \"accountId\": \"500123\",\n  \"accountIdentifier\": \"500123\",\n  \"tableNumber\": \"example\",\n  \"clientCount\": 776,\n  \"items\": [\n    {\n      \"quantity\": 1,\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"customItemName\": \"My Custom Item Name\",\n      \"customItemPrice\": 10,\n      \"discountAmountOverride\": 5,\n      \"discountPercentOverride\": 10,\n      \"modifiers\": [\n        {}\n      ],\n      \"discountCode\": \"FIVEPERCENT\",\n      \"course\": 2,\n      \"subItems\": [\n        {}\n      ]\n    }\n  ],\n  \"targetPrinterProfileId\": 670\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 764,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"errors\": [\n    {\n      \"codes\": [\n        \"NotNull.localOrder.thirdPartyReference\",\n        \"NotNull.thirdPartyReference\",\n        \"NotNull.java.lang.String\",\n        \"NotNull\"\n      ],\n      \"arguments\": [\n        {\n          \"codes\": [\n            \"localOrder.thirdPartyReference\",\n            \"thirdPartyReference\"\n          ],\n          \"defaultMessage\": \"thirdPartyReference\",\n          \"code\": \"thirdPartyReference\"\n        }\n      ],\n      \"defaultMessage\": \"must not be null\",\n      \"objectName\": \"localOrder\",\n      \"field\": \"thirdPartyReference\",\n      \"bindingFailure\": false,\n      \"code\": \"NotNull\"\n    }\n  ],\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69a0450a-9d54-4e45-89ad-0a858b0bf361",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "local"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 45454565682155,\n  \"thirdPartyReference\": \"example\",\n  \"endpointId\": \"500123\",\n  \"customerInfo\": {\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"thirdPartyReference\": \"ZEN-7074522d-c71d-403f\",\n    \"email\": \"jane.doe@example.com\",\n    \"contactNumberAsE164\": \"+14155552671\",\n    \"notes\": \"Notes about the customer.\",\n    \"salutation\": \"Mr.\",\n    \"sendEmailReceipts\": true,\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"example\",\n  \"maxTimeToAttemptOrderDeliverToPos\": 510,\n  \"staffId\": 131,\n  \"accountProfileCode\": \"example\",\n  \"scheduledTimeForOrderAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"payment\": {\n    \"paymentMethod\": \"OOPAYMENT\",\n    \"paymentAmount\": 14,\n    \"tipAmount\": 2\n  },\n  \"accountId\": \"500123\",\n  \"accountIdentifier\": \"500123\",\n  \"tableNumber\": \"example\",\n  \"clientCount\": 776,\n  \"items\": [\n    {\n      \"quantity\": 1,\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"customItemName\": \"My Custom Item Name\",\n      \"customItemPrice\": 10,\n      \"discountAmountOverride\": 5,\n      \"discountPercentOverride\": 10,\n      \"modifiers\": [\n        {}\n      ],\n      \"discountCode\": \"FIVEPERCENT\",\n      \"course\": 2,\n      \"subItems\": [\n        {}\n      ]\n    }\n  ],\n  \"targetPrinterProfileId\": 670\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"msg\": \"reference has already been used 123456789\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "814c8295-046d-47e6-9505-9f52bc8418b7",
+          "name": "Lightspeed Create to Go Order",
+          "request": {
+            "name": "Lightspeed Create to Go Order",
+            "description": {
+              "content": "Creates a new takeaway or delivery order for a specific business location. See [Online Ordering Basics](https://api-portal.lsk.lightspeed.app/guides/tutorials/online-ordering-basics) for more details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "order",
+                "toGo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessLocationId\": \"<long>\",\n  \"thirdPartyReference\": \"<string>\",\n  \"endpointId\": \"<string>\",\n  \"customerInfo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"thirdPartyReference\": \"<string>\",\n    \"email\": \"<string>\",\n    \"contactNumberAsE164\": \"<string>\",\n    \"notes\": \"<string>\",\n    \"salutation\": \"<string>\",\n    \"sendEmailReceipts\": \"<boolean>\",\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"<string>\",\n  \"maxTimeToAttemptOrderDeliverToPos\": \"<integer>\",\n  \"staffId\": \"<long>\",\n  \"accountProfileCode\": \"<string>\",\n  \"scheduledTimeForOrderAsIso8601\": \"<dateTime>\",\n  \"payment\": {\n    \"paymentAmount\": \"<number>\",\n    \"paymentMethod\": \"<string>\",\n    \"tipAmount\": \"<number>\"\n  },\n  \"collectionCode\": \"<string>\",\n  \"orderCollectionTimeAsIso8601\": \"<dateTime>\",\n  \"items\": [\n    {\n      \"quantity\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"customItemName\": \"<string>\",\n      \"customItemPrice\": \"<number>\",\n      \"discountAmountOverride\": \"<number>\",\n      \"discountPercentOverride\": \"<number>\",\n      \"modifiers\": [\n        {\n          \"modifierId\": \"<string>\"\n        },\n        {\n          \"modifierId\": \"<string>\"\n        }\n      ],\n      \"discountCode\": \"<string>\",\n      \"subItems\": [\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        },\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"quantity\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"customItemName\": \"<string>\",\n      \"customItemPrice\": \"<number>\",\n      \"discountAmountOverride\": \"<number>\",\n      \"discountPercentOverride\": \"<number>\",\n      \"modifiers\": [\n        {\n          \"modifierId\": \"<string>\"\n        },\n        {\n          \"modifierId\": \"<string>\"\n        }\n      ],\n      \"discountCode\": \"<string>\",\n      \"subItems\": [\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        },\n        {\n          \"quantity\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"customItemName\": \"<string>\",\n          \"customItemPrice\": \"<number>\",\n          \"modifiers\": [\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"modifierId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"subItems\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/apeSubItemOrderLine detected>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"deliveryAddress\": {\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\"\n  },\n  \"targetPrinterProfileId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06151649-dbe5-4693-8ac8-004c1a851d75",
+              "name": "accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "toGo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 45454565682155,\n  \"thirdPartyReference\": \"example\",\n  \"endpointId\": \"500123\",\n  \"customerInfo\": {\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"thirdPartyReference\": \"ZEN-7074522d-c71d-403f\",\n    \"email\": \"jane.doe@example.com\",\n    \"contactNumberAsE164\": \"+14155552671\",\n    \"notes\": \"Notes about the customer.\",\n    \"salutation\": \"Mr.\",\n    \"sendEmailReceipts\": true,\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"example\",\n  \"maxTimeToAttemptOrderDeliverToPos\": 449,\n  \"staffId\": 370,\n  \"accountProfileCode\": \"example\",\n  \"scheduledTimeForOrderAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"payment\": {\n    \"paymentMethod\": \"OOPAYMENT\",\n    \"paymentAmount\": 14,\n    \"tipAmount\": 2\n  },\n  \"collectionCode\": \"example\",\n  \"orderCollectionTimeAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"items\": [\n    {\n      \"quantity\": 1,\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"customItemName\": \"My Custom Item Name\",\n      \"customItemPrice\": 10,\n      \"discountAmountOverride\": 5,\n      \"discountPercentOverride\": 10,\n      \"modifiers\": [\n        {}\n      ],\n      \"discountCode\": \"FIVEPERCENT\",\n      \"subItems\": [\n        {}\n      ]\n    }\n  ],\n  \"deliveryAddress\": {\n    \"addressLine1\": \"example\",\n    \"addressLine2\": \"example\",\n    \"zip\": \"example\",\n    \"city\": \"example\"\n  },\n  \"targetPrinterProfileId\": 258\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OPEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42142066-ba36-4516-9f9a-c974b061a6c6",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "toGo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 45454565682155,\n  \"thirdPartyReference\": \"example\",\n  \"endpointId\": \"500123\",\n  \"customerInfo\": {\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"thirdPartyReference\": \"ZEN-7074522d-c71d-403f\",\n    \"email\": \"jane.doe@example.com\",\n    \"contactNumberAsE164\": \"+14155552671\",\n    \"notes\": \"Notes about the customer.\",\n    \"salutation\": \"Mr.\",\n    \"sendEmailReceipts\": true,\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"example\",\n  \"maxTimeToAttemptOrderDeliverToPos\": 449,\n  \"staffId\": 370,\n  \"accountProfileCode\": \"example\",\n  \"scheduledTimeForOrderAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"payment\": {\n    \"paymentMethod\": \"OOPAYMENT\",\n    \"paymentAmount\": 14,\n    \"tipAmount\": 2\n  },\n  \"collectionCode\": \"example\",\n  \"orderCollectionTimeAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"items\": [\n    {\n      \"quantity\": 1,\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"customItemName\": \"My Custom Item Name\",\n      \"customItemPrice\": 10,\n      \"discountAmountOverride\": 5,\n      \"discountPercentOverride\": 10,\n      \"modifiers\": [\n        {}\n      ],\n      \"discountCode\": \"FIVEPERCENT\",\n      \"subItems\": [\n        {}\n      ]\n    }\n  ],\n  \"deliveryAddress\": {\n    \"addressLine1\": \"example\",\n    \"addressLine2\": \"example\",\n    \"zip\": \"example\",\n    \"city\": \"example\"\n  },\n  \"targetPrinterProfileId\": 258\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 866,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"errors\": [\n    {\n      \"codes\": [\n        \"NotNull.toGoOrder.thirdPartyReference\",\n        \"NotNull.thirdPartyReference\",\n        \"NotNull.java.lang.String\",\n        \"NotNull\"\n      ],\n      \"arguments\": [\n        {\n          \"codes\": [\n            \"toGoOrder.thirdPartyReference\",\n            \"thirdPartyReference\"\n          ],\n          \"defaultMessage\": \"thirdPartyReference\",\n          \"code\": \"thirdPartyReference\"\n        }\n      ],\n      \"defaultMessage\": \"must not be null\",\n      \"objectName\": \"toGoOrder\",\n      \"field\": \"thirdPartyReference\",\n      \"bindingFailure\": false,\n      \"code\": \"NotNull\"\n    }\n  ],\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4c281d4-6246-4e07-b70c-5b7b73d7699e",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "toGo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"businessLocationId\": 45454565682155,\n  \"thirdPartyReference\": \"example\",\n  \"endpointId\": \"500123\",\n  \"customerInfo\": {\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"thirdPartyReference\": \"ZEN-7074522d-c71d-403f\",\n    \"email\": \"jane.doe@example.com\",\n    \"contactNumberAsE164\": \"+14155552671\",\n    \"notes\": \"Notes about the customer.\",\n    \"salutation\": \"Mr.\",\n    \"sendEmailReceipts\": true,\n    \"emailNotification\": \"DONT_CHANGE\"\n  },\n  \"orderNote\": \"example\",\n  \"maxTimeToAttemptOrderDeliverToPos\": 449,\n  \"staffId\": 370,\n  \"accountProfileCode\": \"example\",\n  \"scheduledTimeForOrderAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"payment\": {\n    \"paymentMethod\": \"OOPAYMENT\",\n    \"paymentAmount\": 14,\n    \"tipAmount\": 2\n  },\n  \"collectionCode\": \"example\",\n  \"orderCollectionTimeAsIso8601\": \"2026-03-15T14:30:00Z\",\n  \"items\": [\n    {\n      \"quantity\": 1,\n      \"sku\": \"UGG-BB-PUR-06\",\n      \"customItemName\": \"My Custom Item Name\",\n      \"customItemPrice\": 10,\n      \"discountAmountOverride\": 5,\n      \"discountPercentOverride\": 10,\n      \"modifiers\": [\n        {}\n      ],\n      \"discountCode\": \"FIVEPERCENT\",\n      \"subItems\": [\n        {}\n      ]\n    }\n  ],\n  \"deliveryAddress\": {\n    \"addressLine1\": \"example\",\n    \"addressLine2\": \"example\",\n    \"zip\": \"example\",\n    \"city\": \"example\"\n  },\n  \"targetPrinterProfileId\": 258\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"msg\": \"reference has already been used 123456789\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56ca5bd4-bc56-435e-9fe4-b99b37321b5c",
+          "name": "Lightspeed Get All Open Checks",
+          "request": {
+            "name": "Lightspeed Get All Open Checks",
+            "description": {
+              "content": "Returns all open orders for the current day.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "order",
+                "table",
+                "getCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "915b2570-de6e-479b-8bdb-c3009bcb7748",
+              "name": "All open orders for the current day.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "table",
+                    "getCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"clientCount\": 4,\n    \"identifier\": \"500123\",\n    \"uuid\": \"a3bb189e-8f29-4cce-b0e9-f29b123dfe3d\",\n    \"openDate\": \"2021-06-21T14:20:00Z\",\n    \"closeDate\": \"2021-06-22T10:15:00Z\",\n    \"paidAmount\": 100,\n    \"serviceCharge\": 10,\n    \"name\": \"ORDER A1C2E\",\n    \"currentAmount\": 110,\n    \"staffName\": \"Jane Smith\",\n    \"staffId\": 7701234,\n    \"salesEntries\": [\n      {}\n    ],\n    \"paymentEntries\": [\n      {}\n    ],\n    \"id\": \"500123\",\n    \"ikaccountId\": \"A78094.48\",\n    \"number\": 255,\n    \"tableNumber\": 2,\n    \"posId\": 54321,\n    \"deviceId\": 186\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38cdee57-1e95-4699-ae38-b719590ec418",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "table",
+                    "getCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 47,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a1580c9-5289-47ea-bb1c-1e4fb78771ad",
+          "name": "Lightspeed Get Open Check by Table",
+          "request": {
+            "name": "Lightspeed Get Open Check by Table",
+            "description": {
+              "content": "Returns an open order for a specific table.\nNote: If more than one order is assigned to the table, the oldest order will be returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "order",
+                "table",
+                ":tableNumber",
+                "getCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tableNumber",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "40ade3c4-25f7-4e30-bcd3-e97a3273e9c0",
+              "name": "Check",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "table",
+                    ":tableNumber",
+                    "getCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tableNumber",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientCount\": 4,\n  \"identifier\": \"500123\",\n  \"uuid\": \"a3bb189e-8f29-4cce-b0e9-f29b123dfe3d\",\n  \"openDate\": \"2021-06-21T14:20:00Z\",\n  \"closeDate\": \"2021-06-22T10:15:00Z\",\n  \"paidAmount\": 100,\n  \"serviceCharge\": 10,\n  \"name\": \"ORDER A1C2E\",\n  \"currentAmount\": 110,\n  \"staffName\": \"Jane Smith\",\n  \"staffId\": 7701234,\n  \"salesEntries\": [\n    {\n      \"id\": 1341648999023061,\n      \"uuid\": \"2c83b049-a2c1-4bc5-8479-eb152e5a54be\",\n      \"itemName\": \"Burger\",\n      \"itemSku\": \"14\",\n      \"unitAmount\": 10,\n      \"quantity\": 1,\n      \"modifiers\": [],\n      \"amountWithTax\": 11.5,\n      \"amountLessTax\": 10,\n      \"discountedAmount\": 0,\n      \"timeOfTransactionUtc\": \"2023-11-07T21:24:44.741+0000\",\n      \"active\": true,\n      \"parentId\": 478,\n      \"subLineItems\": [\n        {\n          \"id\": 1341648999023062,\n          \"uuid\": \"2c83b049-a2c1-4bc5-8479-eb152e5a54be\",\n          \"itemName\": \"Extra Cheese\",\n          \"itemSku\": \"35\",\n          \"unitAmount\": 1,\n          \"quantity\": 1,\n          \"modifiers\": [],\n          \"amountWithTax\": 1.15,\n          \"amountLessTax\": 1,\n          \"discountedAmount\": 0,\n          \"grossUnitAmount\": 1,\n          \"timeOfTransactionUtc\": \"2023-11-07T21:24:44.755+0000\",\n          \"active\": true,\n          \"subLineItems\": [],\n          \"taxIncluded\": false\n        }\n      ],\n      \"isTaxIncluded\": true,\n      \"taxIncluded\": false\n    }\n  ],\n  \"paymentEntries\": [\n    {\n      \"paymentMethodDescription\": \"API Payment\",\n      \"externalReference\": \"12345678901234\",\n      \"paymentMethodCode\": \"APM\",\n      \"amountPaid\": 12.65,\n      \"paymentDate\": \"2023-11-07T22:05:16.127+0000\",\n      \"active\": true,\n      \"accountCancelled\": true\n    }\n  ],\n  \"id\": \"500123\",\n  \"ikaccountId\": \"A78094.48\",\n  \"number\": 819,\n  \"tableNumber\": 2,\n  \"posId\": 54321,\n  \"deviceId\": 931\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b894fbc7-e207-43e0-9ce1-d29112a07fd3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "table",
+                    ":tableNumber",
+                    "getCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tableNumber",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 498,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fe2b61b-4afc-44e6-9cde-fb87174b2405",
+          "name": "Lightspeed Get Single Check",
+          "request": {
+            "name": "Lightspeed Get Single Check",
+            "description": {
+              "content": "Returns a check based on the Account Identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "order",
+                "accounts",
+                ":accountIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountIdentifier",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e3f99364-7b70-42d5-946e-403a80f34274",
+              "name": "The account requested.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "accounts",
+                    ":accountIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientCount\": 4,\n  \"identifier\": \"500123\",\n  \"uuid\": \"a3bb189e-8f29-4cce-b0e9-f29b123dfe3d\",\n  \"openDate\": \"2021-06-21T14:20:00Z\",\n  \"closeDate\": \"2021-06-22T10:15:00Z\",\n  \"paidAmount\": 100,\n  \"serviceCharge\": 10,\n  \"name\": \"ORDER A1C2E\",\n  \"currentAmount\": 110,\n  \"staffName\": \"Jane Smith\",\n  \"staffId\": 7701234,\n  \"salesEntries\": [\n    {\n      \"id\": 1341648999023061,\n      \"uuid\": \"2c83b049-a2c1-4bc5-8479-eb152e5a54be\",\n      \"itemName\": \"Burger\",\n      \"itemSku\": \"14\",\n      \"unitAmount\": 10,\n      \"quantity\": 1,\n      \"modifiers\": [],\n      \"amountWithTax\": 11.5,\n      \"amountLessTax\": 10,\n      \"discountedAmount\": 0,\n      \"timeOfTransactionUtc\": \"2023-11-07T21:24:44.741+0000\",\n      \"active\": true,\n      \"parentId\": 656,\n      \"subLineItems\": [\n        {\n          \"id\": 1341648999023062,\n          \"uuid\": \"2c83b049-a2c1-4bc5-8479-eb152e5a54be\",\n          \"itemName\": \"Extra Cheese\",\n          \"itemSku\": \"35\",\n          \"unitAmount\": 1,\n          \"quantity\": 1,\n          \"modifiers\": [],\n          \"amountWithTax\": 1.15,\n          \"amountLessTax\": 1,\n          \"discountedAmount\": 0,\n          \"grossUnitAmount\": 1,\n          \"timeOfTransactionUtc\": \"2023-11-07T21:24:44.755+0000\",\n          \"active\": true,\n          \"subLineItems\": [],\n          \"taxIncluded\": false\n        }\n      ],\n      \"isTaxIncluded\": true,\n      \"taxIncluded\": false\n    }\n  ],\n  \"paymentEntries\": [\n    {\n      \"paymentMethodDescription\": \"API Payment\",\n      \"externalReference\": \"12345678901234\",\n      \"paymentMethodCode\": \"APM\",\n      \"amountPaid\": 12.65,\n      \"paymentDate\": \"2023-11-07T22:05:16.127+0000\",\n      \"active\": true,\n      \"accountCancelled\": false\n    }\n  ],\n  \"id\": \"500123\",\n  \"ikaccountId\": \"A78094.48\",\n  \"number\": 742,\n  \"tableNumber\": 2,\n  \"posId\": 54321,\n  \"deviceId\": 989\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d57ae46-72fe-46ab-a58c-832d5ea93405",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "accounts",
+                    ":accountIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 75,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "492bbb6f-9689-4036-94b5-0dcc13cfb928",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "order",
+                    "accounts",
+                    ":accountIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountIdentifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 463,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19a077ae-7a2f-490c-8db9-c94248233cb6",
+          "name": "Lightspeed Apply a Payment",
+          "request": {
+            "name": "Lightspeed Apply a Payment",
+            "description": {
+              "content": "Add a payment to an existing order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "pay"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"businessLocationId\": \"<long>\",\n  \"endpointId\": \"<string>\",\n  \"paymentAmount\": \"<number>\",\n  \"thirdPartyPaymentReference\": \"<string>\",\n  \"iKaccountId\": \"<long>\",\n  \"iKaccountIdentifier\": \"<string>\",\n  \"taskTtlInMs\": \"<integer>\",\n  \"staffId\": \"<long>\",\n  \"deviceId\": \"<long>\",\n  \"paymentMethod\": \"<string>\",\n  \"tipAmount\": \"<number>\",\n  \"targetPrinterProfileId\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d976c71c-6161-45b0-84f1-eae078c2bc9a",
+              "name": "accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "pay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"iKaccountId\": 0,\n  \"iKaccountIdentifier\": \"A1234.56\",\n  \"thirdPartyPaymentReference\": \"12345678901234\",\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"businessLocationId\": 45454565682155,\n  \"taskTtlInMs\": 60000,\n  \"staffId\": 118,\n  \"deviceId\": 12345678980,\n  \"paymentMethod\": \"OOPAYMENT\",\n  \"paymentAmount\": 20.06,\n  \"tipAmount\": 2.5,\n  \"targetPrinterProfileId\": 1773881235\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae18c802-a7e2-448f-9441-83fca35c6e2c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "pay"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"iKaccountId\": 0,\n  \"iKaccountIdentifier\": \"A1234.56\",\n  \"thirdPartyPaymentReference\": \"12345678901234\",\n  \"endpointId\": \"MY-AWESOME-ENDPOINT-ID\",\n  \"businessLocationId\": 45454565682155,\n  \"taskTtlInMs\": 60000,\n  \"staffId\": 118,\n  \"deviceId\": 12345678980,\n  \"paymentMethod\": \"OOPAYMENT\",\n  \"paymentAmount\": 20.06,\n  \"tipAmount\": 2.5,\n  \"targetPrinterProfileId\": 1773881235\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2023-11-07T23:00:20.075+0000\",\n  \"status\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"reference has already been used 12345678901234\",\n  \"path\": \"/o/op/1/pay\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4980181-5061-4ef5-8881-de30174e956b",
+          "name": "Lightspeed Print Message",
+          "request": {
+            "name": "Lightspeed Print Message",
+            "description": {
+              "content": "Send a message to the POS. Generates a notification on the register screen. Can also be sent to the printer. <br> If the POS is offline, the message will be stored for up to 24h and sent when the POS comes online.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "printMsg"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\",\n  \"alsoToPrinter\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3633ba7e-85c9-45b9-a4a5-11c86481b76f",
+              "name": "accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "printMsg"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"example\",\n  \"alsoToPrinter\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"OPEN\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa78daa6-899b-43e0-92dd-1e29b4101840",
+          "name": "Lightspeed Get Item Availability Information",
+          "request": {
+            "name": "Lightspeed Get Item Availability Information",
+            "description": {
+              "content": "Returns item availability information, by business location and SKUs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "itemAvailability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "skus",
+                  "value": "<string>",
+                  "description": "(Required) List of SKUs to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Starting page of results, when paginating. Starts at 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "25",
+                  "description": "Number of results to return, when paginating."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c12956f9-6300-4013-aeae-6225a9129f72",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "itemAvailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "skus",
+                      "value": "SKU1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sku\": \"SKU1\",\n      \"count\": 50,\n      \"updatedAt\": \"2025-07-08T14:20:00Z\"\n    }\n  ],\n  \"metadata\": {\n    \"warnings\": [\n      {}\n    ],\n    \"current\": {},\n    \"total\": 1,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64128577-fae2-4d66-a6ba-6e153d60c0dc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "itemAvailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "skus",
+                      "value": "SKU1"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 362,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13c706c9-0d8c-4503-a059-49fba681da58",
+          "name": "Lightspeed Get Item Availability Information by POST",
+          "request": {
+            "name": "Lightspeed Get Item Availability Information by POST",
+            "description": {
+              "content": "Returns item availability information filtered by business location and SKUs. The list of SKUs must be provided in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "o",
+                "op",
+                "1",
+                "itemAvailability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "businessLocationId",
+                  "value": "<long>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Starting page of results, when paginating. Starts at 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "25",
+                  "description": "Number of results to return, when paginating."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "orders-api financial-api reservation-*** items propertymanagement id-cards staff-api reservations-api"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/oauth/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/oauth/authorize"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skus\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e98c7a3-9b4f-4fc3-91d3-4c3e821e992e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "itemAvailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skus\": [\n    \"SKU1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sku\": \"SKU1\",\n      \"count\": 50,\n      \"updatedAt\": \"2025-07-08T14:20:00Z\"\n    }\n  ],\n  \"metadata\": {\n    \"warnings\": [\n      {}\n    ],\n    \"current\": {},\n    \"total\": 1,\n    \"totalPages\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b6ac2f4-f27b-426a-a323-9ca1234161f9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "o",
+                    "op",
+                    "1",
+                    "itemAvailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "businessLocationId",
+                      "value": "45454565682155"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skus\": [\n    \"SKU1\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-03-15T14:30:00Z\",\n  \"status\": 255,\n  \"error\": \"example\",\n  \"message\": \"example\",\n  \"path\": \"example\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trial.lsk.lightspeed.app",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4026e299-503b-40f5-aa00-2d21bd507d2b",
+    "name": "Lightspeed Restaurant K Series Account Order and Pay API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.\nDetailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).\nThese services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).\n\n\nContact Support:\n Name: Lightspeed Commerce",
+      "type": "text/plain"
+    }
+  }
+}
