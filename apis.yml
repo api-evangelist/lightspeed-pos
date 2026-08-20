@@ -21,6 +21,11 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lightspeed-pos.png
 tags:
+  - Point-of-Sale
+  - Retail
+  - Restaurant
+  - E-Commerce
+tags_raw:
   - POS
   - Retail
   - Restaurant
@@ -35,6 +40,9 @@ apis:
   humanURL: https://developers.lightspeedhq.com/ecom/introduction/introduction/
   tags:
   - REST
+  - E-Commerce
+  tags_raw:
+  - REST
   - Ecommerce
   properties:
   - type: Documentation
@@ -44,6 +52,10 @@ apis:
   description: REST API for Ecwid-powered Lightspeed eCom E-Series stores.
   humanURL: https://api-docs.ecwid.com/
   tags:
+  - REST
+  - E-Commerce
+  - Ecwid
+  tags_raw:
   - REST
   - Ecommerce
   - Ecwid
@@ -162,6 +174,8 @@ apis:
   humanURL: https://x-series-api.lightspeedhq.com/
   baseURL: https://x-series-api.lightspeedhq.com/api/2.0
   tags:
+  - Customers
+  tags_raw:
   - Customer
   properties:
   - type: OpenAPI
@@ -377,6 +391,8 @@ apis:
   humanURL: https://x-series-api.lightspeedhq.com/
   baseURL: https://x-series-api.lightspeedhq.com/api/2.0
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
@@ -398,6 +414,8 @@ apis:
   humanURL: https://x-series-api.lightspeedhq.com/
   baseURL: https://x-series-api.lightspeedhq.com/api/2.0
   tags:
+  - Order And Pay
+  tags_raw:
   - Order and Pay
   properties:
   - type: OpenAPI
@@ -462,6 +480,8 @@ apis:
   humanURL: https://x-series-api.lightspeedhq.com/
   baseURL: https://x-series-api.lightspeedhq.com/api/2.0
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
