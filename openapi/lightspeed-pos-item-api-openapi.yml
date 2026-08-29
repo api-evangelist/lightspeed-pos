@@ -1,30 +1,37 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  version: 1.0.0
-  title: Lightspeed Restaurant K Series Account Item API
-  description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
+  title: Lightspeed Retail R-Series Item API
+  description: 'OpenAPI 3.1 representation of the Lightspeed Retail R-Series REST API
 
-    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+    (the original Lightspeed Retail / Retail Pro cloud POS). The R-Series API
 
-    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
+    is documented at https://developers.lightspeedhq.com/retail/introduction/introduction/
+
+    and exposes account-scoped resources under
+
+    https://api.lightspeedapp.com/API/V3/Account/{accountID}. It uses OAuth 2.0
+
+    with scope-based access control and supports both JSON (`.json`) and XML
+
+    response formats. The numeric `accountID` is not the OAuth client_id; it
+
+    must be resolved via `GET /API/V3/Account.json` immediately after the token
+
+    exchange and is required for every subsequent account-scoped call.
 
     '
-  x-logo:
-    altText: Lightspeed Commerce
-    url: static/lightspeed@2x.png
+  version: 3.0.0
   contact:
     name: Lightspeed Commerce
-    url: https://api-portal.lsk.lightspeed.app/
+    url: https://developers.lightspeedhq.com/retail/introduction/introduction/
   x-generated-from: documentation
   x-last-validated: '2026-06-02'
-  x-source-url: https://api-docs.lsk.lightspeed.app/source.json
+  x-source-url: https://developers.lightspeedhq.com/retail/introduction/introduction/
 servers:
-- url: https://api.trial.lsk.lightspeed.app
-  description: Demo URL
-  x-bump-branch-name: demo
-- url: https://api.lsk.lightspeed.app
-  description: Production URL
-  x-bump-branch-name: prod
+- url: https://api.lightspeedapp.com/API/V3
+  description: Lightspeed Retail R-Series API host.
+security:
+- OAuth2: []
 tags:
 - name: Item
   description: Inventory items sold and tracked in Lightspeed Retail.
@@ -297,21 +304,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    itemID:
-      name: itemID
-      in: path
-      required: true
-      description: The unique identifier of the item.
-      schema:
-        type: string
-    accountID:
-      name: accountID
-      in: path
-      required: true
-      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
-      schema:
-        type: string
   schemas:
     Item:
       type: object
@@ -369,80 +361,35 @@ components:
         limit:
           type: integer
           description: Page size limit.
+  parameters:
+    accountID:
+      name: accountID
+      in: path
+      required: true
+      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+      schema:
+        type: string
+    itemID:
+      name: itemID
+      in: path
+      required: true
+      description: The unique identifier of the item.
+      schema:
+        type: string
   securitySchemes:
     OAuth2:
-      description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
-
-        See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
-
-        '
       type: oauth2
+      description: OAuth 2.0 authorization-code flow with scope-based access control.
       flows:
         authorizationCode:
-          authorizationUrl: /oauth/authorize
-          tokenUrl: /oauth/token
+          authorizationUrl: https://cloud.lightspeedapp.com/oauth/authorize.php
+          tokenUrl: https://cloud.lightspeedapp.com/oauth/access_token.php
           scopes:
-            orders-api: 'Read business information, floors, menus, discounts, and production instructions.
-
-              Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.'
-            financial-api: Read financial data
-            reservation-***: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code) of the reservation platform.
-            items: Read and write items
-            propertymanagement: Read and write Property Management System configurations.
-            id-cards: Create and manage ID card batches and cards.
-            staff-api: Read shift information, read and write user information.
-            reservations-api: 'Configure *legacy* reservation integrations.
-
-              **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
-
-              More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).'
-x-tagGroups:
-- name: Rich Item API
-  tags:
-  - Rich Item
-  - Migration
-- name: Tax Preview API
-  tags:
-  - Tax Breakdown
-- name: Staff Api
-  tags:
-  - Staff
-  - Internal Staff
-- name: Reservation API
-  tags:
-  - Reservations for Platforms
-- name: PMS API
-  tags:
-  - PMS
-- name: Items API
-  tags:
-  - Items
-  - ItemsV2
-  - Menus
-  - Buttons
-  - Production Instructions
-  - Inventory
-  - Combos
-  - Groups
-  - MenusV2
-  - Accounting Group
-  - IntegrationMenu
-  - Price Lists
-  - Products
-  - ItemAppearance
-  - Modifiers
-  - ModifierGroups
-  - Allergens
-  - Locales
-  - RichItem
-- name: id-cards-api API
-  tags:
-  - ID Cards
-- name: Financial API
-  tags:
-  - Financial
-  - FinancialV2
-- name: Online Ordering API
-  tags:
-  - Order and Pay
-  - 'Order and Pay: Webhook'
+            employee:all: Full access to all account resources.
+            employee:admin: Manage employees and shops.
+            employee:inventory: Create and modify inventory items.
+            employee:inventory_read: Read inventory items and catalog.
+            employee:register: Create sales at the register.
+            employee:reports: Read sales and reporting data.
+            employee:customers: Create and modify customers.
+            employee:customers_read: Read customers.

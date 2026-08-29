@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: Lightspeed Restaurant K Series Account FinancialV2 API
+  title: Lightspeed Restaurant K Series Financial V2 API
   description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
 
     Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
@@ -495,30 +495,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    financial-apiServiceChargeType:
-      type: string
-      description: The type of service charge applied to the sale line.
-      example: APPORTIONED
-      enum:
-      - UNTAXED
-      - APPORTIONED
-      - NO_SERVICE_CHARGE
-    financial-apiDateType:
-      type: string
-      example: CREATED
-      description: The date used when querying and sorting results.
-      enum:
-      - CREATED
-      - MODIFIED
-      default: MODIFIED
-    financial-apiLSPaymentStatus:
-      type: string
-      description: The statuses for a Lightspeed Payments transaction.
-      enum:
-      - CAPTURED
-      - DISPUTED
-      - PARTIALLY_REFUNDED
-      - REFUNDED
     financial-apiLSPayment:
       type: object
       properties:
@@ -558,98 +534,24 @@ components:
           $ref: '#/components/schemas/financial-apiCurrencyAmount'
         surcharge:
           $ref: '#/components/schemas/financial-apiCurrencyAmount'
-    financial-apiConsumer:
+    financial-apiSalesDailyExportDto:
       type: object
       properties:
-        id:
+        sales:
+          type: array
+          items:
+            $ref: '#/components/schemas/financial-apiSale'
+          description: Array of sale objects.
+          nullable: false
+        nextStartOfDayAsIso8601:
           type: string
-          description: The UUID of the customer associated with the payment, if applicable.
-          example: ec021fb0-4c12-425e-b30f-320ab720448b
-        customerId:
-          type: integer
-          format: int64
-          description: The unique identifier for the customer.
-          example: 120913
-        title:
-          type: string
-          description: The title or honorific of the customer.
-          example: Mr
-        firstName:
-          type: string
-          description: The first name of the customer.
-          example: John
-        lastName:
-          type: string
-          description: The last name of the customer.
-          example: Doe
-        phoneNumber1:
-          type: string
-          description: The primary phone number of the customer.
-          example: 555-555-5555
-        phoneNumber2:
-          type: string
-          description: An alternative phone number for the customer.
-          example: 555-555-5556
-        companyName:
-          type: string
-          description: The name of the company associated with the customer, if applicable.
-          example: Company Name
-        addressLine1:
-          type: string
-          description: The primary address line for the customer's address.
-          example: 123 Street st.
-        addressLine2:
-          type: string
-          description: The secondary address line for the customer's address, such as apartment or suite number.
-          example: Unit 123
-        zipCode:
-          type: string
-          description: The postal code for the customer's address.
-          example: '12345'
-        city:
-          type: string
-          description: The city of the customer's address.
-          example: Some City
-        state:
-          type: string
-          description: The state or region of the customer's address.
-          example: Some State
-        email:
-          type: string
-          description: The email address of the customer.
-          example: example@example.com
-        taxIdentifier:
-          type: string
-          description: The tax identifier of the customer.
-          example: '123456789'
-        fiscalCode:
-          type: string
-          description: The fiscal code of the customer.
-          example: '123456789'
-        destinationCode:
-          type: string
-          description: The destination code of the customer.
-          example: '123456789'
-    financial-apiAccountLink:
-      type: object
-      properties:
-        initialAccountId:
-          type: string
-          description: 'The `accountFiscId` of the initial transaction associated with the current account, if applicable. For example, in the case of a refund.
-
-
-            This will match the `accountFiscId` of the sale if there is no associated account.'
-          example: A65315.13
-        previousAccountId:
-          type: string
-          description: 'The `accountFiscId` of the previous transaction associated with the current account, if applicable. For example, in the case of a refund.
-
-
-            This may be different from `initialAccountId` if there is more than one associated account.
-
-
-            It will not be displayed if there is no associated account.'
-          example: A65315.15
+          format: date-time
+          description: Start of next business day, in the merchant's local time.
+          example: '2023-07-28T05:30:00-05:00'
+        dataComplete:
+          type: boolean
+          description: Whether or not the data is complete for the requested day.
+          example: false
     financial-apiSale:
       type: object
       properties:
@@ -758,92 +660,25 @@ components:
           type: string
           description: The void reason, if applicable.
           example: Unhappy Client
-    financial-apiPayment:
+    financial-apiDateType:
+      type: string
+      example: CREATED
+      description: The date used when querying and sorting results.
+      enum:
+      - CREATED
+      - MODIFIED
+      default: MODIFIED
+    financial-apiCategory:
       type: object
       properties:
-        code:
+        category:
           type: string
-          description: The code of the payment method.
-          example: CASH
-        description:
+          description: The line item's category.
+          example: default
+        value:
           type: string
-          description: The name of the payment method.
-          example: Cash
-        paymentMethodId:
-          type: integer
-          format: int64
-          description: The unique identifier for the payment method.
-          example: 141948669132824
-        netAmountWithTax:
-          type: string
-          description: The net payment amount, including tax. The value is precise up to two decimal places, and if necessary, it is rounded using the "half-even" rounding mode.
-          example: '11.00'
-        currency:
-          type: string
-          description: The payment currency.
-          example: GBP
-        tip:
-          type: string
-          description: The tip amount. The value is precise up to two decimal places, and if necessary, it is rounded using the "half-even" rounding mode.
-          example: '0.00'
-        consumer:
-          $ref: '#/components/schemas/financial-apiConsumer'
-        type:
-          example: NORMAL
-          description: The type of payment
-          enum:
-          - NORMAL
-          - ACCOUNTS_RECEIVABLE
-          type: string
-        deviceId:
-          type: string
-          description: The unique identifier for the device where the payment was processed.
-          example: '72676'
-        deviceName:
-          type: string
-          description: The name of the device where the payment was processed.
-          example: ipad9
-        staffId:
-          type: number
-          description: The unique identifier for the user who processed the payment.
-          example: 180480
-        staffName:
-          type: string
-          description: The name of the user who processed the payment.
-          example: Manager
-        authorization:
-          type: string
-          description: The authorization code for the payment.
-          example: '001'
-        externalReference:
-          type: string
-          description: The external reference code for the payment.
-          example: '1000'
-        revenueCenter:
-          type: string
-          description: The name of the revenue center where the payment was processed.
-          example: Fixed POS
-        revenueCenterId:
-          type: number
-          description: The unique identifier for the revenue center where the payment was processed.
-          example: 141948669132822
-        fiscId:
-          type: string
-          description: The unique identifier for the payment.
-          example: T72691.8
-        uuid:
-          type: string
-          description: The base64url encoded UUID of the payment.
-          example: bc7i2X_CTkeg8qlec66wmg==
-        fiscDate:
-          type: string
-          format: date-time
-          description: The time stamp of the payment.
-          example: '2023-02-14T20:04:08.665Z'
-        surcharge:
-          type: string
-          description: The surcharge amount. The value is precise up to two decimal places, and if necessary, it is rounded using the "half-even" rounding mode.
-          example: '0.00'
+          description: The category value.
+          example: Food
     financial-apiAbortedOrderLineItemDto:
       type: object
       properties:
@@ -1039,152 +874,100 @@ components:
           type: string
           description: The code of the account profile used.
           example: AAP
-    financial-apiCategory:
+    financial-apiPayment:
       type: object
       properties:
-        category:
-          type: string
-          description: The line item's category.
-          example: default
-        value:
-          type: string
-          description: The category value.
-          example: Food
-    financial-apiCurrencyAmount:
-      type: object
-      properties:
-        value:
-          type: string
-          description: The amount in dollars.
-          example: '0.00'
-        currency:
-          type: string
-          description: The currency code.
-          example: CAD
-    financial-apiErrorResponse:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        path:
-          type: string
-        status:
-          type: integer
-          format: int32
-        error:
-          type: string
-        requestId:
-          type: string
-      required:
-      - timestamp
-      - path
-      - status
-      - error
-      - requestId
-    financial-apiSalesExportDto:
-      type: object
-      properties:
-        sales:
-          type: array
-          items:
-            $ref: '#/components/schemas/financial-apiSale'
-          description: Array of sale objects.
-          nullable: false
-        nextPageToken:
-          type: string
-          description: Token to use to get the next page of results, if applicable.
-    financial-apiAbortedOrderDto:
-      type: object
-      description: Represents an unpaid, non-committed order that has been fully aborted.
-      properties:
-        staffName:
-          type: string
-          description: The name of the staff member who aborted the order.
-          example: Employee 1
-        timeOfAbortedOrder:
-          type: string
-          format: date-time
-          description: The timestamp when the order was aborted and all line items fully cleared.
-          example: '2023-03-14T19:58:48.224Z'
-        totalAmountAborted:
-          type: string
-          description: The total value of the aborted order.
-          example: '33.32'
-        abortedLineItems:
-          type: array
-          description: A list of all line items that were removed from the aborted order.
-          items:
-            $ref: '#/components/schemas/financial-apiAbortedOrderLineItemDto'
-    financial-apiTaxLine:
-      type: object
-      properties:
-        taxId:
-          type: string
-          description: The unique identifier for the tax rate.
-          example: '41910290874374'
-        taxCode:
-          type: string
-          description: The system code for the tax rate.
-          example: VAT20
-        taxRate:
-          type: string
-          description: The tax rate, as a multiplier.
-          example: '1.2'
-        taxAmount:
-          type: string
-          description: The tax total.
-          example: '1.666667'
-        taxIncluded:
-          type: boolean
-          description: Whether or not the business is tax inclusive.
-          example: true
-    financial-apiSalesDailyExportDto:
-      type: object
-      properties:
-        sales:
-          type: array
-          items:
-            $ref: '#/components/schemas/financial-apiSale'
-          description: Array of sale objects.
-          nullable: false
-        nextStartOfDayAsIso8601:
-          type: string
-          format: date-time
-          description: Start of next business day, in the merchant's local time.
-          example: '2023-07-28T05:30:00-05:00'
-        dataComplete:
-          type: boolean
-          description: Whether or not the data is complete for the requested day.
-          example: false
-    financial-apiAccountingGroup:
-      type: object
-      properties:
-        accountingGroupId:
-          type: integer
-          format: int64
-          description: The unique identifier for the item's accounting group.
-          example: 141948669132845
-        name:
-          type: string
-          description: The name of the accounting group.
-          example: Food
-        statisticGroup:
-          type: string
-          description: The accounting group's statistic group.
-          example: Food
         code:
           type: string
-          description: The code assigned to the accounting group.
-          example: '123'
-    financial-apiSortDirection:
+          description: The code of the payment method.
+          example: CASH
+        description:
+          type: string
+          description: The name of the payment method.
+          example: Cash
+        paymentMethodId:
+          type: integer
+          format: int64
+          description: The unique identifier for the payment method.
+          example: 141948669132824
+        netAmountWithTax:
+          type: string
+          description: The net payment amount, including tax. The value is precise up to two decimal places, and if necessary, it is rounded using the "half-even" rounding mode.
+          example: '11.00'
+        currency:
+          type: string
+          description: The payment currency.
+          example: GBP
+        tip:
+          type: string
+          description: The tip amount. The value is precise up to two decimal places, and if necessary, it is rounded using the "half-even" rounding mode.
+          example: '0.00'
+        consumer:
+          $ref: '#/components/schemas/financial-apiConsumer'
+        type:
+          example: NORMAL
+          description: The type of payment
+          enum:
+          - NORMAL
+          - ACCOUNTS_RECEIVABLE
+          type: string
+        deviceId:
+          type: string
+          description: The unique identifier for the device where the payment was processed.
+          example: '72676'
+        deviceName:
+          type: string
+          description: The name of the device where the payment was processed.
+          example: ipad9
+        staffId:
+          type: number
+          description: The unique identifier for the user who processed the payment.
+          example: 180480
+        staffName:
+          type: string
+          description: The name of the user who processed the payment.
+          example: Manager
+        authorization:
+          type: string
+          description: The authorization code for the payment.
+          example: '001'
+        externalReference:
+          type: string
+          description: The external reference code for the payment.
+          example: '1000'
+        revenueCenter:
+          type: string
+          description: The name of the revenue center where the payment was processed.
+          example: Fixed POS
+        revenueCenterId:
+          type: number
+          description: The unique identifier for the revenue center where the payment was processed.
+          example: 141948669132822
+        fiscId:
+          type: string
+          description: The unique identifier for the payment.
+          example: T72691.8
+        uuid:
+          type: string
+          description: The base64url encoded UUID of the payment.
+          example: bc7i2X_CTkeg8qlec66wmg==
+        fiscDate:
+          type: string
+          format: date-time
+          description: The time stamp of the payment.
+          example: '2023-02-14T20:04:08.665Z'
+        surcharge:
+          type: string
+          description: The surcharge amount. The value is precise up to two decimal places, and if necessary, it is rounded using the "half-even" rounding mode.
+          example: '0.00'
+    financial-apiServiceChargeType:
       type: string
-      example: ASC
-      default: ASC
-      description: The direction to sort the results.
+      description: The type of service charge applied to the sale line.
+      example: APPORTIONED
       enum:
-      - ASC
-      - DESC
+      - UNTAXED
+      - APPORTIONED
+      - NO_SERVICE_CHARGE
     financial-apiLSPaymentsDto:
       type: object
       properties:
@@ -1209,14 +992,224 @@ components:
           format: int32
           description: Next offset to get next page of data based off current pageSize and offset, if available.
           example: 100
+    financial-apiLSPaymentStatus:
+      type: string
+      description: The statuses for a Lightspeed Payments transaction.
+      enum:
+      - CAPTURED
+      - DISPUTED
+      - PARTIALLY_REFUNDED
+      - REFUNDED
+    financial-apiCurrencyAmount:
+      type: object
+      properties:
+        value:
+          type: string
+          description: The amount in dollars.
+          example: '0.00'
+        currency:
+          type: string
+          description: The currency code.
+          example: CAD
+    financial-apiConsumer:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The UUID of the customer associated with the payment, if applicable.
+          example: ec021fb0-4c12-425e-b30f-320ab720448b
+        customerId:
+          type: integer
+          format: int64
+          description: The unique identifier for the customer.
+          example: 120913
+        title:
+          type: string
+          description: The title or honorific of the customer.
+          example: Mr
+        firstName:
+          type: string
+          description: The first name of the customer.
+          example: John
+        lastName:
+          type: string
+          description: The last name of the customer.
+          example: Doe
+        phoneNumber1:
+          type: string
+          description: The primary phone number of the customer.
+          example: 555-555-5555
+        phoneNumber2:
+          type: string
+          description: An alternative phone number for the customer.
+          example: 555-555-5556
+        companyName:
+          type: string
+          description: The name of the company associated with the customer, if applicable.
+          example: Company Name
+        addressLine1:
+          type: string
+          description: The primary address line for the customer's address.
+          example: 123 Street st.
+        addressLine2:
+          type: string
+          description: The secondary address line for the customer's address, such as apartment or suite number.
+          example: Unit 123
+        zipCode:
+          type: string
+          description: The postal code for the customer's address.
+          example: '12345'
+        city:
+          type: string
+          description: The city of the customer's address.
+          example: Some City
+        state:
+          type: string
+          description: The state or region of the customer's address.
+          example: Some State
+        email:
+          type: string
+          description: The email address of the customer.
+          example: example@example.com
+        taxIdentifier:
+          type: string
+          description: The tax identifier of the customer.
+          example: '123456789'
+        fiscalCode:
+          type: string
+          description: The fiscal code of the customer.
+          example: '123456789'
+        destinationCode:
+          type: string
+          description: The destination code of the customer.
+          example: '123456789'
+    financial-apiTaxLine:
+      type: object
+      properties:
+        taxId:
+          type: string
+          description: The unique identifier for the tax rate.
+          example: '41910290874374'
+        taxCode:
+          type: string
+          description: The system code for the tax rate.
+          example: VAT20
+        taxRate:
+          type: string
+          description: The tax rate, as a multiplier.
+          example: '1.2'
+        taxAmount:
+          type: string
+          description: The tax total.
+          example: '1.666667'
+        taxIncluded:
+          type: boolean
+          description: Whether or not the business is tax inclusive.
+          example: true
+    financial-apiSortDirection:
+      type: string
+      example: ASC
+      default: ASC
+      description: The direction to sort the results.
+      enum:
+      - ASC
+      - DESC
+    financial-apiAccountLink:
+      type: object
+      properties:
+        initialAccountId:
+          type: string
+          description: 'The `accountFiscId` of the initial transaction associated with the current account, if applicable. For example, in the case of a refund.
+
+
+            This will match the `accountFiscId` of the sale if there is no associated account.'
+          example: A65315.13
+        previousAccountId:
+          type: string
+          description: 'The `accountFiscId` of the previous transaction associated with the current account, if applicable. For example, in the case of a refund.
+
+
+            This may be different from `initialAccountId` if there is more than one associated account.
+
+
+            It will not be displayed if there is no associated account.'
+          example: A65315.15
+    financial-apiErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        path:
+          type: string
+        status:
+          type: integer
+          format: int32
+        error:
+          type: string
+        requestId:
+          type: string
+      required:
+      - timestamp
+      - path
+      - status
+      - error
+      - requestId
+    financial-apiAbortedOrderDto:
+      type: object
+      description: Represents an unpaid, non-committed order that has been fully aborted.
+      properties:
+        staffName:
+          type: string
+          description: The name of the staff member who aborted the order.
+          example: Employee 1
+        timeOfAbortedOrder:
+          type: string
+          format: date-time
+          description: The timestamp when the order was aborted and all line items fully cleared.
+          example: '2023-03-14T19:58:48.224Z'
+        totalAmountAborted:
+          type: string
+          description: The total value of the aborted order.
+          example: '33.32'
+        abortedLineItems:
+          type: array
+          description: A list of all line items that were removed from the aborted order.
+          items:
+            $ref: '#/components/schemas/financial-apiAbortedOrderLineItemDto'
+    financial-apiAccountingGroup:
+      type: object
+      properties:
+        accountingGroupId:
+          type: integer
+          format: int64
+          description: The unique identifier for the item's accounting group.
+          example: 141948669132845
+        name:
+          type: string
+          description: The name of the accounting group.
+          example: Food
+        statisticGroup:
+          type: string
+          description: The accounting group's statistic group.
+          example: Food
+        code:
+          type: string
+          description: The code assigned to the accounting group.
+          example: '123'
+    financial-apiSalesExportDto:
+      type: object
+      properties:
+        sales:
+          type: array
+          items:
+            $ref: '#/components/schemas/financial-apiSale'
+          description: Array of sale objects.
+          nullable: false
+        nextPageToken:
+          type: string
+          description: Token to use to get the next page of results, if applicable.
   parameters:
-    financial-apiNextPageToken:
-      in: query
-      name: nextPageToken
-      schema:
-        type: string
-        default: ''
-      description: A token that indicates the starting point of the next set of records when paginating through results.
     financial-apiBusinessLocationId:
       in: path
       name: businessLocationId
@@ -1238,6 +1231,13 @@ components:
       name: include
       in: query
       required: false
+    financial-apiNextPageToken:
+      in: query
+      name: nextPageToken
+      schema:
+        type: string
+        default: ''
+      description: A token that indicates the starting point of the next set of records when paginating through results.
     financial-apiPageSize:
       in: query
       name: pageSize

@@ -1,30 +1,32 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  version: 1.0.0
-  title: Lightspeed Restaurant K Series Account Brands API
-  description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
+  title: Lightspeed Retail X-Series Brands API
+  description: 'Partial OpenAPI 3.1 representation of the Lightspeed Retail X-Series
 
-    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+    (formerly Vend) REST API. The X-Series API is documented at
 
-    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
+    https://x-series-api.lightspeedhq.com/ and uses OAuth 2.0 with scope-based
+
+    access control. The base URL is per-tenant under the
+
+    https://x-series-api.lightspeedhq.com domain. Authentication uses Bearer
+
+    access tokens issued via the OAuth 2.0 authorization-code flow.
 
     '
-  x-logo:
-    altText: Lightspeed Commerce
-    url: static/lightspeed@2x.png
+  version: 2.0.0
   contact:
     name: Lightspeed Commerce
-    url: https://api-portal.lsk.lightspeed.app/
-  x-generated-from: documentation
-  x-last-validated: '2026-06-02'
-  x-source-url: https://api-docs.lsk.lightspeed.app/source.json
+    url: https://x-series-api.lightspeedhq.com/
 servers:
-- url: https://api.trial.lsk.lightspeed.app
-  description: Demo URL
-  x-bump-branch-name: demo
-- url: https://api.lsk.lightspeed.app
-  description: Production URL
-  x-bump-branch-name: prod
+- url: https://{domainPrefix}.retail.lightspeed.app/api/2.0
+  description: Per-retailer X-Series API host.
+  variables:
+    domainPrefix:
+      default: example
+      description: Retailer subdomain prefix.
+security:
+- OAuth2: []
 tags:
 - name: Brands
 paths:
@@ -225,78 +227,16 @@ components:
           nullable: true
   securitySchemes:
     OAuth2:
-      description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
-
-        See our [Authorization Quick Start Guide](https://api-portal.lsk.lightspeed.app/quick-start/authentication/authorization-overview) for more details on how to authenticate.
-
-        '
       type: oauth2
+      description: OAuth 2.0 authorization-code flow with scope-based access.
       flows:
         authorizationCode:
-          authorizationUrl: /oauth/authorize
-          tokenUrl: /oauth/token
+          authorizationUrl: https://secure.retail.lightspeed.app/connect
+          tokenUrl: https://{domainPrefix}.retail.lightspeed.app/api/1.0/token
           scopes:
-            orders-api: 'Read business information, floors, menus, discounts, and production instructions.
-
-              Read and write orders and payments. Read [Rich Item](https://api-docs.lsk.lightspeed.app/prod/group/endpoint-rich-item) data.'
-            financial-api: Read financial data
-            reservation-***: Platform reservations scope. The `***` will be replaced by the [platform-code](https://api-docs.lsk.lightspeed.app/operation/operation-reservation-servicesetbyplatformcode#operation-reservation-servicesetbyplatformcode-platform-code) of the reservation platform.
-            items: Read and write items
-            propertymanagement: Read and write Property Management System configurations.
-            id-cards: Create and manage ID card batches and cards.
-            staff-api: Read shift information, read and write user information.
-            reservations-api: 'Configure *legacy* reservation integrations.
-
-              **Note:** This API will eventually be deprecated in favour of the new [Reservations for Platforms](https://api-docs.lsk.lightspeed.app/group/endpoint-reservations-for-platforms) API.
-
-              More information on the new reservations workflows can be found in the [Integration Guide](https://api-portal.lsk.lightspeed.app/category/reservations).'
-x-tagGroups:
-- name: Rich Item API
-  tags:
-  - Rich Item
-  - Migration
-- name: Tax Preview API
-  tags:
-  - Tax Breakdown
-- name: Staff Api
-  tags:
-  - Staff
-  - Internal Staff
-- name: Reservation API
-  tags:
-  - Reservations for Platforms
-- name: PMS API
-  tags:
-  - PMS
-- name: Items API
-  tags:
-  - Items
-  - ItemsV2
-  - Menus
-  - Buttons
-  - Production Instructions
-  - Inventory
-  - Combos
-  - Groups
-  - MenusV2
-  - Accounting Group
-  - IntegrationMenu
-  - Price Lists
-  - Products
-  - ItemAppearance
-  - Modifiers
-  - ModifierGroups
-  - Allergens
-  - Locales
-  - RichItem
-- name: id-cards-api API
-  tags:
-  - ID Cards
-- name: Financial API
-  tags:
-  - Financial
-  - FinancialV2
-- name: Online Ordering API
-  tags:
-  - Order and Pay
-  - 'Order and Pay: Webhook'
+            products.read: Read products, brands, and inventory.
+            products.write: Create or modify products, brands, and inventory.
+            sales.read: Read sales transactions.
+            sales.write: Create or modify sales.
+            customers.read: Read customers.
+            customers.write: Create or modify customers.

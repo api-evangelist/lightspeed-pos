@@ -636,6 +636,16 @@ apis:
     url: https://api-docs.lsk.lightspeed.app/
   - type: Documentation
     url: https://api-portal.lsk.lightspeed.app/
+- aid: lightspeed-pos:lightspeed-pos-pms-integration-api
+  name: Lightspeed PMS Integration API
+  description: The PMS Integration API from Lightspeed — 0 operation(s) for pms integration.
+  humanURL: https://developers.lightspeedhq.com/ecom/introduction/introduction/
+  baseURL: https://x-series-api.lightspeedhq.com/api/2.0
+  tags:
+  - PMS Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/lightspeed-pos-pms-integration-api-openapi.yml
 common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/lightspeedcommerce

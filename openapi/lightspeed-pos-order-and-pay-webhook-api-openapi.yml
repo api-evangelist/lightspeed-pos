@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 1.0.0
-  title: 'Lightspeed Restaurant K Series Account Order and Pay: Webhook API'
+  title: 'Lightspeed Restaurant K Series Order and Pay: Webhook API'
   description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
 
     Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
@@ -52,8 +52,7 @@ paths:
                   expandTransactions: true
                   expandPayments: true
                   subscribeTo:
-                  - &id001
-                    name: DELIVERED
+                  - name: DELIVERED
                     resource: order
         required: true
       tags:
@@ -79,7 +78,8 @@ paths:
                     expandTransactions: true
                     expandPayments: true
                     subscribeTo:
-                    - *id001
+                    - name: DELIVERED
+                      resource: order
         '400':
           description: Bad Request
           content:
@@ -120,7 +120,7 @@ paths:
                           items:
                             type: string
                           description: A set of code strings that correspond to the validation error.
-                          example: &id002
+                          example:
                           - NotNull.webhookEndpointDto.endpointId
                           - NotNull.endpointId
                           - NotNull.java.lang.String
@@ -135,7 +135,7 @@ paths:
                                 items:
                                   type: string
                                 description: Argument codes that are related to the field in validation.
-                                example: &id003
+                                example:
                                 - webhookEndpointDto.endpointId
                                 - endpointId
                               defaultMessage:
@@ -181,9 +181,15 @@ paths:
                     error: example
                     message: example
                     errors:
-                    - codes: *id002
+                    - codes:
+                      - NotNull.webhookEndpointDto.endpointId
+                      - NotNull.endpointId
+                      - NotNull.java.lang.String
+                      - NotNull
                       arguments:
-                      - codes: *id003
+                      - codes:
+                        - webhookEndpointDto.endpointId
+                        - endpointId
                         defaultMessage: endpointId
                         code: endpointId
                       defaultMessage: must not be null
@@ -224,8 +230,7 @@ paths:
                   expandTransactions: true
                   expandPayments: true
                   subscribeTo:
-                  - &id004
-                    name: DELIVERED
+                  - name: DELIVERED
                     resource: order
         required: true
       tags:
@@ -251,7 +256,8 @@ paths:
                     expandTransactions: true
                     expandPayments: true
                     subscribeTo:
-                    - *id004
+                    - name: DELIVERED
+                      resource: order
         '400':
           description: Bad Request
           content:
@@ -292,7 +298,7 @@ paths:
                           items:
                             type: string
                           description: A set of code strings that correspond to the validation error.
-                          example: &id005
+                          example:
                           - NotNull.webhookEndpointDto.endpointId
                           - NotNull.endpointId
                           - NotNull.java.lang.String
@@ -307,7 +313,7 @@ paths:
                                 items:
                                   type: string
                                 description: Argument codes that are related to the field in validation.
-                                example: &id006
+                                example:
                                 - webhookEndpointDto.endpointId
                                 - endpointId
                               defaultMessage:
@@ -353,9 +359,15 @@ paths:
                     error: example
                     message: example
                     errors:
-                    - codes: *id005
+                    - codes:
+                      - NotNull.webhookEndpointDto.endpointId
+                      - NotNull.endpointId
+                      - NotNull.java.lang.String
+                      - NotNull
                       arguments:
-                      - codes: *id006
+                      - codes:
+                        - webhookEndpointDto.endpointId
+                        - endpointId
                         defaultMessage: endpointId
                         code: endpointId
                       defaultMessage: must not be null
@@ -620,13 +632,52 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    apeCurrentWarning:
-      type: object
+    apeWebhookEndpoint:
+      required:
+      - endpointId
+      - url
       properties:
-        information:
+        endpointId:
+          example: MY-AWESOME-ENDPOINT-ID
+          description: The unique endpoint ID, for example the integration name. Case sensitive.
           type: string
-        type:
+        url:
+          example: https://webhook.site/1dc40b86-3d0d
+          description: The URL which this endpoint points to.
           type: string
+        withBasicAuth:
+          default: false
+          description: If basic auth should be used, defaults to false.
+          type: boolean
+          example: true
+        username:
+          example: username
+          description: The username for basic auth.
+          type: string
+        password:
+          example: password
+          description: The password for basic auth.
+          type: string
+        provideAccount:
+          description: Whether or not to include account info in the notification.
+          example: true
+          default: false
+          type: boolean
+        expandTransactions:
+          example: true
+          description: Whether or not to include transaction lines in the notification.
+          default: false
+          type: boolean
+        expandPayments:
+          example: true
+          description: Whether or not to include payment lines in the notification.
+          default: false
+          type: boolean
+        subscribeTo:
+          items:
+            $ref: '#/components/schemas/apeEventResource'
+          type: array
+      type: object
     apeWebhookEndpointBusinessLocationDto:
       type: object
       properties:
@@ -682,57 +733,18 @@ components:
           - order_api
           type: string
       type: object
-    apeWebhookEndpoint:
-      required:
-      - endpointId
-      - url
-      properties:
-        endpointId:
-          example: MY-AWESOME-ENDPOINT-ID
-          description: The unique endpoint ID, for example the integration name. Case sensitive.
-          type: string
-        url:
-          example: https://webhook.site/1dc40b86-3d0d
-          description: The URL which this endpoint points to.
-          type: string
-        withBasicAuth:
-          default: false
-          description: If basic auth should be used, defaults to false.
-          type: boolean
-          example: true
-        username:
-          example: username
-          description: The username for basic auth.
-          type: string
-        password:
-          example: password
-          description: The password for basic auth.
-          type: string
-        provideAccount:
-          description: Whether or not to include account info in the notification.
-          example: true
-          default: false
-          type: boolean
-        expandTransactions:
-          example: true
-          description: Whether or not to include transaction lines in the notification.
-          default: false
-          type: boolean
-        expandPayments:
-          example: true
-          description: Whether or not to include payment lines in the notification.
-          default: false
-          type: boolean
-        subscribeTo:
-          items:
-            $ref: '#/components/schemas/apeEventResource'
-          type: array
-      type: object
     apeBusinessLocationId:
       description: The unique identifier for the business location.
       type: integer
       format: int64
       example: 45454565682155
+    apeCurrentWarning:
+      type: object
+      properties:
+        information:
+          type: string
+        type:
+          type: string
   securitySchemes:
     OAuth2:
       description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
