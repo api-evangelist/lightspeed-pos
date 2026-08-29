@@ -6,6 +6,17 @@ description: >-
   Lightspeed (Lightspeed Commerce) operates a portfolio of Retail, Restaurant, eCom, and Golf POS platforms via
   series-named product lines: X-Series (Vend), R-Series (Retail Pro/Cloud), C-Series (eCom), E-Series (Ecwid), K-Series
   (Restaurant Lightspeed), L-Series, O-Series (Kounta), G-Series (Gastrofix), and the ChronoGolf Partner API.
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
