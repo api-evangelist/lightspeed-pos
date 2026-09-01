@@ -32,7 +32,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lightspeed-pos.png
 tags:
-  - POS
+  - Point-of-Sale
   - Retail
   - Restaurant
   - E-Commerce
@@ -425,7 +425,7 @@ apis:
   humanURL: https://x-series-api.lightspeedhq.com/
   baseURL: https://x-series-api.lightspeedhq.com/api/2.0
   tags:
-  - Order And Pay
+  - Order and Pay
   tags_raw:
   - Order and Pay
   properties:
