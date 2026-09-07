@@ -786,3 +786,5 @@ common:
     url: scopes/lightspeed-pos-scopes.yml
   - url: https://www.lightspeedhq.com/blog/feed/
     type: Blog
+x-parent: lightspeed
+x-relationship: product
