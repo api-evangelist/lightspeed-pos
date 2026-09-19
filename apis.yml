@@ -36,8 +36,8 @@ tags:
   - Retail
   - Restaurant
   - E-Commerce
-  - Lightspeed
 tags_raw:
+  - Lightspeed
   - POS
   - Retail
   - Restaurant
@@ -111,6 +111,10 @@ apis:
   description: Partner API for ChronoGolf, Lightspeed's tee-time and course management platform.
   humanURL: https://developers.lightspeedhq.com/
   tags:
+  - REST
+  - Golf
+  - Partners
+  tags_raw:
   - REST
   - Golf
   - Partner
