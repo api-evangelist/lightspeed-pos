@@ -3,23 +3,7 @@ info:
   title: Lightspeed Retail R-Series Account API
   description: 'OpenAPI 3.1 representation of the Lightspeed Retail R-Series REST API
 
-    (the original Lightspeed Retail / Retail Pro cloud POS). The R-Series API
-
-    is documented at https://developers.lightspeedhq.com/retail/introduction/introduction/
-
-    and exposes account-scoped resources under
-
-    https://api.lightspeedapp.com/API/V3/Account/{accountID}. It uses OAuth 2.0
-
-    with scope-based access control and supports both JSON (`.json`) and XML
-
-    response formats. The numeric `accountID` is not the OAuth client_id; it
-
-    must be resolved via `GET /API/V3/Account.json` immediately after the token
-
-    exchange and is required for every subsequent account-scoped call.
-
-    '
+    (the original Lightspeed Retail / Retail Pro cloud POS).'
   version: 3.0.0
   contact:
     name: Lightspeed Commerce

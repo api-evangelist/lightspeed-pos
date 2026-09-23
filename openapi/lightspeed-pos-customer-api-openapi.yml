@@ -3,23 +3,7 @@ info:
   title: Lightspeed Retail R-Series Customer API
   description: 'OpenAPI 3.1 representation of the Lightspeed Retail R-Series REST API
 
-    (the original Lightspeed Retail / Retail Pro cloud POS). The R-Series API
-
-    is documented at https://developers.lightspeedhq.com/retail/introduction/introduction/
-
-    and exposes account-scoped resources under
-
-    https://api.lightspeedapp.com/API/V3/Account/{accountID}. It uses OAuth 2.0
-
-    with scope-based access control and supports both JSON (`.json`) and XML
-
-    response formats. The numeric `accountID` is not the OAuth client_id; it
-
-    must be resolved via `GET /API/V3/Account.json` immediately after the token
-
-    exchange and is required for every subsequent account-scoped call.
-
-    '
+    (the original Lightspeed Retail / Retail Pro cloud POS).'
   version: 3.0.0
   contact:
     name: Lightspeed Commerce
@@ -202,38 +186,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Attributes:
-      type: object
-      description: Pagination metadata returned in list responses.
-      properties:
-        count:
-          type: integer
-          description: Total number of matching records.
-        offset:
-          type: integer
-          description: Offset of the current page.
-        limit:
-          type: integer
-          description: Page size limit.
-    Contact:
-      type: object
-      description: Contact details associated with a customer.
-      properties:
-        contactID:
-          type: string
-          description: Unique contact identifier.
-        custom:
-          type: string
-          description: Custom contact field.
-        noEmail:
-          type: boolean
-          description: Whether the contact opted out of email.
-        noPhone:
-          type: boolean
-          description: Whether the contact opted out of phone contact.
-        noMail:
-          type: boolean
-          description: Whether the contact opted out of mail.
     Customer:
       type: object
       description: A customer record.
@@ -261,6 +213,38 @@ components:
           description: Tax category for the customer.
         Contact:
           $ref: '#/components/schemas/Contact'
+    Contact:
+      type: object
+      description: Contact details associated with a customer.
+      properties:
+        contactID:
+          type: string
+          description: Unique contact identifier.
+        custom:
+          type: string
+          description: Custom contact field.
+        noEmail:
+          type: boolean
+          description: Whether the contact opted out of email.
+        noPhone:
+          type: boolean
+          description: Whether the contact opted out of phone contact.
+        noMail:
+          type: boolean
+          description: Whether the contact opted out of mail.
+    Attributes:
+      type: object
+      description: Pagination metadata returned in list responses.
+      properties:
+        count:
+          type: integer
+          description: Total number of matching records.
+        offset:
+          type: integer
+          description: Offset of the current page.
+        limit:
+          type: integer
+          description: Page size limit.
   parameters:
     accountID:
       name: accountID

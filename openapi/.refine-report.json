@@ -1,11 +1,16 @@
 {
   "provider": "lightspeed-pos",
   "sources": [
-    "_original/lightspeed-pos-restaurant-k-series-openapi.yml",
-    "_original/lightspeed-pos-retail-r-series-openapi.yml",
-    "_original/lightspeed-pos-retail-x-series-openapi.yml"
+    "_original/lightspeed-pos-retail-x-series-openapi.yml",
+    "_ae-authored/lightspeed-pos-restaurant-k-series-openapi.yml",
+    "_ae-authored/lightspeed-pos-retail-r-series-openapi.yml"
   ],
   "outputs": [
+    "lightspeed-pos-brands-api-openapi.yml",
+    "lightspeed-pos-customers-api-openapi.yml",
+    "lightspeed-pos-gift-cards-api-openapi.yml",
+    "lightspeed-pos-products-api-openapi.yml",
+    "lightspeed-pos-sales-api-openapi.yml",
     "lightspeed-pos-financial-api-openapi.yml",
     "lightspeed-pos-financialv2-api-openapi.yml",
     "lightspeed-pos-id-cards-api-openapi.yml",
@@ -22,21 +27,13 @@
     "lightspeed-pos-catalog-api-openapi.yml",
     "lightspeed-pos-customer-api-openapi.yml",
     "lightspeed-pos-item-api-openapi.yml",
-    "lightspeed-pos-sale-api-openapi.yml",
-    "lightspeed-pos-brands-api-openapi.yml",
-    "lightspeed-pos-customers-api-openapi.yml",
-    "lightspeed-pos-gift-cards-api-openapi.yml",
-    "lightspeed-pos-products-api-openapi.yml",
-    "lightspeed-pos-sales-api-openapi.yml"
+    "lightspeed-pos-sale-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
-    "lightspeed-pos-restaurant-k-series-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "lightspeed-pos-restaurant-k-series-openapi.yml: declared missing tag: PMS Integration",
-    "lightspeed-pos-retail-r-series-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "lightspeed-pos-retail-x-series-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "lightspeed-pos-retail-x-series-openapi.yml: tagged paths GET /brands -> Brands",
     "lightspeed-pos-retail-x-series-openapi.yml: tagged paths POST /brands -> Brands",
@@ -60,7 +57,11 @@
     "lightspeed-pos-retail-x-series-openapi.yml: declared missing tag: Gift Cards",
     "lightspeed-pos-retail-x-series-openapi.yml: declared missing tag: Products",
     "lightspeed-pos-retail-x-series-openapi.yml: declared missing tag: Sales",
-    "tag 'Staff' spans 2 source specs (lightspeed-pos-restaurant-k-series-openapi.yml, lightspeed-pos-retail-r-series-openapi.yml): per-path servers applied"
+    "lightspeed-pos-restaurant-k-series-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "lightspeed-pos-restaurant-k-series-openapi.yml: declared missing tag: PMS Integration",
+    "lightspeed-pos-retail-r-series-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Staff' spans 2 source specs (lightspeed-pos-restaurant-k-series-openapi.yml, lightspeed-pos-retail-r-series-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "lightspeed-pos-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -77,6 +78,7 @@
     "lightspeed-pos-order-and-pay-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "lightspeed-pos-order-and-pay-webhook-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "lightspeed-pos-pms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lightspeed-pos-pms-integration-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "lightspeed-pos-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "lightspeed-pos-reservations-for-platforms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "lightspeed-pos-rich-item-api-openapi.yml: previously refined output, superseded by openapi/_original/",

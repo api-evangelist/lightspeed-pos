@@ -4,11 +4,9 @@ info:
   title: Lightspeed Restaurant K Series PMS Integration API
   description: '**Lightspeed Restaurant** offers a **REST API** in order to communicate with the data in the system. These APIs are built using the RESTful standards and adhere to the basic verb interactions as defined by the REST standard.
 
-    Detailed developer guides can be found in the [Lightspeed Restaurant API Portal](https://api-portal.lsk.lightspeed.app/).
+    Detailed developer guides can be found in the Lightspeed Restaurant API Portal.
 
-    These services are in continuous development and subject to change. Please find our versioning policy [here](https://api-portal.lsk.lightspeed.app/quick-start/versioning).
-
-    '
+    These services are in continuous development and subject to change. Please find our versioning policy here.'
   x-logo:
     altText: Lightspeed Commerce
     url: static/lightspeed@2x.png
@@ -33,7 +31,27 @@ webhooks:
     post:
       summary: Transaction Details
       operationId: transactionDetails
-      description: "What subscriber endpoint implementation will receive when a transaction is made.\nSubscriber path need to end with `/charge`.\nSubscriber implementation should follow the payload backward compatibility rules below:\n  - What considered as backward **compatible**:\n    - Addition of new fields, enums, headers, or parameters.\n    - Transition from optional to required fields. Which means Lightspeed will consistently send the parameter/field from now on.\n  - What considered as backward **incompatible**:\n    - Alteration of schema structure, such as switching from a map to an array.\n    - Removal of field/enum/header\n    - Changes in data types, such as converting from string to integer.\n    - Changes of property name\n"
+      description: 'What subscriber endpoint implementation will receive when a transaction is made.
+
+        Subscriber path need to end with `/charge`.
+
+        Subscriber implementation should follow the payload backward compatibility rules below:
+
+        - What considered as backward **compatible**:
+
+        - Addition of new fields, enums, headers, or parameters.
+
+        - Transition from optional to required fields. Which means Lightspeed will consistently send the parameter/field from now on.
+
+        - What considered as backward **incompatible**:
+
+        - Alteration of schema structure, such as switching from a map to an array.
+
+        - Removal of field/enum/header
+
+        - Changes in data types, such as converting from string to integer.
+
+        - Changes of property name'
       parameters:
       - in: header
         name: Accept
@@ -92,25 +110,86 @@ webhooks:
       - PMS Integration
 components:
   schemas:
-    pms-integrationErrorWebhookDto:
+    pms-integrationPmsTransactionWebhookDto:
       type: object
-      description: 'The error response body content should follow this schema.
-
-        If the response body content does not follow this schema, only the status code will be sent.
-
-        All other property beside customerErrorMessage will be ignored.
-
-        '
       properties:
-        customerErrorMessage:
-          type: string
-          maxLength: 50
-          example: Network failure
-          description: 'The error message that will be sent and printed at the POS.
-
-            Length should not exceed 50 characters to avoid truncation.
+        unitAmount:
+          type: number
+          description: The price of single item.
+          example: 10.0
+        quantity:
+          type: number
+          description: 'The quantity of the items. Negative quantity indicates a refund/cancellation/void.
 
             '
+          example: 2.0
+        amount:
+          type: number
+          description: The total pre-tax amount of this transaction sale line.
+          example: 20.0
+        description:
+          type: string
+          description: The item name
+          example: French Fries
+        staffId:
+          type: integer
+          format: int64
+          description: The ID of the POS user (staff) who processed this transaction line
+          example: 6
+        staffName:
+          type: string
+          description: The name of the POS user (staff) who processed this transaction line
+          example: John Doe
+        groupId:
+          type: integer
+          format: int64
+          description: Lightspeed accounting group id which the item belongs to.
+          example: 25769803810
+        groupName:
+          type: string
+          description: Lightspeed accounting group name which the item belongs to.
+          example: Food
+        taxId:
+          deprecated: true
+          type: integer
+          format: int64
+          description: Deprecated, refer to taxLines.
+          example: 12345
+        taxName:
+          deprecated: true
+          type: string
+          description: Deprecated, refer to taxLines.
+          example: VAT 10%
+        taxRate:
+          deprecated: true
+          type: number
+          description: The tax rate of the items.
+          example: 1.1
+        taxIncluded:
+          deprecated: true
+          type: boolean
+          description: Deprecated, refer to taxLines.
+          example: true
+        sku:
+          type: string
+          description: The SKU of the items.
+          example: F07
+        type:
+          type: string
+          enum:
+          - Sale
+          - LineDiscount
+          - AccountDiscount
+          - PercentItem
+          description: The type of the transaction line.
+        serviceChargeContribution:
+          type: number
+          description: The amount of the service charge contribution.
+          example: 4.5
+        taxLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/pms-integrationPmsTaxLineWebhookDto'
     pms-integrationSalesWebhookDto:
       type: object
       properties:
@@ -203,86 +282,62 @@ components:
             $ref: '#/components/schemas/pms-integrationPmsPaymentWebhookDto'
         serviceCharge:
           $ref: '#/components/schemas/pms-integrationPmsServiceChargeWebhookDto'
-    pms-integrationPmsTransactionWebhookDto:
+    pms-integrationPmsTaxLineWebhookDto:
       type: object
       properties:
-        unitAmount:
-          type: number
-          description: The price of single item.
-          example: 10.0
-        quantity:
-          type: number
-          description: 'The quantity of the items. Negative quantity indicates a refund/cancellation/void.
-
-            '
-          example: 2.0
-        amount:
-          type: number
-          description: The total pre-tax amount of this transaction sale line.
-          example: 20.0
-        description:
-          type: string
-          description: The item name
-          example: French Fries
-        staffId:
-          type: integer
-          format: int64
-          description: The ID of the POS user (staff) who processed this transaction line
-          example: 6
-        staffName:
-          type: string
-          description: The name of the POS user (staff) who processed this transaction line
-          example: John Doe
-        groupId:
-          type: integer
-          format: int64
-          description: Lightspeed accounting group id which the item belongs to.
-          example: 25769803810
-        groupName:
-          type: string
-          description: Lightspeed accounting group name which the item belongs to.
-          example: Food
         taxId:
-          deprecated: true
-          type: integer
-          format: int64
-          description: Deprecated, refer to taxLines.
-          example: 12345
-        taxName:
-          deprecated: true
           type: string
-          description: Deprecated, refer to taxLines.
+          description: The tax identifier.
+          example: '12345'
+        taxName:
+          type: string
+          description: The name of the tax.
           example: VAT 10%
-        taxRate:
-          deprecated: true
+        taxAmount:
           type: number
-          description: The tax rate of the items.
+          description: The amount of the tax.
+          example: 1.0
+        taxRate:
+          type: number
+          description: The rate of the tax.
           example: 1.1
         taxIncluded:
-          deprecated: true
           type: boolean
-          description: Deprecated, refer to taxLines.
+          description: Whether the tax is included in the price (VAT).
           example: true
-        sku:
+    pms-integrationErrorWebhookDto:
+      type: object
+      description: 'The error response body content should follow this schema.
+
+        If the response body content does not follow this schema, only the status code will be sent.
+
+        All other property beside customerErrorMessage will be ignored.
+
+        '
+      properties:
+        customerErrorMessage:
           type: string
-          description: The SKU of the items.
-          example: F07
+          maxLength: 50
+          example: Network failure
+          description: 'The error message that will be sent and printed at the POS.
+
+            Length should not exceed 50 characters to avoid truncation.
+
+            '
+    pms-integrationPmsServiceChargeWebhookDto:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: The amount of the service charge.
+          example: 1.0
         type:
           type: string
           enum:
-          - Sale
-          - LineDiscount
-          - AccountDiscount
-          - PercentItem
-          description: The type of the transaction line.
-        serviceChargeContribution:
-          type: number
-          description: The amount of the service charge contribution.
-          example: 4.5
-        taxLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/pms-integrationPmsTaxLineWebhookDto'
+          - UNTAXED
+          - APPORTIONED
+          description: The type of the service charge.
+          example: UNTAXED
     pms-integrationPmsPaymentWebhookDto:
       type: object
       properties:
@@ -320,43 +375,6 @@ components:
           type: string
           description: The reservation ID of the payment.
           example: '001'
-    pms-integrationPmsServiceChargeWebhookDto:
-      type: object
-      properties:
-        amount:
-          type: number
-          description: The amount of the service charge.
-          example: 1.0
-        type:
-          type: string
-          enum:
-          - UNTAXED
-          - APPORTIONED
-          description: The type of the service charge.
-          example: UNTAXED
-    pms-integrationPmsTaxLineWebhookDto:
-      type: object
-      properties:
-        taxId:
-          type: string
-          description: The tax identifier.
-          example: '12345'
-        taxName:
-          type: string
-          description: The name of the tax.
-          example: VAT 10%
-        taxAmount:
-          type: number
-          description: The amount of the tax.
-          example: 1.0
-        taxRate:
-          type: number
-          description: The rate of the tax.
-          example: 1.1
-        taxIncluded:
-          type: boolean
-          description: Whether the tax is included in the price (VAT).
-          example: true
   securitySchemes:
     OAuth2:
       description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
