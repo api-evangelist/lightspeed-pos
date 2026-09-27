@@ -110,6 +110,43 @@ webhooks:
       - PMS Integration
 components:
   schemas:
+    pms-integrationPmsPaymentWebhookDto:
+      type: object
+      properties:
+        paymentDate:
+          type: string
+          format: date-time
+          description: The date and time when the payment was made in UTC
+          example: '2021-01-01T00:00:00Z'
+        staffId:
+          type: integer
+          format: int64
+          description: The ID of the POS user (staff) who processed this payment
+          example: 6
+        staffName:
+          type: string
+          description: The name of the POS user (staff) who processed this payment
+          example: John Doe
+        gratuity:
+          type: number
+          description: The amount of the gratuity (tips).
+          example: 1.0
+        amount:
+          type: number
+          description: The total amount of the received payment.
+          example: 66.0
+        methodName:
+          type: string
+          description: The name of the payment method.
+          example: MEWS
+        methodCode:
+          type: string
+          description: The code of the payment method.
+          example: IKPMS
+        reservationId:
+          type: string
+          description: The reservation ID of the payment.
+          example: '001'
     pms-integrationPmsTransactionWebhookDto:
       type: object
       properties:
@@ -338,43 +375,6 @@ components:
           - APPORTIONED
           description: The type of the service charge.
           example: UNTAXED
-    pms-integrationPmsPaymentWebhookDto:
-      type: object
-      properties:
-        paymentDate:
-          type: string
-          format: date-time
-          description: The date and time when the payment was made in UTC
-          example: '2021-01-01T00:00:00Z'
-        staffId:
-          type: integer
-          format: int64
-          description: The ID of the POS user (staff) who processed this payment
-          example: 6
-        staffName:
-          type: string
-          description: The name of the POS user (staff) who processed this payment
-          example: John Doe
-        gratuity:
-          type: number
-          description: The amount of the gratuity (tips).
-          example: 1.0
-        amount:
-          type: number
-          description: The total amount of the received payment.
-          example: 66.0
-        methodName:
-          type: string
-          description: The name of the payment method.
-          example: MEWS
-        methodCode:
-          type: string
-          description: The code of the payment method.
-          example: IKPMS
-        reservationId:
-          type: string
-          description: The reservation ID of the payment.
-          example: '001'
   securitySchemes:
     OAuth2:
       description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).

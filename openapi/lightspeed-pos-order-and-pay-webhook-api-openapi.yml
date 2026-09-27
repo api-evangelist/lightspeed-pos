@@ -630,43 +630,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    apeCurrentWarning:
-      type: object
-      properties:
-        information:
-          type: string
-        type:
-          type: string
-    apeEventResource:
-      description: Event to listen to by resource
-      example:
-        name: DELIVERED
-        resource: order
-      properties:
-        name:
-          type: string
-          description: 'Events to subscribe to.
-
-            * order: `DELIVERED`
-
-            * item: `SALES_RESTRICTION_UPDATED` - Business locations for this webhook must be specified [here](https://api-docs.lsk.lightspeed.app/operation/operation-apegetwebhookbusinesslocations).
-
-
-            The following are always sent:
-
-            * Account: `CLOSED` and `CHECK_WAS_UPDATED`.
-
-            * Order: `FAILURE`, `READY_FOR_PICKUP` and `CANCELLED`.
-
-            * Payment: `SUCCESS` and `FAILURE`.'
-        resource:
-          enum:
-          - order
-          - payment
-          - item
-          - order_api
-          type: string
-      type: object
     apeBusinessLocationId:
       description: The unique identifier for the business location.
       type: integer
@@ -717,6 +680,43 @@ components:
           items:
             $ref: '#/components/schemas/apeEventResource'
           type: array
+      type: object
+    apeCurrentWarning:
+      type: object
+      properties:
+        information:
+          type: string
+        type:
+          type: string
+    apeEventResource:
+      description: Event to listen to by resource
+      example:
+        name: DELIVERED
+        resource: order
+      properties:
+        name:
+          type: string
+          description: 'Events to subscribe to.
+
+            * order: `DELIVERED`
+
+            * item: `SALES_RESTRICTION_UPDATED` - Business locations for this webhook must be specified [here](https://api-docs.lsk.lightspeed.app/operation/operation-apegetwebhookbusinesslocations).
+
+
+            The following are always sent:
+
+            * Account: `CLOSED` and `CHECK_WAS_UPDATED`.
+
+            * Order: `FAILURE`, `READY_FOR_PICKUP` and `CANCELLED`.
+
+            * Payment: `SUCCESS` and `FAILURE`.'
+        resource:
+          enum:
+          - order
+          - payment
+          - item
+          - order_api
+          type: string
       type: object
     apeWebhookEndpointBusinessLocationDto:
       type: object

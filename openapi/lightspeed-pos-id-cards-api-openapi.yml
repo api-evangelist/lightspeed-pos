@@ -140,30 +140,6 @@ components:
           format: int64
           description: The unique identifier for the business location this batch belongs to.
           example: 67890
-    id-cards-apiCreateIdCardsRequest:
-      type: object
-      properties:
-        cardCount:
-          type: integer
-          format: int32
-          description: The number of ID cards to create.
-          example: 1
-          minimum: 1
-          maximum: 100
-      required:
-      - cardCount
-    id-cards-apiCreateIdCardsResponse:
-      type: object
-      properties:
-        batchId:
-          type: integer
-          format: int64
-          description: The unique identifier for the batch the cards were added to.
-          example: 12345
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/id-cards-apiCardReference'
     id-cards-apiCreateIdCardBatchRequest:
       type: object
       properties:
@@ -197,6 +173,30 @@ components:
           type: string
           description: The URL for the QR code associated with the ID card.
           example: https://example.com/id-cards/98765/qr-code
+    id-cards-apiCreateIdCardsRequest:
+      type: object
+      properties:
+        cardCount:
+          type: integer
+          format: int32
+          description: The number of ID cards to create.
+          example: 1
+          minimum: 1
+          maximum: 100
+      required:
+      - cardCount
+    id-cards-apiCreateIdCardsResponse:
+      type: object
+      properties:
+        batchId:
+          type: integer
+          format: int64
+          description: The unique identifier for the batch the cards were added to.
+          example: 12345
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/id-cards-apiCardReference'
   parameters:
     id-cards-apiBusinessLocationId:
       name: businessLocationId

@@ -199,6 +199,31 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SaleLine:
+      type: object
+      description: A single line item on a sale.
+      properties:
+        saleLineID:
+          type: string
+          description: Unique sale-line identifier.
+        itemID:
+          type: string
+          description: Identifier of the item sold.
+        saleID:
+          type: string
+          description: Identifier of the parent sale.
+        unitQuantity:
+          type: string
+          description: Quantity sold.
+        unitPrice:
+          type: string
+          description: Price per unit.
+        normalUnitPrice:
+          type: string
+          description: List price per unit before discounts.
+        discountID:
+          type: string
+          description: Identifier of any applied discount.
     Sale:
       type: object
       description: A point-of-sale transaction.
@@ -245,31 +270,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/SaleLine'
-    SaleLine:
-      type: object
-      description: A single line item on a sale.
-      properties:
-        saleLineID:
-          type: string
-          description: Unique sale-line identifier.
-        itemID:
-          type: string
-          description: Identifier of the item sold.
-        saleID:
-          type: string
-          description: Identifier of the parent sale.
-        unitQuantity:
-          type: string
-          description: Quantity sold.
-        unitPrice:
-          type: string
-          description: Price per unit.
-        normalUnitPrice:
-          type: string
-          description: List price per unit before discounts.
-        discountID:
-          type: string
-          description: Identifier of any applied discount.
     Attributes:
       type: object
       description: Pagination metadata returned in list responses.
@@ -284,18 +284,18 @@ components:
           type: integer
           description: Page size limit.
   parameters:
-    saleID:
-      name: saleID
-      in: path
-      required: true
-      description: The unique identifier of the sale.
-      schema:
-        type: string
     accountID:
       name: accountID
       in: path
       required: true
       description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+      schema:
+        type: string
+    saleID:
+      name: saleID
+      in: path
+      required: true
+      description: The unique identifier of the sale.
       schema:
         type: string
   securitySchemes:

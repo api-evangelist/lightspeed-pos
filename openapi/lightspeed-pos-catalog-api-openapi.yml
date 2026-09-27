@@ -131,6 +131,16 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Manufacturer:
+      type: object
+      description: A manufacturer of inventory items.
+      properties:
+        manufacturerID:
+          type: string
+          description: Unique manufacturer identifier.
+        name:
+          type: string
+          description: Manufacturer name.
     Vendor:
       type: object
       description: A vendor (supplier) of inventory items.
@@ -163,16 +173,6 @@ components:
         fullPathName:
           type: string
           description: Fully qualified category path.
-    Manufacturer:
-      type: object
-      description: A manufacturer of inventory items.
-      properties:
-        manufacturerID:
-          type: string
-          description: Unique manufacturer identifier.
-        name:
-          type: string
-          description: Manufacturer name.
   parameters:
     accountID:
       name: accountID

@@ -258,6 +258,8 @@ apis:
   humanURL: https://x-series-api.lightspeedhq.com/
   baseURL: https://x-series-api.lightspeedhq.com/api/2.0
   tags:
+  - Finance
+  tags_raw:
   - Financial
   properties:
   - type: OpenAPI

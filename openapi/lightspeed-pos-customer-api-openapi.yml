@@ -185,7 +185,41 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    customerID:
+      name: customerID
+      in: path
+      required: true
+      description: The unique identifier of the customer.
+      schema:
+        type: string
+    accountID:
+      name: accountID
+      in: path
+      required: true
+      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+      schema:
+        type: string
   schemas:
+    Contact:
+      type: object
+      description: Contact details associated with a customer.
+      properties:
+        contactID:
+          type: string
+          description: Unique contact identifier.
+        custom:
+          type: string
+          description: Custom contact field.
+        noEmail:
+          type: boolean
+          description: Whether the contact opted out of email.
+        noPhone:
+          type: boolean
+          description: Whether the contact opted out of phone contact.
+        noMail:
+          type: boolean
+          description: Whether the contact opted out of mail.
     Customer:
       type: object
       description: A customer record.
@@ -213,25 +247,6 @@ components:
           description: Tax category for the customer.
         Contact:
           $ref: '#/components/schemas/Contact'
-    Contact:
-      type: object
-      description: Contact details associated with a customer.
-      properties:
-        contactID:
-          type: string
-          description: Unique contact identifier.
-        custom:
-          type: string
-          description: Custom contact field.
-        noEmail:
-          type: boolean
-          description: Whether the contact opted out of email.
-        noPhone:
-          type: boolean
-          description: Whether the contact opted out of phone contact.
-        noMail:
-          type: boolean
-          description: Whether the contact opted out of mail.
     Attributes:
       type: object
       description: Pagination metadata returned in list responses.
@@ -245,21 +260,6 @@ components:
         limit:
           type: integer
           description: Page size limit.
-  parameters:
-    accountID:
-      name: accountID
-      in: path
-      required: true
-      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
-      schema:
-        type: string
-    customerID:
-      name: customerID
-      in: path
-      required: true
-      description: The unique identifier of the customer.
-      schema:
-        type: string
   securitySchemes:
     OAuth2:
       type: oauth2
