@@ -630,11 +630,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    apeBusinessLocationId:
-      description: The unique identifier for the business location.
-      type: integer
-      format: int64
-      example: 45454565682155
     apeWebhookEndpoint:
       required:
       - endpointId
@@ -681,13 +676,31 @@ components:
             $ref: '#/components/schemas/apeEventResource'
           type: array
       type: object
-    apeCurrentWarning:
+    apeWebhookEndpointBusinessLocationDto:
       type: object
       properties:
-        information:
+        businessLocationId:
+          type: integer
+          format: int64
+          description: The unique identifier for the business location.
+          example: 45454565682155
+        createdAt:
           type: string
-        type:
+          format: date-time
+          description: Timestamp when this association was created.
+          example: 2023-11-07T19:15:05.043+0000
+        updatedAt:
           type: string
+          format: date-time
+          description: Timestamp when this association was last updated.
+          example: 2023-11-07T19:15:05.043+0000
+        warnings:
+          description: A list of warnings that occurred during the request, but which did not prevent a successful response.  For instance, if the Business Location does not have the required POS app version to support item availability.
+          type: array
+          items:
+            $ref: '#/components/schemas/apeCurrentWarning'
+      required:
+      - businessLocationId
     apeEventResource:
       description: Event to listen to by resource
       example:
@@ -718,31 +731,18 @@ components:
           - order_api
           type: string
       type: object
-    apeWebhookEndpointBusinessLocationDto:
+    apeBusinessLocationId:
+      description: The unique identifier for the business location.
+      type: integer
+      format: int64
+      example: 45454565682155
+    apeCurrentWarning:
       type: object
       properties:
-        businessLocationId:
-          type: integer
-          format: int64
-          description: The unique identifier for the business location.
-          example: 45454565682155
-        createdAt:
+        information:
           type: string
-          format: date-time
-          description: Timestamp when this association was created.
-          example: 2023-11-07T19:15:05.043+0000
-        updatedAt:
+        type:
           type: string
-          format: date-time
-          description: Timestamp when this association was last updated.
-          example: 2023-11-07T19:15:05.043+0000
-        warnings:
-          description: A list of warnings that occurred during the request, but which did not prevent a successful response.  For instance, if the Business Location does not have the required POS app version to support item availability.
-          type: array
-          items:
-            $ref: '#/components/schemas/apeCurrentWarning'
-      required:
-      - businessLocationId
   securitySchemes:
     OAuth2:
       description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).

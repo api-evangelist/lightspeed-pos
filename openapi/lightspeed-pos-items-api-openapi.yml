@@ -469,60 +469,17 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    items-apiDocketName:
-      example: The Burger
-      maxLength: 64
+    items-apiSku:
+      example: UGG-BB-PUR-06
+      maxLength: 32
+      minLength: 1
+      description: A stock keeping unit.
       type: string
-      description: The name used in the docket for the item.
-    items-apiBusinessLocationId:
-      description: The unique identifier for the business location.
-      type: integer
-      format: int64
-      example: 45454565682155
-    items-apiPriceMode:
-      description: The type of price for the item.
-      example: PERCENT
-      enum:
-      - AMOUNT
-      - PERCENT
-      - POSITIVE_OPEN_PRICE
-      - NEGATIVE_OPEN_PRICE
-      default: AMOUNT
-      type: string
-    items-apiDefaultPrice:
+    items-apiAmount:
+      description: The number of results to return with each request.
       example: 10
-      type: number
-      description: The default price of the item.
-    items-apiStatisticGroupDTO:
-      properties:
-        category:
-          type: string
-          description: The name of the statistic group category.
-          example: default
-        value:
-          type: string
-          description: The statistic group value.
-          example: Food
-      type: object
-    items-apiAccountingGroupDTO:
-      description: The accounting group associated with the item.
-      properties:
-        id:
-          format: int64
-          type: integer
-          description: The unique identifier for the accounting group.
-          example: 40570261078058
-        name:
-          type: string
-          description: The name of the accounting group.
-          example: Alcoholic beverages
-      type: object
-    items-apiOffset:
-      example: 10
-      default: 0
-      description: 'Offset allows you to retrieve a subset of records starting from a specified position in the dataset. Offset normally works with [`amount`](#operation-getitems-amount), which designates how many records to retrieve, starting from the offset position.
-
-        '
+      default: 100
+      maximum: 1000
       type: integer
       format: int64
     items-apiUpdateItemDTO:
@@ -568,17 +525,6 @@ components:
           $ref: '#/components/schemas/items-apiDefaultPrice'
         priceMode:
           $ref: '#/components/schemas/items-apiPriceMode'
-    items-apiActive:
-      type: boolean
-      description: Indicates whether or not the item is archived from the menu.
-      example: true
-    items-apiAmount:
-      description: The number of results to return with each request.
-      example: 10
-      default: 100
-      maximum: 1000
-      type: integer
-      format: int64
     items-apiItemDTO:
       type: object
       properties:
@@ -676,12 +622,42 @@ components:
           - SUB_ITEM
           description: Type of the item.
           example: ITEM
-    items-apiName:
-      example: Burger
-      maxLength: 180
-      minLength: 1
-      description: The name of the item.
-      type: string
+    items-apiPriceDTO:
+      properties:
+        amount:
+          type: number
+          example: 10.0
+          description: The item price.
+        name:
+          type: string
+          example: Tuesday Special
+          description: The name for this item price.
+      type: object
+    items-apiItemId:
+      description: The unique identifier for the item.
+      type: integer
+      format: int64
+      example: 141948669132862
+    items-apiAccountingGroupId:
+      example: 44874545485
+      description: The unique identifier for the accounting group.
+      type: integer
+      format: int64
+    items-apiCostPrice:
+      type: number
+      description: The cost price of the item.
+      example: 5.0
+    items-apiStatisticGroupDTO:
+      properties:
+        category:
+          type: string
+          description: The name of the statistic group category.
+          example: default
+        value:
+          type: string
+          description: The statistic group value.
+          example: Food
+      type: object
     items-apiCreateItemDTO:
       required:
       - name
@@ -724,37 +700,61 @@ components:
           $ref: '#/components/schemas/items-apiDefaultPrice'
         priceMode:
           $ref: '#/components/schemas/items-apiPriceMode'
-    items-apiAccountingGroupId:
-      example: 44874545485
-      description: The unique identifier for the accounting group.
+    items-apiOffset:
+      example: 10
+      default: 0
+      description: 'Offset allows you to retrieve a subset of records starting from a specified position in the dataset. Offset normally works with [`amount`](#operation-getitems-amount), which designates how many records to retrieve, starting from the offset position.
+
+        '
       type: integer
       format: int64
-    items-apiSku:
-      example: UGG-BB-PUR-06
-      maxLength: 32
-      minLength: 1
-      description: A stock keeping unit.
+    items-apiDocketName:
+      example: The Burger
+      maxLength: 64
       type: string
-    items-apiCostPrice:
+      description: The name used in the docket for the item.
+    items-apiPriceMode:
+      description: The type of price for the item.
+      example: PERCENT
+      enum:
+      - AMOUNT
+      - PERCENT
+      - POSITIVE_OPEN_PRICE
+      - NEGATIVE_OPEN_PRICE
+      default: AMOUNT
+      type: string
+    items-apiDefaultPrice:
+      example: 10
       type: number
-      description: The cost price of the item.
-      example: 5.0
-    items-apiItemId:
-      description: The unique identifier for the item.
+      description: The default price of the item.
+    items-apiBusinessLocationId:
+      description: The unique identifier for the business location.
       type: integer
       format: int64
-      example: 141948669132862
-    items-apiPriceDTO:
+      example: 45454565682155
+    items-apiActive:
+      type: boolean
+      description: Indicates whether or not the item is archived from the menu.
+      example: true
+    items-apiAccountingGroupDTO:
+      description: The accounting group associated with the item.
       properties:
-        amount:
-          type: number
-          example: 10.0
-          description: The item price.
+        id:
+          format: int64
+          type: integer
+          description: The unique identifier for the accounting group.
+          example: 40570261078058
         name:
           type: string
-          example: Tuesday Special
-          description: The name for this item price.
+          description: The name of the accounting group.
+          example: Alcoholic beverages
       type: object
+    items-apiName:
+      example: Burger
+      maxLength: 180
+      minLength: 1
+      description: The name of the item.
+      type: string
   securitySchemes:
     OAuth2:
       description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).
