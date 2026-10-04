@@ -123,39 +123,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    id-cards-apiBusinessLocationId:
-      name: businessLocationId
-      in: path
-      required: true
-      description: The unique identifier for the business location.
-      schema:
-        type: integer
-        format: int64
   schemas:
-    id-cards-apiCreateIdCardBatchRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the ID card batch.
-          example: Sample Batch Name
-          pattern: .*\S.*
-          maxLength: 255
-      required:
-      - name
-    id-cards-apiCreateIdCardsRequest:
-      type: object
-      properties:
-        cardCount:
-          type: integer
-          format: int32
-          description: The number of ID cards to create.
-          example: 1
-          minimum: 1
-          maximum: 100
-      required:
-      - cardCount
     id-cards-apiCardReference:
       type: object
       properties:
@@ -206,6 +174,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/id-cards-apiCardReference'
+    id-cards-apiCreateIdCardsRequest:
+      type: object
+      properties:
+        cardCount:
+          type: integer
+          format: int32
+          description: The number of ID cards to create.
+          example: 1
+          minimum: 1
+          maximum: 100
+      required:
+      - cardCount
+    id-cards-apiCreateIdCardBatchRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the ID card batch.
+          example: Sample Batch Name
+          pattern: .*\S.*
+          maxLength: 255
+      required:
+      - name
+  parameters:
+    id-cards-apiBusinessLocationId:
+      name: businessLocationId
+      in: path
+      required: true
+      description: The unique identifier for the business location.
+      schema:
+        type: integer
+        format: int64
   securitySchemes:
     OAuth2:
       description: 'The Lightspeed Restaurant K-Series APIs support OAuth2 authentication using the [authorization code grant flow](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/).

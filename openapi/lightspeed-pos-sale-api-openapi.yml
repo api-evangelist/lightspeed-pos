@@ -199,19 +199,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Attributes:
-      type: object
-      description: Pagination metadata returned in list responses.
-      properties:
-        count:
-          type: integer
-          description: Total number of matching records.
-        offset:
-          type: integer
-          description: Offset of the current page.
-        limit:
-          type: integer
-          description: Page size limit.
     Sale:
       type: object
       description: A point-of-sale transaction.
@@ -258,6 +245,19 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/SaleLine'
+    Attributes:
+      type: object
+      description: Pagination metadata returned in list responses.
+      properties:
+        count:
+          type: integer
+          description: Total number of matching records.
+        offset:
+          type: integer
+          description: Offset of the current page.
+        limit:
+          type: integer
+          description: Page size limit.
     SaleLine:
       type: object
       description: A single line item on a sale.

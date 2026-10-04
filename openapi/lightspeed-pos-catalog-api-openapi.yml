@@ -130,33 +130,15 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    accountID:
+      name: accountID
+      in: path
+      required: true
+      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
+      schema:
+        type: string
   schemas:
-    Manufacturer:
-      type: object
-      description: A manufacturer of inventory items.
-      properties:
-        manufacturerID:
-          type: string
-          description: Unique manufacturer identifier.
-        name:
-          type: string
-          description: Manufacturer name.
-    Vendor:
-      type: object
-      description: A vendor (supplier) of inventory items.
-      properties:
-        vendorID:
-          type: string
-          description: Unique vendor identifier.
-        name:
-          type: string
-          description: Vendor name.
-        accountNumber:
-          type: string
-          description: Merchant account number with the vendor.
-        contactID:
-          type: string
-          description: Identifier of the related contact record.
     Category:
       type: object
       description: An item category used to classify inventory.
@@ -173,14 +155,32 @@ components:
         fullPathName:
           type: string
           description: Fully qualified category path.
-  parameters:
-    accountID:
-      name: accountID
-      in: path
-      required: true
-      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
-      schema:
-        type: string
+    Vendor:
+      type: object
+      description: A vendor (supplier) of inventory items.
+      properties:
+        vendorID:
+          type: string
+          description: Unique vendor identifier.
+        name:
+          type: string
+          description: Vendor name.
+        accountNumber:
+          type: string
+          description: Merchant account number with the vendor.
+        contactID:
+          type: string
+          description: Identifier of the related contact record.
+    Manufacturer:
+      type: object
+      description: A manufacturer of inventory items.
+      properties:
+        manufacturerID:
+          type: string
+          description: Unique manufacturer identifier.
+        name:
+          type: string
+          description: Manufacturer name.
   securitySchemes:
     OAuth2:
       type: oauth2

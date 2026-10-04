@@ -186,19 +186,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Attributes:
-      type: object
-      description: Pagination metadata returned in list responses.
-      properties:
-        count:
-          type: integer
-          description: Total number of matching records.
-        offset:
-          type: integer
-          description: Offset of the current page.
-        limit:
-          type: integer
-          description: Page size limit.
     Customer:
       type: object
       description: A customer record.
@@ -226,6 +213,19 @@ components:
           description: Tax category for the customer.
         Contact:
           $ref: '#/components/schemas/Contact'
+    Attributes:
+      type: object
+      description: Pagination metadata returned in list responses.
+      properties:
+        count:
+          type: integer
+          description: Total number of matching records.
+        offset:
+          type: integer
+          description: Offset of the current page.
+        limit:
+          type: integer
+          description: Page size limit.
     Contact:
       type: object
       description: Contact details associated with a customer.
