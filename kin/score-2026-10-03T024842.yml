@@ -1,26 +1,23 @@
-# Kin Score artifact — lightspeed-pos — 2026-08-29T213958
+# Kin Score artifact — lightspeed-pos — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: lightspeed-pos
-  schema_version: 0.16.0
-  scored_at: '2026-08-29'
-  run_ts: 2026-08-29T213958
-  composite: 22.3
-  band: emerging
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 26.7
+  band: thin
   facets:
-    discoverability: 55.6
+    discoverability: 57.1
     contract_quality: 26.8
-    governance: 13.6
+    contract_governance: 13.6
     operational_transparency: 7.9
     developer_ergonomics: 23.8
-    commercial_clarity: 13.2
-    contract_governance: 13.6
     access_clarity: 13.2
   agent_readiness:
-    score: 39.9
+    score: 35.6
     band: agent-ready
-    band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
@@ -31,7 +28,7 @@ kin_score:
       error_semantics: verified
       openapi_examples: verified
       rate_limit_signal: documented
-      event_surface_described: true
+      event_surface_described: false
       agent_skills: false
       well_known_catalog: false
       consent_identity: false
@@ -41,10 +38,16 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 26.5
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:
-      total: 21
-      derived: 21
-      coverage: 100.0
+      total: 24
+      derived: 19
+      coverage: 79.2
       callable: 100.0
