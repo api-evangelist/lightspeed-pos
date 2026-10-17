@@ -1272,74 +1272,18 @@ webhooks:
       x-bump-branch-name: prod
 components:
   schemas:
-    staff-apiUsername:
-      description: The staff username. Only used for POS staff.
-      type: string
-      x-nonempty: true
-      maxLength: 128
-      example: John Doe
-    staff-apiResponseSchema:
+    staff-apiBusinessLocationIds:
       type: object
       properties:
-        data:
-          type: object
-          items: {}
-        links:
-          type: object
-          properties:
-            first:
-              type: object
-              properties:
-                href:
-                  type: string
-                  description: The URL for the first page of results.
-                  format: uri
-                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-                  description: The URL for the current page of results.
-                  format: uri
-                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc
-            next:
-              type: object
-              properties:
-                href:
-                  type: string
-                  description: The URL for the next page of results.
-                  format: uri
-                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc
-            last:
-              type: object
-              properties:
-                href:
-                  type: string
-                  description: The URL for the last page of results.
-                  format: uri
-                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc
-        page:
-          $ref: '#/components/schemas/staff-apiPageInfo'
-    staff-apiFirstName:
-      type: string
-      maxLength: 128
-      description: The first name of the user.
-      default: ''
-      example: John
-    staff-apiLastName:
-      type: string
-      maxLength: 128
-      description: The last name of the user.
-      default: ''
-      example: Doe
-    staff-apiWebhookEventDto:
-      type: object
-      properties:
-        notificationType:
-          $ref: '#/components/schemas/staff-apiWebhookTopic'
-        data:
-          $ref: '#/components/schemas/staff-apiShift'
+        businessLocationIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: List of all `businessLocationIds` to be added.
+          example:
+          - 123456789
+          - 987654321
     staff-apiPOSStaff:
       type: object
       x-plural: staff
@@ -1381,9 +1325,11 @@ components:
           description: The roles assigned to the user.
           items:
             $ref: '#/components/schemas/staff-apiStaffRoleDto'
-    staff-apiVisibleNoDefault:
-      type: boolean
-      description: Indicates if the user is visible.
+    staff-apiLastNameNoDefault:
+      type: string
+      maxLength: 128
+      description: The last name of the user.
+      example: Doe
     staff-apiCreateWebhookRequest:
       type: object
       required:
@@ -1400,82 +1346,61 @@ components:
         webhookName:
           type: string
           description: The name for the webhook.
-    staff-apiLastNameNoDefault:
-      type: string
-      maxLength: 128
-      description: The last name of the user.
-      example: Doe
-    staff-apiBOStaff:
+    staff-apiStaffGroupIdDto:
       type: object
-      x-plural: staff
       properties:
-        staffId:
-          $ref: '#/components/schemas/staff-apiStaffId'
-        userTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/staff-apiUserType'
-        firstName:
-          $ref: '#/components/schemas/staff-apiFirstName'
-        lastName:
-          $ref: '#/components/schemas/staff-apiLastName'
-        email:
-          $ref: '#/components/schemas/staff-apiEmail'
-        active:
-          $ref: '#/components/schemas/staff-apiActive'
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for the user group.
+          example: 1234
+        name:
+          type: string
+          description: The name of the user group.
+          example: Bar Staff
+    staff-apiEvent:
+      description: Shift event such as clock in/out, please use the newest one when multiple events existing with same event type.
+      type: object
+      properties:
+        uuid:
+          description: The unique identifier for the event.
+          type: string
+          example: REcdfpCwQJKUR53gdzIk5Q==
+        timestamp:
+          description: The time of the event.
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00Z'
         createdOn:
-          $ref: '#/components/schemas/staff-apiCreatedOn'
-        modifiedOn:
-          $ref: '#/components/schemas/staff-apiModifiedOn'
-        businessId:
-          $ref: '#/components/schemas/staff-apiBusinessId'
-        businessLocationId:
-          $ref: '#/components/schemas/staff-apiBusinessLocationId'
-        groups:
-          type: array
-          items:
-            $ref: '#/components/schemas/staff-apiStaffGroupIdDto'
-        reportAccess:
-          type: array
-          items:
-            $ref: '#/components/schemas/staff-apiReportAccess'
-        roles:
-          type: array
-          description: The roles assigned to the user.
-          items:
-            $ref: '#/components/schemas/staff-apiStaffRoleDto'
-    staff-apiReportAccessLevel:
-      type: object
-      x-plural: reportAccessLevels
-      properties:
-        value:
+          description: The creation time of the event.
           type: string
-          description: The value of the report access level.
-          example: STAFF_REPORT_OWN_ACCESS
-        description:
-          type: string
-          description: The description of the report access level.
-          example: The POS user can see their own reports
-    staff-apiCreatestaffRoleDto:
+          format: date-time
+          example: '2020-01-01T00:00:00Z'
+        eventType:
+          $ref: '#/components/schemas/staff-apiEventType'
+    staff-apiModifiedOn:
       type: string
-      description: List of roles assigned to the user. Normally, these are the default POS user roles. See [Get All POS User Permissions](https://api-docs.lsk.lightspeed.app/operation/operation-staff-apigetposuserpermissions) for a list of roles.
-    staff-apiStaffId:
+      format: date-time
+      description: The timestamp of the last update to the user.
+    staff-apiBusinessLocationId:
       type: integer
       format: int64
-      description: The unique identifier for the user.
-      example: 1234
-    staff-apiBusinessLocationIds:
-      type: object
-      properties:
-        businessLocationIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-          description: List of all `businessLocationIds` to be added.
-          example:
-          - 123456789
-          - 987654321
+      description: The unique identifier for the business location.
+      example: 1234567890
+    staff-apiWebhookTopic:
+      description: The type of webhook notification.
+      type: string
+      enum:
+      - shift.created
+      - shift.updated
+      - shift.deleted
+    staff-apiUserType:
+      description: The user type.
+      type: string
+      enum:
+      - POS
+      - BACK_OFFICE
+      - API
     staff-apiStaff:
       type: object
       x-plural: staff
@@ -1519,204 +1444,10 @@ components:
           description: The roles assigned to the user.
           items:
             $ref: '#/components/schemas/staff-apiStaffRoleDto'
-    staff-apiPinCodeSet:
-      type: boolean
-      description: Indicates if the user has a PIN code set. Relevant for POS users only.
-    staff-apiCreatePosStaffDto:
-      type: object
-      required:
-      - username
-      properties:
-        username:
-          $ref: '#/components/schemas/staff-apiUsername'
-        pinCode:
-          type: string
-          maxLength: 4
-          nullable: true
-          description: The 4-digit pin code for the user.
-          example: '1234'
-        firstName:
-          $ref: '#/components/schemas/staff-apiFirstName'
-        lastName:
-          $ref: '#/components/schemas/staff-apiLastName'
-        active:
-          $ref: '#/components/schemas/staff-apiActive'
-        visible:
-          $ref: '#/components/schemas/staff-apiVisible'
-        group:
-          type: integer
-          format: int64
-          description: The unique identifier for the user group.
-        reportAccess:
-          $ref: '#/components/schemas/staff-apiReportAccess'
-        roles:
-          description: The roles assigned to the user.
-          type: array
-          items:
-            $ref: '#/components/schemas/staff-apiCreatestaffRoleDto'
-          default: []
-    staff-apiVisible:
-      type: boolean
-      default: true
-      description: Indicates if the user is visible.
-    staff-apiUserType:
-      description: The user type.
+    staff-apiReportAccess:
       type: string
-      enum:
-      - POS
-      - BACK_OFFICE
-      - API
-    staff-apiUpdatePosStaffDto:
-      type: object
-      required:
-      - username
-      - pinCode
-      - firstName
-      - lastName
-      - active
-      - visible
-      - reportAccess
-      - roles
-      properties:
-        username:
-          $ref: '#/components/schemas/staff-apiUsername'
-        pinCode:
-          type: string
-          maxLength: 4
-          description: The 4-digit pin code for the user.
-          example: '1234'
-        firstName:
-          $ref: '#/components/schemas/staff-apiFirstNameNoDefault'
-        lastName:
-          $ref: '#/components/schemas/staff-apiLastNameNoDefault'
-        active:
-          $ref: '#/components/schemas/staff-apiActiveNoDefault'
-        visible:
-          $ref: '#/components/schemas/staff-apiVisibleNoDefault'
-        group:
-          type: integer
-          format: int64
-          default: -1
-          x-positive-number-required: true
-          description: The unique identifier for the user group.
-        reportAccess:
-          $ref: '#/components/schemas/staff-apiReportAccessNoDefault'
-        roles:
-          type: array
-          x-default-null: true
-          description: The roles assigned to the user.
-          items:
-            $ref: '#/components/schemas/staff-apiCreatestaffRoleDto'
-    staff-apiActiveNoDefault:
-      type: boolean
-      description: Indicates if the user is active.
-    staff-apiStaffGroupIdDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: The unique identifier for the user group.
-          example: 1234
-        name:
-          type: string
-          description: The name of the user group.
-          example: Bar Staff
-    staff-apiEvent:
-      description: Shift event such as clock in/out, please use the newest one when multiple events existing with same event type.
-      type: object
-      properties:
-        uuid:
-          description: The unique identifier for the event.
-          type: string
-          example: REcdfpCwQJKUR53gdzIk5Q==
-        timestamp:
-          description: The time of the event.
-          type: string
-          format: date-time
-          example: '2020-01-01T00:00:00Z'
-        createdOn:
-          description: The creation time of the event.
-          type: string
-          format: date-time
-          example: '2020-01-01T00:00:00Z'
-        eventType:
-          $ref: '#/components/schemas/staff-apiEventType'
-    staff-apiReportAccessNoDefault:
-      type: string
+      default: STAFF_REPORT_OWN_ACCESS
       description: User report permissions.
-    staff-apiWebhookTopic:
-      description: The type of webhook notification.
-      type: string
-      enum:
-      - shift.created
-      - shift.updated
-      - shift.deleted
-    staff-apiActive:
-      type: boolean
-      default: true
-      description: Indicates if the user is active.
-    staff-apiStaffGroup:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: The unique identifier for the user group.
-          example: 1234
-        name:
-          type: string
-          description: The name of the user group.
-          example: Bar Staff
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/staff-apiStaffRoleDto'
-        reportAccess:
-          $ref: '#/components/schemas/staff-apiReportAccess'
-    staff-apiModifiedOn:
-      type: string
-      format: date-time
-      description: The timestamp of the last update to the user.
-    staff-apiEmail:
-      description: The email associated with the user. Only used for Back Office staff.
-      type: string
-      format: email
-      maxLength: 128
-    staff-apiCreatedOn:
-      type: string
-      format: date-time
-      description: The timestamp of the creation of the user.
-    staff-apiWebhookDto:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: The unique identifier for the webhook.
-          example: e95c2cc5-4489-4025-a7e2-a34faeaa5f9d
-        notificationType:
-          $ref: '#/components/schemas/staff-apiWebhookTopic'
-        url:
-          type: string
-          description: The URL for the webhook.
-        webhookName:
-          type: string
-          description: The name for the webhook.
-          example: My Awesome Webhook
-        businessLocationId:
-          type: integer
-          format: int64
-          description: The unique identifier for the business location.
-          example: 1234567890
-        createdAt:
-          type: string
-          format: date-time
-          description: The creation time of the webhook.
-        updatedAt:
-          type: string
-          format: date-time
-          description: The last update time of the webhook.
     staff-apiPageInfo:
       type: object
       properties:
@@ -1736,11 +1467,9 @@ components:
           type: integer
           example: 10
           description: The total number of pages of results.
-    staff-apiBusinessLocationId:
-      type: integer
-      format: int64
-      description: The unique identifier for the business location.
-      example: 1234567890
+    staff-apiVisibleNoDefault:
+      type: boolean
+      description: Indicates if the user is visible.
     staff-apiShift:
       description: Shift details.
       x-plural: shifts
@@ -1785,33 +1514,65 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/staff-apiEvent'
-    staff-apiReportAccess:
-      type: string
-      default: STAFF_REPORT_OWN_ACCESS
-      description: User report permissions.
-    staff-apiUserPermission:
+    staff-apiVisible:
+      type: boolean
+      default: true
+      description: Indicates if the user is visible.
+    staff-apiReportAccessLevel:
       type: object
-      x-plural: userPermissions
+      x-plural: reportAccessLevels
       properties:
         value:
           type: string
-          description: The value of the user permission.
-          example: ROLE_MANAGER
+          description: The value of the report access level.
+          example: STAFF_REPORT_OWN_ACCESS
         description:
           type: string
-          description: The description of the user permission.
-          example: POS user is a manager
-    staff-apiFirstNameNoDefault:
+          description: The description of the report access level.
+          example: The POS user can see their own reports
+    staff-apiCreatedOn:
+      type: string
+      format: date-time
+      description: The timestamp of the creation of the user.
+    staff-apiFirstName:
       type: string
       maxLength: 128
       description: The first name of the user.
+      default: ''
       example: John
-    staff-apiEventType:
-      description: The type of event.
-      type: string
-      enum:
-      - CLOCK_IN
-      - CLOCK_OUT
+    staff-apiCreatePosStaffDto:
+      type: object
+      required:
+      - username
+      properties:
+        username:
+          $ref: '#/components/schemas/staff-apiUsername'
+        pinCode:
+          type: string
+          maxLength: 4
+          nullable: true
+          description: The 4-digit pin code for the user.
+          example: '1234'
+        firstName:
+          $ref: '#/components/schemas/staff-apiFirstName'
+        lastName:
+          $ref: '#/components/schemas/staff-apiLastName'
+        active:
+          $ref: '#/components/schemas/staff-apiActive'
+        visible:
+          $ref: '#/components/schemas/staff-apiVisible'
+        group:
+          type: integer
+          format: int64
+          description: The unique identifier for the user group.
+        reportAccess:
+          $ref: '#/components/schemas/staff-apiReportAccess'
+        roles:
+          description: The roles assigned to the user.
+          type: array
+          items:
+            $ref: '#/components/schemas/staff-apiCreatestaffRoleDto'
+          default: []
     staff-apiStaffRoleDto:
       type: object
       properties:
@@ -1824,11 +1585,250 @@ components:
           type: string
           description: The name of the role.
           example: ROLE_CAN_LOGIN
+    staff-apiResponseSchema:
+      type: object
+      properties:
+        data:
+          type: object
+          items: {}
+        links:
+          type: object
+          properties:
+            first:
+              type: object
+              properties:
+                href:
+                  type: string
+                  description: The URL for the first page of results.
+                  format: uri
+                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  description: The URL for the current page of results.
+                  format: uri
+                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=1&size=1&sort=userId,desc
+            next:
+              type: object
+              properties:
+                href:
+                  type: string
+                  description: The URL for the next page of results.
+                  format: uri
+                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=2&size=1&sort=userId,desc
+            last:
+              type: object
+              properties:
+                href:
+                  type: string
+                  description: The URL for the last page of results.
+                  format: uri
+                  example: https://api-trial.ikentoo.com/staff/v1/businessLocations/40570261078018/userTypes/POS?page=5&size=1&sort=userId,desc
+        page:
+          $ref: '#/components/schemas/staff-apiPageInfo'
+    staff-apiCreatestaffRoleDto:
+      type: string
+      description: List of roles assigned to the user. Normally, these are the default POS user roles. See [Get All POS User Permissions](https://api-docs.lsk.lightspeed.app/operation/operation-staff-apigetposuserpermissions) for a list of roles.
+    staff-apiFirstNameNoDefault:
+      type: string
+      maxLength: 128
+      description: The first name of the user.
+      example: John
+    staff-apiUsername:
+      description: The staff username. Only used for POS staff.
+      type: string
+      x-nonempty: true
+      maxLength: 128
+      example: John Doe
+    staff-apiActiveNoDefault:
+      type: boolean
+      description: Indicates if the user is active.
+    staff-apiLastName:
+      type: string
+      maxLength: 128
+      description: The last name of the user.
+      default: ''
+      example: Doe
+    staff-apiWebhookDto:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The unique identifier for the webhook.
+          example: e95c2cc5-4489-4025-a7e2-a34faeaa5f9d
+        notificationType:
+          $ref: '#/components/schemas/staff-apiWebhookTopic'
+        url:
+          type: string
+          description: The URL for the webhook.
+        webhookName:
+          type: string
+          description: The name for the webhook.
+          example: My Awesome Webhook
+        businessLocationId:
+          type: integer
+          format: int64
+          description: The unique identifier for the business location.
+          example: 1234567890
+        createdAt:
+          type: string
+          format: date-time
+          description: The creation time of the webhook.
+        updatedAt:
+          type: string
+          format: date-time
+          description: The last update time of the webhook.
+    staff-apiEmail:
+      description: The email associated with the user. Only used for Back Office staff.
+      type: string
+      format: email
+      maxLength: 128
+    staff-apiUpdatePosStaffDto:
+      type: object
+      required:
+      - username
+      - pinCode
+      - firstName
+      - lastName
+      - active
+      - visible
+      - reportAccess
+      - roles
+      properties:
+        username:
+          $ref: '#/components/schemas/staff-apiUsername'
+        pinCode:
+          type: string
+          maxLength: 4
+          description: The 4-digit pin code for the user.
+          example: '1234'
+        firstName:
+          $ref: '#/components/schemas/staff-apiFirstNameNoDefault'
+        lastName:
+          $ref: '#/components/schemas/staff-apiLastNameNoDefault'
+        active:
+          $ref: '#/components/schemas/staff-apiActiveNoDefault'
+        visible:
+          $ref: '#/components/schemas/staff-apiVisibleNoDefault'
+        group:
+          type: integer
+          format: int64
+          default: -1
+          x-positive-number-required: true
+          description: The unique identifier for the user group.
+        reportAccess:
+          $ref: '#/components/schemas/staff-apiReportAccessNoDefault'
+        roles:
+          type: array
+          x-default-null: true
+          description: The roles assigned to the user.
+          items:
+            $ref: '#/components/schemas/staff-apiCreatestaffRoleDto'
+    staff-apiWebhookEventDto:
+      type: object
+      properties:
+        notificationType:
+          $ref: '#/components/schemas/staff-apiWebhookTopic'
+        data:
+          $ref: '#/components/schemas/staff-apiShift'
+    staff-apiStaffId:
+      type: integer
+      format: int64
+      description: The unique identifier for the user.
+      example: 1234
+    staff-apiReportAccessNoDefault:
+      type: string
+      description: User report permissions.
+    staff-apiEventType:
+      description: The type of event.
+      type: string
+      enum:
+      - CLOCK_IN
+      - CLOCK_OUT
     staff-apiBusinessId:
       type: integer
       format: int64
       description: The unique identifier for the business.
       example: 12345
+    staff-apiStaffGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: The unique identifier for the user group.
+          example: 1234
+        name:
+          type: string
+          description: The name of the user group.
+          example: Bar Staff
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/staff-apiStaffRoleDto'
+        reportAccess:
+          $ref: '#/components/schemas/staff-apiReportAccess'
+    staff-apiActive:
+      type: boolean
+      default: true
+      description: Indicates if the user is active.
+    staff-apiPinCodeSet:
+      type: boolean
+      description: Indicates if the user has a PIN code set. Relevant for POS users only.
+    staff-apiUserPermission:
+      type: object
+      x-plural: userPermissions
+      properties:
+        value:
+          type: string
+          description: The value of the user permission.
+          example: ROLE_MANAGER
+        description:
+          type: string
+          description: The description of the user permission.
+          example: POS user is a manager
+    staff-apiBOStaff:
+      type: object
+      x-plural: staff
+      properties:
+        staffId:
+          $ref: '#/components/schemas/staff-apiStaffId'
+        userTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/staff-apiUserType'
+        firstName:
+          $ref: '#/components/schemas/staff-apiFirstName'
+        lastName:
+          $ref: '#/components/schemas/staff-apiLastName'
+        email:
+          $ref: '#/components/schemas/staff-apiEmail'
+        active:
+          $ref: '#/components/schemas/staff-apiActive'
+        createdOn:
+          $ref: '#/components/schemas/staff-apiCreatedOn'
+        modifiedOn:
+          $ref: '#/components/schemas/staff-apiModifiedOn'
+        businessId:
+          $ref: '#/components/schemas/staff-apiBusinessId'
+        businessLocationId:
+          $ref: '#/components/schemas/staff-apiBusinessLocationId'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/staff-apiStaffGroupIdDto'
+        reportAccess:
+          type: array
+          items:
+            $ref: '#/components/schemas/staff-apiReportAccess'
+        roles:
+          type: array
+          description: The roles assigned to the user.
+          items:
+            $ref: '#/components/schemas/staff-apiStaffRoleDto'
     Employee:
       type: object
       description: An employee of the retail account.
@@ -1865,42 +1865,13 @@ components:
           type: string
           description: IANA timezone of the shop.
   parameters:
-    staff-apiSortByStaff:
-      name: sort
+    staff-apiEndTime:
+      name: endTime
       in: query
-      description: Sort by field and direction.
+      description: Show results before this end time. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format).
       schema:
-        type: array
-        items:
-          type: string
-        default:
-        - userId,desc
-    staff-apiBusinessLocationId:
-      name: businessLocationId
-      in: path
-      required: true
-      description: The unique identifier for the business location.
-      schema:
-        type: integer
-        format: int64
-    staff-apiSortByShift:
-      name: sort
-      in: query
-      description: Sort by field and direction.
-      schema:
-        type: array
-        items:
-          type: string
-        default:
-        - date,desc
-    staff-apiStaffId:
-      name: staffId
-      in: query
-      required: false
-      description: Filter on the unique identifier for the user.
-      schema:
-        type: integer
-        format: int64
+        type: string
+        format: date-time
     staff-apiStartTime:
       name: startTime
       in: query
@@ -1908,12 +1879,12 @@ components:
       schema:
         type: string
         format: date-time
-    staff-apiPage:
-      name: page
+    staff-apiSize:
+      name: size
       in: query
-      description: The page number, when paginating.
+      description: Number of results to return per page, when paginating.
       schema:
-        default: 1
+        default: 10
         minimum: 1
         type: integer
         format: int32
@@ -1935,22 +1906,51 @@ components:
           type: string
         default:
         - name,asc
-    staff-apiEndTime:
-      name: endTime
-      in: query
-      description: Show results before this end time. The format should be `yyyy-MM-dd'T'HH:mm:ss` (ISO 8601 format).
+    staff-apiBusinessLocationId:
+      name: businessLocationId
+      in: path
+      required: true
+      description: The unique identifier for the business location.
       schema:
-        type: string
-        format: date-time
-    staff-apiSize:
-      name: size
+        type: integer
+        format: int64
+    staff-apiPage:
+      name: page
       in: query
-      description: Number of results to return per page, when paginating.
+      description: The page number, when paginating.
       schema:
-        default: 10
+        default: 1
         minimum: 1
         type: integer
         format: int32
+    staff-apiSortByShift:
+      name: sort
+      in: query
+      description: Sort by field and direction.
+      schema:
+        type: array
+        items:
+          type: string
+        default:
+        - date,desc
+    staff-apiSortByStaff:
+      name: sort
+      in: query
+      description: Sort by field and direction.
+      schema:
+        type: array
+        items:
+          type: string
+        default:
+        - userId,desc
+    staff-apiStaffId:
+      name: staffId
+      in: query
+      required: false
+      description: Filter on the unique identifier for the user.
+      schema:
+        type: integer
+        format: int64
     accountID:
       name: accountID
       in: path

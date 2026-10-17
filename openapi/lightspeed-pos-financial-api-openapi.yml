@@ -788,14 +788,14 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    financial-apiExternalReferenceId:
+    financial-apiFlattenedParameter:
       schema:
-        type: string
-        example: TASK:OO-{businessLocationId}-{unique-reference-code}
-      name: externalReferenceId
-      description: The external reference of the receipt. See [externalReferences](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences).
+        example: true
+        default: false
+        type: boolean
+      name: flattened
       in: query
-      required: true
+      required: false
     financial-apiIncludeParameter:
       schema:
         type: string
@@ -805,6 +805,15 @@ components:
 
         The allowed values are: `staff`, `table`, `consumer`, `payments`, `revenue_center`, `account_profile`, `payment_authorization`.'
       name: include
+      in: query
+      required: false
+    financial-apiDateParameter:
+      schema:
+        example: '2021-10-28'
+        type: string
+        format: date
+      name: date
+      description: The date in YYYY-MM-DD format.
       in: query
       required: false
     financial-apiBusinessLocationId:
@@ -817,15 +826,14 @@ components:
         minimum: 1
       example: 45454565682155
       description: The unique identifier for the business location.
-    financial-apiDateParameter:
+    financial-apiExternalReferenceId:
       schema:
-        example: '2021-10-28'
         type: string
-        format: date
-      name: date
-      description: The date in YYYY-MM-DD format.
+        example: TASK:OO-{businessLocationId}-{unique-reference-code}
+      name: externalReferenceId
+      description: The external reference of the receipt. See [externalReferences](https://api-docs.lsk.lightspeed.app/operation/operation-financial-apigetfinancials#operation-financial-apigetfinancials-200-body-application-json-sales-externalreferences).
       in: query
-      required: false
+      required: true
     financial-apiGroupByParameter:
       schema:
         type: string
@@ -839,34 +847,7 @@ components:
       name: groupBy
       in: query
       required: true
-    financial-apiFlattenedParameter:
-      schema:
-        example: true
-        default: false
-        type: boolean
-      name: flattened
-      in: query
-      required: false
   schemas:
-    financial-apiResourcesTaxRate:
-      type: object
-      properties:
-        _embedded:
-          type: object
-          properties:
-            taxRateList:
-              type: array
-              items:
-                $ref: '#/components/schemas/financial-apiTaxRate'
-        _links:
-          type: object
-          properties:
-            self:
-              type: object
-              properties:
-                href:
-                  type: string
-                  example: https://api.ikentoo.com/f/finance/141948669132802/tax-rates
     financial-apiSaleDto:
       properties:
         accountReference:
@@ -1356,6 +1337,25 @@ components:
           description: The void reason, if applicable.
           example: Unhappy Client
       type: object
+    financial-apiResourcesTaxRate:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            taxRateList:
+              type: array
+              items:
+                $ref: '#/components/schemas/financial-apiTaxRate'
+        _links:
+          type: object
+          properties:
+            self:
+              type: object
+              properties:
+                href:
+                  type: string
+                  example: https://api.ikentoo.com/f/finance/141948669132802/tax-rates
     financial-apiFinancialDto:
       properties:
         businessName:

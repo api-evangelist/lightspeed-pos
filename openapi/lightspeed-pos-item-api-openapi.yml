@@ -289,13 +289,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    itemID:
-      name: itemID
-      in: path
-      required: true
-      description: The unique identifier of the item.
-      schema:
-        type: string
     accountID:
       name: accountID
       in: path
@@ -303,7 +296,27 @@ components:
       description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
       schema:
         type: string
+    itemID:
+      name: itemID
+      in: path
+      required: true
+      description: The unique identifier of the item.
+      schema:
+        type: string
   schemas:
+    Attributes:
+      type: object
+      description: Pagination metadata returned in list responses.
+      properties:
+        count:
+          type: integer
+          description: Total number of matching records.
+        offset:
+          type: integer
+          description: Offset of the current page.
+        limit:
+          type: integer
+          description: Page size limit.
     Item:
       type: object
       description: An inventory item sold and tracked in Lightspeed Retail.
@@ -347,19 +360,6 @@ components:
         Prices:
           type: object
           description: Item pricing levels.
-    Attributes:
-      type: object
-      description: Pagination metadata returned in list responses.
-      properties:
-        count:
-          type: integer
-          description: Total number of matching records.
-        offset:
-          type: integer
-          description: Offset of the current page.
-        limit:
-          type: integer
-          description: Page size limit.
   securitySchemes:
     OAuth2:
       type: oauth2

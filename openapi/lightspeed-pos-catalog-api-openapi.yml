@@ -139,22 +139,6 @@ components:
       schema:
         type: string
   schemas:
-    Category:
-      type: object
-      description: An item category used to classify inventory.
-      properties:
-        categoryID:
-          type: string
-          description: Unique category identifier.
-        name:
-          type: string
-          description: Category name.
-        parentID:
-          type: string
-          description: Identifier of the parent category.
-        fullPathName:
-          type: string
-          description: Fully qualified category path.
     Vendor:
       type: object
       description: A vendor (supplier) of inventory items.
@@ -171,6 +155,22 @@ components:
         contactID:
           type: string
           description: Identifier of the related contact record.
+    Category:
+      type: object
+      description: An item category used to classify inventory.
+      properties:
+        categoryID:
+          type: string
+          description: Unique category identifier.
+        name:
+          type: string
+          description: Category name.
+        parentID:
+          type: string
+          description: Identifier of the parent category.
+        fullPathName:
+          type: string
+          description: Fully qualified category path.
     Manufacturer:
       type: object
       description: A manufacturer of inventory items.

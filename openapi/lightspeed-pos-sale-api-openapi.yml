@@ -245,19 +245,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/SaleLine'
-    Attributes:
-      type: object
-      description: Pagination metadata returned in list responses.
-      properties:
-        count:
-          type: integer
-          description: Total number of matching records.
-        offset:
-          type: integer
-          description: Offset of the current page.
-        limit:
-          type: integer
-          description: Page size limit.
     SaleLine:
       type: object
       description: A single line item on a sale.
@@ -283,19 +270,32 @@ components:
         discountID:
           type: string
           description: Identifier of any applied discount.
+    Attributes:
+      type: object
+      description: Pagination metadata returned in list responses.
+      properties:
+        count:
+          type: integer
+          description: Total number of matching records.
+        offset:
+          type: integer
+          description: Offset of the current page.
+        limit:
+          type: integer
+          description: Page size limit.
   parameters:
-    accountID:
-      name: accountID
-      in: path
-      required: true
-      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
-      schema:
-        type: string
     saleID:
       name: saleID
       in: path
       required: true
       description: The unique identifier of the sale.
+      schema:
+        type: string
+    accountID:
+      name: accountID
+      in: path
+      required: true
+      description: The numeric Lightspeed Retail account identifier, resolved via GET /Account.json.
       schema:
         type: string
   securitySchemes:
